@@ -79,6 +79,12 @@ previous one's topics are all marked complete. Tune the `PREREQ` map at the top 
 ### markdown-lite (in `desc` is plain; in `levels[].body`)
 `**bold**`, `` `code` ``, blank line = new paragraph, lines starting `- ` = bullet list.
 
+### tags (optional, searchable)
+Any topic or leaf may carry `"tags": ["local-first","sqlite","mcp"]`. The top-bar
+search matches **label + tags**, so tags let you surface a cross-cutting theme that
+the column/graph structure doesn't capture. Entirely optional — nodes without tags
+still search by label.
+
 ## Notes
 - Must be served over http(s) (GitHub Pages is fine). Opening from `file://`
   blocks `fetch`, so the data won't load.
