@@ -41,7 +41,8 @@
     "t-pretraining",
     "t-posttraining",
     "t-llm-eval",
-    "t-chatbot-design"
+    "t-chatbot-design",
+    "t-slm-training"
    ]
   },
   {
@@ -308,7 +309,9 @@
     "l-doc-parsing",
     "l-chunking",
     "l-indexing",
-    "l-embeddings"
+    "l-embeddings",
+    "l-deterministic-retrieval",
+    "l-graph-ast-traversal"
    ],
    "links": []
   },
@@ -376,7 +379,8 @@
     "l-routing",
     "l-parallelization",
     "l-reflection",
-    "l-orchestrator"
+    "l-orchestrator",
+    "l-agentcore-strands"
    ],
    "links": []
   },
@@ -389,7 +393,8 @@
     "l-tool-calling",
     "l-tool-formatting",
     "l-tool-execution",
-    "l-mcp"
+    "l-mcp",
+    "l-persistent-memory"
    ],
    "links": [],
    "levels": [
@@ -582,6 +587,44 @@
     "l-demo"
    ],
    "links": []
+  },
+  "t-slm-training": {
+   "label": "SLMs & Efficient Training",
+   "domain": "p1",
+   "col": 0,
+   "desc": "Building and training Small Language Models — compact models you can fine-tune and run locally for narrow tasks, at a fraction of the cost.",
+   "subs": [
+    "l-jax-compilation",
+    "l-slm-distillation"
+   ],
+   "links": [],
+   "tags": [
+    "local-first",
+    "slm",
+    "efficiency",
+    "training",
+    "on-device"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "open": true,
+     "body": "Bigger isn't always better. **Small Language Models (SLMs)** — roughly a few hundred million to a few billion parameters (Phi, Gemma-2B, small Qwen) — can match large models on narrow tasks while running on a laptop with **no network**."
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "open": false,
+     "body": "Train or fine-tune them efficiently with **JAX** (which compiles array code to the **XLA** compiler for big speedups) or PyTorch, plus **distillation** and **LoRA**. The result is fast iteration loops on consumer or edge hardware."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "open": false,
+     "body": "The trade-off is raw capability vs **cost, latency, and privacy**. SLMs win for on-device, high-volume, or privacy-sensitive workloads where a frontier model is overkill."
+    }
+   ]
   }
  },
  "leaves": {
@@ -1074,6 +1117,89 @@
    "domain": "p6",
    "desc": "Present the finished project.",
    "links": []
+  },
+  "l-jax-compilation": {
+   "label": "JAX & XLA",
+   "parent": "t-slm-training",
+   "domain": "p1",
+   "desc": "Using JAX — which compiles array code to the XLA compiler — for high-performance, fast-iterating training of smaller models.",
+   "links": [],
+   "tags": [
+    "jax",
+    "xla",
+    "training",
+    "performance",
+    "local-first"
+   ]
+  },
+  "l-slm-distillation": {
+   "label": "Knowledge Distillation",
+   "parent": "t-slm-training",
+   "domain": "p1",
+   "desc": "Training a small 'student' model to mimic a larger 'teacher', transferring capability into a compact, deployable model.",
+   "links": [],
+   "tags": [
+    "distillation",
+    "slm",
+    "compression"
+   ]
+  },
+  "l-deterministic-retrieval": {
+   "label": "Deterministic / Lexical Retrieval",
+   "parent": "t-retrieval",
+   "domain": "p2",
+   "desc": "Embedding-free, exact-match retrieval — BM25 and SQLite FTS5 full-text search — cheaper and more predictable than pure vector search, and often combined with it (hybrid).",
+   "links": [],
+   "tags": [
+    "retrieval",
+    "bm25",
+    "fts5",
+    "local-first",
+    "sqlite",
+    "hybrid"
+   ]
+  },
+  "l-graph-ast-traversal": {
+   "label": "Graph & AST Traversal",
+   "parent": "t-retrieval",
+   "domain": "p2",
+   "desc": "Parsing Abstract Syntax Trees and codebase dependency graphs to give an assistant structural, relationship-aware context — not just text similarity.",
+   "links": [],
+   "tags": [
+    "retrieval",
+    "ast",
+    "code",
+    "graph",
+    "context"
+   ]
+  },
+  "l-persistent-memory": {
+   "label": "Persistent Cross-Project Memory",
+   "parent": "t-tools",
+   "domain": "p3",
+   "desc": "Attaching a local store (e.g. SQLite with sqlite-vec) to an MCP server so coding agents keep continuous, cross-session state and recall.",
+   "links": [],
+   "tags": [
+    "mcp",
+    "sqlite",
+    "memory",
+    "local-first",
+    "amazon-q"
+   ]
+  },
+  "l-agentcore-strands": {
+   "label": "State Graphs & Agent SDKs",
+   "parent": "t-workflows",
+   "domain": "p3",
+   "desc": "Modeling agentic workflows as explicit state graphs (LangGraph, AWS Strands / Bedrock AgentCore) for robust, resumable multi-step execution.",
+   "links": [],
+   "tags": [
+    "agents",
+    "state-graph",
+    "langgraph",
+    "aws",
+    "strands"
+   ]
   }
  },
  "topicEdges": [
@@ -1251,6 +1377,16 @@
    "s": "t-t2v",
    "t": "t-capstone",
    "k": "applies"
+  },
+  {
+   "s": "t-llm-overview",
+   "t": "t-slm-training",
+   "k": "builds"
+  },
+  {
+   "s": "t-slm-training",
+   "t": "t-local-deploy",
+   "k": "applies"
   }
  ],
  "leafEdges": [
@@ -1308,6 +1444,26 @@
    "s": "l-sft",
    "t": "l-star",
    "k": "applies"
+  },
+  {
+   "s": "l-mcp",
+   "t": "l-persistent-memory",
+   "k": "builds"
+  },
+  {
+   "s": "l-indexing",
+   "t": "l-deterministic-retrieval",
+   "k": "applies"
+  },
+  {
+   "s": "l-doc-parsing",
+   "t": "l-graph-ast-traversal",
+   "k": "builds"
+  },
+  {
+   "s": "l-orchestrator",
+   "t": "l-agentcore-strands",
+   "k": "builds"
   }
  ]
 }
