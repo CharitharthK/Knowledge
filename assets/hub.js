@@ -274,13 +274,15 @@ function saveDone(){try{localStorage.setItem(SKEY,JSON.stringify({done:[...done]
 /* ---- search ---- */
 $('#search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();
   if(!q){clearHi();return;}
+  const hay=n=>(n.label+' '+((n.tags||[]).join(' '))).toLowerCase();
+  const match=n=>hay(n).includes(q);
   const hitT=new Set(); let firstChip=null;
-  Object.keys(topics).forEach(k=>{if(topics[k].label.toLowerCase().includes(q))hitT.add(k);});
-  Object.keys(leaves).forEach(k=>{if(leaves[k].label.toLowerCase().includes(q)){hitT.add(leaves[k].parent);if(!firstChip)firstChip=k;}});
+  Object.keys(topics).forEach(k=>{if(match(topics[k]))hitT.add(k);});
+  Object.keys(leaves).forEach(k=>{if(match(leaves[k])){hitT.add(leaves[k].parent);if(!firstChip)firstChip=k;}});
   Object.keys(topics).forEach(k=>cardEl[k].classList.toggle('cold',!hitT.has(k)));
   topicEdges.forEach(ed=>ed.el.classList.add('cold'));
-  document.querySelectorAll('.chip').forEach(ch=>{const m=leaves[ch.dataset.k].label.toLowerCase().includes(q);
-    ch.style.outline=m?'1px solid var(--gold)':''; ch.style.opacity=(!q||m||topics[leaves[ch.dataset.k].parent].label.toLowerCase().includes(q))?'1':'.3';});
+  document.querySelectorAll('.chip').forEach(ch=>{const m=match(leaves[ch.dataset.k]);
+    ch.style.outline=m?'1px solid var(--gold)':''; ch.style.opacity=(!q||m||match(topics[leaves[ch.dataset.k].parent]))?'1':'.3';});
 });
 
 /* ---- zoom & pan ---- */
