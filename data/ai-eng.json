@@ -1,0 +1,1313 @@
+{
+ "meta": {
+  "id": "ai-eng",
+  "kbd": "knowledge hub · ai engineering",
+  "title": "AI Engineering",
+  "subtitle": "ship LLM & agent systems",
+  "blurb": "The applied LLM stack — pre-training, RAG, agents, reasoning, and multimodal generation.",
+  "progressive": false
+ },
+ "domains": {
+  "p1": {
+   "name": "LLM Foundations",
+   "c": "#F0B23C"
+  },
+  "p2": {
+   "name": "RAG & Adaptation",
+   "c": "#46B8DA"
+  },
+  "p3": {
+   "name": "Agents & Tools",
+   "c": "#54C99A"
+  },
+  "p4": {
+   "name": "Reasoning",
+   "c": "#B08CF0"
+  },
+  "p5": {
+   "name": "Multimodal Gen",
+   "c": "#F0796B"
+  },
+  "p6": {
+   "name": "Capstone",
+   "c": "#8A93AE"
+  }
+ },
+ "cols": [
+  {
+   "title": "LLM Playground",
+   "keys": [
+    "t-llm-overview",
+    "t-pretraining",
+    "t-posttraining",
+    "t-llm-eval",
+    "t-chatbot-design"
+   ]
+  },
+  {
+   "title": "RAG Chatbot",
+   "keys": [
+    "t-adaptation",
+    "t-finetuning",
+    "t-prompt-eng",
+    "t-rag",
+    "t-retrieval",
+    "t-generation",
+    "t-rag-eval"
+   ]
+  },
+  {
+   "title": "Tool-Calling Agent",
+   "keys": [
+    "t-agents-overview",
+    "t-workflows",
+    "t-tools",
+    "t-multistep",
+    "t-multiagent",
+    "t-agent-eval"
+   ]
+  },
+  {
+   "title": "Deep Research / Reasoning",
+   "keys": [
+    "t-reasoning-models",
+    "t-inference-time",
+    "t-training-time",
+    "t-local-deploy"
+   ]
+  },
+  {
+   "title": "Multimodal Generation",
+   "keys": [
+    "t-genmodels",
+    "t-t2i",
+    "t-t2v"
+   ]
+  },
+  {
+   "title": "Capstone",
+   "keys": [
+    "t-capstone"
+   ]
+  }
+ ],
+ "topics": {
+  "t-llm-overview": {
+   "label": "LLM Overview & Foundations",
+   "domain": "p1",
+   "col": 0,
+   "desc": "What large language models are, how next-token prediction works, and why scale plus data turned them into general-purpose engines.",
+   "subs": [],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "An LLM predicts the **next token** given the ones before it. Trained on enormous text, that single objective yields models that write, reason, and code.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "They're built on the **Transformer**, and quality scales with data, parameters, and compute (scaling laws). A raw base model is just a predictor — usefulness comes from post-training.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Families like GPT, Llama, DeepSeek, Qwen, and Gemma differ mostly in data, tokenizer, attention variants, and training recipe — not the core idea.",
+     "open": false
+    }
+   ]
+  },
+  "t-pretraining": {
+   "label": "Pre-Training",
+   "domain": "p1",
+   "col": 0,
+   "desc": "Teaching a base model language and world knowledge by predicting tokens across a massive, cleaned corpus.",
+   "subs": [
+    "l-data-collection",
+    "l-data-cleaning",
+    "l-tokenization",
+    "l-architecture",
+    "l-text-generation"
+   ],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Feed the model trillions of tokens and train it to predict the next one. This is where it absorbs grammar, facts, and patterns.",
+     "open": true
+    },
+    {
+     "label": "The pipeline",
+     "tag": "mid",
+     "body": "**Collect** web data (Common Crawl) → **clean & filter** (FineWeb, Dolma, RefinedWeb) → **tokenize** (BPE) → train a Transformer.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Data quality now matters more than raw size — most gains come from filtering and dedup. It's expensive, so you'll usually build on someone else's base model.",
+     "open": false
+    }
+   ]
+  },
+  "t-posttraining": {
+   "label": "Post-Training",
+   "domain": "p1",
+   "col": 0,
+   "desc": "Turning a raw predictor into a helpful, safe assistant via supervised fine-tuning and reinforcement learning from feedback.",
+   "subs": [
+    "l-sft",
+    "l-rlhf"
+   ],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A base model just continues text. Post-training teaches it to follow instructions and act like an assistant.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "**SFT** on example conversations, then **RLHF** — a reward model scores answers and RL (e.g. PPO) optimises for them. For checkable tasks, verifiable rewards replace the human.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "This stage shapes helpfulness, tone, and safety far more than pre-training; reward design and data quality are the hard parts.",
+     "open": false
+    }
+   ]
+  },
+  "t-llm-eval": {
+   "label": "Evaluation",
+   "domain": "p1",
+   "col": 0,
+   "desc": "Measuring model quality with automatic metrics, task benchmarks, and human judgement.",
+   "subs": [
+    "l-trad-metrics",
+    "l-benchmarks",
+    "l-human-eval"
+   ],
+   "links": []
+  },
+  "t-chatbot-design": {
+   "label": "Chatbot System Design",
+   "domain": "p1",
+   "col": 0,
+   "desc": "Assembling models, prompts, memory, and guardrails into a working chatbot.",
+   "subs": [],
+   "links": []
+  },
+  "t-adaptation": {
+   "label": "Adaptation Techniques",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Ways to make a general model fit your task — prompting, retrieval, and fine-tuning, cheapest to most involved.",
+   "subs": [],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "You rarely train from scratch. Adapt a pretrained model: prompt it, give it retrieved context, or fine-tune it.",
+     "open": true
+    },
+    {
+     "label": "Rule of thumb",
+     "tag": "mid",
+     "body": "Try **prompt engineering** first, add **RAG** for fresh or proprietary knowledge, and **fine-tune** only when behaviour or format must change.",
+     "open": false
+    }
+   ]
+  },
+  "t-finetuning": {
+   "label": "Fine-tuning",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Updating a model's weights on your data — efficiently, without retraining everything.",
+   "subs": [
+    "l-peft",
+    "l-lora",
+    "l-raft"
+   ],
+   "links": []
+  },
+  "t-prompt-eng": {
+   "label": "Prompt Engineering",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Steering a frozen model with well-designed inputs — the fastest, cheapest lever.",
+   "subs": [
+    "l-fewshot",
+    "l-cot",
+    "l-role-prompt"
+   ],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Change behaviour just by changing the prompt — no training needed.",
+     "open": true
+    },
+    {
+     "label": "Techniques",
+     "tag": "mid",
+     "body": "**Zero/few-shot** examples, **chain-of-thought** ('think step by step'), and role/context framing.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Cheap to iterate but brittle and model-specific; for reliability, combine with retrieval, tools, and evaluation.",
+     "open": false
+    }
+   ]
+  },
+  "t-rag": {
+   "label": "RAG Overview",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Retrieval-Augmented Generation — fetch relevant documents and feed them to the model so answers are grounded and current.",
+   "subs": [],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Instead of relying on what the model memorised, retrieve relevant text and let it answer from that.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Two stages: **retrieval** (find the right chunks) and **generation** (answer using them). Fixes stale knowledge and cuts hallucination.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Most production 'AI on your data' systems are RAG. The quality lives in chunking, embeddings, and retrieval — not the LLM.",
+     "open": false
+    }
+   ]
+  },
+  "t-retrieval": {
+   "label": "Retrieval",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Finding the most relevant chunks for a query — parsing, chunking, indexing, and embedding.",
+   "subs": [
+    "l-doc-parsing",
+    "l-chunking",
+    "l-indexing",
+    "l-embeddings"
+   ],
+   "links": []
+  },
+  "t-generation": {
+   "label": "Generation",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Producing the grounded answer — searching the index and prompting the model with retrieved context.",
+   "subs": [
+    "l-ann-search",
+    "l-rag-prompting"
+   ],
+   "links": []
+  },
+  "t-rag-eval": {
+   "label": "RAG Evaluation",
+   "domain": "p2",
+   "col": 1,
+   "desc": "Judging a RAG system on whether it retrieved the right context and answered faithfully.",
+   "subs": [
+    "l-context-relevance",
+    "l-faithfulness",
+    "l-answer-correctness"
+   ],
+   "links": []
+  },
+  "t-agents-overview": {
+   "label": "Agents Overview",
+   "domain": "p3",
+   "col": 2,
+   "desc": "What separates an agent from a plain LLM call: planning, tool use, and acting over multiple steps.",
+   "subs": [
+    "l-agent-vs",
+    "l-agency-levels"
+   ],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "An agent is an LLM that takes **actions** (call tools, search, run code) in a loop — not just emitting text once.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "A spectrum of autonomy: fixed **workflows** (you wire the steps) → **multi-step agents** (the model decides the steps).",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "More autonomy means more capability but less predictability. Use the least autonomy that solves the task.",
+     "open": false
+    }
+   ]
+  },
+  "t-workflows": {
+   "label": "Workflows",
+   "domain": "p3",
+   "col": 2,
+   "desc": "Predefined multi-step patterns that orchestrate LLM calls reliably.",
+   "subs": [
+    "l-prompt-chaining",
+    "l-routing",
+    "l-parallelization",
+    "l-reflection",
+    "l-orchestrator"
+   ],
+   "links": []
+  },
+  "t-tools": {
+   "label": "Tools",
+   "domain": "p3",
+   "col": 2,
+   "desc": "Giving the model real capabilities — functions, APIs, and external systems it can invoke.",
+   "subs": [
+    "l-tool-calling",
+    "l-tool-formatting",
+    "l-tool-execution",
+    "l-mcp"
+   ],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Tools let the model *do* things — search the web, run code, query a database — by calling functions you expose.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "The model emits a structured **tool call**; your runtime executes it and feeds the result back. Schema formatting and reliable execution matter.",
+     "open": false
+    },
+    {
+     "label": "MCP",
+     "tag": "adv",
+     "body": "**MCP** (Model Context Protocol) standardises how models connect to tools and data sources, so integrations are reusable across apps.",
+     "open": false
+    }
+   ]
+  },
+  "t-multistep": {
+   "label": "Multi-Step Agents",
+   "domain": "p3",
+   "col": 2,
+   "desc": "Agents that plan and iterate autonomously toward a goal.",
+   "subs": [
+    "l-planning",
+    "l-react",
+    "l-reflexion",
+    "l-tree-search"
+   ],
+   "links": []
+  },
+  "t-multiagent": {
+   "label": "Multi-Agent Systems",
+   "domain": "p3",
+   "col": 2,
+   "desc": "Multiple cooperating agents — their use-cases, coordination challenges, and protocols like A2A.",
+   "subs": [
+    "l-a2a"
+   ],
+   "links": []
+  },
+  "t-agent-eval": {
+   "label": "Agent Evaluation",
+   "domain": "p3",
+   "col": 2,
+   "desc": "Assessing agents on task success, efficiency, and reliability across multi-step runs.",
+   "subs": [],
+   "links": []
+  },
+  "t-reasoning-models": {
+   "label": "Reasoning & Thinking LLMs",
+   "domain": "p4",
+   "col": 3,
+   "desc": "Models trained to 'think' before answering — spending extra compute on internal reasoning for hard problems.",
+   "subs": [],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Reasoning models (OpenAI's 'o' family, DeepSeek-R1) generate a long internal chain of thought before the final answer.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "They trade latency and compute for accuracy on math, code, and logic — 'thinking longer' genuinely helps.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "The ability comes from training on reasoning traces and RL with verifiers, plus inference-time techniques that scale test-time compute.",
+     "open": false
+    }
+   ]
+  },
+  "t-inference-time": {
+   "label": "Inference-time Techniques",
+   "domain": "p4",
+   "col": 3,
+   "desc": "Getting better answers by spending more compute at generation time — no retraining.",
+   "subs": [
+    "l-inference-scaling",
+    "l-cot-prompt",
+    "l-parallel-sampling",
+    "l-sequential-sampling",
+    "l-tot",
+    "l-verifier-search"
+   ],
+   "links": []
+  },
+  "t-training-time": {
+   "label": "Training-time Techniques",
+   "domain": "p4",
+   "col": 3,
+   "desc": "Baking reasoning ability into the model's weights.",
+   "subs": [
+    "l-star",
+    "l-rl-verifier",
+    "l-reward-modeling",
+    "l-self-refine",
+    "l-meta-cot"
+   ],
+   "links": []
+  },
+  "t-local-deploy": {
+   "label": "Local Deployment",
+   "domain": "p4",
+   "col": 3,
+   "desc": "Running open/reasoning models on your own hardware — quantization, inference servers, and trade-offs.",
+   "subs": [],
+   "links": []
+  },
+  "t-genmodels": {
+   "label": "Generative Models Overview",
+   "domain": "p5",
+   "col": 4,
+   "desc": "The model families behind image and video generation, and how they differ.",
+   "subs": [
+    "l-vae",
+    "l-gans",
+    "l-autoregressive",
+    "l-diffusion"
+   ],
+   "links": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Several ways to generate images: **VAEs**, **GANs**, autoregressive models, and — dominant today — **diffusion**.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Diffusion learns to **denoise** random noise into an image step by step, conditioned on text.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Each family trades off quality, diversity, and training stability; diffusion won images, with transformer hybrids (DiT) rising.",
+     "open": false
+    }
+   ]
+  },
+  "t-t2i": {
+   "label": "Text-to-Image",
+   "domain": "p5",
+   "col": 4,
+   "desc": "Generating images from text prompts with diffusion.",
+   "subs": [
+    "l-t2i-data",
+    "l-diffusion-arch",
+    "l-diffusion-training",
+    "l-diffusion-sampling",
+    "l-t2i-eval"
+   ],
+   "links": []
+  },
+  "t-t2v": {
+   "label": "Text-to-Video",
+   "domain": "p5",
+   "col": 4,
+   "desc": "Extending diffusion to video — adding the time dimension and large-scale compute.",
+   "subs": [
+    "l-ldm",
+    "l-t2v-data",
+    "l-dit-video",
+    "l-t2v-scaling",
+    "l-t2v-system"
+   ],
+   "links": []
+  },
+  "t-capstone": {
+   "label": "Capstone Project",
+   "domain": "p6",
+   "col": 5,
+   "desc": "Ship one portfolio-ready AI project end to end, combining techniques from every prior stage.",
+   "subs": [
+    "l-choose",
+    "l-build",
+    "l-iterate",
+    "l-demo"
+   ],
+   "links": []
+  }
+ },
+ "leaves": {
+  "l-data-collection": {
+   "label": "Data Collection",
+   "parent": "t-pretraining",
+   "domain": "p1",
+   "desc": "Gathering raw text at scale — crawling the web yourself or using public dumps like Common Crawl.",
+   "links": []
+  },
+  "l-data-cleaning": {
+   "label": "Data Cleaning",
+   "parent": "t-pretraining",
+   "domain": "p1",
+   "desc": "Filtering, deduplicating, and quality-scoring raw text. Curated sets (FineWeb, Dolma, RefinedWeb) show how much this matters.",
+   "links": []
+  },
+  "l-tokenization": {
+   "label": "Tokenization",
+   "parent": "t-pretraining",
+   "domain": "p1",
+   "desc": "Splitting text into sub-word units the model consumes; Byte-Pair Encoding (BPE) is the common scheme.",
+   "links": []
+  },
+  "l-architecture": {
+   "label": "Architecture",
+   "parent": "t-pretraining",
+   "domain": "p1",
+   "desc": "The Transformer and its variants (GPT, DeepSeek, Qwen, Gemma) — attention layers letting each token attend to the rest.",
+   "links": []
+  },
+  "l-text-generation": {
+   "label": "Text Generation",
+   "parent": "t-pretraining",
+   "domain": "p1",
+   "desc": "Turning probabilities into text: greedy/beam search and sampling with top-k / top-p (nucleus) to trade off quality and diversity.",
+   "links": []
+  },
+  "l-sft": {
+   "label": "Supervised Fine-Tuning (SFT)",
+   "parent": "t-posttraining",
+   "domain": "p1",
+   "desc": "Fine-tuning the base model on curated instruction/response pairs so it learns the assistant format.",
+   "links": []
+  },
+  "l-rlhf": {
+   "label": "RL & RLHF",
+   "parent": "t-posttraining",
+   "domain": "p1",
+   "desc": "Optimising responses against a learned reward model with RL (PPO); verifiable rewards replace human raters for checkable tasks.",
+   "links": []
+  },
+  "l-trad-metrics": {
+   "label": "Traditional Metrics",
+   "parent": "t-llm-eval",
+   "domain": "p1",
+   "desc": "Automatic scores (perplexity, BLEU/ROUGE) — cheap but weak proxies for real quality.",
+   "links": []
+  },
+  "l-benchmarks": {
+   "label": "Task Benchmarks",
+   "parent": "t-llm-eval",
+   "domain": "p1",
+   "desc": "Standardised suites (MMLU-style) that probe specific capabilities.",
+   "links": []
+  },
+  "l-human-eval": {
+   "label": "Human Eval & Leaderboards",
+   "parent": "t-llm-eval",
+   "domain": "p1",
+   "desc": "Human preference comparisons and arena leaderboards — the closest thing to ground truth for open-ended output.",
+   "links": []
+  },
+  "l-peft": {
+   "label": "PEFT",
+   "parent": "t-finetuning",
+   "domain": "p2",
+   "desc": "Parameter-efficient fine-tuning — train a few extra weights instead of the whole model.",
+   "links": []
+  },
+  "l-lora": {
+   "label": "Adapters & LoRA",
+   "parent": "t-finetuning",
+   "domain": "p2",
+   "desc": "Inject small low-rank matrices into layers and train only those. Cheap, fast, swappable per task.",
+   "links": []
+  },
+  "l-raft": {
+   "label": "RAFT",
+   "parent": "t-finetuning",
+   "domain": "p2",
+   "desc": "Retrieval-Augmented Fine-Tuning — train the model to use (and ignore distractor) retrieved documents.",
+   "links": []
+  },
+  "l-fewshot": {
+   "label": "Few-shot / Zero-shot",
+   "parent": "t-prompt-eng",
+   "domain": "p2",
+   "desc": "Showing zero or a handful of examples in the prompt to demonstrate the task.",
+   "links": []
+  },
+  "l-cot": {
+   "label": "Chain-of-Thought",
+   "parent": "t-prompt-eng",
+   "domain": "p2",
+   "desc": "Prompting the model to reason in steps before answering, improving multi-step accuracy.",
+   "links": []
+  },
+  "l-role-prompt": {
+   "label": "Role & Context Prompting",
+   "parent": "t-prompt-eng",
+   "domain": "p2",
+   "desc": "Assigning a persona and injecting user-specific context to shape responses.",
+   "links": []
+  },
+  "l-doc-parsing": {
+   "label": "Document Parsing",
+   "parent": "t-retrieval",
+   "domain": "p2",
+   "desc": "Extracting clean text and structure from PDFs, HTML, etc. — rule-based or AI-based.",
+   "links": []
+  },
+  "l-chunking": {
+   "label": "Chunking",
+   "parent": "t-retrieval",
+   "domain": "p2",
+   "desc": "Splitting documents into retrievable pieces; size and overlap strongly affect quality.",
+   "links": []
+  },
+  "l-indexing": {
+   "label": "Indexing",
+   "parent": "t-retrieval",
+   "domain": "p2",
+   "desc": "Building searchable indexes — keyword, full-text, knowledge-graph, or vector-based.",
+   "links": []
+  },
+  "l-embeddings": {
+   "label": "Embeddings",
+   "parent": "t-retrieval",
+   "domain": "p2",
+   "desc": "Embedding models map text to vectors so semantic similarity becomes distance.",
+   "links": []
+  },
+  "l-ann-search": {
+   "label": "Nearest-Neighbor Search",
+   "parent": "t-generation",
+   "domain": "p2",
+   "desc": "Finding similar vectors — exact, or approximate (ANN) for speed at scale.",
+   "links": []
+  },
+  "l-rag-prompting": {
+   "label": "Prompting for RAG",
+   "parent": "t-generation",
+   "domain": "p2",
+   "desc": "Structuring retrieved context into the prompt so the model stays grounded and cites it.",
+   "links": []
+  },
+  "l-context-relevance": {
+   "label": "Context Relevance",
+   "parent": "t-rag-eval",
+   "domain": "p2",
+   "desc": "Did retrieval surface the documents that actually matter?",
+   "links": []
+  },
+  "l-faithfulness": {
+   "label": "Faithfulness",
+   "parent": "t-rag-eval",
+   "domain": "p2",
+   "desc": "Is the answer supported by the retrieved context, not invented?",
+   "links": []
+  },
+  "l-answer-correctness": {
+   "label": "Answer Correctness",
+   "parent": "t-rag-eval",
+   "domain": "p2",
+   "desc": "Is the final answer actually right for the user's question?",
+   "links": []
+  },
+  "l-agent-vs": {
+   "label": "Agents vs Agentic Systems vs LLMs",
+   "parent": "t-agents-overview",
+   "domain": "p3",
+   "desc": "A raw LLM responds; an agentic system adds tools/memory/control flow; a full agent decides its own steps.",
+   "links": []
+  },
+  "l-agency-levels": {
+   "label": "Agency Levels",
+   "parent": "t-agents-overview",
+   "domain": "p3",
+   "desc": "From scripted workflows to autonomous multi-step agents — how much the model is trusted to decide.",
+   "links": []
+  },
+  "l-prompt-chaining": {
+   "label": "Prompt Chaining",
+   "parent": "t-workflows",
+   "domain": "p3",
+   "desc": "Feed one call's output into the next — decompose a task into ordered steps.",
+   "links": []
+  },
+  "l-routing": {
+   "label": "Routing",
+   "parent": "t-workflows",
+   "domain": "p3",
+   "desc": "Classify the input and send it to the right specialised prompt or model.",
+   "links": []
+  },
+  "l-parallelization": {
+   "label": "Parallelization",
+   "parent": "t-workflows",
+   "domain": "p3",
+   "desc": "Run subtasks at once (sectioning) or sample multiple answers and vote.",
+   "links": []
+  },
+  "l-reflection": {
+   "label": "Reflection",
+   "parent": "t-workflows",
+   "domain": "p3",
+   "desc": "Have the model critique and revise its own output before finalising.",
+   "links": []
+  },
+  "l-orchestrator": {
+   "label": "Orchestrator-Worker",
+   "parent": "t-workflows",
+   "domain": "p3",
+   "desc": "A coordinator LLM delegates subtasks to worker calls and assembles results.",
+   "links": []
+  },
+  "l-tool-calling": {
+   "label": "Tool Calling",
+   "parent": "t-tools",
+   "domain": "p3",
+   "desc": "The model requests a function with arguments; the app runs it and returns the result.",
+   "links": []
+  },
+  "l-tool-formatting": {
+   "label": "Tool Formatting",
+   "parent": "t-tools",
+   "domain": "p3",
+   "desc": "Describing tools with schemas so the model knows what it can call and how.",
+   "links": []
+  },
+  "l-tool-execution": {
+   "label": "Tool Execution",
+   "parent": "t-tools",
+   "domain": "p3",
+   "desc": "Safely running the requested action and handling errors and timeouts.",
+   "links": []
+  },
+  "l-mcp": {
+   "label": "MCP",
+   "parent": "t-tools",
+   "domain": "p3",
+   "desc": "Model Context Protocol — an open standard for connecting models to tools and data in a reusable way.",
+   "links": []
+  },
+  "l-planning": {
+   "label": "Planning Autonomy",
+   "parent": "t-multistep",
+   "domain": "p3",
+   "desc": "Letting the model decide the sequence of actions instead of hard-coding it.",
+   "links": []
+  },
+  "l-react": {
+   "label": "ReAct",
+   "parent": "t-multistep",
+   "domain": "p3",
+   "desc": "Interleave reasoning and acting — think, act, observe, repeat.",
+   "links": []
+  },
+  "l-reflexion": {
+   "label": "Reflexion / ReWOO",
+   "parent": "t-multistep",
+   "domain": "p3",
+   "desc": "Add self-reflection and decoupled planning to improve across attempts.",
+   "links": []
+  },
+  "l-tree-search": {
+   "label": "Tree Search for Agents",
+   "parent": "t-multistep",
+   "domain": "p3",
+   "desc": "Explore multiple action paths and pick the best, like search over plans.",
+   "links": []
+  },
+  "l-a2a": {
+   "label": "A2A Protocol",
+   "parent": "t-multiagent",
+   "domain": "p3",
+   "desc": "Agent-to-Agent communication standards that let separate agents coordinate.",
+   "links": []
+  },
+  "l-inference-scaling": {
+   "label": "Inference-time Scaling",
+   "parent": "t-inference-time",
+   "domain": "p4",
+   "desc": "Spend more compute per query (longer reasoning, more samples) to raise accuracy.",
+   "links": []
+  },
+  "l-cot-prompt": {
+   "label": "CoT Prompting",
+   "parent": "t-inference-time",
+   "domain": "p4",
+   "desc": "Elicit step-by-step reasoning at inference to improve hard tasks.",
+   "links": []
+  },
+  "l-parallel-sampling": {
+   "label": "Parallel Sampling",
+   "parent": "t-inference-time",
+   "domain": "p4",
+   "desc": "Generate many candidate answers at once and select among them.",
+   "links": []
+  },
+  "l-sequential-sampling": {
+   "label": "Sequential Sampling",
+   "parent": "t-inference-time",
+   "domain": "p4",
+   "desc": "Iteratively refine an answer across successive attempts.",
+   "links": []
+  },
+  "l-tot": {
+   "label": "Tree of Thoughts",
+   "parent": "t-inference-time",
+   "domain": "p4",
+   "desc": "Branch and explore multiple reasoning paths, then pick the best.",
+   "links": []
+  },
+  "l-verifier-search": {
+   "label": "Search Against a Verifier",
+   "parent": "t-inference-time",
+   "domain": "p4",
+   "desc": "Use a checker to score candidates and guide the search.",
+   "links": []
+  },
+  "l-star": {
+   "label": "SFT on Reasoning Data (STaR)",
+   "parent": "t-training-time",
+   "domain": "p4",
+   "desc": "Fine-tune on generated, verified reasoning traces to teach step-by-step solving.",
+   "links": []
+  },
+  "l-rl-verifier": {
+   "label": "RL with a Verifier",
+   "parent": "t-training-time",
+   "domain": "p4",
+   "desc": "Reward correct final answers on checkable tasks and let RL improve reasoning.",
+   "links": []
+  },
+  "l-reward-modeling": {
+   "label": "Reward Modeling (ORM/PRM)",
+   "parent": "t-training-time",
+   "domain": "p4",
+   "desc": "Score whole outcomes (ORM) or each reasoning step (PRM) to guide training.",
+   "links": []
+  },
+  "l-self-refine": {
+   "label": "Self-Refinement",
+   "parent": "t-training-time",
+   "domain": "p4",
+   "desc": "Train the model to critique and improve its own answers.",
+   "links": []
+  },
+  "l-meta-cot": {
+   "label": "Internalizing Search (Meta-CoT)",
+   "parent": "t-training-time",
+   "domain": "p4",
+   "desc": "Teach the model to perform search-like reasoning internally.",
+   "links": []
+  },
+  "l-vae": {
+   "label": "VAE",
+   "parent": "t-genmodels",
+   "domain": "p5",
+   "desc": "Variational Autoencoders — encode to a latent distribution and decode; the basis for latent diffusion.",
+   "links": []
+  },
+  "l-gans": {
+   "label": "GANs",
+   "parent": "t-genmodels",
+   "domain": "p5",
+   "desc": "Generator vs discriminator adversarial training; sharp images but unstable.",
+   "links": []
+  },
+  "l-autoregressive": {
+   "label": "Auto-regressive Models",
+   "parent": "t-genmodels",
+   "domain": "p5",
+   "desc": "Generate pixels/tokens one at a time, like language models for images.",
+   "links": []
+  },
+  "l-diffusion": {
+   "label": "Diffusion Models",
+   "parent": "t-genmodels",
+   "domain": "p5",
+   "desc": "Iteratively denoise from noise to image; current state of the art.",
+   "links": []
+  },
+  "l-t2i-data": {
+   "label": "Data Preparation",
+   "parent": "t-t2i",
+   "domain": "p5",
+   "desc": "Curating image-text pairs and captions for training.",
+   "links": []
+  },
+  "l-diffusion-arch": {
+   "label": "Diffusion Architectures",
+   "parent": "t-t2i",
+   "domain": "p5",
+   "desc": "U-Net and Diffusion Transformers (DiT) as the denoising backbone.",
+   "links": []
+  },
+  "l-diffusion-training": {
+   "label": "Diffusion Training",
+   "parent": "t-t2i",
+   "domain": "p5",
+   "desc": "A forward process adds noise; the model learns the reverse, denoising process.",
+   "links": []
+  },
+  "l-diffusion-sampling": {
+   "label": "Diffusion Sampling",
+   "parent": "t-t2i",
+   "domain": "p5",
+   "desc": "Iterative denoising at inference; fewer steps is faster, more steps is higher quality.",
+   "links": []
+  },
+  "l-t2i-eval": {
+   "label": "Evaluation",
+   "parent": "t-t2i",
+   "domain": "p5",
+   "desc": "Image quality and diversity plus text alignment — IS, FID, and CLIP score.",
+   "links": []
+  },
+  "l-ldm": {
+   "label": "Latent Diffusion (LDM)",
+   "parent": "t-t2v",
+   "domain": "p5",
+   "desc": "Run diffusion in a compressed latent space for efficiency; compression networks shrink the data.",
+   "links": []
+  },
+  "l-t2v-data": {
+   "label": "Data Preparation",
+   "parent": "t-t2v",
+   "domain": "p5",
+   "desc": "Filtering, standardising, and caching video latents at scale.",
+   "links": []
+  },
+  "l-dit-video": {
+   "label": "DiT for Video",
+   "parent": "t-t2v",
+   "domain": "p5",
+   "desc": "Diffusion Transformer architectures adapted to spatiotemporal data.",
+   "links": []
+  },
+  "l-t2v-scaling": {
+   "label": "Large-Scale Training",
+   "parent": "t-t2v",
+   "domain": "p5",
+   "desc": "The compute, memory, and pipeline challenges of video models.",
+   "links": []
+  },
+  "l-t2v-system": {
+   "label": "T2V System Design",
+   "parent": "t-t2v",
+   "domain": "p5",
+   "desc": "Putting the full text-to-video pipeline together.",
+   "links": []
+  },
+  "l-choose": {
+   "label": "Choose",
+   "parent": "t-capstone",
+   "domain": "p6",
+   "desc": "Pick your own idea or a curated starting point.",
+   "links": []
+  },
+  "l-build": {
+   "label": "Build",
+   "parent": "t-capstone",
+   "domain": "p6",
+   "desc": "Implement it with the course techniques — RAG, agents, tools, reasoning.",
+   "links": []
+  },
+  "l-iterate": {
+   "label": "Iterate",
+   "parent": "t-capstone",
+   "domain": "p6",
+   "desc": "Refine with feedback until it works and demos well.",
+   "links": []
+  },
+  "l-demo": {
+   "label": "Demo",
+   "parent": "t-capstone",
+   "domain": "p6",
+   "desc": "Present the finished project.",
+   "links": []
+  }
+ },
+ "topicEdges": [
+  {
+   "s": "t-llm-overview",
+   "t": "t-pretraining",
+   "k": "builds"
+  },
+  {
+   "s": "t-pretraining",
+   "t": "t-posttraining",
+   "k": "builds"
+  },
+  {
+   "s": "t-posttraining",
+   "t": "t-llm-eval",
+   "k": "builds"
+  },
+  {
+   "s": "t-pretraining",
+   "t": "t-chatbot-design",
+   "k": "applies"
+  },
+  {
+   "s": "t-llm-overview",
+   "t": "t-prompt-eng",
+   "k": "prereq"
+  },
+  {
+   "s": "t-posttraining",
+   "t": "t-finetuning",
+   "k": "builds"
+  },
+  {
+   "s": "t-adaptation",
+   "t": "t-prompt-eng",
+   "k": "builds"
+  },
+  {
+   "s": "t-adaptation",
+   "t": "t-finetuning",
+   "k": "builds"
+  },
+  {
+   "s": "t-adaptation",
+   "t": "t-rag",
+   "k": "builds"
+  },
+  {
+   "s": "t-prompt-eng",
+   "t": "t-rag",
+   "k": "builds"
+  },
+  {
+   "s": "t-rag",
+   "t": "t-retrieval",
+   "k": "builds"
+  },
+  {
+   "s": "t-retrieval",
+   "t": "t-generation",
+   "k": "builds"
+  },
+  {
+   "s": "t-generation",
+   "t": "t-rag-eval",
+   "k": "builds"
+  },
+  {
+   "s": "t-rag",
+   "t": "t-agents-overview",
+   "k": "builds"
+  },
+  {
+   "s": "t-prompt-eng",
+   "t": "t-workflows",
+   "k": "applies"
+  },
+  {
+   "s": "t-agents-overview",
+   "t": "t-workflows",
+   "k": "builds"
+  },
+  {
+   "s": "t-workflows",
+   "t": "t-tools",
+   "k": "builds"
+  },
+  {
+   "s": "t-tools",
+   "t": "t-multistep",
+   "k": "builds"
+  },
+  {
+   "s": "t-multistep",
+   "t": "t-multiagent",
+   "k": "builds"
+  },
+  {
+   "s": "t-multistep",
+   "t": "t-agent-eval",
+   "k": "applies"
+  },
+  {
+   "s": "t-agents-overview",
+   "t": "t-reasoning-models",
+   "k": "builds"
+  },
+  {
+   "s": "t-multistep",
+   "t": "t-reasoning-models",
+   "k": "applies"
+  },
+  {
+   "s": "t-reasoning-models",
+   "t": "t-inference-time",
+   "k": "builds"
+  },
+  {
+   "s": "t-reasoning-models",
+   "t": "t-training-time",
+   "k": "builds"
+  },
+  {
+   "s": "t-posttraining",
+   "t": "t-training-time",
+   "k": "prereq"
+  },
+  {
+   "s": "t-inference-time",
+   "t": "t-local-deploy",
+   "k": "applies"
+  },
+  {
+   "s": "t-llm-overview",
+   "t": "t-genmodels",
+   "k": "prereq"
+  },
+  {
+   "s": "t-genmodels",
+   "t": "t-t2i",
+   "k": "builds"
+  },
+  {
+   "s": "t-t2i",
+   "t": "t-t2v",
+   "k": "builds"
+  },
+  {
+   "s": "t-multistep",
+   "t": "t-t2v",
+   "k": "applies"
+  },
+  {
+   "s": "t-chatbot-design",
+   "t": "t-capstone",
+   "k": "applies"
+  },
+  {
+   "s": "t-rag-eval",
+   "t": "t-capstone",
+   "k": "applies"
+  },
+  {
+   "s": "t-multiagent",
+   "t": "t-capstone",
+   "k": "applies"
+  },
+  {
+   "s": "t-reasoning-models",
+   "t": "t-capstone",
+   "k": "applies"
+  },
+  {
+   "s": "t-t2v",
+   "t": "t-capstone",
+   "k": "applies"
+  }
+ ],
+ "leafEdges": [
+  {
+   "s": "l-tokenization",
+   "t": "l-embeddings",
+   "k": "builds"
+  },
+  {
+   "s": "l-rlhf",
+   "t": "l-rl-verifier",
+   "k": "builds"
+  },
+  {
+   "s": "l-cot",
+   "t": "l-tot",
+   "k": "builds"
+  },
+  {
+   "s": "l-cot",
+   "t": "l-cot-prompt",
+   "k": "applies"
+  },
+  {
+   "s": "l-vae",
+   "t": "l-diffusion",
+   "k": "builds"
+  },
+  {
+   "s": "l-gans",
+   "t": "l-diffusion",
+   "k": "builds"
+  },
+  {
+   "s": "l-diffusion",
+   "t": "l-diffusion-arch",
+   "k": "builds"
+  },
+  {
+   "s": "l-react",
+   "t": "l-reflexion",
+   "k": "builds"
+  },
+  {
+   "s": "l-mcp",
+   "t": "l-tool-calling",
+   "k": "applies"
+  },
+  {
+   "s": "l-peft",
+   "t": "l-lora",
+   "k": "builds"
+  },
+  {
+   "s": "l-sft",
+   "t": "l-star",
+   "k": "applies"
+  }
+ ]
+}

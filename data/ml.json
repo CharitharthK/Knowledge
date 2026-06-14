@@ -458,6 +458,20 @@
     "s1-g4-l2",
     "s1-g4-l3",
     "s1-g4-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Beyond any single language: how programs actually run, core **data structures & algorithms**, **version control** (git), and comfort on the **command line**. These transfer to every ML tool you'll touch.",
+     "open": true
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "For ML specifically: reading/writing data through **APIs and databases**, structuring **reproducible projects**, isolating **environments** (`venv`/`conda`), and knowing when to use a quick notebook vs a real script or package.",
+     "open": false
+    }
    ]
   },
   "s2-g0": {
@@ -482,6 +496,26 @@
     "s2-g0-l0",
     "s2-g0-l1",
     "s2-g0-l2"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "An **ML engineer** sits between data science and software engineering — you build, train, deploy, and *maintain* models in production, not just prototype them in a notebook.",
+     "open": true
+    },
+    {
+     "label": "vs adjacent roles",
+     "tag": "mid",
+     "body": "A **data scientist** leans toward analysis and experiments; an **ML engineer** toward production systems and pipelines; an **AI engineer** often toward LLM/app integration. The overlap is large and titles vary by company.",
+     "open": false
+    },
+    {
+     "label": "What you need",
+     "tag": "adv",
+     "body": "Solid coding, ML fundamentals, **data pipelines**, **MLOps** (deployment, monitoring, retraining), and the communication to translate a business problem into a modelling one.",
+     "open": false
+    }
    ]
   },
   "s3-g0": {
@@ -491,7 +525,27 @@
    "desc": "Sources of data are origins or locations from which data is collected, categorized as primary (direct, firsthand information) or secondary (collected by others). Common primary sources include surveys, interviews, experiments, and sensor data. Secondary sources encompass databases, published reports, government data, books, articles, and web data like social media posts. Data sources can also be classified as internal (within an organization) or external (from outside sources).",
    "links": [],
    "col": 2,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Where data comes from: **databases**, **APIs**, files, web scraping, sensors/logs, and public datasets. The source sets the ceiling on everything you build.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Distinguish **batch vs streaming**, **structured** (tables) vs **unstructured** (text/images/audio), and **labeled vs unlabeled**. Each demands different tooling.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Watch for freshness, sampling **bias**, and data contracts — *garbage in, garbage out*. Auditing the source early saves you from modelling on a flawed foundation.",
+     "open": false
+    }
+   ]
   },
   "s3-g1": {
    "key": "s3-g1",
@@ -506,6 +560,26 @@
     "s3-g1-l2",
     "s3-g1-l3",
     "s3-g1-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Common containers: **CSV** (simple rows), **JSON** (nested), Excel, and binary blobs for images/audio. Pick based on structure and who consumes it.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "**Columnar** formats like **Parquet** are far smaller and faster for analytics than CSV; know when row-oriented vs columnar matters.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "At scale, format + compression (**Parquet/Arrow**) and **partitioning** dominate I/O cost and query speed — often more than the model itself.",
+     "open": false
+    }
    ]
   },
   "s4-g0": {
@@ -532,6 +606,26 @@
     "s4-g0-l2",
     "s4-g0-l3",
     "s4-g0-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Raw data is messy. **Clean** it first: handle missing values, duplicates, outliers, and wrong types before any modelling.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "**Feature engineering** creates informative inputs; **scaling/normalisation** makes features comparable; **encoding** turns categories into numbers. Often the biggest lever on accuracy.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "**Feature selection** and **dimensionality reduction** cut noise and overfitting. Critical rule: fit every transform on the *training* split only, or you leak test information.",
+     "open": false
+    }
    ]
   },
   "s5-g0": {
@@ -562,7 +656,27 @@
     }
    ],
    "col": 3,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Programs that **learn patterns from data** instead of being hand-coded with rules. You supply examples; the algorithm infers the mapping.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Training **optimises parameters** to minimise a loss on data, but the real goal is **generalisation** — performing well on unseen examples, not memorising the training set.",
+     "open": false
+    },
+    {
+     "label": "The core tension",
+     "tag": "adv",
+     "body": "The **bias–variance trade-off**: too-simple models *underfit*, too-complex ones *overfit*. More data, regularisation, and honest validation keep it in check.",
+     "open": false
+    }
+   ]
   },
   "s5-g1": {
    "key": "s5-g1",
@@ -583,6 +697,26 @@
     "s5-g1-l2",
     "s5-g1-l3",
     "s5-g1-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**Supervised** (labeled data), **unsupervised** (structure in unlabeled data), and **reinforcement** (learn from reward) are the three pillars.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Plus **semi-supervised** (a few labels among many unlabeled) and **self-supervised** (labels derived from the data itself) — the latter powers modern LLMs and vision models.",
+     "open": false
+    },
+    {
+     "label": "Why it matters",
+     "tag": "adv",
+     "body": "The type you choose dictates everything downstream: data requirements, algorithms, and how you evaluate. Framing the problem correctly is half the work.",
+     "open": false
+    }
    ]
   },
   "s6-g0": {
@@ -615,6 +749,26 @@
     "s6-g0-l3",
     "s6-g0-l4",
     "s6-g0-l5"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "The standard Python library for **classical ML**, with a consistent `fit` / `predict` API across dozens of algorithms.",
+     "open": true
+    },
+    {
+     "label": "The workflow",
+     "tag": "mid",
+     "body": "Load → **split** (train/test) → preprocess → choose model → `fit` → **tune** → `predict` → evaluate. A `Pipeline` chains preprocessing and model into one object.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Pipelines prevent leakage (transforms fit only on train folds); `GridSearchCV` / `RandomizedSearchCV` search hyperparameters with cross-validation built in.",
+     "open": false
+    }
    ]
   },
   "s7-g0": {
@@ -640,7 +794,27 @@
     }
    ],
    "col": 3,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Learn from **input→output pairs**, then predict outputs for new inputs. Two flavours: **classification** (categories) and **regression** (numbers).",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "It needs **labeled data** — usually the expensive part. The model learns `f(x) ≈ y` by minimising prediction error on the labels.",
+     "open": false
+    },
+    {
+     "label": "Watch out",
+     "tag": "adv",
+     "body": "Label quality and **class imbalance** make or break results. Your **loss function** (cross-entropy vs MSE, etc.) defines what 'wrong' means to the model.",
+     "open": false
+    }
+   ]
   },
   "s7-g1": {
    "key": "s7-g1",
@@ -671,6 +845,26 @@
     "s7-g1-l2",
     "s7-g1-l3",
     "s7-g1-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Predict a **category** (spam/not, digit 0–9). The output is discrete.",
+     "open": true
+    },
+    {
+     "label": "Algorithms",
+     "tag": "mid",
+     "body": "Logistic regression, **KNN**, **SVM**, decision trees / **random forests**, and **gradient boosting**. Most output probabilities you then threshold into a class.",
+     "open": false
+    },
+    {
+     "label": "Evaluate it right",
+     "tag": "adv",
+     "body": "Don't trust accuracy alone — use **precision/recall/F1** and **ROC-AUC**, especially when classes are imbalanced.",
+     "open": false
+    }
    ]
   },
   "s7-g2": {
@@ -686,6 +880,26 @@
     "s7-g2-l2",
     "s7-g2-l3",
     "s7-g2-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Predict a **continuous number** (price, temperature). The output is a real value.",
+     "open": true
+    },
+    {
+     "label": "Algorithms",
+     "tag": "mid",
+     "body": "Linear and **polynomial** regression; regularised variants — **Ridge** (L2), **Lasso** (L1, also does feature selection), and **ElasticNet** — curb overfitting.",
+     "open": false
+    },
+    {
+     "label": "Evaluate it right",
+     "tag": "adv",
+     "body": "Use **RMSE/MAE/R²**, inspect **residuals** for leftover structure, and never trust predictions far outside the training range (extrapolation).",
+     "open": false
+    }
    ]
   },
   "s8-g0": {
@@ -711,7 +925,27 @@
     }
    ],
    "col": 3,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**No labels.** The model finds structure on its own — grouping similar items (**clustering**) or compressing them (**dimensionality reduction**).",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Great for exploration, customer **segmentation**, **anomaly detection**, and learning representations to bootstrap other tasks.",
+     "open": false
+    },
+    {
+     "label": "Watch out",
+     "tag": "adv",
+     "body": "Evaluation is hard with no ground truth — lean on metrics like **silhouette score**, downstream task performance, or human review.",
+     "open": false
+    }
+   ]
   },
   "s8-g1": {
    "key": "s8-g1",
@@ -736,6 +970,26 @@
     "s8-g1-l1",
     "s8-g1-l2",
     "s8-g1-l3"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Group **unlabeled** points so similar ones land together — customer segments, document topics, anomaly groups.",
+     "open": true
+    },
+    {
+     "label": "Algorithms",
+     "tag": "mid",
+     "body": "**K-means** (centroids), **hierarchical** (tree of merges), **DBSCAN** (density-based), and **Gaussian mixtures** (probabilistic). The right one depends on cluster shape and scale.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Pick `k` with the **elbow** or **silhouette** method; results swing hard on your **distance metric** and whether you scaled features first.",
+     "open": false
+    }
    ]
   },
   "s8-g2": {
@@ -759,6 +1013,26 @@
    "subs": [
     "s8-g2-l0",
     "s8-g2-l1"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Compress many features into a few while keeping the important structure — for speed, **visualisation**, and less overfitting.",
+     "open": true
+    },
+    {
+     "label": "Methods",
+     "tag": "mid",
+     "body": "**PCA** (linear, preserves variance), **t-SNE / UMAP** (nonlinear, for visualising), and **autoencoders** (learned compression).",
+     "open": false
+    },
+    {
+     "label": "Under the hood",
+     "tag": "adv",
+     "body": "PCA is an eigen/**SVD** decomposition of the covariance matrix; it fights **multicollinearity** and the **curse of dimensionality**, at some cost to interpretability.",
+     "open": false
+    }
    ]
   },
   "s9-g0": {
@@ -794,6 +1068,26 @@
     "s9-g0-l1",
     "s9-g0-l2",
     "s9-g0-l3"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "An **agent** acts in an **environment**, receives **rewards**, and learns a **policy** that maximises long-term reward — learning by trial and error.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Key pieces: states, actions, rewards, policy, value functions, and the **explore-vs-exploit** dilemma. Methods include **Q-learning**, **policy gradients**, and **actor-critic**.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Powerful for sequential decisions — games, robotics, and **RLHF** for aligning LLMs — but sample-hungry and often unstable to train.",
+     "open": false
+    }
    ]
   },
   "s10-g0": {
@@ -803,7 +1097,27 @@
    "desc": "Model evaluation is the process of assessing how well a machine learning model performs on a given dataset. It involves using various metrics and techniques to quantify the model's accuracy, reliability, and generalization ability. This helps determine if the model is suitable for deployment and whether further improvements are needed.",
    "links": [],
    "col": 5,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Measuring how well a model performs — crucially, on data it **didn't train on**.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Always score on a held-out **test set**; use a separate **validation set** or cross-validation for tuning so the test set stays untouched until the end.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Choose metrics that reflect the real **cost of each error type**. A single number rarely tells the whole story.",
+     "open": false
+    }
+   ]
   },
   "s10-g1": {
    "key": "s10-g1",
@@ -812,7 +1126,27 @@
    "desc": "Model evaluation is the process of assessing how well a machine learning model performs on a given dataset. It involves using various metrics and techniques to quantify the model's accuracy, reliability, and generalization ability. This assessment helps determine if the model is suitable for deployment and provides insights into areas where it can be improved.",
    "links": [],
    "col": 5,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A model that looks brilliant on training data can fail in the real world (**overfitting**). Evaluation catches that before your users do.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "It drives **model selection**, hyperparameter **tuning**, and the go/no-go decision to ship.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Done right, it guards against **leakage**, **distribution shift**, and vanity metrics — tying model quality to actual outcomes.",
+     "open": false
+    }
+   ]
   },
   "s10-g2": {
    "key": "s10-g2",
@@ -835,6 +1169,26 @@
     "s10-g2-l4",
     "s10-g2-l5",
     "s10-g2-l6"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Classification: **accuracy, precision, recall, F1**. Regression: **RMSE, MAE, R²**.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Precision and recall trade off (read the **confusion matrix**); **ROC-AUC** summarises ranking across thresholds; **log loss** punishes confident wrong answers.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "On imbalanced data prefer **precision/recall/PR-AUC** over accuracy. Pick the metric that mirrors the cost of a false positive vs a false negative.",
+     "open": false
+    }
    ]
   },
   "s10-g3": {
@@ -868,6 +1222,26 @@
    "subs": [
     "s10-g3-l0",
     "s10-g3-l1"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Split your data so you always test on **unseen** examples — typically train / validation / test.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "**K-fold cross-validation** averages over k splits for a stable estimate; **stratify** to keep class ratios; **LOOCV** is the extreme one-out case.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Use **time-based splits** for temporal data (never peek into the future), and **nested CV** when you need unbiased tuning *and* evaluation.",
+     "open": false
+    }
    ]
   },
   "s11-g0": {
@@ -894,6 +1268,26 @@
     "s11-g0-l2",
     "s11-g0-l3",
     "s11-g0-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Layers of simple units (**neurons**) transform inputs; stacking them learns complex patterns. Each neuron computes `activation(Wx + b)`.",
+     "open": true
+    },
+    {
+     "label": "How they learn",
+     "tag": "mid",
+     "body": "**Forward pass** predicts → a **loss** measures error → **back-propagation** computes gradients → an **optimiser** (SGD/Adam) updates weights. Nonlinear activations (**ReLU**) give the power.",
+     "open": false
+    },
+    {
+     "label": "Going deeper",
+     "tag": "adv",
+     "body": "Depth + nonlinearity ≈ universal function approximation. Training success hinges on **initialisation**, **learning rate**, **normalisation**, and regularisation (**dropout**, weight decay).",
+     "open": false
+    }
    ]
   },
   "s11-g1": {
@@ -908,6 +1302,26 @@
     "s11-g1-l1",
     "s11-g1-l2",
     "s11-g1-l3"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Frameworks that handle **tensors**, **autodiff**, and **GPUs** so you define the model, not the gradient math.",
+     "open": true
+    },
+    {
+     "label": "The big ones",
+     "tag": "mid",
+     "body": "**PyTorch** (dynamic, research favourite) and **TensorFlow/Keras** (strong production tooling). Both auto-differentiate and run on GPU/TPU.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "The features that matter: **automatic differentiation**, **GPU acceleration**, efficient **data loaders**, and a path to **deployment/serving**.",
+     "open": false
+    }
    ]
   },
   "s11-g2": {
@@ -938,6 +1352,26 @@
     "s11-g2-l1",
     "s11-g2-l2",
     "s11-g2-l3"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Networks built for grid data like **images**. A **convolution** slides small filters across the input to detect local patterns — edges, then textures, then objects.",
+     "open": true
+    },
+    {
+     "label": "Building blocks",
+     "tag": "mid",
+     "body": "**Convolution**, **pooling** (downsampling), **padding**, and **strides**. Early layers learn simple features; deeper layers compose them into complex ones.",
+     "open": false
+    },
+    {
+     "label": "Going deeper",
+     "tag": "adv",
+     "body": "**Weight sharing** + locality make CNNs parameter-efficient and translation-aware. Lineage: LeNet → AlexNet → **ResNet**; today often paired with or replaced by **vision transformers**.",
+     "open": false
+    }
    ]
   },
   "s11-g3": {
@@ -958,6 +1392,26 @@
     "s11-g3-l1",
     "s11-g3-l2",
     "s11-g3-l3"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Image **classification**, **object detection**, **segmentation**, and image/video recognition.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Also recommendation systems, medical imaging, OCR, and acting as **feature extractors** for small datasets via transfer learning.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "The default workflow is a **pretrained backbone + fine-tuning**. The same convolution idea extends to 1D (signals) and 3D (volumes).",
+     "open": false
+    }
    ]
   },
   "s11-g4": {
@@ -987,6 +1441,26 @@
     "s11-g4-l0",
     "s11-g4-l1",
     "s11-g4-l2"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Networks for **sequences** (text, time series) that carry a hidden **memory** from one step to the next.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Plain RNNs forget long-range context (**vanishing gradients**); **LSTM** and **GRU** add gates to remember longer.",
+     "open": false
+    },
+    {
+     "label": "Today",
+     "tag": "adv",
+     "body": "Largely superseded by **Transformers** for language, but still handy for streaming/low-latency settings and smaller sequence tasks.",
+     "open": false
+    }
    ]
   },
   "s11-g5": {
@@ -1016,6 +1490,26 @@
     "s11-g5-l0",
     "s11-g5-l1",
     "s11-g5-l2"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Let the model **focus on the most relevant parts** of the input for each output, instead of squashing everything into one fixed summary.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "**Self-attention** relates every token to every other token; **multi-head attention** does it in several subspaces at once. This is the heart of the **Transformer**.",
+     "open": false
+    },
+    {
+     "label": "Why it changed everything",
+     "tag": "adv",
+     "body": "Transformers dropped recurrence entirely — enabling parallel training and long-range context — and became the foundation of modern **LLMs**.",
+     "open": false
+    }
    ]
   },
   "s12-g0": {
@@ -1041,7 +1535,27 @@
     }
    ],
    "col": 7,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Networks that **compress** data to a small code and **reconstruct** it — unsupervised representation learning.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Structure: **encoder → bottleneck → decoder**. Variants include **denoising**, **sparse**, and **variational (VAE)** autoencoders for generation.",
+     "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Used for dimensionality reduction, **anomaly detection**, and pretraining. A **VAE** learns a latent *distribution* you can sample from to generate new data.",
+     "open": false
+    }
+   ]
   },
   "s12-g1": {
    "key": "s12-g1",
@@ -1071,7 +1585,27 @@
     }
    ],
    "col": 7,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Two networks compete: a **generator** makes fakes, a **discriminator** tries to catch them — driving the generator toward realistic output.",
+     "open": true
+    },
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Trained as a **minimax game**. Famous for photorealistic image generation (**StyleGAN**), super-resolution, and data augmentation.",
+     "open": false
+    },
+    {
+     "label": "Reality check",
+     "tag": "adv",
+     "body": "Notoriously unstable — **mode collapse**, delicate balance between the two nets. For image generation they're now largely complemented by **diffusion models**.",
+     "open": false
+    }
+   ]
   },
   "s12-g2": {
    "key": "s12-g2",
@@ -1096,7 +1630,27 @@
     }
    ],
    "col": 7,
-   "subs": []
+   "subs": [],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Techniques to understand **why** a model predicted what it did — essential for trust, debugging, and regulation.",
+     "open": true
+    },
+    {
+     "label": "Methods",
+     "tag": "mid",
+     "body": "**Feature importance**, **SHAP**, **LIME**, and attention/saliency maps. Explanations can be **global** (whole model) or **local** (one prediction).",
+     "open": false
+    },
+    {
+     "label": "Why it matters",
+     "tag": "adv",
+     "body": "Central to **fairness**, accountability, and high-stakes domains (health, finance). There's often a real **interpretability vs accuracy** trade-off.",
+     "open": false
+    }
+   ]
   },
   "s12-g3": {
    "key": "s12-g3",
@@ -1132,6 +1686,26 @@
     "s12-g3-l2",
     "s12-g3-l3",
     "s12-g3-l4"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Teaching machines to work with human language — classify, translate, summarise, answer, and generate text.",
+     "open": true
+    },
+    {
+     "label": "Pipeline pieces",
+     "tag": "mid",
+     "body": "**Tokenisation**, **stemming/lemmatisation**, and **embeddings** (words → vectors). **Attention models** capture context between words.",
+     "open": false
+    },
+    {
+     "label": "Modern NLP",
+     "tag": "adv",
+     "body": "It's now **Transformer-based**: pretrain on huge text corpora (self-supervised), then fine-tune or prompt — the recipe behind today's **LLMs**.",
+     "open": false
+    }
    ]
   }
  },
