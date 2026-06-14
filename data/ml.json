@@ -211,6 +211,11 @@
      "open": true
     },
     {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "**Graph theory** (nodes, edges, paths, trees), **counting** (permutations and combinations), and **proof by induction**. Big-O analysis of algorithms lives here too."
+    },
+    {
      "label": "In ML",
      "tag": "adv",
      "body": "**Graphs** model computation (every neural net is a directed graph) and relationships (knowledge graphs, GNNs). **Combinatorics** underpins probability counts, and **Boolean logic** is the language of decision trees and rule systems.",
@@ -319,6 +324,11 @@
      "open": true
     },
     {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Get fluent with the **standard library**, **comprehensions**, **generators**, and **virtual environments**. Then the data trio: **NumPy** arrays, **pandas** frames, **Matplotlib** plots."
+    },
+    {
      "label": "In ML",
      "tag": "adv",
      "body": "The real skill is the stack: **NumPy** (math), **pandas** (data), **scikit-learn** (classical ML), and **PyTorch/TensorFlow** (deep learning). Write *vectorised* code (operate on whole arrays) instead of Python loops — it's often 10–100× faster.",
@@ -364,6 +374,11 @@
      "tag": "mid",
      "body": "List/dict **comprehensions** (`[f(x) for x in xs]`), **slicing** (`a[1:5]`), **f-strings** (`f\"{x:.2f}\"`), unpacking, and generators. These make data-wrangling code short and clear.",
      "open": false
+    },
+    {
+     "tag": "adv",
+     "label": "In ML",
+     "body": "Most ML code is **NumPy/pandas** calls glued together with comprehensions and functions. Write **vectorised** operations over arrays instead of Python loops — often 10–100× faster."
     }
    ]
   },
@@ -404,6 +419,11 @@
      "open": true
     },
     {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "In Python everything is an **object**. Use `__init__` for setup, **dunder methods** (`__len__`, `__call__`) for built-in behaviour, and prefer **composition** over deep inheritance."
+    },
+    {
      "label": "In ML",
      "tag": "adv",
      "body": "Frameworks are object-oriented: a PyTorch model subclasses `nn.Module`, datasets subclass `Dataset`, transforms are composable objects. Understanding OOP lets you read and extend these instead of only calling them.",
@@ -416,7 +436,23 @@
    "label": "Essential libraries",
    "domain": "prog",
    "desc": "Python's popularity in data analysis stems from its rich ecosystem of specialized libraries. **NumPy** provides powerful tools for numerical computation, particularly with arrays and matrices. **Pandas** offers data structures like DataFrames, making it easy to organize, manipulate, and analyze tabular data. For visualization, **Matplotlib** is a fundamental library for creating static, interactive, and animated plots. Building on Matplotlib, **Seaborn** provides a high-level interface for drawing attractive and informative statistical graphics. These libraries collectively enable efficient data handling, exploration, and presentation.",
-   "links": [],
+   "links": [
+    {
+     "type": "official",
+     "title": "NumPy documentation",
+     "url": "https://numpy.org/doc/stable/"
+    },
+    {
+     "type": "official",
+     "title": "pandas documentation",
+     "url": "https://pandas.pydata.org/docs/"
+    },
+    {
+     "type": "official",
+     "title": "Matplotlib documentation",
+     "url": "https://matplotlib.org/stable/"
+    }
+   ],
    "col": 1,
    "subs": [
     "s1-g3-l0",
@@ -450,7 +486,18 @@
    "label": "Programming Fundamentals",
    "domain": "prog",
    "desc": "",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Data structure",
+     "url": "https://en.wikipedia.org/wiki/Data_structure"
+    },
+    {
+     "type": "official",
+     "title": "Git documentation",
+     "url": "https://git-scm.com/doc"
+    }
+   ],
    "col": 1,
    "subs": [
     "s1-g4-l0",
@@ -465,6 +512,11 @@
      "tag": "basics",
      "body": "Beyond any single language: how programs actually run, core **data structures & algorithms**, **version control** (git), and comfort on the **command line**. These transfer to every ML tool you'll touch.",
      "open": true
+    },
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Know the **complexity** of common operations (list vs set lookup), use **git branches** for experiments, and get comfortable in the **terminal** — most ML tooling is command-line first."
     },
     {
      "label": "In practice",
@@ -523,7 +575,23 @@
    "label": "Data Sources",
    "domain": "data",
    "desc": "Sources of data are origins or locations from which data is collected, categorized as primary (direct, firsthand information) or secondary (collected by others). Common primary sources include surveys, interviews, experiments, and sensor data. Secondary sources encompass databases, published reports, government data, books, articles, and web data like social media posts. Data sources can also be classified as internal (within an organization) or external (from outside sources).",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Data collection",
+     "url": "https://en.wikipedia.org/wiki/Data_collection"
+    },
+    {
+     "type": "opensource",
+     "title": "Kaggle Datasets",
+     "url": "https://www.kaggle.com/datasets"
+    },
+    {
+     "type": "official",
+     "title": "scikit-learn datasets",
+     "url": "https://scikit-learn.org/stable/datasets.html"
+    }
+   ],
    "col": 2,
    "subs": [],
    "levels": [
@@ -552,7 +620,18 @@
    "label": "Data Formats",
    "domain": "data",
    "desc": "Data formats define the structure in which data is organized and stored. These formats dictate how information is encoded, allowing computers to interpret and process it effectively. Common examples include CSV (Comma Separated Values) for tabular data, JSON (JavaScript Object Notation) for structured data with key-value pairs, and image formats like JPEG and PNG for visual data. The choice of data format impacts storage efficiency, data accessibility, and the compatibility with different machine learning tools and algorithms.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Comma-separated values",
+     "url": "https://en.wikipedia.org/wiki/Comma-separated_values"
+    },
+    {
+     "type": "official",
+     "title": "Apache Parquet",
+     "url": "https://parquet.apache.org/"
+    }
+   ],
    "col": 2,
    "subs": [
     "s3-g1-l0",
@@ -872,7 +951,18 @@
    "label": "Regression",
    "domain": "coreml",
    "desc": "Regression in supervised learning is a method used to predict a continuous numerical value. It works by finding the relationship between input features (independent variables) and a target variable (dependent variable). The goal is to build a model that can accurately estimate the target variable's value based on the given input features. For example, predicting house prices based on size and location is a regression problem.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Regression analysis",
+     "url": "https://en.wikipedia.org/wiki/Regression_analysis"
+    },
+    {
+     "type": "official",
+     "title": "scikit-learn — Linear Models",
+     "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+    }
+   ],
    "col": 4,
    "subs": [
     "s7-g2-l0",
@@ -1095,7 +1185,18 @@
    "label": "What is Model Evaluation?",
    "domain": "coreml",
    "desc": "Model evaluation is the process of assessing how well a machine learning model performs on a given dataset. It involves using various metrics and techniques to quantify the model's accuracy, reliability, and generalization ability. This helps determine if the model is suitable for deployment and whether further improvements are needed.",
-   "links": [],
+   "links": [
+    {
+     "type": "official",
+     "title": "scikit-learn — Model evaluation",
+     "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    },
+    {
+     "type": "course",
+     "title": "Google ML Crash Course",
+     "url": "https://developers.google.com/machine-learning/crash-course"
+    }
+   ],
    "col": 5,
    "subs": [],
    "levels": [
@@ -1124,7 +1225,18 @@
    "label": "Why is it important?",
    "domain": "coreml",
    "desc": "Model evaluation is the process of assessing how well a machine learning model performs on a given dataset. It involves using various metrics and techniques to quantify the model's accuracy, reliability, and generalization ability. This assessment helps determine if the model is suitable for deployment and provides insights into areas where it can be improved.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Overfitting",
+     "url": "https://en.wikipedia.org/wiki/Overfitting"
+    },
+    {
+     "type": "article",
+     "title": "Generalization error",
+     "url": "https://en.wikipedia.org/wiki/Generalization_error"
+    }
+   ],
    "col": 5,
    "subs": [],
    "levels": [
@@ -1288,6 +1400,10 @@
      "body": "Depth + nonlinearity ≈ universal function approximation. Training success hinges on **initialisation**, **learning rate**, **normalisation**, and regularisation (**dropout**, weight decay).",
      "open": false
     }
+   ],
+   "tags": [
+    "neural-network",
+    "deep-learning"
    ]
   },
   "s11-g1": {
@@ -1295,7 +1411,23 @@
    "label": "Deep Learning Libraries",
    "domain": "deep",
    "desc": "Deep learning relies heavily on specialized Python libraries that provide pre-built functions and tools for building and training neural networks. TensorFlow, developed by Google, is a widely used library known for its flexibility and scalability. PyTorch, created by Facebook, is another popular choice, favored for its dynamic computation graph and ease of use, especially in research. Keras acts as a high-level API that can run on top of TensorFlow or other backends, simplifying the process of building complex models. These libraries offer functionalities like automatic differentiation, GPU acceleration, and pre-trained models, making deep learning more accessible and efficient.",
-   "links": [],
+   "links": [
+    {
+     "type": "official",
+     "title": "PyTorch",
+     "url": "https://pytorch.org/"
+    },
+    {
+     "type": "official",
+     "title": "TensorFlow",
+     "url": "https://www.tensorflow.org/"
+    },
+    {
+     "type": "official",
+     "title": "Keras",
+     "url": "https://keras.io/"
+    }
+   ],
    "col": 6,
    "subs": [
     "s11-g1-l0",
@@ -1706,6 +1838,10 @@
      "body": "It's now **Transformer-based**: pretrain on huge text corpora (self-supervised), then fine-tune or prompt — the recipe behind today's **LLMs**.",
      "open": false
     }
+   ],
+   "tags": [
+    "nlp",
+    "text"
    ]
   }
  },
@@ -1785,7 +1921,14 @@
      "url": "https://www.youtube.com/watch?v=zomvvohLwr4"
     }
    ],
-   "domain": "math"
+   "domain": "math",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "The **gradient** ∇f stacks first derivatives and points uphill; the **Jacobian** generalises it to vector-valued functions; the **Hessian** holds second derivatives and reveals curvature."
+    }
+   ]
   },
   "s0-g1-l0": {
    "key": "s0-g1-l0",
@@ -1852,7 +1995,14 @@
      "url": "https://www.youtube.com/watch?v=gXbThCXjZFM"
     }
    ],
-   "domain": "math"
+   "domain": "math",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Any matrix factors as `A = UΣVᵀ` — rotate, scale, rotate. The singular values in **Σ** rank directions by importance; keeping the top-k gives the best low-rank approximation."
+    }
+   ]
   },
   "s0-g1-l3": {
    "key": "s0-g1-l3",
@@ -1910,7 +2060,14 @@
      "url": "https://www.youtube.com/watch?v=WTLl03D4TNA"
     }
    ],
-   "domain": "math"
+   "domain": "math",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "An **eigenvector** keeps its direction under a matrix: `Av = λv`, with eigenvalue **λ** the scaling factor. Diagonalisation `A = QΛQ⁻¹` makes matrix powers trivial."
+    }
+   ]
   },
   "s0-g3-l0": {
    "key": "s0-g3-l0",
@@ -1963,7 +2120,18 @@
      "url": "https://www.youtube.com/watch?v=cqTwHnNbc8g"
     }
    ],
-   "domain": "math"
+   "domain": "math",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "`P(A|B) = P(B|A)·P(A) / P(B)`. It flips a conditional — turning *likelihood* into *posterior* — and underpins Naive Bayes and all Bayesian inference."
+    }
+   ],
+   "tags": [
+    "bayes",
+    "probability"
+   ]
   },
   "s0-g3-l2": {
    "key": "s0-g3-l2",
@@ -2011,7 +2179,14 @@
      "url": "https://www.youtube.com/watch?v=b9a27XN_6tg"
     }
    ],
-   "domain": "math"
+   "domain": "math",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Know the **Normal** (bell curve, CLT), **Bernoulli/Binomial** (yes-no trials), **Poisson** (rare counts), and **Uniform**. Picking the right one is half of probabilistic modelling."
+    }
+   ]
   },
   "s0-g3-l4": {
    "key": "s0-g3-l4",
@@ -2051,7 +2226,13 @@
    "label": "Basic concepts",
    "parent": "s0-g3",
    "desc": "Statistics is the science of collecting, analyzing, interpreting, and presenting data. It provides the foundation for understanding patterns and making inferences from data, which is crucial for machine learning algorithms. Here are 10 basic statistical concepts:\n\n*   **Mean:** The average value of a dataset, calculated by summing all values and dividing by the number of values.\n*   **Median:** The middle value in a sorted dataset.\n*   **Mode:** The value that appears most frequently in a dataset.\n*   **Standard Deviation:** A measure of the spread or dispersion of data points around the mean.\n*   **Variance:** The square of the standard deviation, representing the average squared difference from the mean.\n*   **Probability:** The likelihood of an event occurring, expressed as a number between 0 and 1.\n*   **Distributions:** A function that shows the possible values for a variable and how often they occur (e.g., normal distribution, uniform distribution).\n*   **Hypothesis Testing:** A method for testing a claim or hypothesis about a population based on a sample of data.\n*   **Correlation:** A statistical measure that describes the extent to which two variables are related.\n*   **Regression:** A statistical method for modeling the relationship between a dependent variable and one or more independent variables.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Statistics",
+     "url": "https://en.wikipedia.org/wiki/Statistics"
+    }
+   ],
    "domain": "math"
   },
   "s0-g3-l7": {
@@ -2307,7 +2488,13 @@
    "label": "Internet",
    "parent": "s1-g4",
    "desc": "The internet serves as a vast repository of information that can be leveraged for machine learning projects. This includes publicly available datasets, web pages that can be scraped for relevant information, social media platforms where user-generated content provides insights into opinions and trends, and online databases that offer structured data on various topics. These sources provide a diverse range of data types, from text and images to numerical and categorical data, enabling the development of a wide array of machine learning models.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Web scraping",
+     "url": "https://en.wikipedia.org/wiki/Web_scraping"
+    }
+   ],
    "domain": "prog"
   },
   "s1-g4-l2": {
@@ -2334,7 +2521,13 @@
    "label": "Mobile Apps",
    "parent": "s1-g4",
    "desc": "Mobile app data refers to the information generated and collected from applications running on mobile devices like smartphones and tablets. This data encompasses a wide range of user interactions, device characteristics, and app performance metrics. It can include user demographics, in-app behavior, location data, device type, operating system, and network information, among other things.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Mobile app",
+     "url": "https://en.wikipedia.org/wiki/Mobile_app"
+    }
+   ],
    "domain": "prog"
   },
   "s1-g4-l4": {
@@ -2414,7 +2607,13 @@
    "label": "Skills and Responsibilities",
    "parent": "s2-g0",
    "desc": "Machine learning roles require a blend of technical expertise and practical abilities. These roles involve designing, developing, and deploying machine learning models to solve real-world problems. Key skills include proficiency in programming languages like Python, a strong understanding of statistical concepts, and experience with machine learning frameworks. Responsibilities often encompass data collection and preprocessing, model selection and training, performance evaluation, and continuous model improvement.",
-   "links": [],
+   "links": [
+    {
+     "type": "roadmap",
+     "title": "Machine Learning Roadmap",
+     "url": "https://roadmap.sh/machine-learning"
+    }
+   ],
    "domain": "role"
   },
   "s3-g1-l0": {
@@ -2441,7 +2640,18 @@
    "label": "Excel",
    "parent": "s3-g1",
    "desc": "Excel files are a common way to store data in a structured format using rows and columns. Each cell in the spreadsheet can hold different types of data, like numbers, text, or dates. These files are often used for organizing, analyzing, and visualizing data because they are easy to create and manipulate using spreadsheet software.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Microsoft Excel",
+     "url": "https://en.wikipedia.org/wiki/Microsoft_Excel"
+    },
+    {
+     "type": "official",
+     "title": "pandas — IO tools",
+     "url": "https://pandas.pydata.org/docs/user_guide/io.html"
+    }
+   ],
    "domain": "data"
   },
   "s3-g1-l2": {
@@ -2487,7 +2697,13 @@
    "label": "Other Data Formats",
    "parent": "s3-g1",
    "desc": "Beyond the common formats like CSV, Excel, JSON, and Parquet, data can exist in a variety of other structures. These include formats optimized for specific applications or data types. For instance, images are often stored as JPEGs or PNGs, while audio data might be in WAV or MP3 format. Relational databases store data in structured tables accessible through SQL. Furthermore, specialized formats like HDF5 are used for large, complex datasets, particularly in scientific computing, and Protocol Buffers offer an efficient way to serialize structured data. Data can also be unstructured, existing as plain text, log files, or even streaming data from sensors.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "XML",
+     "url": "https://en.wikipedia.org/wiki/XML"
+    }
+   ],
    "domain": "data"
   },
   "s4-g0-l0": {
@@ -2526,7 +2742,17 @@
      "url": "https://www.youtube.com/watch?v=pYVScuY-GPk"
     }
    ],
-   "domain": "data"
+   "domain": "data",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Turning raw data into informative inputs — ratios, date parts, aggregations, interactions. Often **more impactful than the model choice** itself."
+    }
+   ],
+   "tags": [
+    "feature-engineering"
+   ]
   },
   "s4-g0-l2": {
    "key": "s4-g0-l2",
@@ -2545,7 +2771,14 @@
      "url": "https://www.youtube.com/watch?v=sxEqtjLC0aM"
     }
    ],
-   "domain": "data"
+   "domain": "data",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "**Standardisation** rescales to mean 0, std 1 (`(x−μ)/σ`); **min-max** squashes to [0,1]. Vital for distance- and gradient-based models (KNN, SVM, neural nets); trees don't care."
+    }
+   ]
   },
   "s4-g0-l3": {
    "key": "s4-g0-l3",
@@ -2564,7 +2797,14 @@
      "url": "https://www.youtube.com/watch?v=AU_hBML2H1c"
     }
    ],
-   "domain": "data"
+   "domain": "data",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Fight the **curse of dimensionality**: collapse correlated features with **PCA** (linear) or **t-SNE/UMAP** (non-linear, for visualising). Fewer dimensions, less overfitting."
+    }
+   ]
   },
   "s4-g0-l4": {
    "key": "s4-g0-l4",
@@ -2602,7 +2842,14 @@
      "url": "https://www.youtube.com/watch?v=Mu3POlNoLdc"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Learns from **labelled** examples (input → target). Splits into **classification** (discrete labels) and **regression** (continuous values)."
+    }
+   ]
   },
   "s5-g1-l1": {
    "key": "s5-g1-l1",
@@ -2626,7 +2873,14 @@
      "url": "https://www.youtube.com/watch?v=yteYU_QpUxs"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "**No labels** — the model finds structure itself: **clustering** (groups), **dimensionality reduction**, density estimation."
+    }
+   ]
   },
   "s5-g1-l2": {
    "key": "s5-g1-l2",
@@ -2645,7 +2899,14 @@
      "url": "https://www.youtube.com/watch?v=C3Lr6Waw66g"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "A **few labels plus lots of unlabelled** data. Cheaper than full labelling; the unlabelled mass sharpens the decision boundary."
+    }
+   ]
   },
   "s5-g1-l3": {
    "key": "s5-g1-l3",
@@ -2669,7 +2930,14 @@
      "url": "https://www.youtube.com/watch?v=R8DduzhT3-w"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "The data **labels itself** — predict a masked word or the next token. This is how modern LLMs and foundation models are pretrained at scale."
+    }
+   ]
   },
   "s5-g1-l4": {
    "key": "s5-g1-l4",
@@ -2698,7 +2966,18 @@
      "url": "https://www.youtube.com/watch?v=Mut_u40Sqz4"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "An **agent** acts in an environment to maximise cumulative **reward**. No fixed dataset — it learns from trial, error, and delayed feedback."
+    }
+   ],
+   "tags": [
+    "reinforcement-learning",
+    "rl"
+   ]
   },
   "s6-g0-l0": {
    "key": "s6-g0-l0",
@@ -2846,7 +3125,14 @@
      "url": "https://www.youtube.com/watch?v=Nz73vXn5afE"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "No training step — at predict time it finds the **k nearest points** and takes a majority vote. Simple and strong, but slow on big data and sensitive to feature scaling."
+    }
+   ]
   },
   "s7-g1-l1": {
    "key": "s7-g1-l1",
@@ -2870,7 +3156,14 @@
      "url": "https://m.youtube.com/watch?v=aL21Y-u0SRs&pp=0gcJCfwAo7VqN5tD"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "A linear model squashed through a **sigmoid** to output a probability; threshold at 0.5. Trained by minimising **cross-entropy**. The baseline every classifier must beat."
+    }
+   ]
   },
   "s7-g1-l2": {
    "key": "s7-g1-l2",
@@ -2894,15 +3187,45 @@
      "url": "https://www.youtube.com/watch?v=kPkwf1x7zpU"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Finds the hyperplane with the **maximum margin** between classes. The **kernel trick** (RBF, polynomial) handles non-linear boundaries without explicit feature maps."
+    }
+   ]
   },
   "s7-g1-l3": {
    "key": "s7-g1-l3",
    "label": "Decision Trees, Random Forest",
    "parent": "s7-g1",
    "desc": "Decision Trees are a way to make predictions by learning decision rules from data features. Imagine a flowchart where each internal node represents a test on an attribute (like \"Is the color red?\"), each branch represents the outcome of the test, and each leaf node represents a class label (like \"apple\" or \"banana\"). Random Forests improve upon this by creating multiple decision trees on different subsets of the data and features, then combining their predictions to get a more accurate and robust result.",
-   "links": [],
-   "domain": "coreml"
+   "links": [
+    {
+     "type": "article",
+     "title": "Random forest",
+     "url": "https://en.wikipedia.org/wiki/Random_forest"
+    },
+    {
+     "type": "official",
+     "title": "scikit-learn — Decision Trees",
+     "url": "https://scikit-learn.org/stable/modules/tree.html"
+    }
+   ],
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "A tree splits on features to cut **impurity** (Gini/entropy). A **random forest** averages many de-correlated trees (bagging + feature sampling) to slash variance."
+    }
+   ],
+   "tags": [
+    "random-forest",
+    "ensemble",
+    "trees"
+   ]
   },
   "s7-g1-l4": {
    "key": "s7-g1-l4",
@@ -2936,7 +3259,19 @@
      "url": "https://www.youtube.com/watch?v=E2mCaIZNE2g"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Builds trees **sequentially**, each correcting the last one's errors. **XGBoost/LightGBM** dominate tabular problems — accurate, but easier to overfit than forests."
+    }
+   ],
+   "tags": [
+    "xgboost",
+    "boosting",
+    "ensemble"
+   ]
   },
   "s7-g2-l0": {
    "key": "s7-g2-l0",
@@ -2960,7 +3295,14 @@
      "url": "https://www.youtube.com/watch?v=ukZn2RJb7TU"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Fits `y = wᵀx + b` by minimising **mean squared error**, via the normal equation or gradient descent. Interpretable coefficients; assumes a linear relationship."
+    }
+   ]
   },
   "s7-g2-l1": {
    "key": "s7-g2-l1",
@@ -3008,7 +3350,14 @@
      "url": "https://www.youtube.com/watch?v=LmpBt0tenJE"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Linear regression plus an **L1 penalty** (`λ·Σ|w|`). It drives some weights to **exactly zero**, doing automatic feature selection."
+    }
+   ]
   },
   "s7-g2-l3": {
    "key": "s7-g2-l3",
@@ -3027,7 +3376,14 @@
      "url": "https://www.youtube.com/watch?v=GMF4Td7KtB0"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Linear regression plus an **L2 penalty** (`λ·Σw²`). Shrinks weights smoothly to curb overfitting and handle correlated features — but never to exactly zero."
+    }
+   ]
   },
   "s7-g2-l4": {
    "key": "s7-g2-l4",
@@ -3046,7 +3402,14 @@
      "url": "https://www.youtube.com/watch?v=xl6KAAVytEk"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "A **blend of L1 and L2** — sparse like Lasso yet stable like Ridge when features correlate. One extra mixing ratio to tune."
+    }
+   ]
   },
   "s8-g1-l0": {
    "key": "s8-g1-l0",
@@ -3098,7 +3461,14 @@
      "url": "https://www.ibm.com/think/topics/hierarchical-clustering"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Builds a tree of clusters (a **dendrogram**) by repeatedly merging the closest pair — no need to pre-pick k. Cut the tree at any height to get clusters."
+    }
+   ]
   },
   "s8-g1-l3": {
    "key": "s8-g1-l3",
@@ -3141,7 +3511,18 @@
      "url": "https://www.youtube.com/watch?v=6uwa9EkUqpg"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Projects data onto the **directions of maximum variance** (top eigenvectors of the covariance matrix). The first few components often capture most of the signal."
+    }
+   ],
+   "tags": [
+    "pca",
+    "dimensionality-reduction"
+   ]
   },
   "s8-g2-l1": {
    "key": "s8-g2-l1",
@@ -3174,7 +3555,14 @@
      "url": "https://www.youtube.com/watch?v=EUrWGTCGzlA"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Approximates Q-values with a **neural network** so RL scales to huge state spaces (Atari from pixels). Stabilised by **experience replay** and a **target network**."
+    }
+   ]
   },
   "s9-g0-l1": {
    "key": "s9-g0-l1",
@@ -3236,7 +3624,14 @@
      "url": "https://www.youtube.com/watch?v=nOBm4aYEYR4"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Learns a **Q-value** for each (state, action) — expected future reward — via the **Bellman update**. Off-policy and model-free; the basis of Deep-Q Networks."
+    }
+   ]
   },
   "s10-g2-l0": {
    "key": "s10-g2-l0",
@@ -3255,7 +3650,14 @@
      "url": "https://www.giskard.ai/glossary/machine-learning-model-accuracy"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "`(TP+TN)/total`. Intuitive but **misleading on imbalanced data** — 99% accuracy is trivial if 99% of cases are one class."
+    }
+   ]
   },
   "s10-g2-l1": {
    "key": "s10-g2-l1",
@@ -3269,7 +3671,14 @@
      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "`TP/(TP+FP)` — of everything flagged positive, how much was right. Optimise it when **false positives** are costly (e.g. spam filters)."
+    }
+   ]
   },
   "s10-g2-l2": {
    "key": "s10-g2-l2",
@@ -3283,7 +3692,14 @@
      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "`TP/(TP+FN)` — of all real positives, how many you caught. Optimise it when **false negatives** are costly (e.g. cancer screening)."
+    }
+   ]
   },
   "s10-g2-l3": {
    "key": "s10-g2-l3",
@@ -3297,7 +3713,14 @@
      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "The **harmonic mean** of precision and recall: `2PR/(P+R)`. One number that balances the two and punishes lopsided models."
+    }
+   ]
   },
   "s10-g2-l4": {
    "key": "s10-g2-l4",
@@ -3321,7 +3744,14 @@
      "url": "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Plots true-positive vs false-positive rate across all thresholds; **AUC** is the area beneath. 1.0 is perfect, 0.5 is random — and it's threshold-independent."
+    }
+   ]
   },
   "s10-g2-l5": {
    "key": "s10-g2-l5",
@@ -3340,7 +3770,14 @@
      "url": "https://towardsdatascience.com/intuition-behind-log-loss-score-4e0c9979680a/"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Penalises **confident-but-wrong** probabilities harshly (`−Σ y·log ŷ`). Unlike accuracy it rewards well-calibrated probabilities, not just the final label."
+    }
+   ]
   },
   "s10-g2-l6": {
    "key": "s10-g2-l6",
@@ -3359,7 +3796,14 @@
      "url": "https://www.datacamp.com/tutorial/what-is-a-confusion-matrix-in-machine-learning"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "The grid of **TP, FP, FN, TN** that every other classification metric is computed from. Always read it before trusting a single score."
+    }
+   ]
   },
   "s10-g3-l0": {
    "key": "s10-g3-l0",
@@ -3383,7 +3827,14 @@
      "url": "https://www.youtube.com/watch?v=-8s9KuNo5SA&t=925s"
     }
    ],
-   "domain": "coreml"
+   "domain": "coreml",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Split data into **k folds**, train on k−1 and test on the held-out one, rotate, average. Far more reliable than a single train/test split."
+    }
+   ]
   },
   "s10-g3-l1": {
    "key": "s10-g3-l1",
@@ -3435,7 +3886,14 @@
      "url": "https://www.youtube.com/watch?v=99CcviQchd8"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Push inputs layer by layer — each computes `activation(Wx + b)` — until the output. This is just **inference**; no learning happens here."
+    }
+   ]
   },
   "s11-g0-l2": {
    "key": "s11-g0-l2",
@@ -3454,7 +3912,14 @@
      "url": "https://towardsdatascience.com/understanding-backpropagation-abcc509ca9d0/?utm_source=roadmap&utm_medium=Referral&utm_campaign=TDS+roadmap+integration"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "The **chain rule** run backwards through the network to get every weight's gradient in one efficient pass. It's what makes training deep nets feasible."
+    }
+   ]
   },
   "s11-g0-l3": {
    "key": "s11-g0-l3",
@@ -3478,7 +3943,14 @@
      "url": "https://www.youtube.com/watch?v=Fu273ovPBmQ"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Nonlinearities that give networks their power. **ReLU** (`max(0,x)`) is the default; **sigmoid/tanh** can vanish gradients; **softmax** turns logits into class probabilities."
+    }
+   ]
   },
   "s11-g0-l4": {
    "key": "s11-g0-l4",
@@ -3502,7 +3974,14 @@
      "url": "https://www.youtube.com/watch?v=Skc8nqJirJg"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "The quantity training minimises: **MSE** for regression, **cross-entropy** for classification. Choosing it defines what the model treats as 'good'."
+    }
+   ]
   },
   "s11-g1-l0": {
    "key": "s11-g1-l0",
@@ -3622,7 +4101,14 @@
      "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Slide a small **filter (kernel)** over the image taking dot products, producing a **feature map**. Weight sharing means far fewer parameters and **translation-equivariance**."
+    }
+   ]
   },
   "s11-g2-l1": {
    "key": "s11-g2-l1",
@@ -3641,7 +4127,14 @@
      "url": "https://www.youtube.com/watch?v=azRi6Bz7yc0"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Downsamples feature maps (**max** or average over a window) to shrink size, add translation invariance, and cut computation."
+    }
+   ]
   },
   "s11-g2-l2": {
    "key": "s11-g2-l2",
@@ -3686,7 +4179,13 @@
    "label": "Image & Video Recognition",
    "parent": "s11-g3",
    "desc": "Convolutional Neural Networks (CNNs) are a specialized type of neural network particularly effective at processing images and videos. In image recognition, CNNs can identify objects, scenes, and faces by learning spatial hierarchies of features from pixel data. For video recognition, CNNs analyze sequences of frames to understand actions, events, and even predict future occurrences. This is achieved by extracting relevant spatial and temporal features, enabling applications like video surveillance, autonomous driving, and content analysis.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Computer vision",
+     "url": "https://en.wikipedia.org/wiki/Computer_vision"
+    }
+   ],
    "domain": "deep"
   },
   "s11-g3-l1": {
@@ -3694,7 +4193,13 @@
    "label": "Image Classification",
    "parent": "s11-g3",
    "desc": "Convolutional Neural Networks (CNNs) are commonly used for image classification tasks. They work by automatically learning relevant features from images through convolutional layers, which detect patterns like edges and textures. These learned features are then used to classify the image into different categories, such as identifying objects like cats, dogs, or cars. CNNs excel at this because they can handle the high dimensionality of image data and are robust to variations in object position, scale, and lighting.",
-   "links": [],
+   "links": [
+    {
+     "type": "course",
+     "title": "CS231n — CNNs for Visual Recognition",
+     "url": "https://cs231n.github.io/"
+    }
+   ],
    "domain": "deep"
   },
   "s11-g3-l2": {
@@ -3702,7 +4207,13 @@
    "label": "Image Segmentation",
    "parent": "s11-g3",
    "desc": "Image segmentation involves dividing an image into multiple regions or segments, often to identify objects or boundaries. Convolutional Neural Networks (CNNs) are widely used for this task. They learn spatial hierarchies of features from images, enabling pixel-wise classification. This means each pixel is assigned a label indicating which segment it belongs to. For example, in a self-driving car, CNNs can segment images to identify roads, pedestrians, and other vehicles, allowing the car to \"understand\" its surroundings. Other applications include medical image analysis for tumor detection and satellite imagery analysis for land cover classification.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Image segmentation",
+     "url": "https://en.wikipedia.org/wiki/Image_segmentation"
+    }
+   ],
    "domain": "deep"
   },
   "s11-g3-l3": {
@@ -3710,7 +4221,13 @@
    "label": "Recommendation Systems",
    "parent": "s11-g3",
    "desc": "Convolutional Neural Networks (CNNs), typically used for image processing, can also enhance recommendation systems. They do this by extracting features from user-item interaction data, like purchase history or ratings. For example, a CNN can analyze a matrix representing user preferences for different movie genres to identify patterns. These patterns help predict what movies a user might enjoy, even if they haven't explicitly rated them. By learning these complex relationships, CNNs can provide more personalized and accurate recommendations.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Recommender system",
+     "url": "https://en.wikipedia.org/wiki/Recommender_system"
+    }
+   ],
    "domain": "deep"
   },
   "s11-g4-l0": {
@@ -3725,7 +4242,14 @@
      "url": "https://www.datacamp.com/tutorial/tutorial-for-recurrent-neural-network"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Processes sequences step by step, carrying a **hidden state** as memory. Vanilla RNNs struggle with long-range dependencies (**vanishing gradients**)."
+    }
+   ]
   },
   "s11-g4-l1": {
    "key": "s11-g4-l1",
@@ -3749,7 +4273,14 @@
      "url": "https://www.youtube.com/watch?v=tOuXgORsXJ4"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "A streamlined LSTM with **reset and update gates** and no separate cell state. Fewer parameters, often comparable accuracy, faster to train."
+    }
+   ]
   },
   "s11-g4-l2": {
    "key": "s11-g4-l2",
@@ -3773,7 +4304,14 @@
      "url": "https://www.youtube.com/watch?v=LfnrRPFhku"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Adds a **cell state** and **input/forget/output gates** so gradients survive long sequences. The sequence workhorse before Transformers took over."
+    }
+   ]
   },
   "s11-g5-l0": {
    "key": "s11-g5-l0",
@@ -3792,7 +4330,18 @@
      "url": "https://www.youtube.com/watch?v=o4ZVA0TuDRg"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Every token attends to every other: `softmax(QKᵀ/√d)·V`. Captures long-range dependencies in **one step** — but costs **O(n²)** in sequence length."
+    }
+   ],
+   "tags": [
+    "attention",
+    "transformer"
+   ]
   },
   "s11-g5-l1": {
    "key": "s11-g5-l1",
@@ -3821,7 +4370,19 @@
      "url": "https://www.youtube.com/watch?v=SZorAJ4I-sA&t"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Self-attention plus feed-forward blocks, **no recurrence**, so it trains in parallel. The architecture behind BERT, GPT, and essentially every modern LLM."
+    }
+   ],
+   "tags": [
+    "transformer",
+    "attention",
+    "llm"
+   ]
   },
   "s11-g5-l2": {
    "key": "s11-g5-l2",
@@ -3840,7 +4401,14 @@
      "url": "https://d2l.ai/chapter_attention-mechanisms-and-transformers/multihead-attention.html"
     }
    ],
-   "domain": "deep"
+   "domain": "deep",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Run several attention **heads** in parallel, each learning different relationships, then concatenate — like multiple views of the sequence at once."
+    }
+   ]
   },
   "s12-g3-l0": {
    "key": "s12-g3-l0",
@@ -3859,7 +4427,14 @@
      "url": "https://towardsdatascience.com/the-art-of-tokenization-breaking-down-text-for-ai-43c7bccaed25/"
     }
    ],
-   "domain": "adv"
+   "domain": "adv",
+   "levels": [
+    {
+     "tag": "basics",
+     "label": "Basics",
+     "body": "Split text into units — words or **sub-words** (BPE/WordPiece). Sub-word tokenisation avoids out-of-vocabulary words and keeps the vocab compact (~30k–50k)."
+    }
+   ]
   },
   "s12-g3-l1": {
    "key": "s12-g3-l1",
@@ -3897,7 +4472,14 @@
      "url": "https://www.turing.com/kb/guide-on-word-embeddings-in-nlp"
     }
    ],
-   "domain": "adv"
+   "domain": "adv",
+   "levels": [
+    {
+     "tag": "mid",
+     "label": "Going deeper",
+     "body": "Map tokens to **dense vectors** where similar meanings sit close. **word2vec/GloVe** are static; Transformer embeddings are **contextual** — the same word shifts with context."
+    }
+   ]
   },
   "s12-g3-l3": {
    "key": "s12-g3-l3",

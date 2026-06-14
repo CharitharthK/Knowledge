@@ -99,7 +99,23 @@
    "col": 0,
    "desc": "What large language models are, how next-token prediction works, and why scale plus data turned them into general-purpose engines.",
    "subs": [],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "The Illustrated Transformer",
+     "url": "https://jalammar.github.io/illustrated-transformer/"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face LLM Course",
+     "url": "https://huggingface.co/learn/llm-course/chapter1/1"
+    },
+    {
+     "type": "video",
+     "title": "Karpathy — Neural Networks: Zero to Hero",
+     "url": "https://karpathy.ai/zero-to-hero.html"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -116,7 +132,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Families like GPT, Llama, DeepSeek, Qwen, and Gemma differ mostly in data, tokenizer, attention variants, and training recipe — not the core idea.",
+     "body": "By 2026 the frontier is crowded — **GPT-5.x**, **Claude** (Opus/Sonnet), and **Gemini 3** on the closed side; **Llama 4**, **DeepSeek**, **Qwen 3**, **GLM**, and **Gemma** on the open side. They differ mostly in data, tokenizer, attention variants, and training recipe — not the core idea — and open-weight models now sit just behind the closed leaders.",
      "open": false
     }
    ]
@@ -133,7 +149,23 @@
     "l-architecture",
     "l-text-generation"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Chinchilla: Compute-Optimal Scaling",
+     "url": "https://arxiv.org/abs/2203.15556"
+    },
+    {
+     "type": "article",
+     "title": "FineWeb dataset",
+     "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb"
+    },
+    {
+     "type": "opensource",
+     "title": "karpathy/nanoGPT",
+     "url": "https://github.com/karpathy/nanoGPT"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -164,7 +196,23 @@
     "l-sft",
     "l-rlhf"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "InstructGPT (RLHF)",
+     "url": "https://arxiv.org/abs/2203.02155"
+    },
+    {
+     "type": "article",
+     "title": "Direct Preference Optimization (DPO)",
+     "url": "https://arxiv.org/abs/2305.18290"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face smol-course",
+     "url": "https://huggingface.co/learn/smol-course"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -196,7 +244,41 @@
     "l-benchmarks",
     "l-human-eval"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Stanford HELM",
+     "url": "https://crfm.stanford.edu/helm/"
+    },
+    {
+     "type": "article",
+     "title": "GPQA: A Graduate-Level Benchmark",
+     "url": "https://arxiv.org/abs/2311.12022"
+    },
+    {
+     "type": "article",
+     "title": "LMArena (Chatbot Arena)",
+     "url": "https://lmarena.ai"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "You can't improve what you don't measure. Evaluation asks one question: is the output actually **good** — accurate, helpful, and safe?",
+     "open": true
+    },
+    {
+     "label": "Three approaches",
+     "tag": "mid",
+     "body": "**Automatic metrics** (perplexity, BLEU/ROUGE) are cheap but weak; **task benchmarks** (MMLU, GPQA, SWE-Bench) probe specific skills; **human / LLM-as-judge** preference comparisons capture open-ended quality."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "By 2026 classic suites like **MMLU are saturated**, so the field leans on **SWE-Bench Verified**, **GPQA Diamond**, **Terminal-Bench**, and **arena Elo**. The real win is a small eval set for *your* task — generic scores rarely predict it."
+    }
+   ]
   },
   "t-chatbot-design": {
    "label": "Chatbot System Design",
@@ -204,7 +286,36 @@
    "col": 0,
    "desc": "Assembling models, prompts, memory, and guardrails into a working chatbot.",
    "subs": [],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    },
+    {
+     "type": "article",
+     "title": "OpenAI — Production Best Practices",
+     "url": "https://platform.openai.com/docs/guides/production-best-practices"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A chatbot is far more than one model call. It's a **system**: a model, a system prompt, conversation **memory**, and **guardrails** wired together.",
+     "open": true
+    },
+    {
+     "label": "The pieces",
+     "tag": "mid",
+     "body": "Manage the **context window** (history + retrieved docs + tool results), add **memory** for long sessions, and put **guardrails** on inputs and outputs — moderation, schema validation, refusal handling."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Production concerns dominate: **streaming**, **latency/cost** budgets, **caching**, model fallbacks, logging, and evals. The LLM is the easy part — the plumbing is the work."
+    }
+   ]
   },
   "t-adaptation": {
    "label": "Adaptation Techniques",
@@ -212,7 +323,23 @@
    "col": 1,
    "desc": "Ways to make a general model fit your task — prompting, retrieval, and fine-tuning, cheapest to most involved.",
    "subs": [],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Prompt Engineering Guide",
+     "url": "https://www.promptingguide.ai"
+    },
+    {
+     "type": "article",
+     "title": "LoRA",
+     "url": "https://arxiv.org/abs/2106.09685"
+    },
+    {
+     "type": "article",
+     "title": "Retrieval-Augmented Generation",
+     "url": "https://arxiv.org/abs/2005.11401"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -225,6 +352,11 @@
      "tag": "mid",
      "body": "Try **prompt engineering** first, add **RAG** for fresh or proprietary knowledge, and **fine-tune** only when behaviour or format must change.",
      "open": false
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Most production systems are **layered**: a good prompt, retrieval for fresh/proprietary knowledge, and light fine-tuning only where behaviour must change. Start cheap, add complexity only when your evals demand it."
     }
    ]
   },
@@ -238,7 +370,41 @@
     "l-lora",
     "l-raft"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "LoRA",
+     "url": "https://arxiv.org/abs/2106.09685"
+    },
+    {
+     "type": "article",
+     "title": "QLoRA",
+     "url": "https://arxiv.org/abs/2305.14314"
+    },
+    {
+     "type": "article",
+     "title": "TRL (Transformer RL) docs",
+     "url": "https://huggingface.co/docs/trl"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Fine-tuning **updates the model's weights** on your data. Reach for it only when prompting and RAG can't get the behaviour or format you need.",
+     "open": true
+    },
+    {
+     "label": "Do it efficiently",
+     "tag": "mid",
+     "body": "Full fine-tuning is expensive, so use **PEFT**. Methods like **LoRA / QLoRA** train a few small matrices and leave the base frozen — cheap, fast, and swappable per task."
+    },
+    {
+     "label": "When to reach for it",
+     "tag": "adv",
+     "body": "Fine-tune to change **style, format, or a narrow skill**; use **RAG** to add knowledge. They compose — **RAFT** even fine-tunes a model to use retrieved context well. Watch for **catastrophic forgetting**."
+    }
+   ]
   },
   "t-prompt-eng": {
    "label": "Prompt Engineering",
@@ -250,7 +416,23 @@
     "l-cot",
     "l-role-prompt"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Prompt Engineering Guide",
+     "url": "https://www.promptingguide.ai"
+    },
+    {
+     "type": "article",
+     "title": "OpenAI — Prompt Engineering",
+     "url": "https://platform.openai.com/docs/guides/prompt-engineering"
+    },
+    {
+     "type": "article",
+     "title": "Chain-of-Thought Prompting",
+     "url": "https://arxiv.org/abs/2201.11903"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -278,7 +460,23 @@
    "col": 1,
    "desc": "Retrieval-Augmented Generation — fetch relevant documents and feed them to the model so answers are grounded and current.",
    "subs": [],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "RAG (Lewis et al., 2020)",
+     "url": "https://arxiv.org/abs/2005.11401"
+    },
+    {
+     "type": "article",
+     "title": "Dense Passage Retrieval (DPR)",
+     "url": "https://arxiv.org/abs/2004.04906"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face LLM Course",
+     "url": "https://huggingface.co/learn/llm-course/chapter1/1"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -298,6 +496,11 @@
      "body": "Most production 'AI on your data' systems are RAG. The quality lives in chunking, embeddings, and retrieval — not the LLM.",
      "open": false
     }
+   ],
+   "tags": [
+    "rag",
+    "grounding",
+    "retrieval"
    ]
   },
   "t-retrieval": {
@@ -313,7 +516,41 @@
     "l-deterministic-retrieval",
     "l-graph-ast-traversal"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Dense Passage Retrieval (DPR)",
+     "url": "https://arxiv.org/abs/2004.04906"
+    },
+    {
+     "type": "article",
+     "title": "Sentence-Transformers",
+     "url": "https://www.sbert.net"
+    },
+    {
+     "type": "article",
+     "title": "MTEB embedding leaderboard",
+     "url": "https://huggingface.co/spaces/mteb/leaderboard"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Retrieval finds the **most relevant chunks** for a query so the model answers from them instead of guessing.",
+     "open": true
+    },
+    {
+     "label": "The pipeline",
+     "tag": "mid",
+     "body": "**Parse** documents → **chunk** them → **index** (keyword, vector, or graph) → **embed** queries and chunks so semantic similarity becomes distance."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Quality lives here, not in the LLM. **Hybrid** search (BM25 + vectors, fused with reciprocal-rank) plus a **reranker** beats pure vector search on most corpora."
+    }
+   ]
   },
   "t-generation": {
    "label": "Generation",
@@ -324,7 +561,36 @@
     "l-ann-search",
     "l-rag-prompting"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Lost in the Middle",
+     "url": "https://arxiv.org/abs/2307.03172"
+    },
+    {
+     "type": "article",
+     "title": "Self-RAG",
+     "url": "https://arxiv.org/abs/2310.11511"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Generation is the second half of RAG: take the retrieved chunks and **prompt the model to answer from them**.",
+     "open": true
+    },
+    {
+     "label": "How",
+     "tag": "mid",
+     "body": "Run **nearest-neighbour search** for the top-k chunks, then format them into the prompt with instructions to **ground** the answer and **cite** sources."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Guard against **context stuffing** (more isn't better), the **lost-in-the-middle** ordering effect, and ungrounded answers. Ask for citations, then verify them."
+    }
+   ]
   },
   "t-rag-eval": {
    "label": "RAG Evaluation",
@@ -336,7 +602,36 @@
     "l-faithfulness",
     "l-answer-correctness"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "RAGAS paper",
+     "url": "https://arxiv.org/abs/2309.15217"
+    },
+    {
+     "type": "article",
+     "title": "RAGAS docs",
+     "url": "https://docs.ragas.io"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A RAG system can fail in two places: **retrieval** (wrong documents) or **generation** (ignores the right ones). Evaluation has to separate the two.",
+     "open": true
+    },
+    {
+     "label": "What to measure",
+     "tag": "mid",
+     "body": "**Context relevance** (did we fetch the right chunks?), **faithfulness** (is the answer grounded in them?), and **answer correctness** (is it actually right?)."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Tools like **RAGAS** and LLM-as-judge automate this. A faithful answer built on bad context is still wrong — fix retrieval first."
+    }
+   ]
   },
   "t-agents-overview": {
    "label": "Agents Overview",
@@ -347,7 +642,18 @@
     "l-agent-vs",
     "l-agency-levels"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -382,7 +688,36 @@
     "l-orchestrator",
     "l-agentcore-strands"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    },
+    {
+     "type": "opensource",
+     "title": "LangGraph",
+     "url": "https://langchain-ai.github.io/langgraph/"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A **workflow** wires LLM calls together along a path *you* design — predictable and debuggable, unlike a free-roaming agent.",
+     "open": true
+    },
+    {
+     "label": "Common patterns",
+     "tag": "mid",
+     "body": "**Prompt chaining** (step by step), **routing** (classify then dispatch), **parallelization** (fan-out and vote), **orchestrator-worker**, and **reflection** (critique then revise)."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Anthropic's guidance: use the **simplest** workflow that works, and add agentic autonomy only when the task truly needs it. Model the steps as an explicit **state graph** for resumability."
+    }
+   ]
   },
   "t-tools": {
    "label": "Tools",
@@ -396,7 +731,18 @@
     "l-mcp",
     "l-persistent-memory"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "OpenAI — Function Calling",
+     "url": "https://platform.openai.com/docs/guides/function-calling"
+    },
+    {
+     "type": "article",
+     "title": "Model Context Protocol (MCP)",
+     "url": "https://modelcontextprotocol.io"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -416,6 +762,11 @@
      "body": "**MCP** (Model Context Protocol) standardises how models connect to tools and data sources, so integrations are reusable across apps.",
      "open": false
     }
+   ],
+   "tags": [
+    "tools",
+    "mcp",
+    "function-calling"
    ]
   },
   "t-multistep": {
@@ -429,7 +780,41 @@
     "l-reflexion",
     "l-tree-search"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "ReAct",
+     "url": "https://arxiv.org/abs/2210.03629"
+    },
+    {
+     "type": "article",
+     "title": "Reflexion",
+     "url": "https://arxiv.org/abs/2303.11366"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A multi-step agent **decides its own steps**. It loops — think, act with a tool, observe — until the goal is met.",
+     "open": true
+    },
+    {
+     "label": "Patterns",
+     "tag": "mid",
+     "body": "**ReAct** interleaves reasoning and acting; **Reflexion / ReWOO** add self-critique and decoupled planning; **tree search** explores several action paths."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Autonomy is powerful and risky. Add **step limits**, **budgets**, **human-in-the-loop** checkpoints, and tracing. Most 'agent' failures are missing guardrails, not a weak model."
+    }
+   ]
   },
   "t-multiagent": {
    "label": "Multi-Agent Systems",
@@ -439,7 +824,36 @@
    "subs": [
     "l-a2a"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "A2A — Agent-to-Agent protocol",
+     "url": "https://a2a-protocol.org"
+    },
+    {
+     "type": "opensource",
+     "title": "LangGraph (multi-agent)",
+     "url": "https://langchain-ai.github.io/langgraph/"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Instead of one agent, use **several specialised agents** that cooperate — say a researcher, a coder, and a reviewer.",
+     "open": true
+    },
+    {
+     "label": "How they coordinate",
+     "tag": "mid",
+     "body": "A coordinator delegates subtasks, or agents talk peer-to-peer. Standards like **A2A** (Agent-to-Agent) let agents from different vendors discover and message one another."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "More agents means more coordination overhead, cost, and failure modes. Reach for multi-agent only when a single tool-using agent clearly can't divide and conquer the task."
+    }
+   ]
   },
   "t-agent-eval": {
    "label": "Agent Evaluation",
@@ -447,7 +861,36 @@
    "col": 2,
    "desc": "Assessing agents on task success, efficiency, and reliability across multi-step runs.",
    "subs": [],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "SWE-Bench",
+     "url": "https://arxiv.org/abs/2310.06770"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Evaluating an agent is harder than scoring one answer — you're judging a whole **multi-step trajectory**.",
+     "open": true
+    },
+    {
+     "label": "What to measure",
+     "tag": "mid",
+     "body": "**Task success** (did it finish?), **efficiency** (steps, tokens, cost, latency), and **reliability** (does it succeed repeatably?). Trace every tool call."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Use end-to-end task benchmarks (**SWE-Bench**, **Terminal-Bench**) plus per-step checks. Non-determinism means many runs and pass@k-style metrics, not a single score."
+    }
+   ]
   },
   "t-reasoning-models": {
    "label": "Reasoning & Thinking LLMs",
@@ -455,12 +898,28 @@
    "col": 3,
    "desc": "Models trained to 'think' before answering — spending extra compute on internal reasoning for hard problems.",
    "subs": [],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "DeepSeek-R1",
+     "url": "https://arxiv.org/abs/2501.12948"
+    },
+    {
+     "type": "article",
+     "title": "OpenAI — Learning to Reason (o1)",
+     "url": "https://openai.com/index/learning-to-reason-with-llms/"
+    },
+    {
+     "type": "article",
+     "title": "Chain-of-Thought Prompting",
+     "url": "https://arxiv.org/abs/2201.11903"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
      "tag": "basics",
-     "body": "Reasoning models (OpenAI's 'o' family, DeepSeek-R1) generate a long internal chain of thought before the final answer.",
+     "body": "Reasoning models — OpenAI's **o-series**, **DeepSeek-R1**, and the 'thinking' modes now built into **GPT-5.x**, **Claude**, and **Gemini 3** — generate a long internal chain of thought before the final answer.",
      "open": true
     },
     {
@@ -475,6 +934,10 @@
      "body": "The ability comes from training on reasoning traces and RL with verifiers, plus inference-time techniques that scale test-time compute.",
      "open": false
     }
+   ],
+   "tags": [
+    "reasoning",
+    "test-time-compute"
    ]
   },
   "t-inference-time": {
@@ -490,7 +953,36 @@
     "l-tot",
     "l-verifier-search"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Self-Consistency",
+     "url": "https://arxiv.org/abs/2203.11171"
+    },
+    {
+     "type": "article",
+     "title": "Tree of Thoughts",
+     "url": "https://arxiv.org/abs/2305.10601"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Spend **more compute at generation time** — no retraining — to get better answers on hard problems.",
+     "open": true
+    },
+    {
+     "label": "The levers",
+     "tag": "mid",
+     "body": "**Longer chains of thought**, **parallel sampling** (generate many, vote), **sequential refinement**, **tree-of-thoughts** search, and **verifier-guided** selection."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "This is the **test-time scaling** behind reasoning models: accuracy climbs with the thinking budget — but so do latency and cost, so tune it to the difficulty of each query."
+    }
+   ]
   },
   "t-training-time": {
    "label": "Training-time Techniques",
@@ -504,7 +996,41 @@
     "l-self-refine",
     "l-meta-cot"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "STaR",
+     "url": "https://arxiv.org/abs/2203.14465"
+    },
+    {
+     "type": "article",
+     "title": "Let's Verify Step by Step (PRM)",
+     "url": "https://arxiv.org/abs/2305.20050"
+    },
+    {
+     "type": "article",
+     "title": "DeepSeek-R1",
+     "url": "https://arxiv.org/abs/2501.12948"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Instead of paying every inference, **bake reasoning into the weights** so the model thinks well by default.",
+     "open": true
+    },
+    {
+     "label": "How",
+     "tag": "mid",
+     "body": "**SFT on verified reasoning traces** (STaR), **RL with a verifier** (reward correct answers on checkable tasks), and **reward models** scoring whole outcomes (ORM) or each step (PRM)."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "**DeepSeek-R1** showed that pure RL with verifiable rewards can induce strong reasoning without human-labelled steps — the 2025 unlock that 2026 models build on."
+    }
+   ]
   },
   "t-local-deploy": {
    "label": "Local Deployment",
@@ -512,7 +1038,46 @@
    "col": 3,
    "desc": "Running open/reasoning models on your own hardware — quantization, inference servers, and trade-offs.",
    "subs": [],
-   "links": []
+   "links": [
+    {
+     "type": "opensource",
+     "title": "Ollama",
+     "url": "https://ollama.com"
+    },
+    {
+     "type": "opensource",
+     "title": "ggml-org/llama.cpp",
+     "url": "https://github.com/ggml-org/llama.cpp"
+    },
+    {
+     "type": "opensource",
+     "title": "vLLM",
+     "url": "https://docs.vllm.ai"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Run **open-weight models on your own hardware** — for privacy, cost control, offline use, or simply to learn how it works.",
+     "open": true
+    },
+    {
+     "label": "How",
+     "tag": "mid",
+     "body": "**Quantize** the weights (4-bit GGUF / AWQ) to shrink memory, then serve with **llama.cpp** or **Ollama** on a laptop, or **vLLM** for GPU throughput."
+    },
+    {
+     "label": "Trade-offs",
+     "tag": "adv",
+     "body": "You trade peak quality and ops simplicity for **control, privacy, and zero per-token cost**. 4-bit quantization is usually near-lossless; sizing VRAM to the model is the gotcha."
+    }
+   ],
+   "tags": [
+    "local-first",
+    "quantization",
+    "privacy"
+   ]
   },
   "t-genmodels": {
    "label": "Generative Models Overview",
@@ -525,7 +1090,18 @@
     "l-autoregressive",
     "l-diffusion"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Lil'Log — What are Diffusion Models?",
+     "url": "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face Diffusion Course",
+     "url": "https://huggingface.co/learn/diffusion-course"
+    }
+   ],
    "levels": [
     {
      "label": "Basics",
@@ -559,7 +1135,41 @@
     "l-diffusion-sampling",
     "l-t2i-eval"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "DDPM (Denoising Diffusion)",
+     "url": "https://arxiv.org/abs/2006.11239"
+    },
+    {
+     "type": "article",
+     "title": "Latent Diffusion (Stable Diffusion)",
+     "url": "https://arxiv.org/abs/2112.10752"
+    },
+    {
+     "type": "opensource",
+     "title": "🤗 Diffusers",
+     "url": "https://huggingface.co/docs/diffusers"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Generate an image from a text prompt by **denoising** random noise into a picture, guided by the words.",
+     "open": true
+    },
+    {
+     "label": "How",
+     "tag": "mid",
+     "body": "A **U-Net or DiT** backbone learns to reverse a noising process; **classifier-free guidance** steers it toward the prompt; a text encoder (CLIP / T5) supplies the conditioning."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "Fewer sampling steps is faster, more is sharper. Evaluate with **FID** (quality and diversity) and **CLIP score** (text alignment). Latent diffusion makes it cheap enough to run locally."
+    }
+   ]
   },
   "t-t2v": {
    "label": "Text-to-Video",
@@ -573,7 +1183,36 @@
     "l-t2v-scaling",
     "l-t2v-system"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Video LDM (Align your Latents)",
+     "url": "https://arxiv.org/abs/2304.08818"
+    },
+    {
+     "type": "article",
+     "title": "Sora — Video as a World Simulator",
+     "url": "https://openai.com/index/video-generation-models-as-world-simulators/"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Text-to-video adds the **time dimension** to diffusion — generate frames that are coherent *and* consistent across time.",
+     "open": true
+    },
+    {
+     "label": "How",
+     "tag": "mid",
+     "body": "Run diffusion in a compressed **latent space** (LDM) with **spatiotemporal DiT** blocks, trained on huge, heavily-filtered video-caption datasets."
+    },
+    {
+     "label": "In practice",
+     "tag": "adv",
+     "body": "The hard parts are **compute, memory, and temporal consistency**. Sora-class models frame video as a learned world simulator — expect heavy infra and long training runs."
+    }
+   ]
   },
   "t-capstone": {
    "label": "Capstone Project",
@@ -586,7 +1225,36 @@
     "l-iterate",
     "l-demo"
    ],
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Pull it all together: **ship one project end-to-end** that combines the techniques — RAG, tools, agents, maybe reasoning.",
+     "open": true
+    },
+    {
+     "label": "A loop",
+     "tag": "mid",
+     "body": "**Choose** a real problem → **build** a thin working version → **iterate** with evals and feedback → **demo** it. Scope it small enough to actually finish."
+    },
+    {
+     "label": "Make it portfolio-ready",
+     "tag": "adv",
+     "body": "Add **evals**, handle errors and cost, write a clear README, and deploy it somewhere clickable. A working, measured demo beats a long feature list."
+    }
+   ]
   },
   "t-slm-training": {
    "label": "SLMs & Efficient Training",
@@ -597,7 +1265,23 @@
     "l-jax-compilation",
     "l-slm-distillation"
    ],
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Phi-3 Technical Report",
+     "url": "https://arxiv.org/abs/2404.14219"
+    },
+    {
+     "type": "article",
+     "title": "SmolLM (Hugging Face)",
+     "url": "https://huggingface.co/blog/smollm"
+    },
+    {
+     "type": "course",
+     "title": "Hugging Face smol-course",
+     "url": "https://huggingface.co/learn/smol-course"
+    }
+   ],
    "tags": [
     "local-first",
     "slm",
@@ -633,503 +1317,1144 @@
    "parent": "t-pretraining",
    "domain": "p1",
    "desc": "Gathering raw text at scale — crawling the web yourself or using public dumps like Common Crawl.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Common Crawl",
+     "url": "https://commoncrawl.org"
+    }
+   ]
   },
   "l-data-cleaning": {
    "label": "Data Cleaning",
    "parent": "t-pretraining",
    "domain": "p1",
    "desc": "Filtering, deduplicating, and quality-scoring raw text. Curated sets (FineWeb, Dolma, RefinedWeb) show how much this matters.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "FineWeb dataset",
+     "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb"
+    }
+   ]
   },
   "l-tokenization": {
    "label": "Tokenization",
    "parent": "t-pretraining",
    "domain": "p1",
    "desc": "Splitting text into sub-word units the model consumes; Byte-Pair Encoding (BPE) is the common scheme.",
-   "links": []
+   "links": [
+    {
+     "type": "opensource",
+     "title": "karpathy/minbpe",
+     "url": "https://github.com/karpathy/minbpe"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**BPE** starts from bytes and repeatedly merges the most frequent pair, building a vocab of ~30k–130k sub-words. Sub-words beat whole words (no out-of-vocab) and beat characters (shorter sequences).",
+     "open": true
+    }
+   ]
   },
   "l-architecture": {
    "label": "Architecture",
    "parent": "t-pretraining",
    "domain": "p1",
    "desc": "The Transformer and its variants (GPT, DeepSeek, Qwen, Gemma) — attention layers letting each token attend to the rest.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "The Illustrated Transformer",
+     "url": "https://jalammar.github.io/illustrated-transformer/"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Self-attention lets every token look at every other — but it's **O(n²)** in sequence length. Modern decoder-only stacks add **RoPE** positions and **grouped-query / multi-head-latent attention** to keep long context affordable.",
+     "open": true
+    }
+   ]
   },
   "l-text-generation": {
    "label": "Text Generation",
    "parent": "t-pretraining",
    "domain": "p1",
    "desc": "Turning probabilities into text: greedy/beam search and sampling with top-k / top-p (nucleus) to trade off quality and diversity.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "How to generate text (Hugging Face)",
+     "url": "https://huggingface.co/blog/how-to-generate"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**Temperature** scales the logits (low = focused, high = creative); **top-p / nucleus** keeps the smallest set of tokens summing to p (e.g. 0.9); **greedy** is deterministic but bland.",
+     "open": true
+    }
+   ]
   },
   "l-sft": {
    "label": "Supervised Fine-Tuning (SFT)",
    "parent": "t-posttraining",
    "domain": "p1",
    "desc": "Fine-tuning the base model on curated instruction/response pairs so it learns the assistant format.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "TRL — SFTTrainer",
+     "url": "https://huggingface.co/docs/trl/sft_trainer"
+    }
+   ]
   },
   "l-rlhf": {
    "label": "RL & RLHF",
    "parent": "t-posttraining",
    "domain": "p1",
    "desc": "Optimising responses against a learned reward model with RL (PPO); verifiable rewards replace human raters for checkable tasks.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "InstructGPT (RLHF)",
+     "url": "https://arxiv.org/abs/2203.02155"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Train a **reward model** from human preference pairs, then optimise the policy with **PPO**. **DPO** skips the separate reward model by optimising the preference objective directly — simpler and now very common.",
+     "open": true
+    }
+   ]
   },
   "l-trad-metrics": {
    "label": "Traditional Metrics",
    "parent": "t-llm-eval",
    "domain": "p1",
    "desc": "Automatic scores (perplexity, BLEU/ROUGE) — cheap but weak proxies for real quality.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Perplexity (Hugging Face)",
+     "url": "https://huggingface.co/docs/transformers/perplexity"
+    }
+   ]
   },
   "l-benchmarks": {
    "label": "Task Benchmarks",
    "parent": "t-llm-eval",
    "domain": "p1",
    "desc": "Standardised suites (MMLU-style) that probe specific capabilities.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "MMLU",
+     "url": "https://arxiv.org/abs/2009.03300"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Multiple-choice suites like **MMLU** are largely saturated by 2026. Capability now gets measured on **SWE-Bench Verified**, **GPQA Diamond**, **Terminal-Bench**, and **FrontierMath** — harder, less gameable tasks.",
+     "open": true
+    }
+   ]
   },
   "l-human-eval": {
    "label": "Human Eval & Leaderboards",
    "parent": "t-llm-eval",
    "domain": "p1",
    "desc": "Human preference comparisons and arena leaderboards — the closest thing to ground truth for open-ended output.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "LMArena (Chatbot Arena)",
+     "url": "https://lmarena.ai"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Show two answers blind, collect the preferred one, and fit an **Elo / Bradley-Terry** rating across many votes. **LMArena** is the canonical public leaderboard built this way.",
+     "open": true
+    }
+   ]
   },
   "l-peft": {
    "label": "PEFT",
    "parent": "t-finetuning",
    "domain": "p2",
    "desc": "Parameter-efficient fine-tuning — train a few extra weights instead of the whole model.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "PEFT docs",
+     "url": "https://huggingface.co/docs/peft"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Parameter-efficient fine-tuning trains a tiny fraction of weights and matches full fine-tuning on many tasks — far less memory, and you can keep many small task adapters around one shared base.",
+     "open": true
+    }
+   ]
   },
   "l-lora": {
    "label": "Adapters & LoRA",
    "parent": "t-finetuning",
    "domain": "p2",
    "desc": "Inject small low-rank matrices into layers and train only those. Cheap, fast, swappable per task.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "LoRA",
+     "url": "https://arxiv.org/abs/2106.09685"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Freeze the weight **W** and learn a low-rank update **B·A** with rank r ≈ 8–64, training well under 1% of parameters. **QLoRA** stacks LoRA on a 4-bit base, so you can fine-tune a 70B model on a single GPU.",
+     "open": true
+    }
+   ],
+   "tags": [
+    "lora",
+    "peft",
+    "fine-tuning"
+   ]
   },
   "l-raft": {
    "label": "RAFT",
    "parent": "t-finetuning",
    "domain": "p2",
    "desc": "Retrieval-Augmented Fine-Tuning — train the model to use (and ignore distractor) retrieved documents.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "RAFT",
+     "url": "https://arxiv.org/abs/2403.10131"
+    }
+   ]
   },
   "l-fewshot": {
    "label": "Few-shot / Zero-shot",
    "parent": "t-prompt-eng",
    "domain": "p2",
    "desc": "Showing zero or a handful of examples in the prompt to demonstrate the task.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "GPT-3: Few-Shot Learners",
+     "url": "https://arxiv.org/abs/2005.14165"
+    }
+   ]
   },
   "l-cot": {
    "label": "Chain-of-Thought",
    "parent": "t-prompt-eng",
    "domain": "p2",
    "desc": "Prompting the model to reason in steps before answering, improving multi-step accuracy.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Chain-of-Thought Prompting",
+     "url": "https://arxiv.org/abs/2201.11903"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Adding 'think step by step' surfaces intermediate reasoning. Gains are biggest on **multi-step math and logic**, and it pairs naturally with **self-consistency** — sample several chains and take the majority answer.",
+     "open": true
+    }
+   ]
   },
   "l-role-prompt": {
    "label": "Role & Context Prompting",
    "parent": "t-prompt-eng",
    "domain": "p2",
    "desc": "Assigning a persona and injecting user-specific context to shape responses.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Prompt Engineering Guide",
+     "url": "https://www.promptingguide.ai"
+    }
+   ]
   },
   "l-doc-parsing": {
    "label": "Document Parsing",
    "parent": "t-retrieval",
    "domain": "p2",
    "desc": "Extracting clean text and structure from PDFs, HTML, etc. — rule-based or AI-based.",
-   "links": []
+   "links": [
+    {
+     "type": "opensource",
+     "title": "Unstructured",
+     "url": "https://github.com/Unstructured-IO/unstructured"
+    }
+   ]
   },
   "l-chunking": {
    "label": "Chunking",
    "parent": "t-retrieval",
    "domain": "p2",
    "desc": "Splitting documents into retrievable pieces; size and overlap strongly affect quality.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "LangChain — Text Splitters",
+     "url": "https://python.langchain.com/docs/concepts/text_splitters/"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A common start is **256–1024 tokens** per chunk with **10–20% overlap**. Recursive or semantic splitting that respects headings and sentences beats naive fixed-size cuts on structured documents.",
+     "open": true
+    }
+   ]
   },
   "l-indexing": {
    "label": "Indexing",
    "parent": "t-retrieval",
    "domain": "p2",
    "desc": "Building searchable indexes — keyword, full-text, knowledge-graph, or vector-based.",
-   "links": []
+   "links": [
+    {
+     "type": "opensource",
+     "title": "FAISS",
+     "url": "https://github.com/facebookresearch/faiss"
+    }
+   ]
   },
   "l-embeddings": {
    "label": "Embeddings",
    "parent": "t-retrieval",
    "domain": "p2",
    "desc": "Embedding models map text to vectors so semantic similarity becomes distance.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Sentence-Transformers",
+     "url": "https://www.sbert.net"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "An embedding model maps text to a vector so **cosine similarity ≈ semantic similarity**. Pick one off the **MTEB** leaderboard and weigh dimension (and therefore index size/cost) against quality.",
+     "open": true
+    }
+   ]
   },
   "l-ann-search": {
    "label": "Nearest-Neighbor Search",
    "parent": "t-generation",
    "domain": "p2",
    "desc": "Finding similar vectors — exact, or approximate (ANN) for speed at scale.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "HNSW (approximate NN)",
+     "url": "https://arxiv.org/abs/1603.09320"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "Exact k-NN is fine at small scale; past that, **HNSW** builds a navigable small-world graph that trades a little recall for big speed-ups. It's what most vector databases use under the hood.",
+     "open": true
+    }
+   ]
   },
   "l-rag-prompting": {
    "label": "Prompting for RAG",
    "parent": "t-generation",
    "domain": "p2",
    "desc": "Structuring retrieved context into the prompt so the model stays grounded and cites it.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Lost in the Middle",
+     "url": "https://arxiv.org/abs/2307.03172"
+    }
+   ]
   },
   "l-context-relevance": {
    "label": "Context Relevance",
    "parent": "t-rag-eval",
    "domain": "p2",
    "desc": "Did retrieval surface the documents that actually matter?",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "RAGAS docs",
+     "url": "https://docs.ragas.io"
+    }
+   ]
   },
   "l-faithfulness": {
    "label": "Faithfulness",
    "parent": "t-rag-eval",
    "domain": "p2",
    "desc": "Is the answer supported by the retrieved context, not invented?",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "RAGAS — faithfulness",
+     "url": "https://docs.ragas.io"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Check that **each claim in the answer is entailed by the retrieved context** — typically with an LLM-as-judge or an NLI model. A fluent answer that isn't grounded is a hallucination, however confident.",
+     "open": true
+    }
+   ]
   },
   "l-answer-correctness": {
    "label": "Answer Correctness",
    "parent": "t-rag-eval",
    "domain": "p2",
    "desc": "Is the final answer actually right for the user's question?",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "RAGAS docs",
+     "url": "https://docs.ragas.io"
+    }
+   ]
   },
   "l-agent-vs": {
    "label": "Agents vs Agentic Systems vs LLMs",
    "parent": "t-agents-overview",
    "domain": "p3",
    "desc": "A raw LLM responds; an agentic system adds tools/memory/control flow; a full agent decides its own steps.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    }
+   ]
   },
   "l-agency-levels": {
    "label": "Agency Levels",
    "parent": "t-agents-overview",
    "domain": "p3",
    "desc": "From scripted workflows to autonomous multi-step agents — how much the model is trusted to decide.",
-   "links": []
+   "links": [
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ]
   },
   "l-prompt-chaining": {
    "label": "Prompt Chaining",
    "parent": "t-workflows",
    "domain": "p3",
    "desc": "Feed one call's output into the next — decompose a task into ordered steps.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    }
+   ]
   },
   "l-routing": {
    "label": "Routing",
    "parent": "t-workflows",
    "domain": "p3",
    "desc": "Classify the input and send it to the right specialised prompt or model.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A cheap classifier (or small model) inspects each request and sends it to the right model or prompt — route easy queries to a small model and hard ones to a frontier model to cut cost and latency.",
+     "open": true
+    }
+   ]
   },
   "l-parallelization": {
    "label": "Parallelization",
    "parent": "t-workflows",
    "domain": "p3",
    "desc": "Run subtasks at once (sectioning) or sample multiple answers and vote.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Self-Consistency",
+     "url": "https://arxiv.org/abs/2203.11171"
+    }
+   ]
   },
   "l-reflection": {
    "label": "Reflection",
    "parent": "t-workflows",
    "domain": "p3",
    "desc": "Have the model critique and revise its own output before finalising.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Reflexion",
+     "url": "https://arxiv.org/abs/2303.11366"
+    }
+   ]
   },
   "l-orchestrator": {
    "label": "Orchestrator-Worker",
    "parent": "t-workflows",
    "domain": "p3",
    "desc": "A coordinator LLM delegates subtasks to worker calls and assembles results.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "A planner LLM breaks the task into subtasks, spawns worker calls, and merges their results. Use it when the subtasks **aren't known up front** — unlike a fixed prompt chain.",
+     "open": true
+    }
+   ]
   },
   "l-tool-calling": {
    "label": "Tool Calling",
    "parent": "t-tools",
    "domain": "p3",
    "desc": "The model requests a function with arguments; the app runs it and returns the result.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "OpenAI — Function Calling",
+     "url": "https://platform.openai.com/docs/guides/function-calling"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "The model returns a **structured JSON call** naming a function and its arguments; your code executes it and feeds the result back. Repeat the loop until the model answers without a call.",
+     "open": true
+    }
+   ]
   },
   "l-tool-formatting": {
    "label": "Tool Formatting",
    "parent": "t-tools",
    "domain": "p3",
    "desc": "Describing tools with schemas so the model knows what it can call and how.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "JSON Schema",
+     "url": "https://json-schema.org"
+    }
+   ]
   },
   "l-tool-execution": {
    "label": "Tool Execution",
    "parent": "t-tools",
    "domain": "p3",
    "desc": "Safely running the requested action and handling errors and timeouts.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Toolformer",
+     "url": "https://arxiv.org/abs/2302.04761"
+    }
+   ]
   },
   "l-mcp": {
    "label": "MCP",
    "parent": "t-tools",
    "domain": "p3",
    "desc": "Model Context Protocol — an open standard for connecting models to tools and data in a reusable way.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Model Context Protocol (MCP)",
+     "url": "https://modelcontextprotocol.io"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**MCP** is a client-server standard: a server exposes **tools, resources, and prompts**, and any MCP-aware app (Claude Desktop, IDEs, agents) can use them. Write one integration, reuse it everywhere.",
+     "open": true
+    }
+   ],
+   "tags": [
+    "mcp",
+    "tools",
+    "integration"
+   ]
   },
   "l-planning": {
    "label": "Planning Autonomy",
    "parent": "t-multistep",
    "domain": "p3",
    "desc": "Letting the model decide the sequence of actions instead of hard-coding it.",
-   "links": []
+   "links": [
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ]
   },
   "l-react": {
    "label": "ReAct",
    "parent": "t-multistep",
    "domain": "p3",
    "desc": "Interleave reasoning and acting — think, act, observe, repeat.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "ReAct",
+     "url": "https://arxiv.org/abs/2210.03629"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**ReAct** runs a loop: the model emits a *Thought*, then an *Action* (a tool call), your runtime returns an *Observation*, and it repeats until done — reasoning and acting interleaved.",
+     "open": true
+    }
+   ]
   },
   "l-reflexion": {
    "label": "Reflexion / ReWOO",
    "parent": "t-multistep",
    "domain": "p3",
    "desc": "Add self-reflection and decoupled planning to improve across attempts.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Reflexion",
+     "url": "https://arxiv.org/abs/2303.11366"
+    }
+   ]
   },
   "l-tree-search": {
    "label": "Tree Search for Agents",
    "parent": "t-multistep",
    "domain": "p3",
    "desc": "Explore multiple action paths and pick the best, like search over plans.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Tree of Thoughts",
+     "url": "https://arxiv.org/abs/2305.10601"
+    }
+   ]
   },
   "l-a2a": {
    "label": "A2A Protocol",
    "parent": "t-multiagent",
    "domain": "p3",
    "desc": "Agent-to-Agent communication standards that let separate agents coordinate.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "A2A — Agent-to-Agent protocol",
+     "url": "https://a2a-protocol.org"
+    }
+   ],
+   "tags": [
+    "a2a",
+    "multi-agent",
+    "protocol"
+   ]
   },
   "l-inference-scaling": {
    "label": "Inference-time Scaling",
    "parent": "t-inference-time",
    "domain": "p4",
    "desc": "Spend more compute per query (longer reasoning, more samples) to raise accuracy.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "OpenAI — Learning to Reason (o1)",
+     "url": "https://openai.com/index/learning-to-reason-with-llms/"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "More **test-time compute** — longer chains of thought, more samples, or explicit search — raises accuracy with no retraining. This is the core insight behind the o-series and other reasoning models.",
+     "open": true
+    }
+   ]
   },
   "l-cot-prompt": {
    "label": "CoT Prompting",
    "parent": "t-inference-time",
    "domain": "p4",
    "desc": "Elicit step-by-step reasoning at inference to improve hard tasks.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Chain-of-Thought Prompting",
+     "url": "https://arxiv.org/abs/2201.11903"
+    }
+   ]
   },
   "l-parallel-sampling": {
    "label": "Parallel Sampling",
    "parent": "t-inference-time",
    "domain": "p4",
    "desc": "Generate many candidate answers at once and select among them.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Self-Consistency",
+     "url": "https://arxiv.org/abs/2203.11171"
+    }
+   ]
   },
   "l-sequential-sampling": {
    "label": "Sequential Sampling",
    "parent": "t-inference-time",
    "domain": "p4",
    "desc": "Iteratively refine an answer across successive attempts.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Self-Refine",
+     "url": "https://arxiv.org/abs/2303.17651"
+    }
+   ]
   },
   "l-tot": {
    "label": "Tree of Thoughts",
    "parent": "t-inference-time",
    "domain": "p4",
    "desc": "Branch and explore multiple reasoning paths, then pick the best.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Tree of Thoughts",
+     "url": "https://arxiv.org/abs/2305.10601"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Branch into several reasoning paths, score the partial states, and **search** (BFS/DFS) over them — beating a single linear chain on puzzles and planning problems.",
+     "open": true
+    }
+   ]
   },
   "l-verifier-search": {
    "label": "Search Against a Verifier",
    "parent": "t-inference-time",
    "domain": "p4",
    "desc": "Use a checker to score candidates and guide the search.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Let's Verify Step by Step",
+     "url": "https://arxiv.org/abs/2305.20050"
+    }
+   ]
   },
   "l-star": {
    "label": "SFT on Reasoning Data (STaR)",
    "parent": "t-training-time",
    "domain": "p4",
    "desc": "Fine-tune on generated, verified reasoning traces to teach step-by-step solving.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "STaR",
+     "url": "https://arxiv.org/abs/2203.14465"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Generate solutions, **keep only those with the correct final answer**, and fine-tune on those traces. The model bootstraps its own reasoning data — no human step-by-step labels needed.",
+     "open": true
+    }
+   ]
   },
   "l-rl-verifier": {
    "label": "RL with a Verifier",
    "parent": "t-training-time",
    "domain": "p4",
    "desc": "Reward correct final answers on checkable tasks and let RL improve reasoning.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "DeepSeek-R1",
+     "url": "https://arxiv.org/abs/2501.12948"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "On checkable tasks (math, code, unit tests) the **verifier is the reward signal** — no human labels. Pure RL against verifiers is what produced DeepSeek-R1's reasoning.",
+     "open": true
+    }
+   ]
   },
   "l-reward-modeling": {
    "label": "Reward Modeling (ORM/PRM)",
    "parent": "t-training-time",
    "domain": "p4",
    "desc": "Score whole outcomes (ORM) or each reasoning step (PRM) to guide training.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Let's Verify Step by Step (PRM)",
+     "url": "https://arxiv.org/abs/2305.20050"
+    }
+   ]
   },
   "l-self-refine": {
    "label": "Self-Refinement",
    "parent": "t-training-time",
    "domain": "p4",
    "desc": "Train the model to critique and improve its own answers.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Self-Refine",
+     "url": "https://arxiv.org/abs/2303.17651"
+    }
+   ]
   },
   "l-meta-cot": {
    "label": "Internalizing Search (Meta-CoT)",
    "parent": "t-training-time",
    "domain": "p4",
    "desc": "Teach the model to perform search-like reasoning internally.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Quiet-STaR",
+     "url": "https://arxiv.org/abs/2403.09629"
+    }
+   ]
   },
   "l-vae": {
    "label": "VAE",
    "parent": "t-genmodels",
    "domain": "p5",
    "desc": "Variational Autoencoders — encode to a latent distribution and decode; the basis for latent diffusion.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Auto-Encoding Variational Bayes (VAE)",
+     "url": "https://arxiv.org/abs/1312.6114"
+    }
+   ]
   },
   "l-gans": {
    "label": "GANs",
    "parent": "t-genmodels",
    "domain": "p5",
    "desc": "Generator vs discriminator adversarial training; sharp images but unstable.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Generative Adversarial Networks",
+     "url": "https://arxiv.org/abs/1406.2661"
+    }
+   ]
   },
   "l-autoregressive": {
    "label": "Auto-regressive Models",
    "parent": "t-genmodels",
    "domain": "p5",
    "desc": "Generate pixels/tokens one at a time, like language models for images.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Pixel Recurrent Neural Networks",
+     "url": "https://arxiv.org/abs/1601.06759"
+    }
+   ]
   },
   "l-diffusion": {
    "label": "Diffusion Models",
    "parent": "t-genmodels",
    "domain": "p5",
    "desc": "Iteratively denoise from noise to image; current state of the art.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "DDPM (Denoising Diffusion)",
+     "url": "https://arxiv.org/abs/2006.11239"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "A **forward** process adds Gaussian noise over many steps; the model learns the **reverse**, denoising one step at a time. Samplers like **DDIM** cut the step count, trading a little quality for speed.",
+     "open": true
+    }
+   ]
   },
   "l-t2i-data": {
    "label": "Data Preparation",
    "parent": "t-t2i",
    "domain": "p5",
    "desc": "Curating image-text pairs and captions for training.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "LAION",
+     "url": "https://laion.ai"
+    }
+   ]
   },
   "l-diffusion-arch": {
    "label": "Diffusion Architectures",
    "parent": "t-t2i",
    "domain": "p5",
    "desc": "U-Net and Diffusion Transformers (DiT) as the denoising backbone.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Diffusion Transformers (DiT)",
+     "url": "https://arxiv.org/abs/2212.09748"
+    }
+   ]
   },
   "l-diffusion-training": {
    "label": "Diffusion Training",
    "parent": "t-t2i",
    "domain": "p5",
    "desc": "A forward process adds noise; the model learns the reverse, denoising process.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Lil'Log — Diffusion Models",
+     "url": "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"
+    }
+   ]
   },
   "l-diffusion-sampling": {
    "label": "Diffusion Sampling",
    "parent": "t-t2i",
    "domain": "p5",
    "desc": "Iterative denoising at inference; fewer steps is faster, more steps is higher quality.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "DDIM (faster sampling)",
+     "url": "https://arxiv.org/abs/2010.02502"
+    }
+   ]
   },
   "l-t2i-eval": {
    "label": "Evaluation",
    "parent": "t-t2i",
    "domain": "p5",
    "desc": "Image quality and diversity plus text alignment — IS, FID, and CLIP score.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "FID / TTUR",
+     "url": "https://arxiv.org/abs/1706.08500"
+    }
+   ]
   },
   "l-ldm": {
    "label": "Latent Diffusion (LDM)",
    "parent": "t-t2v",
    "domain": "p5",
    "desc": "Run diffusion in a compressed latent space for efficiency; compression networks shrink the data.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Latent Diffusion (Stable Diffusion)",
+     "url": "https://arxiv.org/abs/2112.10752"
+    }
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Run diffusion inside a compressed **VAE latent** instead of raw pixels — roughly an 8× cut in compute and memory. This is the trick that made **Stable Diffusion** runnable on consumer GPUs.",
+     "open": true
+    }
+   ]
   },
   "l-t2v-data": {
    "label": "Data Preparation",
    "parent": "t-t2v",
    "domain": "p5",
    "desc": "Filtering, standardising, and caching video latents at scale.",
-   "links": []
+   "links": [
+    {
+     "type": "course",
+     "title": "Hugging Face Diffusion Course",
+     "url": "https://huggingface.co/learn/diffusion-course"
+    }
+   ]
   },
   "l-dit-video": {
    "label": "DiT for Video",
    "parent": "t-t2v",
    "domain": "p5",
    "desc": "Diffusion Transformer architectures adapted to spatiotemporal data.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Diffusion Transformers (DiT)",
+     "url": "https://arxiv.org/abs/2212.09748"
+    }
+   ]
   },
   "l-t2v-scaling": {
    "label": "Large-Scale Training",
    "parent": "t-t2v",
    "domain": "p5",
    "desc": "The compute, memory, and pipeline challenges of video models.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Video LDM (Align your Latents)",
+     "url": "https://arxiv.org/abs/2304.08818"
+    }
+   ]
   },
   "l-t2v-system": {
    "label": "T2V System Design",
    "parent": "t-t2v",
    "domain": "p5",
    "desc": "Putting the full text-to-video pipeline together.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Sora — Video as a World Simulator",
+     "url": "https://openai.com/index/video-generation-models-as-world-simulators/"
+    }
+   ]
   },
   "l-choose": {
    "label": "Choose",
    "parent": "t-capstone",
    "domain": "p6",
    "desc": "Pick your own idea or a curated starting point.",
-   "links": []
+   "links": [
+    {
+     "type": "course",
+     "title": "Hugging Face Agents Course",
+     "url": "https://huggingface.co/learn/agents-course"
+    }
+   ]
   },
   "l-build": {
    "label": "Build",
    "parent": "t-capstone",
    "domain": "p6",
    "desc": "Implement it with the course techniques — RAG, agents, tools, reasoning.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Anthropic — Building Effective Agents",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    }
+   ]
   },
   "l-iterate": {
    "label": "Iterate",
    "parent": "t-capstone",
    "domain": "p6",
    "desc": "Refine with feedback until it works and demos well.",
-   "links": []
+   "links": [
+    {
+     "type": "opensource",
+     "title": "OpenAI Evals",
+     "url": "https://github.com/openai/evals"
+    }
+   ]
   },
   "l-demo": {
    "label": "Demo",
    "parent": "t-capstone",
    "domain": "p6",
    "desc": "Present the finished project.",
-   "links": []
+   "links": [
+    {
+     "type": "article",
+     "title": "Gradio",
+     "url": "https://www.gradio.app"
+    }
+   ]
   },
   "l-jax-compilation": {
    "label": "JAX & XLA",
    "parent": "t-slm-training",
    "domain": "p1",
    "desc": "Using JAX — which compiles array code to the XLA compiler — for high-performance, fast-iterating training of smaller models.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "JAX documentation",
+     "url": "https://docs.jax.dev"
+    }
+   ],
    "tags": [
     "jax",
     "xla",
     "training",
     "performance",
     "local-first"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "**JAX** JIT-compiles array code through **XLA**, with `vmap`/`pmap` for automatic vectorisation and multi-device parallelism — especially strong on **TPUs** and tight research iteration loops.",
+     "open": true
+    }
    ]
   },
   "l-slm-distillation": {
@@ -1137,11 +2462,25 @@
    "parent": "t-slm-training",
    "domain": "p1",
    "desc": "Training a small 'student' model to mimic a larger 'teacher', transferring capability into a compact, deployable model.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Distilling the Knowledge in a NN",
+     "url": "https://arxiv.org/abs/1503.02531"
+    }
+   ],
    "tags": [
     "distillation",
     "slm",
     "compression"
+   ],
+   "levels": [
+    {
+     "label": "Basics",
+     "tag": "basics",
+     "body": "Train a small **student** on the large **teacher's** soft probability outputs (with a temperature), transferring much of the capability into a model small enough to deploy on a laptop or edge device.",
+     "open": true
+    }
    ]
   },
   "l-deterministic-retrieval": {
@@ -1149,7 +2488,13 @@
    "parent": "t-retrieval",
    "domain": "p2",
    "desc": "Embedding-free, exact-match retrieval — BM25 and SQLite FTS5 full-text search — cheaper and more predictable than pure vector search, and often combined with it (hybrid).",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Okapi BM25",
+     "url": "https://en.wikipedia.org/wiki/Okapi_BM25"
+    }
+   ],
    "tags": [
     "retrieval",
     "bm25",
@@ -1157,6 +2502,14 @@
     "local-first",
     "sqlite",
     "hybrid"
+   ],
+   "levels": [
+    {
+     "label": "Going deeper",
+     "tag": "mid",
+     "body": "**BM25** scores by term frequency with document-length normalisation — embedding-free and predictable. In practice, **hybrid** (BM25 + vectors fused with reciprocal-rank fusion) usually beats either alone.",
+     "open": true
+    }
    ]
   },
   "l-graph-ast-traversal": {
@@ -1164,7 +2517,13 @@
    "parent": "t-retrieval",
    "domain": "p2",
    "desc": "Parsing Abstract Syntax Trees and codebase dependency graphs to give an assistant structural, relationship-aware context — not just text similarity.",
-   "links": [],
+   "links": [
+    {
+     "type": "article",
+     "title": "Tree-sitter",
+     "url": "https://tree-sitter.github.io/tree-sitter/"
+    }
+   ],
    "tags": [
     "retrieval",
     "ast",
@@ -1178,7 +2537,13 @@
    "parent": "t-tools",
    "domain": "p3",
    "desc": "Attaching a local store (e.g. SQLite with sqlite-vec) to an MCP server so coding agents keep continuous, cross-session state and recall.",
-   "links": [],
+   "links": [
+    {
+     "type": "opensource",
+     "title": "sqlite-vec",
+     "url": "https://github.com/asg017/sqlite-vec"
+    }
+   ],
    "tags": [
     "mcp",
     "sqlite",
@@ -1192,7 +2557,13 @@
    "parent": "t-workflows",
    "domain": "p3",
    "desc": "Modeling agentic workflows as explicit state graphs (LangGraph, AWS Strands / Bedrock AgentCore) for robust, resumable multi-step execution.",
-   "links": [],
+   "links": [
+    {
+     "type": "opensource",
+     "title": "LangGraph",
+     "url": "https://langchain-ai.github.io/langgraph/"
+    }
+   ],
    "tags": [
     "agents",
     "state-graph",
