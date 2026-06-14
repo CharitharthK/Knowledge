@@ -1,0 +1,15 @@
+{
+ "name": "Knowledge Hub",
+ "short_name": "Knowledge",
+ "start_url": "index.html",
+ "display": "standalone",
+ "background_color": "#0A0E16",
+ "theme_color": "#0A0E16",
+ "icons": [
+  {
+   "src": "assets/icon.png",
+   "sizes": "180x180",
+   "type": "image/png"
+  }
+ ]
+}
