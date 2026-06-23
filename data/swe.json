@@ -1,0 +1,533 @@
+{
+ "meta": {
+  "id": "swe",
+  "kbd": "knowledge hub \u00b7 software engineering",
+  "title": "Software Engineering",
+  "subtitle": "build quality software",
+  "blurb": "From clean code and design patterns to testing, API design, concurrency, and architecture \u2014 the craft of building maintainable, reliable software systems.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Foundations", "c": "#F0B23C" },
+  "d2": { "name": "Design & Architecture", "c": "#46B8DA" },
+  "d3": { "name": "APIs & Communication", "c": "#54C99A" },
+  "d4": { "name": "Testing & Quality", "c": "#B08CF0" },
+  "d5": { "name": "Concurrency & Performance", "c": "#F0796B" },
+  "d6": { "name": "Practices & Process", "c": "#E86BB5" }
+ },
+ "cols": [
+  {
+   "title": "Foundations",
+   "keys": ["t-clean-code", "t-solid", "t-data-structures", "t-algorithms"]
+  },
+  {
+   "title": "Design & Architecture",
+   "keys": ["t-design-patterns", "t-architecture-styles", "t-ddd", "t-refactoring"]
+  },
+  {
+   "title": "APIs & Communication",
+   "keys": ["t-rest-api", "t-graphql-api", "t-grpc-api", "t-event-apis"]
+  },
+  {
+   "title": "Testing & Quality",
+   "keys": ["t-unit-testing", "t-integration-testing", "t-tdd", "t-code-quality"]
+  },
+  {
+   "title": "Concurrency & Performance",
+   "keys": ["t-concurrency", "t-async-programming", "t-performance", "t-memory-management"]
+  },
+  {
+   "title": "Practices & Process",
+   "keys": ["t-version-control", "t-code-review", "t-documentation", "t-tech-debt"]
+  }
+ ],
+
+ "topics": {
+  "t-clean-code": {
+   "label": "Clean Code",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Writing readable, maintainable code \u2014 naming, functions, formatting, and the art of clarity.",
+   "subs": ["l-naming", "l-functions", "l-comments"],
+   "links": [
+    { "type": "book", "title": "Clean Code (Robert C. Martin)", "url": "https://www.oreilly.com/library/view/clean-code-a/9780136083238/" },
+    { "type": "book", "title": "A Philosophy of Software Design (Ousterhout)", "url": "https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Code is read 10x more than it's written. **Clean code** is simple, direct, and reads like well-written prose. Good names, small functions, and consistent formatting are the foundation.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Names** should reveal intent (no abbreviations, no mental mapping). **Functions** should do one thing, be short, and have few parameters. **Comments** should explain *why*, never *what* (the code shows what). Eliminate duplication ruthlessly." },
+    { "label": "In practice", "tag": "adv", "body": "Ousterhout's key insight: complexity comes from **dependencies** and **obscurity**. Design modules with deep interfaces (simple API, complex implementation hidden). The goal is reducing the cognitive load on the next reader \u2014 often future you." }
+   ]
+  },
+  "t-solid": {
+   "label": "SOLID Principles",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Five principles for flexible, maintainable object-oriented design.",
+   "subs": ["l-srp", "l-ocp", "l-lsp", "l-isp", "l-dip"],
+   "links": [
+    { "type": "article", "title": "SOLID Principles (Uncle Bob)", "url": "https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html" },
+    { "type": "article", "title": "SOLID in Practice", "url": "https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**S**ingle Responsibility: one reason to change. **O**pen/Closed: open for extension, closed for modification. **L**iskov Substitution: subtypes must be substitutable. **I**nterface Segregation: small, focused interfaces. **D**ependency Inversion: depend on abstractions.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "SOLID reduces **coupling** (dependencies between modules) and increases **cohesion** (related things together). The result: changes propagate locally, not globally. Apply at class, module, and service boundaries." },
+    { "label": "In practice", "tag": "adv", "body": "SOLID isn't dogma \u2014 it's a set of heuristics. Over-applying them creates needless abstraction layers. Use them when you feel pain: a class doing too much (SRP), a change requiring edits in many places (OCP/DIP), or an interface forcing implementors to stub methods (ISP)." }
+   ]
+  },
+
+  "t-data-structures": {
+   "label": "Data Structures",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Choosing the right container for the job \u2014 arrays, hash maps, trees, graphs, and their trade-offs.",
+   "subs": ["l-arrays-lists", "l-hash-maps", "l-trees-graphs"],
+   "links": [
+    { "type": "article", "title": "Big-O Cheat Sheet", "url": "https://www.bigocheatsheet.com/" },
+    { "type": "course", "title": "Neetcode Roadmap", "url": "https://neetcode.io/roadmap" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Arrays** for ordered, indexed access. **Hash maps** for O(1) key lookup. **Sets** for membership. **Stacks/Queues** for LIFO/FIFO. Choose by access pattern, not habit.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Trees** (BST, B-trees, tries) for sorted data and hierarchies. **Graphs** for relationships. **Heaps** for priority. Know the **time complexity** of operations on each \u2014 the wrong structure turns O(1) into O(n)." },
+    { "label": "In practice", "tag": "adv", "body": "In production code, you rarely implement these from scratch \u2014 you choose the right standard library type. Know when a `HashMap` beats a `TreeMap`, when a `Deque` is better than an `ArrayList`, and when you need a concurrent variant. Profiling reveals when the choice matters." }
+   ]
+  },
+  "t-algorithms": {
+   "label": "Algorithms & Complexity",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Fundamental algorithms, time/space complexity, and knowing when O(n\u00b2) matters.",
+   "subs": ["l-sorting-searching", "l-big-o", "l-dynamic-programming"],
+   "links": [
+    { "type": "book", "title": "Introduction to Algorithms (CLRS)", "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/" },
+    { "type": "course", "title": "Algorithms (Princeton, Coursera)", "url": "https://www.coursera.org/learn/algorithms-part1" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Big-O** describes how runtime/space grows with input size. O(1) < O(log n) < O(n) < O(n log n) < O(n\u00b2). Know it for your data structures and common operations.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Core algorithms: **binary search** (sorted data), **BFS/DFS** (graphs), **sorting** (merge, quick), **dynamic programming** (overlapping subproblems). Pattern recognition matters more than memorisation." },
+    { "label": "In practice", "tag": "adv", "body": "Most production code doesn't need exotic algorithms \u2014 but recognising an O(n\u00b2) loop that should be O(n) prevents real performance bugs. Profile first, optimise where the data says it matters. Interview prep and production code require different algorithm fluency." }
+   ]
+  },
+
+  "t-design-patterns": {
+   "label": "Design Patterns",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Reusable solutions to common design problems \u2014 creational, structural, and behavioural patterns.",
+   "subs": ["l-creational", "l-structural", "l-behavioural"],
+   "links": [
+    { "type": "book", "title": "Design Patterns (GoF)", "url": "https://www.oreilly.com/library/view/design-patterns-elements/0201633612/" },
+    { "type": "article", "title": "Refactoring.Guru \u2014 Patterns", "url": "https://refactoring.guru/design-patterns" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Design patterns are **named, proven solutions** to recurring problems. They give teams a shared vocabulary: 'use a Strategy here' communicates more than a paragraph of explanation.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Creational** (Factory, Builder, Singleton): object creation. **Structural** (Adapter, Decorator, Facade): composing objects. **Behavioural** (Strategy, Observer, Command): interaction between objects. Know the top 10; look up others when the problem fits." },
+    { "label": "In practice", "tag": "adv", "body": "Don't force patterns \u2014 they emerge from the problem. Overuse creates over-engineered, hard-to-follow code (the 'AbstractSingletonProxyFactoryBean' problem). Modern languages often make classic GoF patterns unnecessary (closures replace Strategy, mixins replace Decorator). Use the pattern's *intent*, not necessarily its class structure." }
+   ]
+  },
+  "t-architecture-styles": {
+   "label": "Architecture Styles",
+   "domain": "d2",
+   "col": 1,
+   "desc": "High-level system structuring \u2014 layered, hexagonal, clean architecture, monolith vs microservices.",
+   "subs": ["l-layered", "l-hexagonal", "l-clean-architecture"],
+   "links": [
+    { "type": "book", "title": "Clean Architecture (Robert C. Martin)", "url": "https://www.oreilly.com/library/view/clean-architecture-a/9780134494272/" },
+    { "type": "article", "title": "Hexagonal Architecture", "url": "https://alistair.cockburn.us/hexagonal-architecture/" },
+    { "type": "book", "title": "Fundamentals of Software Architecture (Richards & Ford)", "url": "https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Architecture defines the **big boxes and arrows** \u2014 how code is organised at the highest level. **Layered** (presentation \u2192 business \u2192 data) is the simplest. The key principle: **separate what changes for different reasons**.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Hexagonal / Ports & Adapters**: business logic in the centre, infrastructure at the edges via interfaces. **Clean Architecture**: concentric circles (entities \u2192 use cases \u2192 adapters \u2192 frameworks), dependencies point inward. Both achieve the same goal: protect domain logic from infrastructure churn." },
+    { "label": "In practice", "tag": "adv", "body": "Architecture is about **trade-offs**, not right answers. A modular monolith with clean boundaries is often better than premature microservices. Choose based on team size, deployment needs, and change patterns. Over-architecting a simple CRUD app is as harmful as under-architecting a complex domain." }
+   ]
+  },
+  "t-ddd": {
+   "label": "Domain-Driven Design",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Modelling software around the business domain \u2014 ubiquitous language, bounded contexts, and aggregates.",
+   "subs": ["l-ubiquitous-language", "l-bounded-contexts", "l-aggregates"],
+   "links": [
+    { "type": "book", "title": "Domain-Driven Design (Eric Evans)", "url": "https://www.domainlanguage.com/ddd/" },
+    { "type": "book", "title": "Learning Domain-Driven Design (Khononov)", "url": "https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "DDD aligns code structure with the **business domain**. Use the same language as domain experts (**ubiquitous language**) in code, conversations, and docs. Model reflects reality, not database tables.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Bounded contexts**: separate models for separate subdomains (an 'Order' means different things to shipping vs billing). **Aggregates**: consistency boundaries within a context. **Domain events**: things that happened that others care about." },
+    { "label": "In practice", "tag": "adv", "body": "DDD is most valuable in **complex domains** where the business logic is the hard part (not CRUD apps). Bounded contexts map naturally to microservice boundaries. Strategic DDD (context mapping) matters more than tactical DDD (entities, value objects) for most teams. Start with event storming to discover domains." }
+   ]
+  },
+  "t-refactoring": {
+   "label": "Refactoring",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Improving code structure without changing behaviour \u2014 safely, incrementally, continuously.",
+   "subs": ["l-code-smells", "l-refactoring-techniques", "l-safe-refactoring"],
+   "links": [
+    { "type": "book", "title": "Refactoring (Martin Fowler)", "url": "https://refactoring.com/" },
+    { "type": "article", "title": "Refactoring.Guru \u2014 Refactoring", "url": "https://refactoring.guru/refactoring" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Refactoring** restructures code without changing its external behaviour. Small, safe steps: rename, extract method, inline, move. Each step keeps tests green. It's how you pay down technical debt continuously.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Recognise **code smells** (symptoms of deeper problems): long methods, large classes, feature envy, shotgun surgery. Each smell has named refactorings that address it. IDE support (rename, extract, inline) makes mechanical refactoring fast and safe." },
+    { "label": "In practice", "tag": "adv", "body": "Refactor as you go (\u2018boy scout rule\u2019: leave code better than you found it), not in big-bang rewrites. Characterisation tests protect legacy code you don't fully understand. The best time to refactor is before adding a feature \u2014 reshape the code so the feature drops in easily." }
+   ]
+  },
+
+  "t-rest-api": {
+   "label": "REST API Design",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Designing resource-oriented HTTP APIs \u2014 naming, verbs, status codes, pagination, and versioning.",
+   "subs": ["l-resources", "l-http-methods", "l-pagination-filtering"],
+   "links": [
+    { "type": "article", "title": "Microsoft REST API Guidelines", "url": "https://github.com/microsoft/api-guidelines" },
+    { "type": "article", "title": "Zalando RESTful API Guidelines", "url": "https://opensource.zalando.com/restful-api-guidelines/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "REST models APIs as **resources** (nouns, not verbs) accessed via HTTP methods: GET (read), POST (create), PUT/PATCH (update), DELETE (remove). Use proper status codes (200, 201, 400, 404, 500).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Naming**: plural nouns (`/users/{id}/orders`), consistent casing. **Pagination**: cursor-based > offset-based at scale. **Filtering/sorting** via query params. **Versioning**: URL path (`/v2/`) or header. Document with **OpenAPI/Swagger**." },
+    { "label": "In practice", "tag": "adv", "body": "REST is the default for public/external APIs (broadest client compatibility). Design for **evolvability**: additive changes are safe, breaking changes need versioning. Use **HATEOAS** sparingly \u2014 it adds complexity most clients don't use. Idempotent operations (PUT, DELETE) simplify retry logic." }
+   ]
+  },
+  "t-graphql-api": {
+   "label": "GraphQL",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Client-driven query APIs \u2014 request exactly the data you need, schema-first, strongly typed.",
+   "subs": ["l-schema-types", "l-resolvers", "l-graphql-patterns"],
+   "links": [
+    { "type": "article", "title": "GraphQL Official Docs", "url": "https://graphql.org/learn/" },
+    { "type": "article", "title": "Apollo GraphQL", "url": "https://www.apollographql.com/docs/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "GraphQL lets clients **ask for exactly what they need** in a single request. A typed **schema** defines available data; clients write queries against it. No over-fetching (too much data) or under-fetching (multiple roundtrips).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Queries** (read), **Mutations** (write), **Subscriptions** (real-time). **Resolvers** fetch data per field. **Schema-first** design: define the schema as the contract, implement resolvers behind it. Fragments for reuse, variables for parameterisation." },
+    { "label": "In practice", "tag": "adv", "body": "GraphQL shines for complex UIs with varied data needs (dashboards, mobile apps). Watch for: **N+1 queries** (use DataLoader), **query complexity attacks** (limit depth/cost), and **caching difficulty** (no URL-based caching like REST). Federation (Apollo) scales GraphQL across multiple services." }
+   ]
+  },
+  "t-grpc-api": {
+   "label": "gRPC & Protobuf",
+   "domain": "d3",
+   "col": 2,
+   "desc": "High-performance RPC with protocol buffers \u2014 type-safe, streaming, and efficient for service-to-service.",
+   "subs": ["l-protobuf", "l-grpc-streaming", "l-grpc-patterns"],
+   "links": [
+    { "type": "article", "title": "gRPC Documentation", "url": "https://grpc.io/docs/" },
+    { "type": "article", "title": "Protocol Buffers", "url": "https://protobuf.dev/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**gRPC** uses HTTP/2 + Protocol Buffers for fast, typed service-to-service communication. Define services in `.proto` files; generate client and server code in any language. Binary encoding = smaller, faster than JSON.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Four patterns: **unary** (request-response), **server streaming**, **client streaming**, **bidirectional streaming**. Built-in features: deadlines, cancellation, metadata, interceptors. Schema evolution: add fields without breaking existing clients." },
+    { "label": "In practice", "tag": "adv", "body": "gRPC dominates internal microservice communication (speed, type safety, codegen). Not ideal for browser clients (limited support) \u2014 use gRPC-Web or a REST gateway for external APIs. Design proto schemas carefully \u2014 they're your API contract and hard to change once deployed widely." }
+   ]
+  },
+  "t-event-apis": {
+   "label": "Event-Driven APIs",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Asynchronous communication via events \u2014 webhooks, WebSockets, SSE, and async API design.",
+   "subs": ["l-webhooks", "l-websockets-api", "l-sse", "l-async-api-spec"],
+   "links": [
+    { "type": "article", "title": "AsyncAPI Specification", "url": "https://www.asyncapi.com/" },
+    { "type": "article", "title": "WebSockets vs SSE", "url": "https://ably.com/topic/websockets-vs-sse" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Not all APIs are request-response. **Webhooks** (server pushes to your URL on events), **WebSockets** (persistent bidirectional channel), and **SSE** (server pushes stream of events) enable real-time, event-driven integration.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Webhooks**: simple but need retry logic, signature verification, and idempotent handlers. **WebSockets**: full-duplex, good for chat/gaming but complex to scale. **SSE**: simpler than WebSockets for server-to-client streaming (auto-reconnect built into browsers). **AsyncAPI** spec documents event-driven interfaces." },
+    { "label": "In practice", "tag": "adv", "body": "Use webhooks for integrations (simple, firewall-friendly). Use SSE for one-way streaming (live feeds, AI token streaming). Use WebSockets only when bidirectional real-time is genuinely needed. For internal systems, Kafka/event streams replace all of these with durable, replayable messaging." }
+   ]
+  },
+
+  "t-unit-testing": {
+   "label": "Unit Testing",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Testing individual units of code in isolation \u2014 fast, focused, and the foundation of confidence.",
+   "subs": ["l-test-structure", "l-mocking", "l-test-coverage"],
+   "links": [
+    { "type": "book", "title": "Unit Testing: Principles, Practices, Patterns (Khorikov)", "url": "https://www.manning.com/books/unit-testing" },
+    { "type": "article", "title": "Testing Trophy (Kent C. Dodds)", "url": "https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **unit test** verifies a small piece of logic in isolation. Fast (milliseconds), deterministic, no external dependencies. Structure: **Arrange** (set up), **Act** (execute), **Assert** (verify).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Mocks/stubs** replace external dependencies (databases, APIs) for isolation. Focus on **behaviour**, not implementation details \u2014 tests coupled to internals break on every refactor. Aim for meaningful coverage, not 100% line coverage." },
+    { "label": "In practice", "tag": "adv", "body": "The best unit tests protect against **regressions** without hindering refactoring. Test public behaviour (inputs \u2192 outputs), not private methods. The testing trophy (Dodds): mostly integration tests, some unit tests, few E2E. Over-mocking creates brittle tests that pass even when the system is broken." }
+   ]
+  },
+  "t-integration-testing": {
+   "label": "Integration & E2E Testing",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Testing how components work together \u2014 databases, APIs, and full user flows.",
+   "subs": ["l-api-testing", "l-contract-testing", "l-e2e-testing"],
+   "links": [
+    { "type": "article", "title": "Testcontainers", "url": "https://testcontainers.com/" },
+    { "type": "article", "title": "Pact (Contract Testing)", "url": "https://pact.io/" },
+    { "type": "article", "title": "Playwright (E2E)", "url": "https://playwright.dev/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Integration tests** verify that components work together correctly (your code + real database, your service + another service). Slower than unit tests but catch wiring bugs that unit tests miss.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Testcontainers**: spin up real databases/services in Docker for tests. **Contract testing** (Pact): verify API compatibility between services without end-to-end environments. **E2E tests** (Playwright, Cypress): simulate real user flows through the full stack." },
+    { "label": "In practice", "tag": "adv", "body": "Integration tests give the most confidence per test. Use Testcontainers for database tests (fast, real, disposable). Contract tests prevent microservice integration breakages without slow E2E suites. Keep E2E tests few and focused on critical user paths \u2014 they're slow and flaky at scale." }
+   ]
+  },
+  "t-tdd": {
+   "label": "Test-Driven Development",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Writing tests before code \u2014 red-green-refactor as a design and development discipline.",
+   "subs": ["l-red-green-refactor", "l-test-first-design"],
+   "links": [
+    { "type": "book", "title": "Test-Driven Development by Example (Kent Beck)", "url": "https://www.oreilly.com/library/view/test-driven-development/0321146530/" },
+    { "type": "article", "title": "TDD: Where Did It All Go Wrong (Ian Cooper)", "url": "https://www.youtube.com/watch?v=EZ05e7EMOLM" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**TDD cycle**: write a failing test (**red**), write the minimum code to pass it (**green**), then improve the design (**refactor**). Tests drive the design, not just verify it.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "TDD forces you to think about the **interface** before the implementation. Small cycles keep you focused and provide instant feedback. Tests written first tend to be better tests \u2014 they test behaviour, not implementation details." },
+    { "label": "In practice", "tag": "adv", "body": "TDD isn't all-or-nothing. Use it when: exploring complex logic, working on critical paths, or when design isn't clear. Skip it for: trivial code, UI layout, or when spiking/prototyping. The key insight (Ian Cooper): test behaviours through the public API, not internals \u2014 or refactoring becomes painful." }
+   ]
+  },
+  "t-code-quality": {
+   "label": "Code Quality Tools",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Automated quality enforcement \u2014 linters, formatters, static analysis, and quality gates in CI.",
+   "subs": ["l-linters", "l-formatters", "l-static-analysis"],
+   "links": [
+    { "type": "article", "title": "SonarQube", "url": "https://www.sonarsource.com/products/sonarqube/" },
+    { "type": "article", "title": "ESLint", "url": "https://eslint.org/" },
+    { "type": "article", "title": "Ruff (Python)", "url": "https://docs.astral.sh/ruff/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Automate what humans shouldn't debate: **formatters** (Prettier, Black, Ruff) enforce style automatically. **Linters** (ESLint, pylint) catch bugs and anti-patterns. Run both in CI so every PR meets the bar.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Static analysis** (SonarQube, Semgrep, CodeQL) finds security vulnerabilities, complexity hotspots, and code smells without running the code. **Type checkers** (TypeScript, mypy, Pyright) catch type errors at build time." },
+    { "label": "In practice", "tag": "adv", "body": "Quality gates in CI (must pass linting, tests, coverage threshold, no critical static analysis findings) prevent regression. In 2026, **AI coding assistants** (GitHub Copilot, Cursor, Augment) achieve 84% developer adoption — they generate code, suggest fixes, and run as autonomous agents that plan, execute, and open PRs. But AI-generated code still requires review: trust is at 29% despite high usage. Automated quality checks become more important, not less, as AI increases code velocity." }
+   ]
+  },
+
+  "t-concurrency": {
+   "label": "Concurrency & Parallelism",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Doing multiple things at once \u2014 threads, locks, races, and models for safe concurrent programming.",
+   "subs": ["l-threads", "l-locks-sync", "l-race-conditions"],
+   "links": [
+    { "type": "book", "title": "Java Concurrency in Practice", "url": "https://jcip.net/" },
+    { "type": "article", "title": "Concurrency Is Not Parallelism (Rob Pike)", "url": "https://go.dev/blog/waza-talk" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Concurrency**: dealing with many things at once (structure). **Parallelism**: doing many things at once (execution). **Threads** share memory; that sharing creates races, deadlocks, and subtle bugs.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Mutual exclusion** (locks/mutexes) protects shared state but introduces contention and deadlock risk. Alternatives: **immutability** (nothing to protect), **message passing** (actors, channels \u2014 Go, Erlang), **STM** (software transactional memory). Know your language's concurrency model." },
+    { "label": "In practice", "tag": "adv", "body": "The safest concurrent code avoids shared mutable state entirely. Prefer: immutable data, thread-local state, and communication via channels/queues. When you must share state, use the highest-level abstraction available (concurrent collections, atomic operations) before reaching for raw locks. Test with thread sanitisers (TSan)." }
+   ]
+  },
+  "t-async-programming": {
+   "label": "Async Programming",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Non-blocking I/O \u2014 async/await, event loops, promises, and writing efficient I/O-bound code.",
+   "subs": ["l-async-await", "l-event-loop", "l-promises-futures"],
+   "links": [
+    { "type": "article", "title": "Async/Await (MDN)", "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous" },
+    { "type": "article", "title": "Python asyncio", "url": "https://docs.python.org/3/library/asyncio.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Async programming** lets a single thread handle many I/O operations without blocking. While waiting for a database/API response, the thread does other work. Key mechanism: **async/await** (JS, Python, C#, Rust).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "An **event loop** schedules async tasks cooperatively. **Promises/Futures** represent values that will arrive later. Don't mix blocking calls in async code (it blocks the entire loop). Understand the difference between **CPU-bound** (use threads/processes) and **I/O-bound** (use async) work." },
+    { "label": "In practice", "tag": "adv", "body": "Async is essential for high-concurrency servers (web servers, API gateways, chat systems). But it adds complexity: error handling, debugging, and testing are harder. Use async for I/O-bound services (many network calls); use threading/multiprocessing for CPU-bound work. Structured concurrency (Python 3.11+ TaskGroups, Kotlin coroutines) makes async safer." }
+   ]
+  },
+  "t-performance": {
+   "label": "Performance Engineering",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Making software fast \u2014 profiling, benchmarking, caching, and knowing where time actually goes.",
+   "subs": ["l-profiling", "l-benchmarking", "l-caching-swe"],
+   "links": [
+    { "type": "article", "title": "Systems Performance (Brendan Gregg)", "url": "https://www.brendangregg.com/systems-performance-2nd-edition-book.html" },
+    { "type": "article", "title": "Flame Graphs", "url": "https://www.brendangregg.com/flamegraphs.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Don't guess, measure.** Profile before optimising. Most performance problems are in a tiny fraction of code. Use profilers to find the hotspot, then fix it. Premature optimisation is the root of all evil (Knuth).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**CPU profiling** (where time is spent), **memory profiling** (allocations, leaks), **I/O profiling** (disk, network waits). **Flame graphs** visualise call stacks and time. **Benchmarks** with statistical rigour (not single-run timings)." },
+    { "label": "In practice", "tag": "adv", "body": "Common wins: reduce allocations, batch I/O, cache computed results, use appropriate data structures, eliminate N+1 queries. At scale: connection pooling, async I/O, memory-mapped files, SIMD. Always establish a **performance budget** and measure in CI to prevent regression. Latency percentiles (p50, p95, p99) matter more than averages." }
+   ]
+  },
+  "t-memory-management": {
+   "label": "Memory Management",
+   "domain": "d5",
+   "col": 4,
+   "desc": "How programs use memory \u2014 stack vs heap, garbage collection, ownership, and preventing leaks.",
+   "subs": ["l-stack-heap", "l-garbage-collection", "l-ownership-borrowing"],
+   "links": [
+    { "type": "article", "title": "Memory Management (MDN)", "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_management" },
+    { "type": "article", "title": "Rust Ownership", "url": "https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Stack**: fast, automatic, fixed-size (function locals). **Heap**: flexible, manual or GC-managed, for dynamic data. Memory leaks happen when heap memory is allocated but never freed (or references are held unnecessarily).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Garbage collection** (Java, Go, JS, Python): runtime automatically frees unreachable objects. Trade-off: convenience vs GC pauses. **Manual management** (C/C++): full control but dangling pointers and use-after-free bugs. **Ownership** (Rust): compile-time memory safety without GC." },
+    { "label": "In practice", "tag": "adv", "body": "In GC languages: avoid excessive allocations (object pools for hot paths), watch for reference leaks (event listeners, caches without eviction), and tune GC if latency-sensitive. In Rust: the borrow checker is strict but eliminates entire classes of bugs. Understand your language's model \u2014 it shapes how you design data flow." }
+   ]
+  },
+
+  "t-version-control": {
+   "label": "Version Control (Git)",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Managing code history \u2014 branching strategies, commits, collaboration workflows, and git internals.",
+   "subs": ["l-branching", "l-commit-practices", "l-git-workflows"],
+   "links": [
+    { "type": "article", "title": "Pro Git (book)", "url": "https://git-scm.com/book/en/v2" },
+    { "type": "article", "title": "Conventional Commits", "url": "https://www.conventionalcommits.org/" },
+    { "type": "article", "title": "Trunk-Based Development", "url": "https://trunkbaseddevelopment.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Git** tracks every change to your codebase. **Commits** are snapshots. **Branches** isolate work. **Merging/rebasing** integrates changes. Master the basics: add, commit, branch, merge, push, pull.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Branching strategies**: trunk-based development (short-lived branches, frequent merges) vs GitFlow (long-lived branches). **Conventional commits** standardise messages for changelogs. **Interactive rebase** cleans up history before merging." },
+    { "label": "In practice", "tag": "adv", "body": "**Trunk-based development** is the standard for high-performing teams: short-lived feature branches (<1 day), frequent integration to main, feature flags for incomplete work. Combined with CI/CD, this enables deployment frequency that correlates with DORA elite performance. In 2026, AI agents (GitHub Agent Mode, Cursor background agents) can operate on branches autonomously — making clean git history and clear commit messages even more important for collaboration between humans and AI." }
+   ]
+  },
+  "t-code-review": {
+   "label": "Code Review",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Reviewing code effectively \u2014 what to look for, how to give feedback, and making reviews efficient.",
+   "subs": ["l-review-checklist", "l-feedback-culture", "l-pr-size"],
+   "links": [
+    { "type": "article", "title": "Google Engineering Practices \u2014 Code Review", "url": "https://google.github.io/eng-practices/review/" },
+    { "type": "article", "title": "How to Make Your Code Reviewer Fall in Love with You", "url": "https://mtlynch.io/code-review-love/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Code review catches bugs, shares knowledge, and maintains quality. Review for: **correctness**, **clarity**, **maintainability**, and **security**. Be kind, be specific, and suggest alternatives when critiquing.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Small PRs** (<400 lines) get better reviews. Focus on design and logic, not style (automate style with formatters). Distinguish between blocking issues (must fix), suggestions (nice to have), and nits (take or leave). As author: provide context, self-review first, keep changes focused." },
+    { "label": "In practice", "tag": "adv", "body": "Code review catches design issues, knowledge gaps, and subtle bugs that linters miss. In 2026, AI review assistants (CodeRabbit, GitHub Copilot code review) provide first-pass automated feedback on PRs, but human review remains essential for architectural decisions, security implications, and domain-specific correctness. Keep reviews small (<400 lines), timely (<24 hours), and focused on substance over style (let formatters handle style)." }
+   ]
+  },
+  "t-documentation": {
+   "label": "Documentation",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Writing useful docs \u2014 READMEs, ADRs, API docs, and documentation as a product.",
+   "subs": ["l-readme", "l-adrs", "l-api-docs"],
+   "links": [
+    { "type": "article", "title": "Div\u00edo Documentation System", "url": "https://documentation.divio.com/" },
+    { "type": "article", "title": "Architecture Decision Records", "url": "https://adr.github.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Good documentation answers: **what** (README), **why** (ADRs, design docs), and **how** (API docs, tutorials). Write for the audience: new joiner, future maintainer, or external consumer.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "The Div\u00edo system: four kinds of docs \u2014 **tutorials** (learning-oriented), **how-to guides** (task-oriented), **reference** (information-oriented), **explanation** (understanding-oriented). **ADRs** (Architecture Decision Records) capture the *why* behind design choices." },
+    { "label": "In practice", "tag": "adv", "body": "Documentation rots fast. Keep it close to code (doc comments, README in the repo), auto-generate what you can (API docs from OpenAPI/proto), and treat docs like code (review, test links, version). The best documentation is the minimum needed to prevent repeated questions and onboarding friction." }
+   ]
+  },
+  "t-tech-debt": {
+   "label": "Technical Debt",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Understanding, tracking, and strategically managing the cost of shortcuts in code.",
+   "subs": ["l-types-of-debt", "l-tracking-debt", "l-paying-down"],
+   "links": [
+    { "type": "article", "title": "Technical Debt (Fowler)", "url": "https://martinfowler.com/bliki/TechnicalDebt.html" },
+    { "type": "article", "title": "Managing Tech Debt (Thoughtworks)", "url": "https://www.thoughtworks.com/insights/blog/managing-technical-debt" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Technical debt** is the accumulated cost of shortcuts: code that works but slows future development. Like financial debt, it compounds \u2014 ignore it long enough and all velocity goes to interest payments.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Deliberate** debt (conscious shortcut for speed) vs **inadvertent** (didn't know better). Track it explicitly (tickets, code annotations). Prioritise by **impact on velocity** \u2014 not all debt is equal. Some is in cold code that never changes; some blocks every feature." },
+    { "label": "In practice", "tag": "adv", "body": "Don't aim for zero debt \u2014 that's over-engineering. Pay down debt **strategically**: before adding features in that area, during planned maintenance windows, or when it's causing incidents. Allocate 15\u201320% of sprint capacity to debt reduction. Make the cost visible to stakeholders in business terms (slower features, more bugs, longer onboarding)." }
+   ]
+  }
+ },
+
+ "leaves": {
+  "l-naming": { "label": "Naming", "parent": "t-clean-code", "domain": "d1", "desc": "Revealing intent through clear, consistent names.", "links": [], "levels": [] },
+  "l-functions": { "label": "Functions", "parent": "t-clean-code", "domain": "d1", "desc": "Small, focused functions that do one thing well.", "links": [], "levels": [] },
+  "l-comments": { "label": "Comments", "parent": "t-clean-code", "domain": "d1", "desc": "When and how to comment \u2014 explain why, not what.", "links": [], "levels": [] },
+  "l-srp": { "label": "Single Responsibility", "parent": "t-solid", "domain": "d1", "desc": "A class should have only one reason to change.", "links": [], "levels": [] },
+  "l-ocp": { "label": "Open/Closed", "parent": "t-solid", "domain": "d1", "desc": "Open for extension, closed for modification.", "links": [], "levels": [] },
+  "l-lsp": { "label": "Liskov Substitution", "parent": "t-solid", "domain": "d1", "desc": "Subtypes must be substitutable for their base types.", "links": [], "levels": [] },
+  "l-isp": { "label": "Interface Segregation", "parent": "t-solid", "domain": "d1", "desc": "Many small interfaces over one fat interface.", "links": [], "levels": [] },
+  "l-dip": { "label": "Dependency Inversion", "parent": "t-solid", "domain": "d1", "desc": "Depend on abstractions, not concretions.", "links": [], "levels": [] },
+  "l-arrays-lists": { "label": "Arrays & Lists", "parent": "t-data-structures", "domain": "d1", "desc": "Ordered, indexed sequential collections.", "links": [], "levels": [] },
+  "l-hash-maps": { "label": "Hash Maps", "parent": "t-data-structures", "domain": "d1", "desc": "Key-value stores with O(1) average lookup.", "links": [], "levels": [] },
+  "l-trees-graphs": { "label": "Trees & Graphs", "parent": "t-data-structures", "domain": "d1", "desc": "Hierarchical and relational data structures.", "links": [], "levels": [] },
+  "l-sorting-searching": { "label": "Sorting & Searching", "parent": "t-algorithms", "domain": "d1", "desc": "Fundamental algorithms for ordering and finding.", "links": [], "levels": [] },
+  "l-big-o": { "label": "Big-O Analysis", "parent": "t-algorithms", "domain": "d1", "desc": "Classifying algorithm efficiency by growth rate.", "links": [], "levels": [] },
+  "l-dynamic-programming": { "label": "Dynamic Programming", "parent": "t-algorithms", "domain": "d1", "desc": "Solving problems by breaking into overlapping subproblems.", "links": [], "levels": [] },
+  "l-creational": { "label": "Creational Patterns", "parent": "t-design-patterns", "domain": "d2", "desc": "Factory, Builder, Singleton \u2014 object creation.", "links": [], "levels": [] },
+  "l-structural": { "label": "Structural Patterns", "parent": "t-design-patterns", "domain": "d2", "desc": "Adapter, Decorator, Facade \u2014 composing objects.", "links": [], "levels": [] },
+  "l-behavioural": { "label": "Behavioural Patterns", "parent": "t-design-patterns", "domain": "d2", "desc": "Strategy, Observer, Command \u2014 object interactions.", "links": [], "levels": [] },
+  "l-layered": { "label": "Layered Architecture", "parent": "t-architecture-styles", "domain": "d2", "desc": "Presentation \u2192 business \u2192 data layers.", "links": [], "levels": [] },
+  "l-hexagonal": { "label": "Hexagonal / Ports & Adapters", "parent": "t-architecture-styles", "domain": "d2", "desc": "Domain at centre, infrastructure at edges.", "links": [], "levels": [] },
+  "l-clean-architecture": { "label": "Clean Architecture", "parent": "t-architecture-styles", "domain": "d2", "desc": "Concentric circles with inward dependencies.", "links": [], "levels": [] },
+  "l-ubiquitous-language": { "label": "Ubiquitous Language", "parent": "t-ddd", "domain": "d2", "desc": "Shared vocabulary between code and domain experts.", "links": [], "levels": [] },
+  "l-bounded-contexts": { "label": "Bounded Contexts", "parent": "t-ddd", "domain": "d2", "desc": "Separate models for separate subdomains.", "links": [], "levels": [] },
+  "l-aggregates": { "label": "Aggregates", "parent": "t-ddd", "domain": "d2", "desc": "Consistency boundaries within a domain.", "links": [], "levels": [] },
+  "l-code-smells": { "label": "Code Smells", "parent": "t-refactoring", "domain": "d2", "desc": "Symptoms of design problems in code.", "links": [], "levels": [] },
+  "l-refactoring-techniques": { "label": "Refactoring Techniques", "parent": "t-refactoring", "domain": "d2", "desc": "Extract, inline, move, rename \u2014 safe transformations.", "links": [], "levels": [] },
+  "l-safe-refactoring": { "label": "Safe Refactoring", "parent": "t-refactoring", "domain": "d2", "desc": "Using tests and IDE tooling for confidence.", "links": [], "levels": [] },
+
+  "l-resources": { "label": "Resources & URIs", "parent": "t-rest-api", "domain": "d3", "desc": "Modelling APIs as noun-based resources.", "links": [], "levels": [] },
+  "l-http-methods": { "label": "HTTP Methods", "parent": "t-rest-api", "domain": "d3", "desc": "GET, POST, PUT, PATCH, DELETE semantics.", "links": [], "levels": [] },
+  "l-pagination-filtering": { "label": "Pagination & Filtering", "parent": "t-rest-api", "domain": "d3", "desc": "Cursor-based pagination and query parameters.", "links": [], "levels": [] },
+  "l-schema-types": { "label": "Schema & Types", "parent": "t-graphql-api", "domain": "d3", "desc": "Defining the GraphQL type system.", "links": [], "levels": [] },
+  "l-resolvers": { "label": "Resolvers", "parent": "t-graphql-api", "domain": "d3", "desc": "Functions that fetch data for each field.", "links": [], "levels": [] },
+  "l-graphql-patterns": { "label": "GraphQL Patterns", "parent": "t-graphql-api", "domain": "d3", "desc": "Pagination, error handling, federation.", "links": [], "levels": [] },
+  "l-protobuf": { "label": "Protocol Buffers", "parent": "t-grpc-api", "domain": "d3", "desc": "Binary serialisation with schema evolution.", "links": [], "levels": [] },
+  "l-grpc-streaming": { "label": "gRPC Streaming", "parent": "t-grpc-api", "domain": "d3", "desc": "Unary, server, client, and bidirectional streams.", "links": [], "levels": [] },
+  "l-grpc-patterns": { "label": "gRPC Patterns", "parent": "t-grpc-api", "domain": "d3", "desc": "Deadlines, interceptors, load balancing.", "links": [], "levels": [] },
+  "l-webhooks": { "label": "Webhooks", "parent": "t-event-apis", "domain": "d3", "desc": "Server-to-server push notifications via HTTP.", "links": [], "levels": [] },
+  "l-websockets-api": { "label": "WebSockets", "parent": "t-event-apis", "domain": "d3", "desc": "Persistent bidirectional real-time connections.", "links": [], "levels": [] },
+  "l-sse": { "label": "Server-Sent Events", "parent": "t-event-apis", "domain": "d3", "desc": "One-way server-to-client event streaming.", "links": [], "levels": [] },
+  "l-async-api-spec": { "label": "AsyncAPI", "parent": "t-event-apis", "domain": "d3", "desc": "Specification for event-driven API documentation.", "links": [], "levels": [] },
+  "l-test-structure": { "label": "Test Structure (AAA)", "parent": "t-unit-testing", "domain": "d4", "desc": "Arrange, Act, Assert pattern.", "links": [], "levels": [] },
+  "l-mocking": { "label": "Mocking & Stubbing", "parent": "t-unit-testing", "domain": "d4", "desc": "Isolating units from external dependencies.", "links": [], "levels": [] },
+  "l-test-coverage": { "label": "Test Coverage", "parent": "t-unit-testing", "domain": "d4", "desc": "Measuring and using coverage meaningfully.", "links": [], "levels": [] },
+  "l-api-testing": { "label": "API Testing", "parent": "t-integration-testing", "domain": "d4", "desc": "Testing HTTP endpoints and service contracts.", "links": [], "levels": [] },
+  "l-contract-testing": { "label": "Contract Testing", "parent": "t-integration-testing", "domain": "d4", "desc": "Verifying API compatibility between services.", "links": [], "levels": [] },
+  "l-e2e-testing": { "label": "E2E Testing", "parent": "t-integration-testing", "domain": "d4", "desc": "Full user-flow testing with Playwright/Cypress.", "links": [], "levels": [] },
+  "l-red-green-refactor": { "label": "Red-Green-Refactor", "parent": "t-tdd", "domain": "d4", "desc": "The TDD cycle: fail, pass, improve.", "links": [], "levels": [] },
+  "l-test-first-design": { "label": "Test-First Design", "parent": "t-tdd", "domain": "d4", "desc": "Using tests to drive interface design.", "links": [], "levels": [] },
+  "l-linters": { "label": "Linters", "parent": "t-code-quality", "domain": "d4", "desc": "Catching bugs and anti-patterns statically.", "links": [], "levels": [] },
+  "l-formatters": { "label": "Formatters", "parent": "t-code-quality", "domain": "d4", "desc": "Automated code style enforcement.", "links": [], "levels": [] },
+  "l-static-analysis": { "label": "Static Analysis", "parent": "t-code-quality", "domain": "d4", "desc": "Deep code analysis for security and complexity.", "links": [], "levels": [] },
+
+  "l-threads": { "label": "Threads", "parent": "t-concurrency", "domain": "d5", "desc": "OS-level concurrent execution units.", "links": [], "levels": [] },
+  "l-locks-sync": { "label": "Locks & Synchronisation", "parent": "t-concurrency", "domain": "d5", "desc": "Mutexes, semaphores, and protecting shared state.", "links": [], "levels": [] },
+  "l-race-conditions": { "label": "Race Conditions", "parent": "t-concurrency", "domain": "d5", "desc": "Bugs from unsynchronised concurrent access.", "links": [], "levels": [] },
+  "l-async-await": { "label": "Async/Await", "parent": "t-async-programming", "domain": "d5", "desc": "Language-level syntax for non-blocking code.", "links": [], "levels": [] },
+  "l-event-loop": { "label": "Event Loop", "parent": "t-async-programming", "domain": "d5", "desc": "Single-threaded cooperative scheduling.", "links": [], "levels": [] },
+  "l-promises-futures": { "label": "Promises & Futures", "parent": "t-async-programming", "domain": "d5", "desc": "Representing eventual values.", "links": [], "levels": [] },
+  "l-profiling": { "label": "Profiling", "parent": "t-performance", "domain": "d5", "desc": "Finding where time and memory are spent.", "links": [], "levels": [] },
+  "l-benchmarking": { "label": "Benchmarking", "parent": "t-performance", "domain": "d5", "desc": "Measuring performance with statistical rigour.", "links": [], "levels": [] },
+  "l-caching-swe": { "label": "Caching", "parent": "t-performance", "domain": "d5", "desc": "Storing computed results to avoid redundant work.", "links": [], "levels": [] },
+  "l-stack-heap": { "label": "Stack vs Heap", "parent": "t-memory-management", "domain": "d5", "desc": "Automatic vs dynamic memory allocation.", "links": [], "levels": [] },
+  "l-garbage-collection": { "label": "Garbage Collection", "parent": "t-memory-management", "domain": "d5", "desc": "Automatic memory reclamation and its trade-offs.", "links": [], "levels": [] },
+  "l-ownership-borrowing": { "label": "Ownership & Borrowing", "parent": "t-memory-management", "domain": "d5", "desc": "Rust's compile-time memory safety model.", "links": [], "levels": [] },
+  "l-branching": { "label": "Branching Strategies", "parent": "t-version-control", "domain": "d6", "desc": "Trunk-based, GitFlow, and short-lived branches.", "links": [], "levels": [] },
+  "l-commit-practices": { "label": "Commit Practices", "parent": "t-version-control", "domain": "d6", "desc": "Atomic commits, conventional messages.", "links": [], "levels": [] },
+  "l-git-workflows": { "label": "Git Workflows", "parent": "t-version-control", "domain": "d6", "desc": "PR-based, trunk-based, and forking workflows.", "links": [], "levels": [] },
+  "l-review-checklist": { "label": "Review Checklist", "parent": "t-code-review", "domain": "d6", "desc": "What to look for: correctness, clarity, security.", "links": [], "levels": [] },
+  "l-feedback-culture": { "label": "Feedback Culture", "parent": "t-code-review", "domain": "d6", "desc": "Giving constructive, kind, actionable feedback.", "links": [], "levels": [] },
+  "l-pr-size": { "label": "PR Size", "parent": "t-code-review", "domain": "d6", "desc": "Small, focused PRs for better reviews.", "links": [], "levels": [] },
+  "l-readme": { "label": "READMEs", "parent": "t-documentation", "domain": "d6", "desc": "Project overview and getting started guide.", "links": [], "levels": [] },
+  "l-adrs": { "label": "ADRs", "parent": "t-documentation", "domain": "d6", "desc": "Architecture Decision Records \u2014 capturing the why.", "links": [], "levels": [] },
+  "l-api-docs": { "label": "API Documentation", "parent": "t-documentation", "domain": "d6", "desc": "OpenAPI, proto docs, and generated references.", "links": [], "levels": [] },
+  "l-types-of-debt": { "label": "Types of Debt", "parent": "t-tech-debt", "domain": "d6", "desc": "Deliberate vs inadvertent, prudent vs reckless.", "links": [], "levels": [] },
+  "l-tracking-debt": { "label": "Tracking Debt", "parent": "t-tech-debt", "domain": "d6", "desc": "Making debt visible with tickets and metrics.", "links": [], "levels": [] },
+  "l-paying-down": { "label": "Paying Down Debt", "parent": "t-tech-debt", "domain": "d6", "desc": "Strategic refactoring and maintenance allocation.", "links": [], "levels": [] }
+ },
+ "topicEdges": [
+  { "s": "t-clean-code", "t": "t-solid", "k": "builds" },
+  { "s": "t-solid", "t": "t-design-patterns", "k": "builds" },
+  { "s": "t-design-patterns", "t": "t-architecture-styles", "k": "builds" },
+  { "s": "t-architecture-styles", "t": "t-ddd", "k": "builds" },
+  { "s": "t-clean-code", "t": "t-refactoring", "k": "applies" },
+  { "s": "t-unit-testing", "t": "t-tdd", "k": "builds" },
+  { "s": "t-unit-testing", "t": "t-integration-testing", "k": "builds" },
+  { "s": "t-concurrency", "t": "t-async-programming", "k": "builds" },
+  { "s": "t-refactoring", "t": "t-tech-debt", "k": "applies" },
+  { "s": "t-version-control", "t": "t-code-review", "k": "builds" }
+ ],
+ "leafEdges": []
+}

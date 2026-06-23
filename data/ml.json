@@ -565,7 +565,7 @@
     {
      "label": "What you need",
      "tag": "adv",
-     "body": "Solid coding, ML fundamentals, **data pipelines**, **MLOps** (deployment, monitoring, retraining), and the communication to translate a business problem into a modelling one.",
+     "body": "Solid coding, ML fundamentals, **data pipelines**, **MLOps** (deployment, monitoring, retraining), and the communication to translate a business problem into a modelling one. In 2026, familiarity with LLMs, prompt engineering, and AI coding tools is increasingly expected alongside classical ML skills.",
      "open": false
     }
    ]
@@ -1215,7 +1215,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Choose metrics that reflect the real **cost of each error type**. A single number rarely tells the whole story.",
+     "body": "Choose metrics that reflect the real **cost of each error type**. A single number rarely tells the whole story. Evaluation in 2026 goes beyond single metrics: use **holdout/cross-validation** for unbiased estimates, **confidence intervals** for statistical rigour, **slice-based analysis** for fairness, and **A/B testing** for real-world impact. For LLMs, evaluation is harder — human preference (arena Elo), LLM-as-judge, and task-specific benchmarks complement traditional metrics.",
      "open": false
     }
    ]
@@ -1397,7 +1397,7 @@
     {
      "label": "Going deeper",
      "tag": "adv",
-     "body": "Depth + nonlinearity ≈ universal function approximation. Training success hinges on **initialisation**, **learning rate**, **normalisation**, and regularisation (**dropout**, weight decay).",
+     "body": "Depth + nonlinearity ≈ universal function approximation. Training success hinges on **initialisation**, **learning rate**, **normalisation**, and regularisation (**dropout**, weight decay). The **Transformer** (attention is all you need) has become the universal architecture — dominating not just NLP but vision (ViT), audio (Whisper), and multimodal tasks. **Foundation models** pretrained at scale are fine-tuned or prompted for downstream tasks, replacing task-specific architectures. State-space models (Mamba) offer an alternative for very long sequences.",
      "open": false
     }
    ],

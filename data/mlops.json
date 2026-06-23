@@ -1,0 +1,524 @@
+{
+ "meta": {
+  "id": "mlops",
+  "kbd": "knowledge hub \u00b7 mlops",
+  "title": "MLOps",
+  "subtitle": "productionise machine learning",
+  "blurb": "The practices and platforms that take ML models from notebook experiments to reliable, monitored, continuously-improving production systems.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Foundations", "c": "#F0B23C" },
+  "d2": { "name": "Experiment & Train", "c": "#46B8DA" },
+  "d3": { "name": "Package & Deploy", "c": "#54C99A" },
+  "d4": { "name": "Serve & Scale", "c": "#B08CF0" },
+  "d5": { "name": "Monitor & Govern", "c": "#F0796B" },
+  "d6": { "name": "Platforms & Automation", "c": "#E86BB5" }
+ },
+ "cols": [
+  {
+   "title": "Foundations",
+   "keys": ["t-mlops-intro", "t-ml-lifecycle", "t-reproducibility", "t-versioning"]
+  },
+  {
+   "title": "Experiment & Train",
+   "keys": ["t-experiment-tracking", "t-hyperparameter", "t-distributed-training", "t-feature-eng"]
+  },
+  {
+   "title": "Package & Deploy",
+   "keys": ["t-model-packaging", "t-model-registry", "t-cicd-ml", "t-testing-ml"]
+  },
+  {
+   "title": "Serve & Scale",
+   "keys": ["t-serving-patterns", "t-batch-inference", "t-realtime-inference", "t-gpu-infra"]
+  },
+  {
+   "title": "Monitor & Govern",
+   "keys": ["t-model-monitoring", "t-data-drift", "t-ab-testing", "t-ml-governance"]
+  },
+  {
+   "title": "Platforms & Automation",
+   "keys": ["t-ml-platforms", "t-ml-pipelines", "t-automl", "t-llmops"]
+  }
+ ],
+ "topics": {
+  "t-mlops-intro": {
+   "label": "What is MLOps?",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The discipline of deploying and maintaining ML models in production reliably and efficiently.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "MLOps: Continuous delivery for ML (Google)", "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" },
+    { "type": "article", "title": "MLOps Maturity Model (Microsoft)", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/mlops-maturity-model" },
+    { "type": "book", "title": "Designing Machine Learning Systems (Chip Huyen)", "url": "https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**MLOps** applies DevOps principles to machine learning: automate the path from experiment to production, monitor models in the wild, and retrain when performance degrades. It bridges the gap between 'model works in a notebook' and 'model works in production'.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "MLOps spans **data management**, **experiment tracking**, **model packaging**, **deployment**, **monitoring**, and **retraining**. Unlike traditional software, ML systems degrade silently as the world changes \u2014 so continuous monitoring and feedback loops are essential, not optional." },
+    { "label": "In practice", "tag": "adv", "body": "Google defines three maturity levels: **Level 0** (manual), **Level 1** (ML pipeline automation), **Level 2** (CI/CD for pipelines). Most teams are between 0 and 1. The goal isn't maximum automation \u2014 it's reliable, reproducible, auditable model delivery at your team's scale." }
+   ]
+  },
+  "t-ml-lifecycle": {
+   "label": "ML Project Lifecycle",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The stages of an ML project \u2014 from problem framing through deployment to continuous improvement.",
+   "subs": ["l-problem-framing", "l-data-collection", "l-model-dev", "l-deployment-stage"],
+   "links": [
+    { "type": "course", "title": "ML Engineering for Production (Andrew Ng)", "url": "https://www.deeplearning.ai/courses/machine-learning-engineering-for-production-mlops/" },
+    { "type": "article", "title": "Rules of ML (Google)", "url": "https://developers.google.com/machine-learning/guides/rules-of-ml" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "The lifecycle: **scope** (define the problem) \u2192 **data** (collect, label, validate) \u2192 **model** (train, tune, evaluate) \u2192 **deploy** (serve, monitor, iterate). Most time is spent on data, not models.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Each stage feeds back: monitoring reveals data drift \u2192 triggers retraining \u2192 new data collection. **Error analysis** after deployment guides what to improve next. The lifecycle is a loop, not a line." },
+    { "label": "In practice", "tag": "adv", "body": "Google's Rule #1: 'Don't be afraid to launch a product without ML.' Start with baselines and heuristics. Add ML only when you have enough data and a clear metric. Then iterate: the first model is never the last." }
+   ]
+  },
+  "t-reproducibility": {
+   "label": "Reproducibility",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Ensuring experiments and training runs can be exactly repeated \u2014 code, data, environment, and config.",
+   "subs": ["l-seed-control", "l-env-pinning", "l-config-management"],
+   "links": [
+    { "type": "article", "title": "Reproducibility in ML (Papers with Code)", "url": "https://paperswithcode.com/rc2022" },
+    { "type": "opensource", "title": "DVC (Data Version Control)", "url": "https://dvc.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A result is **reproducible** if you can re-run the same code on the same data and get the same output. This requires pinning: code version, data version, random seeds, dependencies, and hardware.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Version **everything**: code (git), data (DVC, lakeFS), configs (YAML tracked in git), environment (Docker, conda lock). Log the full context with every experiment run. Without this, debugging production issues becomes guesswork." },
+    { "label": "In practice", "tag": "adv", "body": "Perfect reproducibility is sometimes impossible (GPU non-determinism, external API changes). Aim for **practical reproducibility**: same code + same data + same config = results within acceptable variance. Document known sources of non-determinism." }
+   ]
+  },
+  "t-versioning": {
+   "label": "Data & Model Versioning",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Tracking changes to datasets and models over time \u2014 the ML equivalent of git for code.",
+   "subs": ["l-data-versioning", "l-model-versioning"],
+   "links": [
+    { "type": "opensource", "title": "DVC", "url": "https://dvc.org/" },
+    { "type": "opensource", "title": "lakeFS", "url": "https://lakefs.io/" },
+    { "type": "article", "title": "MLflow Model Registry", "url": "https://mlflow.org/docs/latest/model-registry.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Code has git. Data and models need versioning too: know which dataset trained which model, and roll back when something breaks.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**DVC** tracks large files alongside git (pointers in git, data in remote storage). **lakeFS** provides git-like branching for data lakes. **Model registries** (MLflow, Vertex AI) version model artifacts with metadata, lineage, and stage transitions (staging \u2192 production)." },
+    { "label": "In practice", "tag": "adv", "body": "At minimum: tag every training run with its data snapshot hash and code commit. For regulated industries, full data lineage and model provenance are compliance requirements, not nice-to-haves." }
+   ]
+  },
+  "t-experiment-tracking": {
+   "label": "Experiment Tracking",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Logging parameters, metrics, artifacts, and code for every training run \u2014 so you can compare and reproduce.",
+   "subs": ["l-mlflow", "l-wandb", "l-tensorboard"],
+   "links": [
+    { "type": "opensource", "title": "MLflow", "url": "https://mlflow.org/" },
+    { "type": "article", "title": "Weights & Biases", "url": "https://wandb.ai/" },
+    { "type": "article", "title": "Neptune.ai", "url": "https://neptune.ai/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Log every experiment: **parameters** (learning rate, batch size), **metrics** (loss, accuracy over time), **artifacts** (model files, plots), and **code version**. Without this, you'll forget what worked and why.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Tools: **MLflow 3** (open-source, broad ecosystem, now with GenAI tracing for LLM workloads), **W&B** (rich visualisation, team collaboration, LLM-specific prompt tracking), **Neptune** (flexible metadata). All provide dashboards for comparing runs, searching by metric, and linking experiments to deployed models." },
+    { "label": "In practice", "tag": "adv", "body": "Instrument tracking from day one \u2014 it's trivial to add early and painful to retrofit. Log not just final metrics but **training curves**, **data statistics**, and **hardware utilisation**. Use experiment tags and notes liberally; future-you will thank present-you." }
+   ]
+  },
+  "t-hyperparameter": {
+   "label": "Hyperparameter Tuning",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Systematically searching for the best model configuration \u2014 grid, random, Bayesian, and multi-fidelity methods.",
+   "subs": ["l-grid-random", "l-bayesian-opt", "l-early-stopping"],
+   "links": [
+    { "type": "opensource", "title": "Optuna", "url": "https://optuna.org/" },
+    { "type": "article", "title": "Ray Tune", "url": "https://docs.ray.io/en/latest/tune/index.html" },
+    { "type": "article", "title": "Hyperparameter Optimization (AutoML)", "url": "https://www.automl.org/hyperparameter-optimization/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Hyperparameters (learning rate, layers, regularisation) aren't learned from data \u2014 you choose them. **Tuning** systematically searches for the combination that gives the best validation performance.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Grid search** (exhaustive but expensive), **random search** (surprisingly effective), **Bayesian optimisation** (smart, iterative \u2014 Optuna, Hyperopt). **Multi-fidelity** methods (Hyperband, ASHA) train cheaply first, promoting only promising configs." },
+    { "label": "In practice", "tag": "adv", "body": "Start with random search to understand the landscape, then Bayesian for fine-tuning. Use **early stopping** aggressively \u2014 most of the search budget is wasted on bad configs. For large models, tune learning rate and batch size first; they dominate performance. Track all trials in your experiment tracker." }
+   ]
+  },
+  "t-distributed-training": {
+   "label": "Distributed Training",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Training models across multiple GPUs or machines \u2014 data parallelism, model parallelism, and mixed strategies.",
+   "subs": ["l-data-parallelism", "l-model-parallelism", "l-fsdp-deepspeed"],
+   "links": [
+    { "type": "article", "title": "PyTorch Distributed Training", "url": "https://pytorch.org/tutorials/intermediate/ddp_tutorial.html" },
+    { "type": "opensource", "title": "DeepSpeed", "url": "https://www.deepspeed.ai/" },
+    { "type": "article", "title": "Hugging Face Accelerate", "url": "https://huggingface.co/docs/accelerate" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "When a model or dataset doesn't fit on one GPU, distribute training across multiple. **Data parallelism**: same model on each GPU, different data batches, gradients synced. Most common and simplest to set up.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Model parallelism** splits the model itself across GPUs (needed for very large models). **FSDP** (Fully Sharded Data Parallel) and **DeepSpeed ZeRO** shard both model state and gradients for memory efficiency. **Pipeline parallelism** splits layers across devices." },
+    { "label": "In practice", "tag": "adv", "body": "For most use cases, **DDP** (Distributed Data Parallel) with PyTorch or **Hugging Face Accelerate** handles multi-GPU training with minimal code changes. For LLM-scale training, you need DeepSpeed/FSDP + tensor parallelism. The hard part is debugging distributed failures and optimising communication overhead." }
+   ]
+  },
+  "t-feature-eng": {
+   "label": "Feature Engineering & Stores",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Creating, managing, and serving ML features consistently across training and inference.",
+   "subs": ["l-feature-pipelines", "l-online-offline", "l-training-serving-skew"],
+   "links": [
+    { "type": "opensource", "title": "Feast", "url": "https://feast.dev/" },
+    { "type": "article", "title": "Tecton", "url": "https://www.tecton.ai/" },
+    { "type": "article", "title": "Feature Stores Explained", "url": "https://www.featurestore.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Features** are the inputs to your model. **Feature engineering** transforms raw data into informative signals. A **feature store** ensures the same features used in training are served identically at inference time.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Feature pipelines compute features (batch or streaming) and write to both an **offline store** (for training) and **online store** (for serving). This prevents **training-serving skew** \u2014 the #1 silent failure in production ML." },
+    { "label": "In practice", "tag": "adv", "body": "You don't always need a full feature store. For simple models with batch features, a well-governed dbt layer suffices. Feature stores shine when: features are shared across many models, real-time serving is needed, or you must guarantee consistency. Feast (open-source) or Tecton (managed) are the main options." }
+   ]
+  },
+  "t-model-packaging": {
+   "label": "Model Packaging",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Bundling a trained model with its dependencies into a deployable, portable artifact.",
+   "subs": ["l-containerisation-ml", "l-model-formats", "l-model-optimisation"],
+   "links": [
+    { "type": "article", "title": "MLflow Models", "url": "https://mlflow.org/docs/latest/models.html" },
+    { "type": "article", "title": "ONNX Runtime", "url": "https://onnxruntime.ai/" },
+    { "type": "article", "title": "TorchServe", "url": "https://pytorch.org/serve/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A deployable model needs: the **model artifact** (weights), **inference code** (pre/post-processing), and **dependencies** (libraries, versions). Package these together so deployment is a single unit, not a collection of steps.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Formats: **ONNX** (portable across frameworks), **TorchScript** (PyTorch native), **SavedModel** (TensorFlow). Containerise with Docker for environment isolation. MLflow's model flavours provide a standard packaging interface across frameworks." },
+    { "label": "In practice", "tag": "adv", "body": "Optimise before deploying: **quantisation** (INT8/FP16, 2\u20134x speedup), **pruning** (remove redundant weights), **distillation** (smaller student model). Use **ONNX Runtime** or **TensorRT** for inference optimisation. The packaging step is where you trade training flexibility for serving efficiency." }
+   ]
+  },
+  "t-model-registry": {
+   "label": "Model Registry",
+   "domain": "d3",
+   "col": 2,
+   "desc": "A central catalog of trained models \u2014 versioned, staged, and approved for deployment.",
+   "subs": ["l-staging-promotion", "l-metadata-lineage"],
+   "links": [
+    { "type": "article", "title": "MLflow Model Registry", "url": "https://mlflow.org/docs/latest/model-registry.html" },
+    { "type": "article", "title": "Vertex AI Model Registry", "url": "https://cloud.google.com/vertex-ai/docs/model-registry/introduction" },
+    { "type": "article", "title": "SageMaker Model Registry", "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **model registry** is a versioned catalog of production-ready models. It tracks which model version is in staging, production, or archived, along with metadata (who trained it, on what data, with what metrics).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Workflow: experiment \u2192 register best model \u2192 **staging** (validate) \u2192 **production** (serve) \u2192 **archived** (replaced). Attach lineage: training data hash, code commit, evaluation metrics, approval records." },
+    { "label": "In practice", "tag": "adv", "body": "The registry is the handoff point between training and serving teams. Enforce approval gates before promotion to production (automated tests + human sign-off for high-stakes models). MLflow Registry works for most teams; cloud-native options (Vertex, SageMaker) integrate tighter with their serving infrastructure." }
+   ]
+  },
+  "t-cicd-ml": {
+   "label": "CI/CD for ML",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Continuous integration and delivery adapted for ML \u2014 testing code, data, and models in automated pipelines.",
+   "subs": ["l-ci-ml", "l-cd-ml", "l-shadow-deployment"],
+   "links": [
+    { "type": "article", "title": "CI/CD for ML (Google)", "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" },
+    { "type": "article", "title": "GitHub Actions for ML", "url": "https://github.blog/developer-skills/github/mlops-with-github-actions-and-kubernetes/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**CI for ML** validates code changes (unit tests, linting) AND data/model quality (schema checks, performance regression tests). **CD for ML** automates deployment of validated models to serving infrastructure.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "ML CI adds: **data validation** (schema, statistics drift), **training pipeline tests** (runs a fast training on sample data), **model quality gates** (metric thresholds). CD adds: **shadow deployment** (run new model alongside old, compare), **canary rollout** (gradual traffic shift)." },
+    { "label": "In practice", "tag": "adv", "body": "Don't try to replicate full training in CI \u2014 it's too slow and expensive. Test with small data samples and fast-training configs. Gate promotion on offline eval metrics. Use shadow mode or A/B tests for online validation before full rollout. Automate rollback triggers on serving metric degradation." }
+   ]
+  },
+  "t-testing-ml": {
+   "label": "Testing ML Systems",
+   "domain": "d3",
+   "col": 2,
+   "desc": "What to test in ML beyond code \u2014 data tests, model tests, and integration tests for the full pipeline.",
+   "subs": ["l-unit-tests-ml", "l-data-tests", "l-model-tests"],
+   "links": [
+    { "type": "article", "title": "Testing ML Systems (Jeremy Jordan)", "url": "https://www.jeremyjordan.me/testing-ml/" },
+    { "type": "article", "title": "ML Test Score (Google)", "url": "https://research.google/pubs/pub46555/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "ML systems need three kinds of tests: **code tests** (logic correctness), **data tests** (schema, distributions, freshness), and **model tests** (performance, fairness, robustness). Most teams only do the first, if any.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Data tests**: null rates, range checks, feature distributions match expectations. **Model tests**: metrics above threshold, no regression vs baseline, performance across slices (demographic groups, edge cases). **Integration tests**: end-to-end pipeline produces valid predictions." },
+    { "label": "In practice", "tag": "adv", "body": "Google's ML Test Score paper identifies 28 specific tests for production ML systems. Start with the highest-value ones: input data validation, prediction sanity checks (not all same class, within expected range), and performance regression on a held-out eval set. Add slice-based analysis for fairness-critical applications." }
+   ]
+  },
+  "t-serving-patterns": {
+   "label": "Model Serving Patterns",
+   "domain": "d4",
+   "col": 3,
+   "desc": "How to expose models for inference \u2014 online, batch, streaming, and embedded patterns.",
+   "subs": ["l-online-serving", "l-batch-serving", "l-edge-serving"],
+   "links": [
+    { "type": "article", "title": "ML Serving Patterns (Chip Huyen)", "url": "https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html" },
+    { "type": "article", "title": "BentoML", "url": "https://www.bentoml.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Three main patterns: **Online** (real-time request-response, <100ms), **Batch** (score a large dataset periodically), **Streaming** (score events as they flow through Kafka/Flink). Choose based on latency requirements and traffic patterns.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Online serving: REST/gRPC endpoint behind a load balancer. Batch: scheduled Spark/Python job writing predictions to a table. Streaming: model embedded in a Flink/Kafka Streams job. **Edge/embedded**: model runs on-device (mobile, IoT) for offline capability and low latency." },
+    { "label": "In practice", "tag": "adv", "body": "Most ML in production is actually **batch** (score overnight, serve pre-computed results via lookup). Real-time serving is expensive and complex \u2014 use it only when freshness truly matters (fraud, recommendations, search ranking). Pre-compute what you can, serve real-time only what you must." }
+   ]
+  },
+  "t-batch-inference": {
+   "label": "Batch Inference",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Scoring large datasets offline on a schedule \u2014 the simplest and most common serving pattern.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Batch Transform (SageMaker)", "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html" },
+    { "type": "article", "title": "Spark ML Inference", "url": "https://spark.apache.org/docs/latest/ml-guide.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Run the model over a large dataset on a schedule (hourly/daily), write predictions to a database or file. Consumers read pre-computed results. Simple, cost-effective, and no latency pressure.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Run with Spark for distributed inference on huge datasets, or simple Python scripts for moderate sizes. Store results in a warehouse table or key-value store for fast lookup. Schedule with your orchestrator (Airflow, Dagster)." },
+    { "label": "In practice", "tag": "adv", "body": "Batch inference powers most recommendation systems, risk scores, and propensity models. The trade-off is **freshness** \u2014 predictions are stale until the next run. Mitigate with more frequent runs or a hybrid approach (batch for most, real-time for time-sensitive signals)." }
+   ]
+  },
+  "t-realtime-inference": {
+   "label": "Real-Time Inference",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Serving predictions on demand with low latency \u2014 infrastructure, optimization, and scaling challenges.",
+   "subs": ["l-inference-servers", "l-autoscaling-ml", "l-latency-optimisation"],
+   "links": [
+    { "type": "article", "title": "NVIDIA Triton Inference Server", "url": "https://developer.nvidia.com/triton-inference-server" },
+    { "type": "article", "title": "vLLM", "url": "https://docs.vllm.ai/" },
+    { "type": "article", "title": "SageMaker Real-Time Inference", "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A model behind an API endpoint: receive a request, run inference, return the prediction in milliseconds. Requires always-on infrastructure, careful latency management, and auto-scaling.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Inference servers: **Triton** (multi-framework, GPU batching), **vLLM** (LLM-optimised, paged attention), **TorchServe**, **TF Serving**. Optimise with: model quantisation, dynamic batching (accumulate requests for GPU efficiency), response caching for repeated inputs." },
+    { "label": "In practice", "tag": "adv", "body": "Real-time ML at scale is expensive. Strategies: **right-size instances** (GPU for large models, CPU for small), **auto-scale on queue depth** (not just CPU), **multi-model serving** (share infrastructure). For LLMs, **vLLM** with continuous batching, PagedAttention, and speculative decoding dramatically improves throughput/cost. **SGLang** is emerging as an alternative for structured generation. Always set latency SLOs and alert on p99, not just average." }
+   ]
+  },
+  "t-gpu-infra": {
+   "label": "GPU Infrastructure",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Managing GPU compute for training and inference \u2014 instance types, scheduling, cost, and utilisation.",
+   "subs": ["l-gpu-types", "l-spot-training", "l-multi-tenant-gpu"],
+   "links": [
+    { "type": "article", "title": "NVIDIA GPU Guide for ML", "url": "https://developer.nvidia.com/deep-learning-performance-training-inference" },
+    { "type": "article", "title": "AWS GPU Instances", "url": "https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "GPUs accelerate ML workloads 10\u2013100x over CPUs due to massive parallelism. Training large models requires high-end GPUs (A100, H100); inference can often use smaller/older GPUs or even CPUs for simpler models.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Instance types**: A10G (inference sweet spot), L4 (cost-effective inference), A100/H100 (training workhorses), **H200** (1.5x H100 memory bandwidth), **B100/B200** (next-gen Blackwell, 2.5x H100 training throughput). Use **spot/preemptible** instances for training (60\u201390% savings, handle interruptions with checkpointing). **Multi-Instance GPU (MIG)** slices one GPU for multiple workloads." },
+    { "label": "In practice", "tag": "adv", "body": "GPU utilisation is typically 30\u201350% in most orgs \u2014 massive waste. Improve with: job scheduling (Kubernetes + GPU quotas), right-sizing (don't use H100 for inference of a small model), and time-sharing. In 2026, GPU demand outpaces supply \u2014 cost optimisation is a core MLOps skill, not a nice-to-have." }
+   ]
+  },
+  "t-model-monitoring": {
+   "label": "Model Monitoring",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Watching model performance in production \u2014 detecting degradation before users notice.",
+   "subs": ["l-performance-monitoring", "l-prediction-drift", "l-alerting-ml"],
+   "links": [
+    { "type": "article", "title": "Evidently AI", "url": "https://www.evidentlyai.com/" },
+    { "type": "article", "title": "NannyML", "url": "https://www.nannyml.com/" },
+    { "type": "article", "title": "Monitoring ML Models (Google)", "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning#model_monitoring" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Models degrade silently in production as the world changes. **Monitor**: prediction distributions, input feature distributions, and (when available) actual outcomes vs predictions. Alert when metrics breach thresholds.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Performance monitoring** (accuracy, AUC \u2014 needs ground truth, often delayed). **Proxy monitoring** (prediction drift, confidence distributions \u2014 no ground truth needed, faster signal). Tools: **Evidently**, **NannyML**, **WhyLabs**, cloud-native monitors." },
+    { "label": "In practice", "tag": "adv", "body": "Ground truth is often delayed (days/weeks for some tasks). Use **proxy metrics** (drift, confidence drops) for early warning, and true performance metrics once labels arrive. Set up automatic retraining triggers, but always validate before auto-promoting. Monitor per-segment, not just globally \u2014 degradation often hides in subgroups." }
+   ]
+  },
+  "t-data-drift": {
+   "label": "Data & Concept Drift",
+   "domain": "d5",
+   "col": 4,
+   "desc": "When the data changes after deployment \u2014 detecting and responding to distribution shifts.",
+   "subs": ["l-covariate-shift", "l-concept-drift-types", "l-drift-detection"],
+   "links": [
+    { "type": "article", "title": "Drift Detection (Evidently)", "url": "https://www.evidentlyai.com/ml-in-production/data-drift" },
+    { "type": "article", "title": "Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift", "url": "https://arxiv.org/abs/1810.11953" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Data drift**: input features change distribution (e.g., new user demographics). **Concept drift**: the relationship between inputs and outputs changes (e.g., user preferences shift). Both silently degrade model performance.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Covariate shift**: P(X) changes but P(Y|X) stays the same. **Concept drift**: P(Y|X) itself changes. Detect with statistical tests (KS test, PSI, Jensen-Shannon divergence) comparing production data to training data distributions." },
+    { "label": "In practice", "tag": "adv", "body": "Not all drift matters \u2014 only drift that impacts predictions is actionable. Monitor drift AND performance together. Response strategies: **retrain on recent data** (most common), **online learning** (continuous updates), or **ensemble with recency weighting**. Seasonal patterns aren't drift \u2014 distinguish recurring patterns from genuine shifts." }
+   ]
+  },
+  "t-ab-testing": {
+   "label": "A/B Testing & Experimentation",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Comparing model variants in production with controlled experiments to measure real-world impact.",
+   "subs": ["l-ab-design", "l-metrics-guardrails", "l-multi-armed-bandits"],
+   "links": [
+    { "type": "article", "title": "Online Controlled Experiments (Microsoft)", "url": "https://www.exp-platform.com/Documents/2009-ExPpitfalls.pdf" },
+    { "type": "article", "title": "Trustworthy Online Experiments (book)", "url": "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/D97B26382EB0EB2DC2019A7A7B518F59" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An **A/B test** splits live traffic between model variants (control vs treatment) and measures which performs better on a business metric. The only reliable way to prove a new model actually improves outcomes.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Design: define **primary metric** (what you're optimising), **guardrail metrics** (what must not regress), **sample size** (statistical power), and **duration**. Avoid peeking \u2014 wait for statistical significance. **Interleaving** is more sample-efficient for ranking models." },
+    { "label": "In practice", "tag": "adv", "body": "Offline metrics (AUC, RMSE) don't always predict online impact. A/B tests close this gap but are slow. Use **multi-armed bandits** for faster convergence when you can tolerate some exploration cost. Always run guardrails \u2014 a model that improves clicks but degrades revenue is a net loss." }
+   ]
+  },
+  "t-ml-governance": {
+   "label": "ML Governance & Responsible AI",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Ensuring ML systems are fair, explainable, auditable, and compliant with regulations.",
+   "subs": ["l-fairness", "l-explainability", "l-model-cards"],
+   "links": [
+    { "type": "article", "title": "Model Cards (Google)", "url": "https://modelcards.withgoogle.com/about" },
+    { "type": "article", "title": "EU AI Act Overview", "url": "https://artificialintelligenceact.eu/" },
+    { "type": "opensource", "title": "Fairlearn", "url": "https://fairlearn.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "ML governance ensures models are **fair** (no harmful bias), **explainable** (stakeholders understand decisions), **auditable** (full lineage), and **compliant** (regulations like the EU AI Act). Not optional for production systems.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Model cards** document intended use, limitations, and performance across demographic groups. **Fairness metrics** (equal opportunity, demographic parity) quantify bias. **Explainability** tools (SHAP, LIME) help interpret predictions. **Audit trails** track every model change and approval." },
+    { "label": "In practice", "tag": "adv", "body": "The EU AI Act (enforced 2025\u20132026) classifies AI systems by risk level and mandates documentation, testing, and human oversight for high-risk applications. Even outside regulation, governance builds trust. Automate: fairness checks in CI, model cards generated from registry metadata, and mandatory human approval for high-stakes model deployments." }
+   ]
+  },
+  "t-ml-platforms": {
+   "label": "ML Platforms",
+   "domain": "d6",
+   "col": 5,
+   "desc": "End-to-end platforms that provide infrastructure for the full ML lifecycle \u2014 managed and self-built.",
+   "subs": ["l-sagemaker", "l-vertex-ai", "l-databricks-ml", "l-open-source-stack"],
+   "links": [
+    { "type": "article", "title": "AWS SageMaker", "url": "https://docs.aws.amazon.com/sagemaker/" },
+    { "type": "article", "title": "Google Vertex AI", "url": "https://cloud.google.com/vertex-ai/docs" },
+    { "type": "article", "title": "Databricks ML", "url": "https://docs.databricks.com/en/machine-learning/index.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An **ML platform** provides integrated tooling for the full lifecycle: notebooks, training infrastructure, experiment tracking, model registry, serving, and monitoring. Build vs buy is the core decision.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Managed platforms**: SageMaker (AWS-native, broadest), Vertex AI (GCP, strong on AutoML), Databricks (unified with data). **Open-source stack**: MLflow + Kubeflow/Metaflow + Seldon/BentoML + Feast + Evidently. Most teams land somewhere between: managed compute + open-source tooling." },
+    { "label": "In practice", "tag": "adv", "body": "Don't build a platform until you've outgrown stitching tools together. Start with MLflow (tracking + registry), a cloud notebook service, and managed serving. Add orchestration and feature stores as complexity demands. Internal ML platforms are expensive to build and maintain \u2014 justify them with scale (many teams, many models)." }
+   ]
+  },
+  "t-ml-pipelines": {
+   "label": "ML Pipelines",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Automated, reproducible workflows that chain data prep, training, evaluation, and deployment into a single DAG.",
+   "subs": ["l-kubeflow", "l-metaflow", "l-sagemaker-pipelines"],
+   "links": [
+    { "type": "opensource", "title": "Kubeflow Pipelines", "url": "https://www.kubeflow.org/docs/components/pipelines/" },
+    { "type": "opensource", "title": "Metaflow (Netflix)", "url": "https://metaflow.org/" },
+    { "type": "article", "title": "ZenML", "url": "https://www.zenml.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An **ML pipeline** automates the sequence: fetch data \u2192 preprocess \u2192 train \u2192 evaluate \u2192 register \u2192 deploy. Each step is a reusable, testable component. Pipelines make training **reproducible and triggerable** (on schedule, on data change, on demand).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Kubeflow Pipelines**: Kubernetes-native, great for complex DAGs. **Metaflow**: Netflix's human-centric framework (Python decorators, versioned, cloud-aware). **SageMaker/Vertex Pipelines**: cloud-integrated. **ZenML**: abstracts across infrastructure." },
+    { "label": "In practice", "tag": "adv", "body": "Don't over-engineer pipelines early. Start with a script that trains and evaluates; wrap it in a simple orchestrator (Airflow task, GitHub Action). Graduate to Kubeflow/Metaflow when you need: caching expensive steps, parallel hyperparameter sweeps, or multiple teams sharing pipeline components. The pipeline should be the **single path to production** \u2014 no manual notebook-to-deployment shortcuts." }
+   ]
+  },
+  "t-automl": {
+   "label": "AutoML",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Automated machine learning \u2014 automating model selection, feature engineering, and hyperparameter tuning.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Google Vertex AI AutoML", "url": "https://cloud.google.com/vertex-ai/docs/beginner/beginners-guide" },
+    { "type": "opensource", "title": "AutoGluon", "url": "https://auto.gluon.ai/" },
+    { "type": "opensource", "title": "FLAML (Microsoft)", "url": "https://microsoft.github.io/FLAML/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**AutoML** automates the tedious parts of ML: trying different algorithms, tuning hyperparameters, engineering features, and selecting the best model. You provide data and a target; it returns a trained model.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Tools: **AutoGluon** (best tabular AutoML, ensemble-based), **FLAML** (fast, lightweight), **Vertex/SageMaker AutoML** (managed, for non-experts). Techniques: automated feature engineering, neural architecture search (NAS), meta-learning." },
+    { "label": "In practice", "tag": "adv", "body": "AutoML is excellent for: establishing baselines quickly, tabular data tasks, and teams without deep ML expertise. It's less useful for: custom architectures, highly domain-specific problems, or when you need full control over the model. Use it as a **starting point**, not a replacement for understanding your problem." }
+   ]
+  },
+  "t-llmops": {
+   "label": "LLMOps",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Operating LLM-based applications in production \u2014 prompt management, evaluation, cost, and guardrails.",
+   "subs": ["l-prompt-management", "l-llm-eval-ops", "l-llm-cost", "l-guardrails-ops"],
+   "links": [
+    { "type": "article", "title": "LangSmith (LangChain)", "url": "https://docs.smith.langchain.com/" },
+    { "type": "article", "title": "Braintrust", "url": "https://www.braintrust.dev/" },
+    { "type": "article", "title": "OpenAI Production Best Practices", "url": "https://platform.openai.com/docs/guides/production-best-practices" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**LLMOps** adapts MLOps for LLM applications: managing **prompts** (versioned, tested), **evaluating** outputs (quality, safety, groundedness), controlling **cost** (token usage, caching), and enforcing **guardrails** (content safety, schema compliance).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Prompt management: version prompts, A/B test variants, track performance. Evaluation: LLM-as-judge, human eval, regression tests on golden sets. Cost: prompt caching, model routing (cheap model for simple queries, expensive for complex), output length control. Observability: trace every chain/agent step." },
+    { "label": "In practice", "tag": "adv", "body": "LLMOps adapts MLOps for LLM-specific challenges: **prompt sensitivity** (small prompt changes = large output shifts), **token cost management** (orders of magnitude more expensive than classical ML), **hallucination risk** (factual grounding is not guaranteed), and **evaluation difficulty** (no single metric captures quality). Tools: **Langfuse** and **LangSmith** for tracing, **MLflow 3** for unified tracking, **AI gateways** (Portkey, LiteLLM) for governed model access. The discipline is rapidly maturing in 2026." }
+   ]
+  }
+ },
+ "leaves": {
+  "l-problem-framing": { "label": "Problem Framing", "parent": "t-ml-lifecycle", "domain": "d1", "desc": "Translating a business problem into a well-defined ML task.", "links": [], "levels": [] },
+  "l-data-collection": { "label": "Data Collection", "parent": "t-ml-lifecycle", "domain": "d1", "desc": "Gathering and labelling training data.", "links": [], "levels": [] },
+  "l-model-dev": { "label": "Model Development", "parent": "t-ml-lifecycle", "domain": "d1", "desc": "Training, tuning, and evaluating model candidates.", "links": [], "levels": [] },
+  "l-deployment-stage": { "label": "Deployment", "parent": "t-ml-lifecycle", "domain": "d1", "desc": "Moving a validated model to production serving.", "links": [], "levels": [] },
+  "l-seed-control": { "label": "Seed Control", "parent": "t-reproducibility", "domain": "d1", "desc": "Pinning random seeds for deterministic results.", "links": [], "levels": [] },
+  "l-env-pinning": { "label": "Environment Pinning", "parent": "t-reproducibility", "domain": "d1", "desc": "Docker, conda-lock, or pip freeze for dependency reproducibility.", "links": [], "levels": [] },
+  "l-config-management": { "label": "Config Management", "parent": "t-reproducibility", "domain": "d1", "desc": "Hydra, YAML configs tracked alongside code.", "links": [], "levels": [] },
+  "l-data-versioning": { "label": "Data Versioning", "parent": "t-versioning", "domain": "d1", "desc": "DVC, lakeFS \u2014 tracking dataset snapshots over time.", "links": [], "levels": [] },
+  "l-model-versioning": { "label": "Model Versioning", "parent": "t-versioning", "domain": "d1", "desc": "Registry-based tracking of model artifacts and metadata.", "links": [], "levels": [] },
+  "l-mlflow": { "label": "MLflow", "parent": "t-experiment-tracking", "domain": "d2", "desc": "Open-source experiment tracking and model management.", "links": [], "levels": [] },
+  "l-wandb": { "label": "Weights & Biases", "parent": "t-experiment-tracking", "domain": "d2", "desc": "Rich experiment visualisation and team collaboration.", "links": [], "levels": [] },
+  "l-tensorboard": { "label": "TensorBoard", "parent": "t-experiment-tracking", "domain": "d2", "desc": "TensorFlow's visualisation toolkit for training metrics.", "links": [], "levels": [] },
+  "l-grid-random": { "label": "Grid & Random Search", "parent": "t-hyperparameter", "domain": "d2", "desc": "Exhaustive and randomised hyperparameter exploration.", "links": [], "levels": [] },
+  "l-bayesian-opt": { "label": "Bayesian Optimisation", "parent": "t-hyperparameter", "domain": "d2", "desc": "Smart sequential search using surrogate models.", "links": [], "levels": [] },
+  "l-early-stopping": { "label": "Early Stopping", "parent": "t-hyperparameter", "domain": "d2", "desc": "Terminating unpromising trials to save compute.", "links": [], "levels": [] },
+  "l-data-parallelism": { "label": "Data Parallelism", "parent": "t-distributed-training", "domain": "d2", "desc": "Same model on each GPU, different data batches.", "links": [], "levels": [] },
+  "l-model-parallelism": { "label": "Model Parallelism", "parent": "t-distributed-training", "domain": "d2", "desc": "Splitting the model across multiple devices.", "links": [], "levels": [] },
+  "l-fsdp-deepspeed": { "label": "FSDP & DeepSpeed", "parent": "t-distributed-training", "domain": "d2", "desc": "Fully sharded training for large model efficiency.", "links": [], "levels": [] },
+  "l-feature-pipelines": { "label": "Feature Pipelines", "parent": "t-feature-eng", "domain": "d2", "desc": "Batch and streaming pipelines that compute features.", "links": [], "levels": [] },
+  "l-online-offline": { "label": "Online vs Offline Store", "parent": "t-feature-eng", "domain": "d2", "desc": "Low-latency serving vs batch training stores.", "links": [], "levels": [] },
+  "l-training-serving-skew": { "label": "Training-Serving Skew", "parent": "t-feature-eng", "domain": "d2", "desc": "When training and serving features diverge silently.", "links": [], "levels": [] },
+  "l-containerisation-ml": { "label": "Containerisation", "parent": "t-model-packaging", "domain": "d3", "desc": "Docker images bundling model + code + dependencies.", "links": [], "levels": [] },
+  "l-model-formats": { "label": "Model Formats", "parent": "t-model-packaging", "domain": "d3", "desc": "ONNX, TorchScript, SavedModel for portable artifacts.", "links": [], "levels": [] },
+  "l-model-optimisation": { "label": "Model Optimisation", "parent": "t-model-packaging", "domain": "d3", "desc": "Quantisation, pruning, distillation for faster inference.", "links": [], "levels": [] },
+  "l-staging-promotion": { "label": "Stage Promotion", "parent": "t-model-registry", "domain": "d3", "desc": "Moving models through staging \u2192 production \u2192 archived.", "links": [], "levels": [] },
+  "l-metadata-lineage": { "label": "Metadata & Lineage", "parent": "t-model-registry", "domain": "d3", "desc": "Tracking training data, code, and metrics per model version.", "links": [], "levels": [] },
+  "l-ci-ml": { "label": "CI for ML", "parent": "t-cicd-ml", "domain": "d3", "desc": "Automated testing of code, data, and model quality.", "links": [], "levels": [] },
+  "l-cd-ml": { "label": "CD for ML", "parent": "t-cicd-ml", "domain": "d3", "desc": "Automated deployment with canary and shadow strategies.", "links": [], "levels": [] },
+  "l-shadow-deployment": { "label": "Shadow Deployment", "parent": "t-cicd-ml", "domain": "d3", "desc": "Running new model alongside old without affecting users.", "links": [], "levels": [] },
+  "l-unit-tests-ml": { "label": "Unit Tests", "parent": "t-testing-ml", "domain": "d3", "desc": "Testing data transforms and inference logic.", "links": [], "levels": [] },
+  "l-data-tests": { "label": "Data Tests", "parent": "t-testing-ml", "domain": "d3", "desc": "Schema validation, distribution checks, freshness.", "links": [], "levels": [] },
+  "l-model-tests": { "label": "Model Tests", "parent": "t-testing-ml", "domain": "d3", "desc": "Performance thresholds, regression checks, slice analysis.", "links": [], "levels": [] },
+  "l-online-serving": { "label": "Online Serving", "parent": "t-serving-patterns", "domain": "d4", "desc": "Real-time request-response inference endpoints.", "links": [], "levels": [] },
+  "l-batch-serving": { "label": "Batch Serving", "parent": "t-serving-patterns", "domain": "d4", "desc": "Scheduled bulk scoring of large datasets.", "links": [], "levels": [] },
+  "l-edge-serving": { "label": "Edge / On-Device", "parent": "t-serving-patterns", "domain": "d4", "desc": "Running models on mobile, IoT, or browser.", "links": [], "levels": [] },
+  "l-inference-servers": { "label": "Inference Servers", "parent": "t-realtime-inference", "domain": "d4", "desc": "Triton, vLLM, TorchServe for optimised serving.", "links": [], "levels": [] },
+  "l-autoscaling-ml": { "label": "Auto-Scaling", "parent": "t-realtime-inference", "domain": "d4", "desc": "Scaling inference instances based on demand.", "links": [], "levels": [] },
+  "l-latency-optimisation": { "label": "Latency Optimisation", "parent": "t-realtime-inference", "domain": "d4", "desc": "Batching, caching, quantisation for fast responses.", "links": [], "levels": [] },
+  "l-gpu-types": { "label": "GPU Types", "parent": "t-gpu-infra", "domain": "d4", "desc": "A10G, A100, H100, L4 \u2014 choosing the right accelerator.", "links": [], "levels": [] },
+  "l-spot-training": { "label": "Spot/Preemptible Training", "parent": "t-gpu-infra", "domain": "d4", "desc": "Using interruptible instances for cost savings.", "links": [], "levels": [] },
+  "l-multi-tenant-gpu": { "label": "Multi-Tenant GPU", "parent": "t-gpu-infra", "domain": "d4", "desc": "Sharing GPU resources across teams and workloads.", "links": [], "levels": [] },
+  "l-performance-monitoring": { "label": "Performance Monitoring", "parent": "t-model-monitoring", "domain": "d5", "desc": "Tracking accuracy, AUC, and business metrics over time.", "links": [], "levels": [] },
+  "l-prediction-drift": { "label": "Prediction Drift", "parent": "t-model-monitoring", "domain": "d5", "desc": "Detecting shifts in model output distributions.", "links": [], "levels": [] },
+  "l-alerting-ml": { "label": "Alerting", "parent": "t-model-monitoring", "domain": "d5", "desc": "Triggering notifications when metrics breach thresholds.", "links": [], "levels": [] },
+  "l-covariate-shift": { "label": "Covariate Shift", "parent": "t-data-drift", "domain": "d5", "desc": "Input feature distributions change post-deployment.", "links": [], "levels": [] },
+  "l-concept-drift-types": { "label": "Concept Drift Types", "parent": "t-data-drift", "domain": "d5", "desc": "Sudden, gradual, incremental, and recurring drift.", "links": [], "levels": [] },
+  "l-drift-detection": { "label": "Drift Detection Methods", "parent": "t-data-drift", "domain": "d5", "desc": "KS test, PSI, JS divergence for statistical detection.", "links": [], "levels": [] },
+  "l-ab-design": { "label": "Experiment Design", "parent": "t-ab-testing", "domain": "d5", "desc": "Sample size, duration, randomisation for valid results.", "links": [], "levels": [] },
+  "l-metrics-guardrails": { "label": "Metrics & Guardrails", "parent": "t-ab-testing", "domain": "d5", "desc": "Primary metrics to optimise and guardrails to protect.", "links": [], "levels": [] },
+  "l-multi-armed-bandits": { "label": "Multi-Armed Bandits", "parent": "t-ab-testing", "domain": "d5", "desc": "Adaptive allocation for faster convergence.", "links": [], "levels": [] },
+  "l-fairness": { "label": "Fairness", "parent": "t-ml-governance", "domain": "d5", "desc": "Measuring and mitigating bias across groups.", "links": [], "levels": [] },
+  "l-explainability": { "label": "Explainability", "parent": "t-ml-governance", "domain": "d5", "desc": "SHAP, LIME, and interpretable model techniques.", "links": [], "levels": [] },
+  "l-model-cards": { "label": "Model Cards", "parent": "t-ml-governance", "domain": "d5", "desc": "Standardised documentation of model behaviour and limitations.", "links": [], "levels": [] },
+  "l-sagemaker": { "label": "SageMaker", "parent": "t-ml-platforms", "domain": "d6", "desc": "AWS end-to-end ML platform.", "links": [], "levels": [] },
+  "l-vertex-ai": { "label": "Vertex AI", "parent": "t-ml-platforms", "domain": "d6", "desc": "Google Cloud ML platform with AutoML integration.", "links": [], "levels": [] },
+  "l-databricks-ml": { "label": "Databricks ML", "parent": "t-ml-platforms", "domain": "d6", "desc": "Unified analytics and ML on the lakehouse.", "links": [], "levels": [] },
+  "l-open-source-stack": { "label": "Open-Source Stack", "parent": "t-ml-platforms", "domain": "d6", "desc": "MLflow + Kubeflow + BentoML + Feast + Evidently.", "links": [], "levels": [] },
+  "l-kubeflow": { "label": "Kubeflow Pipelines", "parent": "t-ml-pipelines", "domain": "d6", "desc": "Kubernetes-native ML pipeline orchestration.", "links": [], "levels": [] },
+  "l-metaflow": { "label": "Metaflow", "parent": "t-ml-pipelines", "domain": "d6", "desc": "Netflix's human-centric ML framework.", "links": [], "levels": [] },
+  "l-sagemaker-pipelines": { "label": "SageMaker Pipelines", "parent": "t-ml-pipelines", "domain": "d6", "desc": "AWS-native ML workflow automation.", "links": [], "levels": [] },
+  "l-prompt-management": { "label": "Prompt Management", "parent": "t-llmops", "domain": "d6", "desc": "Versioning, testing, and deploying prompt templates.", "links": [], "levels": [] },
+  "l-llm-eval-ops": { "label": "LLM Evaluation", "parent": "t-llmops", "domain": "d6", "desc": "LLM-as-judge, golden sets, and regression testing.", "links": [], "levels": [] },
+  "l-llm-cost": { "label": "LLM Cost Control", "parent": "t-llmops", "domain": "d6", "desc": "Caching, routing, and token optimisation.", "links": [], "levels": [] },
+  "l-guardrails-ops": { "label": "Guardrails", "parent": "t-llmops", "domain": "d6", "desc": "Output validation, safety filters, and schema enforcement.", "links": [], "levels": [] }
+ },
+ "topicEdges": [
+  { "s": "t-mlops-intro", "t": "t-ml-lifecycle", "k": "prereq" },
+  { "s": "t-reproducibility", "t": "t-versioning", "k": "builds" },
+  { "s": "t-experiment-tracking", "t": "t-model-registry", "k": "builds" },
+  { "s": "t-feature-eng", "t": "t-serving-patterns", "k": "applies" },
+  { "s": "t-model-packaging", "t": "t-realtime-inference", "k": "prereq" },
+  { "s": "t-model-registry", "t": "t-cicd-ml", "k": "builds" },
+  { "s": "t-serving-patterns", "t": "t-model-monitoring", "k": "builds" },
+  { "s": "t-model-monitoring", "t": "t-data-drift", "k": "builds" },
+  { "s": "t-data-drift", "t": "t-ml-pipelines", "k": "applies" },
+  { "s": "t-ml-platforms", "t": "t-ml-pipelines", "k": "builds" }
+ ],
+ "leafEdges": []
+}

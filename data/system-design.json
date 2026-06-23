@@ -1,0 +1,491 @@
+{
+ "meta": {
+  "id": "system-design",
+  "kbd": "knowledge hub \u00b7 system design",
+  "title": "System Design",
+  "subtitle": "architect scalable systems",
+  "blurb": "From fundamentals of distributed systems to databases, caching, messaging, and real-world architecture patterns for building reliable software at scale.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Fundamentals", "c": "#F0B23C" },
+  "d2": { "name": "Data & Storage", "c": "#46B8DA" },
+  "d3": { "name": "Compute & Communication", "c": "#54C99A" },
+  "d4": { "name": "Reliability & Performance", "c": "#B08CF0" },
+  "d5": { "name": "Architecture Patterns", "c": "#F0796B" },
+  "d6": { "name": "Real-World Systems", "c": "#E86BB5" }
+ },
+ "cols": [
+  {
+   "title": "Fundamentals",
+   "keys": ["t-sd-intro", "t-scalability", "t-cap-theorem", "t-networking-basics"]
+  },
+  {
+   "title": "Data & Storage",
+   "keys": ["t-databases-sd", "t-caching", "t-cdn", "t-object-storage-sd"]
+  },
+  {
+   "title": "Compute & Communication",
+   "keys": ["t-load-balancing", "t-api-design", "t-messaging-sd", "t-rpc"]
+  },
+  {
+   "title": "Reliability & Performance",
+   "keys": ["t-availability", "t-consistency", "t-rate-limiting", "t-monitoring-sd"]
+  },
+  {
+   "title": "Architecture Patterns",
+   "keys": ["t-microservices", "t-event-driven", "t-cqrs", "t-serverless-sd"]
+  },
+  {
+   "title": "Real-World Designs",
+   "keys": ["t-url-shortener", "t-chat-system", "t-newsfeed", "t-video-streaming"]
+  }
+ ],
+ "topics": {
+  "t-sd-intro": {
+   "label": "System Design Fundamentals",
+   "domain": "d1",
+   "col": 0,
+   "desc": "What system design is, why it matters, and the core thinking framework for designing large-scale software systems.",
+   "subs": [],
+   "links": [
+    { "type": "book", "title": "Designing Data-Intensive Applications (Kleppmann)", "url": "https://dataintensive.net/" },
+    { "type": "book", "title": "System Design Interview (Alex Xu)", "url": "https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF" },
+    { "type": "course", "title": "Grokking System Design", "url": "https://www.designgurus.io/course/grokking-the-system-design-interview" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "System design is the process of defining **architecture, components, and data flow** for a system that meets specific requirements. It's about making trade-offs — no perfect solution exists, only appropriate ones.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Every design starts with: **requirements** (functional + non-functional), **estimation** (traffic, storage, bandwidth), **API definition**, then **high-level design** refined into detailed components. The skill is knowing which trade-offs matter for *this* problem." },
+    { "label": "In practice", "tag": "adv", "body": "Real systems evolve iteratively. Start simple, measure, then add complexity where bottlenecks emerge. Over-engineering upfront is as dangerous as under-engineering. The best architects design for the **next 10x**, not the next 1000x." }
+   ]
+  },
+  "t-scalability": {
+   "label": "Scalability",
+   "domain": "d1",
+   "col": 0,
+   "desc": "How systems handle growing load — vertical vs horizontal scaling, stateless design, and partitioning strategies.",
+   "subs": ["l-vertical-scaling", "l-horizontal-scaling", "l-partitioning"],
+   "links": [
+    { "type": "article", "title": "Scalability for Dummies", "url": "https://www.lecloud.net/tagged/scalability" },
+    { "type": "video", "title": "Harvard CS75 — Scalability Lecture", "url": "https://www.youtube.com/watch?v=-W9F__D3oY4" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Scalability** is a system's ability to handle increased load. **Vertical scaling** (bigger machine) is simple but has limits. **Horizontal scaling** (more machines) is harder but practically unlimited.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Horizontal scaling requires **stateless services** (no local state between requests), **data partitioning** (sharding), and **load balancing**. Statelessness is the key enabler — store state externally (DB, cache, object store)." },
+    { "label": "In practice", "tag": "adv", "body": "Most modern systems scale horizontally at the compute layer and use managed services for state (databases, caches, queues). The hard part is scaling the **data layer** — sharding strategies, cross-shard queries, and rebalancing are where complexity lives." }
+   ]
+  },
+  "t-cap-theorem": {
+   "label": "CAP Theorem & Trade-offs",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The fundamental impossibility result for distributed systems — you can't have consistency, availability, and partition tolerance all at once.",
+   "subs": ["l-consistency-models", "l-eventual-consistency"],
+   "links": [
+    { "type": "article", "title": "CAP Theorem Explained", "url": "https://www.ibm.com/topics/cap-theorem" },
+    { "type": "article", "title": "You Can't Sacrifice Partition Tolerance (Coda Hale)", "url": "https://codahale.com/you-cant-sacrifice-partition-tolerance/" },
+    { "type": "article", "title": "PACELC Theorem", "url": "https://en.wikipedia.org/wiki/PACELC_theorem" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "In a distributed system, network **partitions** will happen. When they do, you must choose: stay **consistent** (all nodes agree) or stay **available** (every request gets a response). You can't guarantee both.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**CP systems** (e.g., ZooKeeper, HBase) sacrifice availability during partitions. **AP systems** (e.g., Cassandra, DynamoDB) sacrifice consistency. **PACELC** extends this: even without partitions, there's a latency vs consistency trade-off." },
+    { "label": "In practice", "tag": "adv", "body": "Most real systems choose **eventual consistency** for high availability, with stronger guarantees where needed (e.g., financial transactions). The art is identifying which operations truly need strong consistency and isolating them from the rest." }
+   ]
+  },
+  "t-networking-basics": {
+   "label": "Networking for System Design",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Essential networking concepts — DNS, TCP/UDP, HTTP, WebSockets, and how data moves between services.",
+   "subs": ["l-dns", "l-tcp-udp", "l-http", "l-websockets"],
+   "links": [
+    { "type": "article", "title": "High Performance Browser Networking (Ilya Grigorik)", "url": "https://hpbn.co/" },
+    { "type": "article", "title": "HTTP/3 Explained", "url": "https://http3-explained.haxx.se/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**DNS** translates names to IPs. **TCP** gives reliable, ordered delivery; **UDP** is faster but unreliable. **HTTP** is the request-response protocol the web runs on. **WebSockets** add persistent bidirectional connections.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Know **HTTP/2** (multiplexing, server push) and **HTTP/3** (QUIC/UDP-based, faster handshakes). Understand latency: **RTT** matters more than bandwidth for most web apps. TLS adds a handshake round-trip (less with TLS 1.3)." },
+    { "label": "In practice", "tag": "adv", "body": "Design for the network being **slow and unreliable**. Use connection pooling, keep-alive, retries with backoff, and timeouts. gRPC (HTTP/2 + protobuf) dominates internal service communication; REST/GraphQL for external APIs." }
+   ]
+  },
+  "t-databases-sd": {
+   "label": "Database Selection & Design",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Choosing the right database, schema design, indexing, replication, and sharding for your access patterns.",
+   "subs": ["l-sql-vs-nosql", "l-indexing", "l-replication", "l-sharding"],
+   "links": [
+    { "type": "book", "title": "DDIA — Storage and Retrieval (Ch. 3)", "url": "https://dataintensive.net/" },
+    { "type": "article", "title": "How to Choose a Database", "url": "https://www.cockroachlabs.com/blog/how-to-choose-a-database/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Relational (SQL)** databases excel at structured data with relationships and ACID transactions. **NoSQL** (document, key-value, wide-column, graph) trades flexibility for scale or specific access patterns.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Indexing** makes reads fast (B-trees for range, hash for point lookups, LSM-trees for write-heavy). **Replication** (leader-follower, multi-leader, leaderless) provides fault tolerance and read scaling. **Sharding** distributes data across nodes." },
+    { "label": "In practice", "tag": "adv", "body": "Choose by **access pattern**, not hype: PostgreSQL handles most workloads well. Add Redis for caching, Elasticsearch for search, a time-series DB for metrics. Shard only when single-node can't keep up — it adds enormous operational complexity." }
+   ]
+  },
+  "t-caching": {
+   "label": "Caching",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Storing computed or fetched results closer to the consumer to reduce latency and database load.",
+   "subs": ["l-cache-strategies", "l-cache-invalidation", "l-distributed-cache"],
+   "links": [
+    { "type": "article", "title": "Caching Strategies (AWS)", "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Strategies.html" },
+    { "type": "article", "title": "Cache Invalidation — Two Hard Problems", "url": "https://martinfowler.com/bliki/TwoHardThings.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **cache** stores frequently accessed data in fast storage (memory) so you don't hit the slower source (database, API) every time. Dramatically reduces latency and load.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Strategies: **cache-aside** (app manages), **read-through/write-through** (cache manages), **write-behind** (async writes). Eviction policies: **LRU**, **LFU**, **TTL**. Distributed caches (Redis, Memcached) share state across instances." },
+    { "label": "In practice", "tag": "adv", "body": "Cache **invalidation** is genuinely hard — stale data causes subtle bugs. Use short TTLs for volatile data, event-driven invalidation for critical data. Watch for **thundering herd** (many cache misses at once) and **hot keys** (one key gets all traffic)." }
+   ]
+  },
+  "t-cdn": {
+   "label": "Content Delivery Networks",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Geographically distributed caches that serve content from the edge closest to the user.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "How CDNs Work (Cloudflare)", "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/" },
+    { "type": "article", "title": "AWS CloudFront", "url": "https://docs.aws.amazon.com/cloudfront/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **CDN** caches content (images, videos, static files, even API responses) at edge locations worldwide. Users are served from the nearest edge, slashing latency.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Push CDNs** — you upload content proactively. **Pull CDNs** — content is cached on first request. Modern CDNs also run compute at the edge (Cloudflare Workers, Lambda@Edge) for dynamic content." },
+    { "label": "In practice", "tag": "adv", "body": "Put everything cacheable on a CDN: static assets, API responses with appropriate cache headers, even HTML. For dynamic content, edge compute lets you personalise without round-tripping to origin. CDN costs scale with bandwidth, not compute." }
+   ]
+  },
+  "t-object-storage-sd": {
+   "label": "Blob & Object Storage",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Storing unstructured data — images, videos, backups, logs — cheaply and durably at any scale.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "AWS S3 Best Practices", "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Object storage** (S3, GCS, Azure Blob) stores files as immutable objects with metadata. Essentially unlimited capacity, 11 nines of durability, and very cheap for cold data.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Access via HTTP (presigned URLs for direct client uploads/downloads). Use lifecycle policies to tier data (hot → cold → archive). Versioning protects against accidental deletes." },
+    { "label": "In practice", "tag": "adv", "body": "Store all large blobs (images, videos, ML model artifacts, backups) here — never in your database. Combine with a CDN for serving. Partition key design matters for throughput: avoid sequential prefixes that create hot partitions." }
+   ]
+  },
+  "t-load-balancing": {
+   "label": "Load Balancing",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Distributing incoming requests across multiple servers for throughput, availability, and fault isolation.",
+   "subs": ["l-lb-algorithms", "l-lb-layers", "l-health-checks"],
+   "links": [
+    { "type": "article", "title": "Load Balancing (NGINX)", "url": "https://www.nginx.com/resources/glossary/load-balancing/" },
+    { "type": "article", "title": "AWS ELB", "url": "https://docs.aws.amazon.com/elasticloadbalancing/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **load balancer** sits between clients and servers, distributing traffic so no single server is overwhelmed. Also provides fault tolerance — unhealthy servers are removed from rotation.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Algorithms: **round-robin**, **least connections**, **weighted**, **consistent hashing** (for stateful routing). Layers: **L4** (TCP, fast, no content inspection) vs **L7** (HTTP, can route by path/header/cookie)." },
+    { "label": "In practice", "tag": "adv", "body": "Use managed LBs (ALB/NLB, Cloud Load Balancing) — don't run your own unless you have a specific reason. L7 for most web traffic (path-based routing, TLS termination); L4 for raw throughput or non-HTTP protocols. Health checks are non-negotiable." }
+   ]
+  },
+  "t-api-design": {
+   "label": "API Design",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Designing interfaces between services and clients — REST, GraphQL, gRPC, and API contracts.",
+   "subs": ["l-rest", "l-graphql", "l-grpc", "l-versioning"],
+   "links": [
+    { "type": "article", "title": "Microsoft REST API Guidelines", "url": "https://github.com/microsoft/api-guidelines" },
+    { "type": "article", "title": "GraphQL Best Practices", "url": "https://graphql.org/learn/best-practices/" },
+    { "type": "article", "title": "gRPC Introduction", "url": "https://grpc.io/docs/what-is-grpc/introduction/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An API is a **contract** between systems. **REST** (resources + HTTP verbs) is the default for public APIs. **GraphQL** lets clients request exactly what they need. **gRPC** (protobuf + HTTP/2) dominates internal service-to-service calls.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Good API design: consistent naming, proper HTTP status codes, pagination, filtering, idempotent writes. Use **OpenAPI/Swagger** for REST docs, **protobuf schemas** for gRPC. Plan for **versioning** from day one." },
+    { "label": "In practice", "tag": "adv", "body": "REST for external consumers (broadest compatibility), GraphQL for complex frontend needs (reduces over-fetching), gRPC for internal microservices (type safety, streaming, performance). **API gateways** handle auth, rate limiting, and routing centrally. In 2026, AI-native APIs increasingly use **streaming (SSE)** for token-by-token LLM responses and **WebSockets** for bidirectional agent communication." }
+   ]
+  },
+  "t-messaging-sd": {
+   "label": "Message Queues & Event Streaming",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Asynchronous communication between services — decoupling producers from consumers for resilience and scale.",
+   "subs": ["l-queues-sd", "l-pubsub-sd", "l-event-log"],
+   "links": [
+    { "type": "article", "title": "Kafka: The Definitive Guide", "url": "https://www.confluent.io/resources/kafka-the-definitive-guide-v2/" },
+    { "type": "article", "title": "AWS SQS vs SNS vs EventBridge", "url": "https://docs.aws.amazon.com/decision-guides/latest/sqs-sns-eventbridge/sqs-sns-eventbridge.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Message queues** (SQS, RabbitMQ) decouple services — the producer doesn't wait for the consumer. This absorbs traffic spikes and isolates failures.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Pub/Sub** fans messages to multiple subscribers. **Event streaming** (Kafka, Kinesis) provides an ordered, durable, replayable log — enabling event sourcing, CDC, and real-time pipelines. Delivery guarantees: at-most-once, at-least-once, exactly-once." },
+    { "label": "In practice", "tag": "adv", "body": "Use queues for task distribution (work queues), pub/sub for notifications/fan-out, and Kafka for the event backbone of data-intensive systems. Design consumers to be **idempotent** — duplicates will happen. Dead-letter queues catch poison messages." }
+   ]
+  },
+  "t-rpc": {
+   "label": "Service Communication Patterns",
+   "domain": "d3",
+   "col": 2,
+   "desc": "How services talk — synchronous (RPC, HTTP) vs asynchronous (events, queues), and when to use each.",
+   "subs": ["l-sync-vs-async", "l-service-discovery", "l-circuit-breaker"],
+   "links": [
+    { "type": "article", "title": "Microservices Communication Patterns", "url": "https://microservices.io/patterns/communication-style/" },
+    { "type": "article", "title": "Circuit Breaker Pattern (Fowler)", "url": "https://martinfowler.com/bliki/CircuitBreaker.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Synchronous** (HTTP/gRPC): caller waits for a response. Simple but creates coupling and cascading failures. **Asynchronous** (queues/events): fire-and-forget, more resilient but harder to reason about.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Service discovery** (DNS, Consul, K8s services) lets services find each other dynamically. **Circuit breakers** prevent cascading failures by failing fast when a downstream is unhealthy. **Retries with exponential backoff** handle transient errors." },
+    { "label": "In practice", "tag": "adv", "body": "Prefer async for anything that doesn't need an immediate response (notifications, analytics, batch processing). Use sync for user-facing requests that need real-time answers. Combine both: sync API gateway → async internal processing → webhook/push for results." }
+   ]
+  },
+  "t-availability": {
+   "label": "High Availability & Fault Tolerance",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Keeping systems running despite failures — redundancy, failover, and designing for partial failure.",
+   "subs": ["l-redundancy", "l-failover", "l-disaster-recovery"],
+   "links": [
+    { "type": "article", "title": "Availability — AWS Well-Architected", "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html" },
+    { "type": "article", "title": "The Calculus of Service Availability", "url": "https://queue.acm.org/detail.cfm?id=3096459" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Availability** is uptime: 99.9% = ~8.7 hours downtime/year, 99.99% = ~52 minutes. Achieve it through **redundancy** (no single points of failure) and **failover** (automatic switching to healthy replicas).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Active-active** (all replicas serve traffic) vs **active-passive** (standby waits). Multi-AZ for regional failures, multi-region for disaster recovery. Understand **RTO** (recovery time objective) and **RPO** (recovery point objective)." },
+    { "label": "In practice", "tag": "adv", "body": "Design for **partial failure** — in distributed systems, something is always broken. Use health checks, graceful degradation (serve stale data rather than error), bulkheads (isolate failures), and chaos engineering to validate resilience before incidents teach you the hard way." }
+   ]
+  },
+  "t-consistency": {
+   "label": "Consistency Patterns",
+   "domain": "d4",
+   "col": 3,
+   "desc": "How distributed systems keep data in agreement — strong, eventual, causal consistency and their trade-offs.",
+   "subs": ["l-strong-consistency", "l-eventual-consistency-p", "l-conflict-resolution"],
+   "links": [
+    { "type": "article", "title": "Consistency Models (Jepsen)", "url": "https://jepsen.io/consistency" },
+    { "type": "book", "title": "DDIA — Consistency & Consensus (Ch. 9)", "url": "https://dataintensive.net/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Strong consistency**: every read sees the latest write. **Eventual consistency**: replicas converge over time, but reads may be stale. Stronger consistency costs latency and availability.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "A spectrum: linearisability → sequential → causal → eventual. **Quorum reads/writes** (W + R > N) give tunable consistency. **Consensus protocols** (Raft, Paxos) coordinate agreement among nodes." },
+    { "label": "In practice", "tag": "adv", "body": "Use strong consistency for money, inventory, and coordination. Use eventual consistency for feeds, analytics, and caches. **CRDTs** enable conflict-free merging for collaborative apps. Most systems mix: strong where it matters, eventual everywhere else." }
+   ]
+  },
+  "t-rate-limiting": {
+   "label": "Rate Limiting & Throttling",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Protecting services from abuse and overload by controlling request rates.",
+   "subs": ["l-token-bucket", "l-sliding-window", "l-distributed-rate-limit"],
+   "links": [
+    { "type": "article", "title": "Rate Limiting Strategies (Stripe)", "url": "https://stripe.com/blog/rate-limiters" },
+    { "type": "article", "title": "API Rate Limiting (Kong)", "url": "https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Rate limiting** caps how many requests a client can make in a time window. Protects your system from abuse, bugs (retry storms), and ensures fair resource sharing.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Algorithms: **token bucket** (smooth, allows bursts), **sliding window** (precise), **fixed window** (simple but bursty at edges). Apply per-user, per-IP, per-API-key, or globally." },
+    { "label": "In practice", "tag": "adv", "body": "Return **429 Too Many Requests** with `Retry-After` header. For distributed systems, use a shared counter (Redis) or approximate algorithms. Layer it: API gateway for coarse limits, service-level for fine-grained. Distinguish between user-facing limits and internal back-pressure." }
+   ]
+  },
+  "t-monitoring-sd": {
+   "label": "Monitoring & Alerting",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Observing system health with metrics, logs, traces, and actionable alerts.",
+   "subs": ["l-metrics-sd", "l-logging-sd", "l-distributed-tracing"],
+   "links": [
+    { "type": "article", "title": "Google SRE — Monitoring Distributed Systems", "url": "https://sre.google/sre-book/monitoring-distributed-systems/" },
+    { "type": "article", "title": "The Four Golden Signals", "url": "https://sre.google/sre-book/monitoring-distributed-systems/#xref_monitoring_golden-signals" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Monitor the **four golden signals**: latency, traffic, errors, and saturation. If you can't see what's happening, you can't fix it.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Metrics** (Prometheus/Grafana) for dashboards and alerts, **structured logs** (ELK, Loki) for debugging, **distributed traces** (Jaeger, Tempo) for following requests across services. Alert on **symptoms** (high error rate), not causes (CPU spike)." },
+    { "label": "In practice", "tag": "adv", "body": "Use **SLOs** (Service Level Objectives) to define 'good enough' and **error budgets** to balance reliability with velocity. Alert fatigue kills on-call engineers — ruthlessly prune noisy alerts. Trace every request end-to-end with OpenTelemetry." }
+   ]
+  },
+  "t-microservices": {
+   "label": "Microservices Architecture",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Decomposing systems into small, independently deployable services — benefits, costs, and when it's worth it.",
+   "subs": ["l-service-boundaries", "l-data-ownership", "l-mono-to-micro"],
+   "links": [
+    { "type": "article", "title": "Microservices (Martin Fowler)", "url": "https://martinfowler.com/articles/microservices.html" },
+    { "type": "article", "title": "Monolith First (Fowler)", "url": "https://martinfowler.com/bliki/MonolithFirst.html" },
+    { "type": "book", "title": "Building Microservices (Sam Newman)", "url": "https://www.oreilly.com/library/view/building-microservices-2nd/9781492034018/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Microservices** split a system into small services, each owning its data and deploying independently. Benefits: independent scaling, team autonomy, technology flexibility. Cost: distributed system complexity.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Draw boundaries around **business capabilities** (Domain-Driven Design). Each service owns its database (no shared DB). Communication via APIs or events. A **modular monolith** gets many benefits without the network complexity." },
+    { "label": "In practice", "tag": "adv", "body": "Start with a monolith, extract services when you have clear bounded contexts and team scaling needs. Premature decomposition creates distributed monoliths — the worst of both worlds. If you go micro, invest heavily in observability, CI/CD, and service mesh infrastructure. In 2026, AI coding agents can navigate microservice codebases, but humans still need to understand service boundaries for effective architecture decisions." }
+   ]
+  },
+  "t-event-driven": {
+   "label": "Event-Driven Architecture",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Systems that communicate through events — loose coupling, reactivity, and eventual consistency by design.",
+   "subs": ["l-event-sourcing", "l-saga-pattern", "l-choreography-vs-orchestration"],
+   "links": [
+    { "type": "article", "title": "Event-Driven Architecture (AWS)", "url": "https://aws.amazon.com/event-driven-architecture/" },
+    { "type": "article", "title": "Event Sourcing (Fowler)", "url": "https://martinfowler.com/eaaDev/EventSourcing.html" },
+    { "type": "article", "title": "Saga Pattern", "url": "https://microservices.io/patterns/data/saga.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Instead of services calling each other directly, they publish **events** ('order placed', 'payment received'). Interested services react independently. This decouples producers from consumers.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Event sourcing** stores state as a sequence of events (not just current state). **Sagas** coordinate multi-service transactions via compensating actions. **Choreography** (services react to events) vs **orchestration** (a coordinator directs the flow)." },
+    { "label": "In practice", "tag": "adv", "body": "Event-driven shines for decoupling, audit trails, and rebuilding state. The downsides: eventual consistency, harder debugging (events are implicit control flow), and event schema evolution. Use schema registries and versioning from day one." }
+   ]
+  },
+  "t-cqrs": {
+   "label": "CQRS & Read/Write Separation",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Separating read and write models for independent optimization — different data shapes for different needs.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "CQRS (Fowler)", "url": "https://martinfowler.com/bliki/CQRS.html" },
+    { "type": "article", "title": "CQRS Pattern (Microsoft)", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**CQRS** (Command Query Responsibility Segregation) uses separate models for reading and writing. Writes go to a normalised store optimised for consistency; reads come from denormalised views optimised for queries.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Write side: validates commands, emits events. Read side: builds materialised views from events, optimised per query pattern. The two sides can use different databases entirely (e.g., PostgreSQL for writes, Elasticsearch for reads)." },
+    { "label": "In practice", "tag": "adv", "body": "CQRS adds complexity — use it only when read and write patterns are fundamentally different (e.g., complex writes but many diverse read views). Pairs naturally with event sourcing. The read side is eventually consistent with the write side — ensure the UI handles this gracefully." }
+   ]
+  },
+  "t-serverless-sd": {
+   "label": "Serverless Architecture",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Building systems from managed services and functions — minimal ops, pay-per-use, event-driven by nature.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Serverless Architectures (Fowler)", "url": "https://martinfowler.com/articles/serverless.html" },
+    { "type": "article", "title": "AWS Serverless Application Lens", "url": "https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/welcome.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Serverless architecture** composes managed services (databases, queues, auth) glued together with functions. Zero infrastructure management, automatic scaling, pay only for actual usage.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Patterns: API Gateway + Lambda + DynamoDB. Event-driven by nature (triggers from queues, storage, HTTP). Challenges: cold starts, vendor lock-in, function composition complexity, and 15-minute execution limits." },
+    { "label": "In practice", "tag": "adv", "body": "Serverless is the default architecture for event-driven, low-traffic, and spiky workloads. In 2026, serverless containers (Cloud Run, Fargate, Azure Container Apps) blur the line — you get container flexibility without managing infrastructure. The challenge is observability, debugging, and cold starts at scale. Serverless costs become unpredictable at sustained high throughput — model costs carefully." }
+   ]
+  },
+  "t-url-shortener": {
+   "label": "Design: URL Shortener",
+   "domain": "d6",
+   "col": 5,
+   "desc": "A classic system design exercise — generating, storing, and redirecting short URLs at scale.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "System Design — URL Shortener", "url": "https://www.designgurus.io/course-play/grokking-the-system-design-interview/doc/638c0b5dac93e7ae59a1af6b" }
+   ],
+   "levels": [
+    { "label": "Requirements", "tag": "basics", "body": "Shorten a long URL to a short key (e.g., `bit.ly/abc123`), redirect on access, track analytics. Read-heavy (100:1 read-to-write ratio), low latency, high availability.", "open": true },
+    { "label": "Design", "tag": "mid", "body": "Generate a unique short key (base62 encoding of an auto-increment ID, or hash + collision check). Store mapping in a key-value store or relational DB. Cache hot URLs in Redis. Use 301 (permanent) or 302 (temporary) redirects based on analytics needs." },
+    { "label": "Scale considerations", "tag": "adv", "body": "At billions of URLs: shard by key prefix, use consistent hashing for cache distribution, CDN for popular links. Rate-limit creation to prevent abuse. Analytics via async event stream (Kafka → analytics pipeline). Custom domains and expiration add product complexity." }
+   ]
+  },
+  "t-chat-system": {
+   "label": "Design: Chat System",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Real-time messaging — WebSockets, presence, message storage, delivery guarantees, and group chat.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "WhatsApp System Design", "url": "https://www.designgurus.io/course-play/grokking-the-system-design-interview/doc/638c0b64ac93e7ae59a1af78" },
+    { "type": "article", "title": "Discord Engineering Blog", "url": "https://discord.com/category/engineering" }
+   ],
+   "levels": [
+    { "label": "Requirements", "tag": "basics", "body": "1-on-1 and group messaging, real-time delivery, offline message queueing, read receipts, presence (online/offline). Low latency, high reliability — messages must never be lost.", "open": true },
+    { "label": "Design", "tag": "mid", "body": "**WebSocket** connections for real-time push. A chat service routes messages: if recipient is online, push directly; if offline, store in a queue. Message storage: append-only (Cassandra or similar). Presence service uses heartbeats. Group chat fans out to all members." },
+    { "label": "Scale considerations", "tag": "adv", "body": "Millions of concurrent WebSocket connections require connection servers (stateful, sticky sessions). Shard by user ID. For large groups, use pub/sub rather than individual fan-out. End-to-end encryption, media storage (S3 + CDN), and message search (Elasticsearch) are production realities." }
+   ]
+  },
+  "t-newsfeed": {
+   "label": "Design: News Feed",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Generating and serving personalised feeds — fan-out strategies, ranking, and real-time updates.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Designing a News Feed System", "url": "https://www.designgurus.io/course-play/grokking-the-system-design-interview/doc/638c0b60ac93e7ae59a1af6f" }
+   ],
+   "levels": [
+    { "label": "Requirements", "tag": "basics", "body": "Show users a personalised, ranked feed of posts from people/pages they follow. Near-real-time updates, support for millions of users, each following hundreds to thousands of sources.", "open": true },
+    { "label": "Design", "tag": "mid", "body": "Two models: **fan-out on write** (pre-compute feeds when a post is created — fast reads, expensive writes) vs **fan-out on read** (assemble feed at read time — slower reads, cheaper writes). Hybrid: fan-out on write for normal users, fan-out on read for celebrities (millions of followers)." },
+    { "label": "Scale considerations", "tag": "adv", "body": "Feed ranking (ML models scoring relevance, recency, engagement). Cache pre-computed feeds in Redis. Handle the 'celebrity problem' (one post → millions of fan-outs). Push notifications for high-priority content. Media (images/video) served via CDN with lazy loading." }
+   ]
+  },
+  "t-video-streaming": {
+   "label": "Design: Video Streaming",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Upload, transcode, store, and stream video at scale — the YouTube/Netflix design challenge.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Netflix System Design", "url": "https://www.designgurus.io/course-play/grokking-the-system-design-interview/doc/638c0b6dac93e7ae59a1af88" },
+    { "type": "article", "title": "Netflix Tech Blog", "url": "https://netflixtechblog.com/" }
+   ],
+   "levels": [
+    { "label": "Requirements", "tag": "basics", "body": "Upload videos, transcode to multiple resolutions/formats, store durably, and stream with adaptive bitrate to millions of concurrent viewers worldwide.", "open": true },
+    { "label": "Design", "tag": "mid", "body": "Upload to object storage → async transcoding pipeline (FFmpeg on workers) → multiple renditions stored in S3/GCS → served via CDN. **Adaptive bitrate streaming** (HLS/DASH) adjusts quality based on the viewer's bandwidth in real time." },
+    { "label": "Scale considerations", "tag": "adv", "body": "Transcoding is CPU-intensive: use spot instances and parallel chunk processing. CDN costs dominate at scale — Netflix uses its own Open Connect CDN appliances. Pre-position popular content at edge locations. Recommendation engine and thumbnail generation are separate ML pipelines feeding into the same content metadata." }
+   ]
+  }
+ },
+ "leaves": {
+  "l-vertical-scaling": { "label": "Vertical Scaling", "parent": "t-scalability", "domain": "d1", "desc": "Adding more CPU, RAM, or storage to a single machine.", "links": [], "levels": [] },
+  "l-horizontal-scaling": { "label": "Horizontal Scaling", "parent": "t-scalability", "domain": "d1", "desc": "Adding more machines and distributing load across them.", "links": [], "levels": [] },
+  "l-partitioning": { "label": "Data Partitioning", "parent": "t-scalability", "domain": "d1", "desc": "Splitting data across multiple nodes — range, hash, and directory-based partitioning.", "links": [], "levels": [] },
+  "l-consistency-models": { "label": "Consistency Models", "parent": "t-cap-theorem", "domain": "d1", "desc": "The spectrum from linearisability to eventual consistency.", "links": [], "levels": [] },
+  "l-eventual-consistency": { "label": "Eventual Consistency", "parent": "t-cap-theorem", "domain": "d1", "desc": "Replicas converge over time without immediate agreement.", "links": [], "levels": [] },
+  "l-dns": { "label": "DNS", "parent": "t-networking-basics", "domain": "d1", "desc": "The domain name system that translates names to IP addresses.", "links": [], "levels": [] },
+  "l-tcp-udp": { "label": "TCP vs UDP", "parent": "t-networking-basics", "domain": "d1", "desc": "Reliable ordered streams vs fast unreliable datagrams.", "links": [], "levels": [] },
+  "l-http": { "label": "HTTP/1.1, 2, 3", "parent": "t-networking-basics", "domain": "d1", "desc": "The evolution of the web's core protocol.", "links": [], "levels": [] },
+  "l-websockets": { "label": "WebSockets", "parent": "t-networking-basics", "domain": "d1", "desc": "Persistent bidirectional connections over a single TCP socket.", "links": [], "levels": [] },
+  "l-sql-vs-nosql": { "label": "SQL vs NoSQL", "parent": "t-databases-sd", "domain": "d2", "desc": "Relational databases vs document, key-value, wide-column, and graph stores.", "links": [], "levels": [] },
+  "l-indexing": { "label": "Indexing", "parent": "t-databases-sd", "domain": "d2", "desc": "B-trees, hash indexes, and LSM-trees for fast data retrieval.", "links": [], "levels": [] },
+  "l-replication": { "label": "Replication", "parent": "t-databases-sd", "domain": "d2", "desc": "Copying data across nodes for fault tolerance and read scaling.", "links": [], "levels": [] },
+  "l-sharding": { "label": "Sharding", "parent": "t-databases-sd", "domain": "d2", "desc": "Splitting data across multiple database instances by partition key.", "links": [], "levels": [] },
+  "l-cache-strategies": { "label": "Cache Strategies", "parent": "t-caching", "domain": "d2", "desc": "Cache-aside, read-through, write-through, and write-behind patterns.", "links": [], "levels": [] },
+  "l-cache-invalidation": { "label": "Cache Invalidation", "parent": "t-caching", "domain": "d2", "desc": "Keeping caches fresh — TTL, event-driven purge, and versioning.", "links": [], "levels": [] },
+  "l-distributed-cache": { "label": "Distributed Caching", "parent": "t-caching", "domain": "d2", "desc": "Redis, Memcached, and shared caching across service instances.", "links": [], "levels": [] },
+  "l-lb-algorithms": { "label": "LB Algorithms", "parent": "t-load-balancing", "domain": "d3", "desc": "Round-robin, least connections, weighted, consistent hashing.", "links": [], "levels": [] },
+  "l-lb-layers": { "label": "L4 vs L7", "parent": "t-load-balancing", "domain": "d3", "desc": "Transport-layer vs application-layer load balancing.", "links": [], "levels": [] },
+  "l-health-checks": { "label": "Health Checks", "parent": "t-load-balancing", "domain": "d3", "desc": "Probing backend health to route traffic only to healthy instances.", "links": [], "levels": [] },
+  "l-rest": { "label": "REST", "parent": "t-api-design", "domain": "d3", "desc": "Resource-oriented API design using HTTP verbs and status codes.", "links": [], "levels": [] },
+  "l-graphql": { "label": "GraphQL", "parent": "t-api-design", "domain": "d3", "desc": "Client-driven queries — request exactly the data you need.", "links": [], "levels": [] },
+  "l-grpc": { "label": "gRPC", "parent": "t-api-design", "domain": "d3", "desc": "High-performance RPC with protobuf schemas and HTTP/2 transport.", "links": [], "levels": [] },
+  "l-versioning": { "label": "API Versioning", "parent": "t-api-design", "domain": "d3", "desc": "Evolving APIs without breaking existing clients.", "links": [], "levels": [] },
+  "l-queues-sd": { "label": "Message Queues", "parent": "t-messaging-sd", "domain": "d3", "desc": "Point-to-point async delivery with backpressure handling.", "links": [], "levels": [] },
+  "l-pubsub-sd": { "label": "Pub/Sub", "parent": "t-messaging-sd", "domain": "d3", "desc": "Topic-based fan-out to multiple subscribers.", "links": [], "levels": [] },
+  "l-event-log": { "label": "Event Logs", "parent": "t-messaging-sd", "domain": "d3", "desc": "Ordered, durable, replayable streams (Kafka, Kinesis).", "links": [], "levels": [] },
+  "l-sync-vs-async": { "label": "Sync vs Async", "parent": "t-rpc", "domain": "d3", "desc": "Request-response vs fire-and-forget communication trade-offs.", "links": [], "levels": [] },
+  "l-service-discovery": { "label": "Service Discovery", "parent": "t-rpc", "domain": "d3", "desc": "Dynamic lookup of service instances — DNS, registries, sidecars.", "links": [], "levels": [] },
+  "l-circuit-breaker": { "label": "Circuit Breaker", "parent": "t-rpc", "domain": "d3", "desc": "Failing fast when a downstream service is unhealthy.", "links": [], "levels": [] },
+  "l-redundancy": { "label": "Redundancy", "parent": "t-availability", "domain": "d4", "desc": "Eliminating single points of failure with replicas.", "links": [], "levels": [] },
+  "l-failover": { "label": "Failover", "parent": "t-availability", "domain": "d4", "desc": "Automatic switching to standby systems on failure.", "links": [], "levels": [] },
+  "l-disaster-recovery": { "label": "Disaster Recovery", "parent": "t-availability", "domain": "d4", "desc": "Multi-region strategies, RTO, RPO, and recovery runbooks.", "links": [], "levels": [] },
+  "l-strong-consistency": { "label": "Strong Consistency", "parent": "t-consistency", "domain": "d4", "desc": "Linearisability — every read returns the most recent write.", "links": [], "levels": [] },
+  "l-eventual-consistency-p": { "label": "Eventual Consistency", "parent": "t-consistency", "domain": "d4", "desc": "Replicas converge given enough time without new writes.", "links": [], "levels": [] },
+  "l-conflict-resolution": { "label": "Conflict Resolution", "parent": "t-consistency", "domain": "d4", "desc": "Last-writer-wins, vector clocks, CRDTs for handling concurrent writes.", "links": [], "levels": [] },
+  "l-token-bucket": { "label": "Token Bucket", "parent": "t-rate-limiting", "domain": "d4", "desc": "Smooth rate limiting that allows controlled bursts.", "links": [], "levels": [] },
+  "l-sliding-window": { "label": "Sliding Window", "parent": "t-rate-limiting", "domain": "d4", "desc": "Precise per-window counting without boundary spikes.", "links": [], "levels": [] },
+  "l-distributed-rate-limit": { "label": "Distributed Rate Limiting", "parent": "t-rate-limiting", "domain": "d4", "desc": "Coordinating rate limits across multiple service instances.", "links": [], "levels": [] },
+  "l-metrics-sd": { "label": "Metrics", "parent": "t-monitoring-sd", "domain": "d4", "desc": "Numeric time-series data — latency percentiles, error rates, saturation.", "links": [], "levels": [] },
+  "l-logging-sd": { "label": "Structured Logging", "parent": "t-monitoring-sd", "domain": "d4", "desc": "JSON logs with correlation IDs for searchable debugging.", "links": [], "levels": [] },
+  "l-distributed-tracing": { "label": "Distributed Tracing", "parent": "t-monitoring-sd", "domain": "d4", "desc": "Following a request across service boundaries end-to-end.", "links": [], "levels": [] },
+  "l-service-boundaries": { "label": "Service Boundaries", "parent": "t-microservices", "domain": "d5", "desc": "Using bounded contexts (DDD) to define what each service owns.", "links": [], "levels": [] },
+  "l-data-ownership": { "label": "Data Ownership", "parent": "t-microservices", "domain": "d5", "desc": "Each service owns its data — no shared databases.", "links": [], "levels": [] },
+  "l-mono-to-micro": { "label": "Monolith to Microservices", "parent": "t-microservices", "domain": "d5", "desc": "Incremental decomposition strategies — strangler fig pattern.", "links": [], "levels": [] },
+  "l-event-sourcing": { "label": "Event Sourcing", "parent": "t-event-driven", "domain": "d5", "desc": "Storing state as a sequence of immutable events.", "links": [], "levels": [] },
+  "l-saga-pattern": { "label": "Saga Pattern", "parent": "t-event-driven", "domain": "d5", "desc": "Multi-service transactions via compensating actions.", "links": [], "levels": [] },
+  "l-choreography-vs-orchestration": { "label": "Choreography vs Orchestration", "parent": "t-event-driven", "domain": "d5", "desc": "Decentralised event reactions vs a central coordinator.", "links": [], "levels": [] }
+ },
+ "topicEdges": [
+  { "s": "t-sd-intro", "t": "t-scalability", "k": "prereq" },
+  { "s": "t-scalability", "t": "t-load-balancing", "k": "builds" },
+  { "s": "t-cap-theorem", "t": "t-consistency", "k": "builds" },
+  { "s": "t-databases-sd", "t": "t-caching", "k": "builds" },
+  { "s": "t-messaging-sd", "t": "t-event-driven", "k": "builds" },
+  { "s": "t-microservices", "t": "t-event-driven", "k": "applies" },
+  { "s": "t-availability", "t": "t-monitoring-sd", "k": "applies" }
+ ],
+ "leafEdges": []
+}

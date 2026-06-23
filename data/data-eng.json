@@ -1,0 +1,523 @@
+{
+ "meta": {
+  "id": "data-eng",
+  "kbd": "knowledge hub \u00b7 data engineering",
+  "title": "Data Engineering",
+  "subtitle": "build reliable data pipelines",
+  "blurb": "From ingestion and storage to transformation, orchestration, and serving \u2014 the infrastructure that turns raw data into trusted, queryable assets.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Foundations", "c": "#F0B23C" },
+  "d2": { "name": "Storage & Formats", "c": "#46B8DA" },
+  "d3": { "name": "Ingestion & Transport", "c": "#54C99A" },
+  "d4": { "name": "Transformation", "c": "#B08CF0" },
+  "d5": { "name": "Orchestration & Quality", "c": "#F0796B" },
+  "d6": { "name": "Serving & Analytics", "c": "#E86BB5" }
+ },
+ "cols": [
+  {
+   "title": "Foundations",
+   "keys": ["t-de-intro", "t-data-architectures", "t-batch-vs-stream", "t-data-modeling"]
+  },
+  {
+   "title": "Storage & Formats",
+   "keys": ["t-data-lakes", "t-file-formats", "t-table-formats", "t-warehouses"]
+  },
+  {
+   "title": "Ingestion & Transport",
+   "keys": ["t-batch-ingestion", "t-stream-ingestion", "t-cdc", "t-api-ingestion"]
+  },
+  {
+   "title": "Transformation",
+   "keys": ["t-sql-transforms", "t-spark", "t-dbt", "t-streaming-processing"]
+  },
+  {
+   "title": "Orchestration & Quality",
+   "keys": ["t-orchestration", "t-data-quality", "t-data-lineage", "t-data-governance"]
+  },
+  {
+   "title": "Serving & Analytics",
+   "keys": ["t-olap", "t-feature-stores", "t-reverse-etl", "t-semantic-layer"]
+  }
+ ],
+ "topics": {
+  "t-de-intro": {
+   "label": "What is Data Engineering?",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The discipline of designing, building, and maintaining systems that collect, store, and transform data for analysis and ML.",
+   "subs": [],
+   "links": [
+    { "type": "book", "title": "Fundamentals of Data Engineering (Reis & Housley)", "url": "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/" },
+    { "type": "book", "title": "Designing Data-Intensive Applications (Kleppmann)", "url": "https://dataintensive.net/" },
+    { "type": "article", "title": "Data Engineering Roadmap", "url": "https://roadmap.sh/dataengineering" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Data engineering is the **infrastructure layer** that makes data usable. You build pipelines that move data from sources to destinations, transforming it along the way so analysts, scientists, and ML systems can trust and query it.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "The lifecycle: **generate \u2192 ingest \u2192 store \u2192 transform \u2192 serve**. A data engineer owns reliability, scalability, and cost efficiency across this chain. Adjacent concerns: security, privacy, data management, and DataOps." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026 the role blends software engineering with data infrastructure. You're expected to write production-quality code, understand distributed systems, operate cloud services, and collaborate closely with analytics and ML teams. The stack is converging around SQL + Python + cloud-native managed services." }
+   ]
+  },
+  "t-data-architectures": {
+   "label": "Data Architecture Patterns",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Warehouse, lake, lakehouse, mesh \u2014 the major architectural paradigms and when to use each.",
+   "subs": ["l-warehouse-arch", "l-lake-arch", "l-lakehouse-arch", "l-data-mesh"],
+   "links": [
+    { "type": "article", "title": "Lakehouse: A New Generation of Open Platforms (Databricks)", "url": "https://www.databricks.com/research/lakehouse-a-new-generation-of-open-platforms-that-unify-data-warehousing-and-advanced-analytics" },
+    { "type": "article", "title": "Data Mesh (Zhamak Dehghani)", "url": "https://martinfowler.com/articles/data-mesh-principles.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Data warehouse**: structured, schema-on-write, optimised for BI (Snowflake, BigQuery, Redshift). **Data lake**: raw files in object storage, schema-on-read, cheap and flexible. **Lakehouse**: combines both \u2014 open file formats on a lake with warehouse-like performance and transactions.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Data mesh** decentralises ownership: domain teams own their data as products, with federated governance. It's an organisational pattern, not a technology. In practice, most teams adopt a **lakehouse** with domain-oriented ownership principles from mesh." },
+    { "label": "In practice", "tag": "adv", "body": "By 2026 the lakehouse is the dominant new-build architecture: open formats (Parquet/Iceberg v3) on object storage, query engines (Spark, Trino, Flink 2.2, DuckDB) on top, and a catalog (**Apache Polaris**, Unity Catalog) for governance. Pure warehouses still dominate BI; pure lakes still power ML feature pipelines." }
+   ]
+  },
+  "t-batch-vs-stream": {
+   "label": "Batch vs Streaming",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Two fundamental processing paradigms \u2014 processing data in large chunks vs processing it continuously as it arrives.",
+   "subs": ["l-batch-paradigm", "l-stream-paradigm", "l-lambda-kappa"],
+   "links": [
+    { "type": "article", "title": "Batch vs Stream Processing (Confluent)", "url": "https://www.confluent.io/learn/batch-vs-real-time-data-processing/" },
+    { "type": "article", "title": "Questioning the Lambda Architecture", "url": "https://www.oreilly.com/radar/questioning-the-lambda-architecture/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Batch**: process accumulated data on a schedule (hourly, daily). Simple, efficient, high throughput. **Streaming**: process events as they arrive, with seconds-level latency. More complex but enables real-time use cases.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Lambda architecture** runs both batch and stream in parallel (complex but complete). **Kappa architecture** uses only streaming, replaying the log for reprocessing. In practice, most systems are batch-first with streaming for the few use cases that truly need low latency." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, the boundary blurs: tools like **Apache Flink** and **Spark Structured Streaming** unify batch and stream with the same API. Default to batch (simpler, cheaper, easier to debug); add streaming only where latency requirements demand it (fraud detection, real-time recommendations, alerting)." }
+   ]
+  },
+  "t-data-modeling": {
+   "label": "Data Modeling",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Structuring data for efficient querying \u2014 dimensional modeling, normalisation, and schema design for analytics.",
+   "subs": ["l-star-schema", "l-snowflake-schema", "l-data-vault", "l-one-big-table"],
+   "links": [
+    { "type": "book", "title": "The Data Warehouse Toolkit (Kimball)", "url": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/" },
+    { "type": "article", "title": "Data Vault 2.0", "url": "https://datavaultalliance.com/about/what-is-datavault/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Data modeling defines how data is **structured, related, and stored** for efficient access. For analytics, the dominant pattern is **dimensional modeling**: **fact tables** (events/metrics) surrounded by **dimension tables** (who, what, when, where).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Star schema**: denormalised dimensions for fast queries. **Snowflake schema**: normalised dimensions (saves space, adds joins). **Data Vault**: a historised, audit-friendly approach for enterprise data warehouses. **One Big Table (OBT)**: pre-joined wide tables for simple BI." },
+    { "label": "In practice", "tag": "adv", "body": "Kimball's dimensional modeling remains the standard for BI/analytics. Data Vault suits complex enterprise environments with many sources. With modern columnar engines (BigQuery, Snowflake), over-normalisation matters less \u2014 compute is cheap, modeler time is expensive. Use **dbt** to codify and version your models." }
+   ]
+  },
+  "t-data-lakes": {
+   "label": "Data Lakes",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Centralised repositories of raw data stored in open formats on cheap object storage.",
+   "subs": ["l-lake-zones", "l-partitioning-de"],
+   "links": [
+    { "type": "article", "title": "AWS Lake Formation", "url": "https://docs.aws.amazon.com/lake-formation/" },
+    { "type": "article", "title": "Building a Data Lake (Databricks)", "url": "https://www.databricks.com/discover/data-lakes" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **data lake** stores all your raw data \u2014 structured, semi-structured, unstructured \u2014 in object storage (S3, GCS, ADLS). Cheap, durable, and schema-agnostic. You decide structure at read time.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Organise into zones: **raw/bronze** (as-is from source), **cleaned/silver** (validated, deduplicated), **curated/gold** (business-ready aggregates). **Partition** by date or key columns for efficient scans. A **catalog** (Glue, Hive Metastore) tracks schemas." },
+    { "label": "In practice", "tag": "adv", "body": "Without governance, lakes become swamps. Enforce naming conventions, access controls, and data quality checks per zone. Use table formats (Iceberg, Delta) to add ACID transactions, time-travel, and schema evolution on top of raw object storage." }
+   ]
+  },
+  "t-file-formats": {
+   "label": "File Formats",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Choosing the right serialisation format \u2014 Parquet, Avro, ORC, JSON, and their trade-offs.",
+   "subs": ["l-parquet", "l-avro", "l-orc"],
+   "links": [
+    { "type": "article", "title": "Apache Parquet", "url": "https://parquet.apache.org/" },
+    { "type": "article", "title": "Apache Avro", "url": "https://avro.apache.org/" },
+    { "type": "article", "title": "Columnar vs Row Formats", "url": "https://www.databricks.com/glossary/what-is-parquet" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Columnar** formats (Parquet, ORC) store data by column \u2014 ideal for analytics (read only the columns you need, great compression). **Row** formats (Avro, JSON, CSV) store data by record \u2014 better for write-heavy or streaming workloads.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Parquet**: the standard for analytics lakes (columnar, compressed, splittable). **Avro**: schema-embedded, compact, ideal for Kafka and data interchange. **ORC**: Hive-optimised columnar. JSON/CSV: human-readable but large and slow at scale." },
+    { "label": "In practice", "tag": "adv", "body": "Default to **Parquet** for anything analytical. Use **Avro** for streaming/message serialisation (compact, schema evolution). Compression: Snappy for speed, Zstd for ratio. Row-group sizing and column statistics in Parquet directly impact query performance \u2014 tune them for your query patterns." }
+   ]
+  },
+  "t-table-formats": {
+   "label": "Open Table Formats",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Apache Iceberg, Delta Lake, Hudi \u2014 adding warehouse features (ACID, time-travel, schema evolution) to data lakes.",
+   "subs": ["l-iceberg", "l-delta-lake", "l-hudi"],
+   "links": [
+    { "type": "article", "title": "Apache Iceberg", "url": "https://iceberg.apache.org/" },
+    { "type": "article", "title": "Delta Lake", "url": "https://delta.io/" },
+    { "type": "article", "title": "Apache Hudi", "url": "https://hudi.apache.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Open table formats sit between your files (Parquet) and your query engine. They add **ACID transactions**, **time-travel** (query historical snapshots), **schema evolution**, and **partition evolution** to plain data lake files.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Iceberg**: engine-agnostic, hidden partitioning, strong community (Netflix origin). **Delta Lake**: Spark-native, Databricks ecosystem, log-based transactions. **Hudi**: Uber origin, strong for upserts/CDC. All three are converging in features." },
+    { "label": "In practice", "tag": "adv", "body": "By 2026, **Iceberg** is the industry default for new projects \u2014 **Iceberg v3** reaching GA across major engines, with broad support from Spark, Trino, Flink 2.2, DuckDB, BigQuery, and Snowflake. **Apache Polaris** (graduated catalog) provides vendor-neutral governance. Delta Lake 4.0 (September 2025) added coordinated commits for multi-engine writes. Choose one and stick with it; the interoperability story (UniForm, XTable) is improving but still maturing." }
+   ]
+  },
+  "t-warehouses": {
+   "label": "Cloud Data Warehouses",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Managed analytical databases \u2014 Snowflake, BigQuery, Redshift \u2014 optimised for complex queries over large datasets.",
+   "subs": ["l-snowflake", "l-bigquery", "l-redshift"],
+   "links": [
+    { "type": "article", "title": "Snowflake Documentation", "url": "https://docs.snowflake.com/" },
+    { "type": "article", "title": "BigQuery Documentation", "url": "https://cloud.google.com/bigquery/docs" },
+    { "type": "article", "title": "Amazon Redshift", "url": "https://docs.aws.amazon.com/redshift/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud warehouses store and query structured/semi-structured data at scale. **Separation of storage and compute** means you scale each independently and pay for what you use.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Snowflake**: multi-cloud, virtual warehouses, strong data sharing. **BigQuery**: serverless (no cluster management), slot-based pricing, great for Google ecosystem. **Redshift**: tightly integrated with AWS, Redshift Serverless simplifies ops. All support semi-structured data (JSON) natively." },
+    { "label": "In practice", "tag": "adv", "body": "Warehouses excel at BI and ad-hoc analytics. For cost control: use auto-suspend, right-size compute, cluster keys/sort keys, and materialised views. The trend is convergence with lakes \u2014 Snowflake reads Iceberg, BigQuery reads object storage, blurring the warehouse/lakehouse boundary." }
+   ]
+  },
+  "t-batch-ingestion": {
+   "label": "Batch Ingestion",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Moving data in scheduled bulk loads \u2014 from databases, files, APIs, and SaaS platforms into your lake or warehouse.",
+   "subs": ["l-full-vs-incremental", "l-etl-vs-elt"],
+   "links": [
+    { "type": "article", "title": "Airbyte (open-source ELT)", "url": "https://airbyte.com/" },
+    { "type": "article", "title": "Fivetran", "url": "https://www.fivetran.com/" },
+    { "type": "article", "title": "AWS Glue ETL", "url": "https://docs.aws.amazon.com/glue/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Batch ingestion extracts data from sources on a schedule and loads it into your lake or warehouse. Two approaches: **full load** (copy everything) or **incremental** (only new/changed records since last run).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**ETL** (transform before loading) vs **ELT** (load raw, transform in-warehouse). ELT dominates in 2026 \u2014 cheap storage + powerful warehouse compute makes it simpler to land raw and transform with SQL/dbt. Tools: Fivetran, Airbyte, custom Spark/Python jobs." },
+    { "label": "In practice", "tag": "adv", "body": "Incremental ingestion is critical at scale \u2014 full loads don't scale past medium datasets. Track watermarks (timestamps, sequence IDs) reliably. Handle schema drift from sources gracefully. Managed connectors (Fivetran, Airbyte) save huge effort for common SaaS sources; custom code for anything bespoke." }
+   ]
+  },
+  "t-stream-ingestion": {
+   "label": "Stream Ingestion",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Capturing events in real-time \u2014 Kafka, Kinesis, Pub/Sub \u2014 for continuous data pipelines.",
+   "subs": ["l-kafka-de", "l-kinesis", "l-pubsub-de"],
+   "links": [
+    { "type": "article", "title": "Apache Kafka Documentation", "url": "https://kafka.apache.org/documentation/" },
+    { "type": "article", "title": "Amazon Kinesis", "url": "https://docs.aws.amazon.com/kinesis/" },
+    { "type": "article", "title": "Confluent Cloud", "url": "https://www.confluent.io/confluent-cloud/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Stream ingestion captures events **as they happen** into a durable log (Kafka, Kinesis, Pub/Sub). Consumers read from the log in real-time or replay from any point in history.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Kafka** is the de facto standard: partitioned, replicated, ordered logs with configurable retention. **Kinesis** (AWS-native, simpler). **Pub/Sub** (GCP, serverless). Key concepts: partitions for parallelism, consumer groups for scaling, exactly-once semantics." },
+    { "label": "In practice", "tag": "adv", "body": "Use managed Kafka (MSK, Confluent Cloud) unless you have a dedicated platform team. Partition by entity key for ordering guarantees. Schema Registry (Avro/Protobuf) prevents producer/consumer contract breakage. For most analytics, land streaming data into the lake in micro-batches (5\u201315 min) rather than true per-event processing." }
+   ]
+  },
+  "t-cdc": {
+   "label": "Change Data Capture (CDC)",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Capturing row-level changes from databases in real-time \u2014 the bridge between OLTP and analytics.",
+   "subs": ["l-debezium", "l-log-based-cdc"],
+   "links": [
+    { "type": "opensource", "title": "Debezium", "url": "https://debezium.io/" },
+    { "type": "article", "title": "CDC Explained (Confluent)", "url": "https://www.confluent.io/learn/change-data-capture/" },
+    { "type": "article", "title": "AWS DMS", "url": "https://docs.aws.amazon.com/dms/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**CDC** captures every insert, update, and delete from a source database and streams them downstream. This keeps your lake/warehouse in near-real-time sync without expensive full-table scans.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Log-based CDC** (Debezium, AWS DMS) reads the database's transaction log (WAL/binlog) \u2014 zero impact on source performance. Alternatives: trigger-based (older, invasive) and timestamp-based (misses deletes). Events land in Kafka, then flow to the lake." },
+    { "label": "In practice", "tag": "adv", "body": "CDC is the gold standard for replicating operational databases into analytics. Debezium + Kafka + Iceberg/Delta is a proven stack. Handle schema changes carefully (add columns gracefully, never break downstream). For simple use cases, managed services (AWS DMS, Fivetran CDC mode) reduce operational burden significantly." }
+   ]
+  },
+  "t-api-ingestion": {
+   "label": "API & SaaS Ingestion",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Pulling data from REST APIs, webhooks, and SaaS platforms into your data platform.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Airbyte Connectors", "url": "https://docs.airbyte.com/integrations/" },
+    { "type": "article", "title": "Singer Specification", "url": "https://www.singer.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Many data sources are only accessible via **REST APIs** (Stripe, Salesforce, GitHub, ad platforms). Ingestion means paginating through endpoints, handling rate limits, and landing the JSON in your lake.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Use managed connectors (Fivetran, Airbyte) for common SaaS \u2014 they handle pagination, auth, rate limits, and schema detection. For custom APIs, write Python extractors with retry logic, idempotent checkpointing, and incremental cursor tracking." },
+    { "label": "In practice", "tag": "adv", "body": "API ingestion is deceptively complex: rate limits, inconsistent pagination, schema changes without notice, and partial failures. **Webhooks** (push-based) are faster than polling when available. Always store raw JSON in the lake before parsing \u2014 you can reprocess if your parsing logic changes." }
+   ]
+  },
+  "t-sql-transforms": {
+   "label": "SQL Transformations",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Using SQL as the primary transformation language \u2014 CTEs, window functions, and analytical patterns.",
+   "subs": ["l-ctes", "l-window-functions", "l-incremental-models"],
+   "links": [
+    { "type": "article", "title": "Modern SQL (Use the Index, Luke)", "url": "https://modern-sql.com/" },
+    { "type": "course", "title": "Advanced SQL for Data Engineers", "url": "https://www.startdataengineering.com/post/sql-for-data-engineers/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "SQL is the **lingua franca** of data transformation. Most warehouse/lakehouse transformations are pure SQL: SELECT, JOIN, GROUP BY, filtered and materialised into new tables or views.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**CTEs** (`WITH` clauses) for readable multi-step logic. **Window functions** (`ROW_NUMBER`, `LAG`, `SUM OVER`) for analytics without collapsing rows. **QUALIFY** for filtering windowed results. Master these and you can handle 90% of transformation needs." },
+    { "label": "In practice", "tag": "adv", "body": "Write **incremental** models (process only new data) instead of full-refresh when tables grow large. Use **materialised views** or **incremental dbt models** for this. Favour readability over cleverness \u2014 the next engineer maintaining your SQL will thank you." }
+   ]
+  },
+  "t-spark": {
+   "label": "Apache Spark",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Distributed data processing at scale \u2014 batch and streaming with DataFrames, SQL, and structured APIs.",
+   "subs": ["l-spark-sql", "l-spark-dataframes", "l-spark-streaming"],
+   "links": [
+    { "type": "article", "title": "Apache Spark Documentation", "url": "https://spark.apache.org/docs/latest/" },
+    { "type": "book", "title": "Learning Spark, 2nd Edition (O'Reilly)", "url": "https://www.oreilly.com/library/view/learning-spark-2nd/9781492050032/" },
+    { "type": "article", "title": "Databricks — Spark Guide", "url": "https://docs.databricks.com/en/spark/index.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Spark** is a distributed compute engine that processes large datasets across a cluster. Write transformations in SQL, Python (PySpark), or Scala; Spark parallelises and optimises execution.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Core abstraction: **DataFrames** (typed, optimised tables). Spark SQL lets you mix SQL with programmatic logic. The **Catalyst optimiser** and **Tungsten execution engine** handle query planning. **Structured Streaming** unifies batch and stream APIs." },
+    { "label": "In practice", "tag": "adv", "body": "Use Spark for transformations too complex or large for warehouse SQL (custom UDFs, ML feature pipelines, multi-source joins at petabyte scale). Run on managed services (Databricks, EMR, Dataproc) to avoid cluster ops. For smaller datasets (<100 GB), **DuckDB** or warehouse SQL is often faster and cheaper than spinning up Spark." }
+   ]
+  },
+  "t-dbt": {
+   "label": "dbt (data build tool)",
+   "domain": "d4",
+   "col": 3,
+   "desc": "SQL-first transformation framework \u2014 version-controlled models, testing, documentation, and lineage.",
+   "subs": ["l-dbt-models", "l-dbt-tests", "l-dbt-macros"],
+   "links": [
+    { "type": "article", "title": "dbt Documentation", "url": "https://docs.getdbt.com/" },
+    { "type": "course", "title": "dbt Fundamentals (free)", "url": "https://courses.getdbt.com/courses/fundamentals" },
+    { "type": "article", "title": "How we structure our dbt projects", "url": "https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**dbt** lets you write transformations as SQL SELECT statements, organised into models. It handles dependencies, materialisation (table/view/incremental), and builds a DAG of your entire transformation layer.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Models** are SQL files that dbt materialises. **Tests** validate data quality (unique, not_null, relationships, custom). **Documentation** is generated automatically. **Macros** (Jinja) add reusable logic. **Packages** share code across projects." },
+    { "label": "In practice", "tag": "adv", "body": "dbt is the standard transformation layer in modern data stacks. Structure projects in **staging \u2192 intermediate \u2192 marts** layers. Run in CI (test on PR, deploy on merge). Use **dbt Cloud** or orchestrate with Airflow/Dagster. Incremental models are essential for large tables \u2014 but add complexity; start with full-refresh and optimise when needed." }
+   ]
+  },
+  "t-streaming-processing": {
+   "label": "Stream Processing",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Transforming data in flight \u2014 Flink, Kafka Streams, and real-time computation patterns.",
+   "subs": ["l-flink", "l-kafka-streams", "l-windowing"],
+   "links": [
+    { "type": "article", "title": "Apache Flink Documentation", "url": "https://flink.apache.org/" },
+    { "type": "article", "title": "Kafka Streams", "url": "https://kafka.apache.org/documentation/streams/" },
+    { "type": "article", "title": "Streaming 101 (Tyler Akidau)", "url": "https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Stream processing transforms events **continuously** as they flow through the system. Use cases: real-time aggregations, fraud detection, feature computation, and alerting.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Apache Flink** is the most capable engine: event-time processing, exactly-once state, complex windowing. **Kafka Streams** is simpler (library, not cluster) for Kafka-native transforms. Key concepts: **windowing** (tumbling, sliding, session), **watermarks** (handling late data), **state management**." },
+    { "label": "In practice", "tag": "adv", "body": "Stream processing is powerful but operationally demanding: stateful checkpointing, backpressure handling, and exactly-once semantics are hard. Use managed **Flink 2.2** (AWS Managed Flink, Confluent Cloud) to reduce ops burden. For many analytics use cases, micro-batch (Spark Structured Streaming, 1\u201315 min intervals) is 'real-time enough' and far simpler." }
+   ]
+  },
+  "t-orchestration": {
+   "label": "Workflow Orchestration",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Scheduling, coordinating, and monitoring data pipelines \u2014 Airflow, Dagster, Prefect, and modern alternatives.",
+   "subs": ["l-airflow", "l-dagster", "l-prefect"],
+   "links": [
+    { "type": "article", "title": "Apache Airflow Documentation", "url": "https://airflow.apache.org/docs/" },
+    { "type": "article", "title": "Dagster Documentation", "url": "https://docs.dagster.io/" },
+    { "type": "article", "title": "Prefect Documentation", "url": "https://docs.prefect.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An **orchestrator** defines pipelines as DAGs (directed acyclic graphs) of tasks, schedules them, manages dependencies, retries failures, and provides visibility into runs.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Airflow**: the incumbent (huge community, operator ecosystem, but complex). **Dagster**: asset-centric (define what data you want, not just tasks), strong dev experience, built-in lineage. **Prefect**: Pythonic, dynamic workflows, cloud-native. All support dbt, Spark, and custom Python." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, **Dagster** is gaining share for new projects (asset-oriented thinking matches how data teams work). Airflow dominates at scale with mature ops teams. Key: treat orchestration code as software \u2014 version control, testing, CI/CD. Separate orchestration logic from transformation logic (orchestrate dbt, don't embed SQL in DAG code)." }
+   ]
+  },
+  "t-data-quality": {
+   "label": "Data Quality & Testing",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Ensuring data is accurate, complete, fresh, and consistent \u2014 automated checks, contracts, and anomaly detection.",
+   "subs": ["l-dq-dimensions", "l-great-expectations", "l-data-contracts"],
+   "links": [
+    { "type": "article", "title": "Great Expectations", "url": "https://greatexpectations.io/" },
+    { "type": "article", "title": "Soda Core", "url": "https://www.soda.io/core" },
+    { "type": "article", "title": "Data Contracts (Andrew Jones)", "url": "https://datacontract.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Data quality means your data is **accurate, complete, timely, and consistent**. Bad data leads to bad decisions. Automate checks: null rates, uniqueness, value ranges, freshness, and row counts.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Tools: **dbt tests** (schema + custom), **Great Expectations** (rich assertion library), **Soda** (monitoring + alerting), **Monte Carlo / Elementary** (anomaly detection). **Data contracts** formalise agreements between producers and consumers on schema and quality." },
+    { "label": "In practice", "tag": "adv", "body": "Shift quality left: validate at ingestion (reject bad records early), test in transformation (dbt tests in CI), and monitor in production (anomaly alerts on freshness, volume, distribution). Data contracts between teams prevent surprise breakages. Quality is not a one-time check \u2014 it's continuous observability." }
+   ]
+  },
+  "t-data-lineage": {
+   "label": "Data Lineage & Cataloging",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Tracking where data comes from, how it transforms, and where it goes \u2014 discoverability and impact analysis.",
+   "subs": ["l-lineage-tools", "l-data-catalog"],
+   "links": [
+    { "type": "article", "title": "OpenLineage", "url": "https://openlineage.io/" },
+    { "type": "article", "title": "DataHub (LinkedIn)", "url": "https://datahubproject.io/" },
+    { "type": "article", "title": "Unity Catalog (Databricks)", "url": "https://docs.databricks.com/en/data-governance/unity-catalog/index.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Lineage** answers: where did this data come from, what transformations touched it, and what downstream depends on it? Essential for debugging, impact analysis, and compliance.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Column-level lineage** traces individual fields through transformations. **Data catalogs** (DataHub, Atlan, Unity Catalog) provide search, documentation, ownership, and access control. **OpenLineage** is the open standard for emitting lineage events from any tool." },
+    { "label": "In practice", "tag": "adv", "body": "Lineage enables confident refactoring (know what breaks before you change), regulatory compliance (GDPR data flow tracking), and root-cause analysis (trace a bad metric back to a broken source). Invest in a catalog early \u2014 discovery gets exponentially harder as the data platform grows." }
+   ]
+  },
+  "t-data-governance": {
+   "label": "Data Governance & Security",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Access control, privacy, compliance, and organisational policies for managing data responsibly.",
+   "subs": ["l-access-control-de", "l-pii-handling", "l-compliance-de"],
+   "links": [
+    { "type": "article", "title": "Unity Catalog", "url": "https://docs.databricks.com/en/data-governance/unity-catalog/index.html" },
+    { "type": "article", "title": "AWS Lake Formation Permissions", "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-overview.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Data governance defines **who can access what data**, how sensitive data is handled, and how the organisation stays compliant (GDPR, HIPAA, SOC2). Without it, data platforms become liability, not asset.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**RBAC/ABAC** for fine-grained access control (table, column, row level). **PII handling**: masking, tokenisation, or encryption. **Retention policies**: auto-delete data past its useful life. **Audit logging**: who accessed what, when." },
+    { "label": "In practice", "tag": "adv", "body": "Use a unified catalog (Unity Catalog, Polaris, Lake Formation) as the single governance layer across all engines. Tag columns with sensitivity levels; automate PII detection. Governance shouldn't slow teams down \u2014 design it as self-service with guardrails, not gatekeeping with tickets." }
+   ]
+  },
+  "t-olap": {
+   "label": "OLAP & Analytical Serving",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Serving analytical queries at interactive speed \u2014 cubes, materialised views, and real-time OLAP engines.",
+   "subs": ["l-olap-cubes", "l-materialised-views", "l-realtime-olap"],
+   "links": [
+    { "type": "article", "title": "Apache Druid", "url": "https://druid.apache.org/" },
+    { "type": "article", "title": "ClickHouse", "url": "https://clickhouse.com/docs" },
+    { "type": "article", "title": "Apache Pinot", "url": "https://pinot.apache.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**OLAP** (Online Analytical Processing) engines serve pre-aggregated or columnar data for fast, interactive dashboards and reports. They're optimised for read-heavy analytical queries over large datasets.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Traditional warehouses (Snowflake, BigQuery) handle most BI. For sub-second latency on high-concurrency dashboards, use **real-time OLAP**: **ClickHouse** (fast columnar), **Apache Druid** (time-series analytics), **Apache Pinot** (user-facing analytics). **Materialised views** pre-compute expensive aggregations." },
+    { "label": "In practice", "tag": "adv", "body": "Use your warehouse for internal BI and ad-hoc analysis. Add a real-time OLAP engine only when you need sub-second queries at thousands of QPS (customer-facing analytics, real-time dashboards). ClickHouse has emerged as the go-to for speed and cost. Feed it from Kafka or batch loads from the lake." }
+   ]
+  },
+  "t-feature-stores": {
+   "label": "Feature Stores",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Serving ML features consistently for training and inference \u2014 the bridge between data engineering and ML.",
+   "subs": ["l-offline-store", "l-online-store", "l-feature-freshness"],
+   "links": [
+    { "type": "article", "title": "Feast (open-source feature store)", "url": "https://feast.dev/" },
+    { "type": "article", "title": "Tecton", "url": "https://www.tecton.ai/" },
+    { "type": "article", "title": "Feature Store Concepts", "url": "https://www.featurestore.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **feature store** manages ML features (derived data inputs) so training and serving use the **same features, computed the same way**. Prevents training-serving skew \u2014 the #1 silent ML failure mode.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Offline store** (lake/warehouse): batch features for training. **Online store** (Redis, DynamoDB): low-latency features for real-time inference. Feature pipelines compute and push features to both stores. Registry tracks definitions, ownership, and lineage." },
+    { "label": "In practice", "tag": "adv", "body": "Feature stores matter most when: many models share features, features are complex to compute, or real-time serving is required. **Feast** (open-source) is the starting point; **Tecton** and **Databricks Feature Store** offer managed solutions. For simpler setups, a well-governed dbt layer + a cache can suffice." }
+   ]
+  },
+  "t-reverse-etl": {
+   "label": "Reverse ETL",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Pushing transformed data from the warehouse back into operational tools \u2014 CRM, marketing, product.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "Census (Reverse ETL)", "url": "https://www.getcensus.com/" },
+    { "type": "article", "title": "Hightouch", "url": "https://hightouch.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Reverse ETL** syncs data from your warehouse back to business tools (Salesforce, HubSpot, Braze, Intercom). The warehouse becomes the single source of truth that activates data in operational systems.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Define **audiences and syncs** in the warehouse (SQL models), then tools like **Census**, **Hightouch**, or **dbt + webhooks** push them to destinations. Handles incremental diffs, retries, and schema mapping." },
+    { "label": "In practice", "tag": "adv", "body": "Reverse ETL closes the data loop: ingest \u2192 transform \u2192 analyse \u2192 **activate**. Use it for lead scoring in CRM, personalisation in product, and audience syncs to ad platforms. The warehouse-as-hub pattern means all teams benefit from engineering's cleaned, modeled data without building their own pipelines." }
+   ]
+  },
+  "t-semantic-layer": {
+   "label": "Semantic Layer & Metrics",
+   "domain": "d6",
+   "col": 5,
+   "desc": "A single source of truth for business metrics \u2014 consistent definitions regardless of which tool queries them.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "dbt Semantic Layer", "url": "https://docs.getdbt.com/docs/build/about-metricflow" },
+    { "type": "article", "title": "Cube.dev", "url": "https://cube.dev/" },
+    { "type": "article", "title": "The Rise of the Semantic Layer (a]s)", "url": "https://benn.substack.com/p/metrics-layer" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **semantic layer** defines business metrics (revenue, churn, DAU) in one place. Any tool \u2014 BI dashboard, notebook, or application \u2014 queries through it and gets the **same number**, eliminating 'which number is right?' debates.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Define **metrics** (measures + dimensions + filters) as code. Tools: **dbt Semantic Layer (MetricFlow)**, **Cube**, **Looker's LookML**. The semantic layer translates metric requests into optimised SQL against the warehouse." },
+    { "label": "In practice", "tag": "adv", "body": "Without a semantic layer, every team re-derives metrics differently (slightly different filters, join logic, time zones). The semantic layer is organisational infrastructure: it scales trust in data as the number of consumers grows. In 2026, **dbt Semantic Layer** is gaining traction as the open standard; Cube excels for embedded/customer-facing analytics." }
+   ]
+  }
+ },
+ "leaves": {
+  "l-warehouse-arch": { "label": "Warehouse Architecture", "parent": "t-data-architectures", "domain": "d1", "desc": "Structured, schema-on-write systems optimised for SQL analytics.", "links": [], "levels": [] },
+  "l-lake-arch": { "label": "Lake Architecture", "parent": "t-data-architectures", "domain": "d1", "desc": "Raw files in object storage with schema-on-read flexibility.", "links": [], "levels": [] },
+  "l-lakehouse-arch": { "label": "Lakehouse", "parent": "t-data-architectures", "domain": "d1", "desc": "Open formats + ACID + warehouse performance on lake storage.", "links": [], "levels": [] },
+  "l-data-mesh": { "label": "Data Mesh", "parent": "t-data-architectures", "domain": "d1", "desc": "Decentralised domain ownership of data as products.", "links": [], "levels": [] },
+  "l-batch-paradigm": { "label": "Batch Processing", "parent": "t-batch-vs-stream", "domain": "d1", "desc": "Processing accumulated data in scheduled bulk runs.", "links": [], "levels": [] },
+  "l-stream-paradigm": { "label": "Stream Processing", "parent": "t-batch-vs-stream", "domain": "d1", "desc": "Continuous processing of events as they arrive.", "links": [], "levels": [] },
+  "l-lambda-kappa": { "label": "Lambda & Kappa", "parent": "t-batch-vs-stream", "domain": "d1", "desc": "Architecture patterns combining or unifying batch and stream.", "links": [], "levels": [] },
+  "l-star-schema": { "label": "Star Schema", "parent": "t-data-modeling", "domain": "d1", "desc": "Denormalised dimensions around a central fact table.", "links": [], "levels": [] },
+  "l-snowflake-schema": { "label": "Snowflake Schema", "parent": "t-data-modeling", "domain": "d1", "desc": "Normalised dimensions for storage efficiency.", "links": [], "levels": [] },
+  "l-data-vault": { "label": "Data Vault", "parent": "t-data-modeling", "domain": "d1", "desc": "Hubs, links, and satellites for auditable enterprise models.", "links": [], "levels": [] },
+  "l-one-big-table": { "label": "One Big Table", "parent": "t-data-modeling", "domain": "d1", "desc": "Wide, pre-joined tables for simple BI consumption.", "links": [], "levels": [] },
+  "l-lake-zones": { "label": "Lake Zones (Bronze/Silver/Gold)", "parent": "t-data-lakes", "domain": "d2", "desc": "Layered organisation from raw to curated.", "links": [], "levels": [] },
+  "l-partitioning-de": { "label": "Partitioning", "parent": "t-data-lakes", "domain": "d2", "desc": "Organising files by key columns for efficient scans.", "links": [], "levels": [] },
+  "l-parquet": { "label": "Parquet", "parent": "t-file-formats", "domain": "d2", "desc": "Columnar, compressed, the default for analytics.", "links": [], "levels": [] },
+  "l-avro": { "label": "Avro", "parent": "t-file-formats", "domain": "d2", "desc": "Row-based, schema-embedded, ideal for streaming.", "links": [], "levels": [] },
+  "l-orc": { "label": "ORC", "parent": "t-file-formats", "domain": "d2", "desc": "Columnar format optimised for Hive workloads.", "links": [], "levels": [] },
+  "l-iceberg": { "label": "Apache Iceberg", "parent": "t-table-formats", "domain": "d2", "desc": "Engine-agnostic open table format with hidden partitioning.", "links": [], "levels": [] },
+  "l-delta-lake": { "label": "Delta Lake", "parent": "t-table-formats", "domain": "d2", "desc": "Spark-native table format with log-based transactions.", "links": [], "levels": [] },
+  "l-hudi": { "label": "Apache Hudi", "parent": "t-table-formats", "domain": "d2", "desc": "Optimised for upserts and CDC workloads.", "links": [], "levels": [] },
+  "l-snowflake": { "label": "Snowflake", "parent": "t-warehouses", "domain": "d2", "desc": "Multi-cloud warehouse with separation of storage and compute.", "links": [], "levels": [] },
+  "l-bigquery": { "label": "BigQuery", "parent": "t-warehouses", "domain": "d2", "desc": "Google's serverless, slot-based analytical warehouse.", "links": [], "levels": [] },
+  "l-redshift": { "label": "Redshift", "parent": "t-warehouses", "domain": "d2", "desc": "AWS-native columnar warehouse with Serverless option.", "links": [], "levels": [] },
+  "l-full-vs-incremental": { "label": "Full vs Incremental Load", "parent": "t-batch-ingestion", "domain": "d3", "desc": "Loading everything vs only new/changed records.", "links": [], "levels": [] },
+  "l-etl-vs-elt": { "label": "ETL vs ELT", "parent": "t-batch-ingestion", "domain": "d3", "desc": "Transform before loading vs load raw then transform.", "links": [], "levels": [] },
+  "l-kafka-de": { "label": "Apache Kafka", "parent": "t-stream-ingestion", "domain": "d3", "desc": "Distributed event streaming platform.", "links": [], "levels": [] },
+  "l-kinesis": { "label": "Amazon Kinesis", "parent": "t-stream-ingestion", "domain": "d3", "desc": "AWS-managed real-time data streaming.", "links": [], "levels": [] },
+  "l-pubsub-de": { "label": "Google Pub/Sub", "parent": "t-stream-ingestion", "domain": "d3", "desc": "Serverless messaging for event-driven systems.", "links": [], "levels": [] },
+  "l-debezium": { "label": "Debezium", "parent": "t-cdc", "domain": "d3", "desc": "Open-source CDC via database transaction log reading.", "links": [], "levels": [] },
+  "l-log-based-cdc": { "label": "Log-Based CDC", "parent": "t-cdc", "domain": "d3", "desc": "Reading WAL/binlog for zero-impact change capture.", "links": [], "levels": [] },
+  "l-ctes": { "label": "CTEs", "parent": "t-sql-transforms", "domain": "d4", "desc": "Common Table Expressions for readable multi-step SQL.", "links": [], "levels": [] },
+  "l-window-functions": { "label": "Window Functions", "parent": "t-sql-transforms", "domain": "d4", "desc": "Analytics over partitions without collapsing rows.", "links": [], "levels": [] },
+  "l-incremental-models": { "label": "Incremental Models", "parent": "t-sql-transforms", "domain": "d4", "desc": "Processing only new data instead of full refresh.", "links": [], "levels": [] },
+  "l-spark-sql": { "label": "Spark SQL", "parent": "t-spark", "domain": "d4", "desc": "SQL interface over distributed DataFrames.", "links": [], "levels": [] },
+  "l-spark-dataframes": { "label": "DataFrames API", "parent": "t-spark", "domain": "d4", "desc": "Programmatic typed transformations with Catalyst optimisation.", "links": [], "levels": [] },
+  "l-spark-streaming": { "label": "Structured Streaming", "parent": "t-spark", "domain": "d4", "desc": "Unified batch and stream processing in Spark.", "links": [], "levels": [] },
+  "l-dbt-models": { "label": "dbt Models", "parent": "t-dbt", "domain": "d4", "desc": "SQL SELECT statements materialised as tables or views.", "links": [], "levels": [] },
+  "l-dbt-tests": { "label": "dbt Tests", "parent": "t-dbt", "domain": "d4", "desc": "Automated data quality assertions on models.", "links": [], "levels": [] },
+  "l-dbt-macros": { "label": "Macros & Packages", "parent": "t-dbt", "domain": "d4", "desc": "Reusable Jinja logic and community packages.", "links": [], "levels": [] },
+  "l-flink": { "label": "Apache Flink", "parent": "t-streaming-processing", "domain": "d4", "desc": "Stateful stream processing with event-time semantics.", "links": [], "levels": [] },
+  "l-kafka-streams": { "label": "Kafka Streams", "parent": "t-streaming-processing", "domain": "d4", "desc": "Lightweight stream processing library for Kafka.", "links": [], "levels": [] },
+  "l-windowing": { "label": "Windowing", "parent": "t-streaming-processing", "domain": "d4", "desc": "Tumbling, sliding, and session windows for aggregations.", "links": [], "levels": [] },
+  "l-airflow": { "label": "Apache Airflow", "parent": "t-orchestration", "domain": "d5", "desc": "The incumbent DAG-based workflow orchestrator.", "links": [], "levels": [] },
+  "l-dagster": { "label": "Dagster", "parent": "t-orchestration", "domain": "d5", "desc": "Asset-centric orchestration with strong dev experience.", "links": [], "levels": [] },
+  "l-prefect": { "label": "Prefect", "parent": "t-orchestration", "domain": "d5", "desc": "Pythonic, dynamic workflow orchestration.", "links": [], "levels": [] },
+  "l-dq-dimensions": { "label": "Quality Dimensions", "parent": "t-data-quality", "domain": "d5", "desc": "Accuracy, completeness, freshness, consistency, validity.", "links": [], "levels": [] },
+  "l-great-expectations": { "label": "Great Expectations", "parent": "t-data-quality", "domain": "d5", "desc": "Open-source data validation and profiling framework.", "links": [], "levels": [] },
+  "l-data-contracts": { "label": "Data Contracts", "parent": "t-data-quality", "domain": "d5", "desc": "Formal agreements on schema and quality between teams.", "links": [], "levels": [] },
+  "l-lineage-tools": { "label": "Lineage Tools", "parent": "t-data-lineage", "domain": "d5", "desc": "OpenLineage, DataHub, Marquez for tracking data flow.", "links": [], "levels": [] },
+  "l-data-catalog": { "label": "Data Catalog", "parent": "t-data-lineage", "domain": "d5", "desc": "Searchable inventory of all datasets, schemas, and owners.", "links": [], "levels": [] },
+  "l-access-control-de": { "label": "Access Control", "parent": "t-data-governance", "domain": "d5", "desc": "RBAC/ABAC at table, column, and row level.", "links": [], "levels": [] },
+  "l-pii-handling": { "label": "PII Handling", "parent": "t-data-governance", "domain": "d5", "desc": "Masking, tokenisation, and encryption of sensitive data.", "links": [], "levels": [] },
+  "l-compliance-de": { "label": "Compliance", "parent": "t-data-governance", "domain": "d5", "desc": "GDPR, HIPAA, SOC2 requirements for data platforms.", "links": [], "levels": [] },
+  "l-olap-cubes": { "label": "OLAP Cubes", "parent": "t-olap", "domain": "d6", "desc": "Pre-aggregated multidimensional data structures.", "links": [], "levels": [] },
+  "l-materialised-views": { "label": "Materialised Views", "parent": "t-olap", "domain": "d6", "desc": "Pre-computed query results refreshed on schedule.", "links": [], "levels": [] },
+  "l-realtime-olap": { "label": "Real-time OLAP Engines", "parent": "t-olap", "domain": "d6", "desc": "ClickHouse, Druid, Pinot for sub-second analytics.", "links": [], "levels": [] },
+  "l-offline-store": { "label": "Offline Store", "parent": "t-feature-stores", "domain": "d6", "desc": "Batch feature storage for ML training.", "links": [], "levels": [] },
+  "l-online-store": { "label": "Online Store", "parent": "t-feature-stores", "domain": "d6", "desc": "Low-latency feature serving for real-time inference.", "links": [], "levels": [] },
+  "l-feature-freshness": { "label": "Feature Freshness", "parent": "t-feature-stores", "domain": "d6", "desc": "Keeping online features in sync with batch computations.", "links": [], "levels": [] }
+ },
+ "topicEdges": [
+  { "s": "t-de-intro", "t": "t-data-architectures", "k": "prereq" },
+  { "s": "t-data-architectures", "t": "t-data-lakes", "k": "builds" },
+  { "s": "t-data-architectures", "t": "t-warehouses", "k": "builds" },
+  { "s": "t-batch-vs-stream", "t": "t-batch-ingestion", "k": "applies" },
+  { "s": "t-batch-vs-stream", "t": "t-stream-ingestion", "k": "applies" },
+  { "s": "t-data-lakes", "t": "t-table-formats", "k": "builds" },
+  { "s": "t-file-formats", "t": "t-table-formats", "k": "prereq" },
+  { "s": "t-stream-ingestion", "t": "t-cdc", "k": "applies" },
+  { "s": "t-sql-transforms", "t": "t-dbt", "k": "builds" },
+  { "s": "t-stream-ingestion", "t": "t-streaming-processing", "k": "builds" },
+  { "s": "t-dbt", "t": "t-data-quality", "k": "applies" },
+  { "s": "t-orchestration", "t": "t-data-lineage", "k": "applies" },
+  { "s": "t-warehouses", "t": "t-olap", "k": "builds" },
+  { "s": "t-spark", "t": "t-feature-stores", "k": "applies" }
+ ],
+ "leafEdges": []
+}

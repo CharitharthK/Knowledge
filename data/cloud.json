@@ -1,0 +1,795 @@
+{
+ "meta": {
+  "id": "cloud",
+  "kbd": "knowledge hub · cloud computing",
+  "title": "Cloud Computing",
+  "subtitle": "build & operate on the cloud",
+  "blurb": "From cloud fundamentals and provider ecosystems to containers, serverless, IaC, security, and observability — the modern cloud engineering stack.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Cloud Foundations", "c": "#F0B23C" },
+  "d2": { "name": "Compute & Containers", "c": "#46B8DA" },
+  "d3": { "name": "Networking & Security", "c": "#54C99A" },
+  "d4": { "name": "Data & Storage", "c": "#B08CF0" },
+  "d5": { "name": "DevOps & IaC", "c": "#F0796B" },
+  "d6": { "name": "Observability", "c": "#E86BB5" },
+  "d7": { "name": "Architecture & Resilience", "c": "#3BA0D6" },
+  "d8": { "name": "Platform & Governance", "c": "#D4976A" },
+  "d9": { "name": "Cloud AI & Edge", "c": "#7BC86C" }
+ },
+ "cols": [
+  {
+   "title": "Cloud Fundamentals",
+   "keys": ["t-cloud-overview", "t-service-models", "t-providers", "t-well-architected"]
+  },
+  {
+   "title": "Compute & Runtime",
+   "keys": ["t-vms", "t-containers", "t-kubernetes", "t-serverless"]
+  },
+  {
+   "title": "Networking & Security",
+   "keys": ["t-networking", "t-iam", "t-zero-trust", "t-cloud-security"]
+  },
+  {
+   "title": "Data & Storage",
+   "keys": ["t-storage", "t-databases", "t-messaging"]
+  },
+  {
+   "title": "DevOps & Operate",
+   "keys": ["t-iac", "t-cicd", "t-observability", "t-cost-ops"]
+  },
+  {
+   "title": "Architecture & Migration",
+   "keys": ["t-microservices", "t-dr-ha", "t-hybrid-cloud", "t-migration"]
+  },
+  {
+   "title": "Platform & Governance",
+   "keys": ["t-platform-eng", "t-sre", "t-multi-account", "t-secrets", "t-compliance-auto"]
+  },
+  {
+   "title": "AI, Data & Edge",
+   "keys": ["t-cloud-ai", "t-data-pipelines", "t-edge"]
+  }
+ ],
+
+ "topics": {
+  "t-cloud-overview": {
+   "label": "Cloud Computing Overview",
+   "domain": "d1",
+   "col": 0,
+   "desc": "What cloud computing is, why it matters, and the core value propositions — on-demand resources, elasticity, and pay-per-use.",
+   "subs": ["l-on-demand", "l-elasticity", "l-shared-responsibility"],
+   "links": [
+    { "type": "article", "title": "NIST Definition of Cloud Computing", "url": "https://csrc.nist.gov/publications/detail/sp/800-145/final" },
+    { "type": "course", "title": "AWS Cloud Practitioner Essentials", "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/" },
+    { "type": "course", "title": "Google Cloud Fundamentals", "url": "https://www.cloudskillsboost.google/paths/9" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud computing delivers **compute, storage, and networking** over the internet on demand. You rent what you need, scale it up or down, and pay only for what you use.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Five essential characteristics (NIST): **on-demand self-service**, broad network access, **resource pooling**, rapid elasticity, and measured service. The **shared responsibility model** splits security duties between provider and customer." },
+    { "label": "In practice", "tag": "adv", "body": "By 2026 the public cloud market exceeds **$800 billion**. Most enterprises run multi-cloud (~75%), picking each provider for its strengths rather than going all-in. The real skill isn't clicking consoles — it's designing systems that exploit cloud primitives cost-effectively." }
+   ]
+  },
+  "t-service-models": {
+   "label": "Service Models (IaaS / PaaS / SaaS)",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The three layers of cloud abstraction — how much you manage vs. how much the provider manages.",
+   "subs": ["l-iaas", "l-paas", "l-saas", "l-faas"],
+   "links": [
+    { "type": "article", "title": "Azure — Cloud Service Types", "url": "https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/" },
+    { "type": "article", "title": "Google — IaaS vs PaaS vs SaaS", "url": "https://cloud.google.com/learn/paas-vs-iaas-vs-saas" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**IaaS** gives you virtual machines and networks (you manage the OS up). **PaaS** gives you a platform to deploy code (provider manages runtime). **SaaS** gives you finished software (you're just a user).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**FaaS** (Functions-as-a-Service) sits between PaaS and SaaS — you deploy individual functions and pay per invocation. **CaaS** (Containers-as-a-Service) is another hybrid: managed container orchestration." },
+    { "label": "In practice", "tag": "adv", "body": "Most production systems mix layers: IaaS for custom workloads, PaaS for managed databases, SaaS for collaboration. The trend is toward higher abstraction — less ops, more product work — but you trade control for convenience." }
+   ]
+  },
+  "t-providers": {
+   "label": "Cloud Providers",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The big three — AWS, Azure, GCP — their strengths, market share, and when to pick which.",
+   "subs": ["l-aws", "l-azure", "l-gcp"],
+   "links": [
+    { "type": "article", "title": "AWS vs Azure vs GCP (Cloudwards, 2026)", "url": "https://www.cloudwards.net/aws-vs-azure-vs-google/" },
+    { "type": "article", "title": "Google — Service Comparison Map", "url": "https://docs.cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison" },
+    { "type": "article", "title": "KodeKloud — AWS vs Azure vs GCP 2026", "url": "https://kodekloud.com/blog/aws-vs-azure-vs-gcp/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**AWS** (largest, broadest catalog — 30% of global cloud infrastructure spend in Q1 2026), **Azure** (deepest Microsoft/enterprise integration — 25%), and **GCP** (strongest in data analytics and AI/ML — 13%) together control ~68% of global cloud spend. Google Cloud grew revenue 63% YoY — the fastest of any hyperscaler — driven by AI infrastructure.", "open": true },
+    { "label": "Strengths", "tag": "mid", "body": "AWS: mature ecosystem, most services (~200+), huge community. Azure: hybrid cloud (Arc), Office 365/AD integration, government compliance. GCP: BigQuery, Kubernetes (invented it), TPUs, Gemini AI." },
+    { "label": "In practice", "tag": "adv", "body": "AI/ML is the biggest differentiator in 2026 — Azure for OpenAI/GPT models, GCP for TPUs and BigQuery ML, AWS for the broadest GPU selection and SageMaker. Most enterprises go multi-cloud, picking each provider for genuine strength rather than all-in on one." }
+   ],
+   "tags": ["aws", "azure", "gcp", "multi-cloud"]
+  },
+  "t-well-architected": {
+   "label": "Well-Architected Frameworks",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Design principles for reliable, secure, efficient, cost-effective, and sustainable cloud systems.",
+   "subs": [],
+   "links": [
+    { "type": "article", "title": "AWS Well-Architected Framework", "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html" },
+    { "type": "article", "title": "Azure Well-Architected Framework", "url": "https://learn.microsoft.com/en-us/azure/well-architected/" },
+    { "type": "article", "title": "Google Cloud Architecture Framework", "url": "https://cloud.google.com/architecture/framework" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Each major provider publishes a **Well-Architected Framework** — a set of design principles and best practices for building production-quality cloud systems.", "open": true },
+    { "label": "The pillars", "tag": "mid", "body": "AWS defines six pillars: **Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability**. Azure and GCP have equivalent frameworks with similar themes." },
+    { "label": "In practice", "tag": "adv", "body": "Run a Well-Architected Review before and after major launches. The frameworks are checklists — they won't design your system, but they'll catch common gaps in security, resilience, and cost that teams miss under delivery pressure." }
+   ]
+  },
+  "t-vms": {
+   "label": "Virtual Machines",
+   "domain": "d2",
+   "col": 1,
+   "desc": "The foundational IaaS primitive — on-demand servers you configure and manage.",
+   "subs": ["l-instance-types", "l-autoscaling", "l-spot-instances"],
+   "links": [
+    { "type": "article", "title": "AWS EC2 Docs", "url": "https://docs.aws.amazon.com/ec2/" },
+    { "type": "article", "title": "Azure Virtual Machines", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/" },
+    { "type": "article", "title": "Google Compute Engine", "url": "https://cloud.google.com/compute/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **virtual machine** is a server you rent by the hour (or second). Pick an instance type (CPU, RAM, GPU), attach storage, assign a network — you control the OS.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Instance families optimise for different workloads: **general purpose** (balanced), **compute-optimised**, **memory-optimised**, **GPU/accelerator**. Use **auto-scaling groups** to match capacity to demand automatically." },
+    { "label": "In practice", "tag": "adv", "body": "Use **spot/preemptible** instances for fault-tolerant batch work (60–90% savings). Right-size aggressively — most VMs are overprovisioned. For stateless workloads, prefer containers or serverless; keep VMs for legacy apps or workloads needing full OS control." }
+   ]
+  },
+  "t-containers": {
+   "label": "Containers & Docker",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Lightweight, portable runtime packages — the unit of deployment for modern cloud-native apps.",
+   "subs": ["l-docker", "l-images-registries", "l-container-runtime"],
+   "links": [
+    { "type": "article", "title": "Docker — Get Started", "url": "https://docs.docker.com/get-started/" },
+    { "type": "article", "title": "OCI Image Spec", "url": "https://opencontainers.org/" },
+    { "type": "article", "title": "AWS ECR / ECS Overview", "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **container** packages your app and all its dependencies into a single image that runs the same everywhere — laptop, CI, production.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Built on Linux namespaces and cgroups. **Docker** popularised the format; the OCI standard defines images and runtimes. Images are layered and stored in **registries** (ECR, ACR, Artifact Registry, Docker Hub)." },
+    { "label": "In practice", "tag": "adv", "body": "Containers are the default deployment unit for microservices. Keep images minimal (distroless/alpine), scan for CVEs in CI, and run as non-root. For orchestration at scale, you need Kubernetes or a managed container service (ECS, Cloud Run, Azure Container Apps)." }
+   ],
+   "tags": ["docker", "containers", "oci"]
+  },
+  "t-kubernetes": {
+   "label": "Kubernetes",
+   "domain": "d2",
+   "col": 1,
+   "desc": "The de facto standard for container orchestration — automating deployment, scaling, and management of containerised applications.",
+   "subs": ["l-k8s-arch", "l-pods-services", "l-helm", "l-service-mesh"],
+   "links": [
+    { "type": "article", "title": "Kubernetes Official Docs", "url": "https://kubernetes.io/docs/home/" },
+    { "type": "article", "title": "AWS EKS", "url": "https://docs.aws.amazon.com/eks/" },
+    { "type": "article", "title": "Google GKE", "url": "https://cloud.google.com/kubernetes-engine/docs" },
+    { "type": "article", "title": "Azure AKS", "url": "https://learn.microsoft.com/en-us/azure/aks/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Kubernetes (K8s)** automates deploying, scaling, and healing containers across a cluster. You declare desired state; K8s makes it real.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Core objects: **Pods** (smallest unit), **Deployments** (rollouts), **Services** (stable networking), **Ingress** (external access). **Helm** charts package complex apps. A **service mesh** (Istio, Linkerd) adds mTLS, traffic control, and observability." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026 Kubernetes v1.36 is the universal control plane — managing containers, serverless (Knative), ML workloads, and even databases. In-place pod resource updates (CPU/memory changes without restart) reached GA in v1.35, and image volumes allow pulling OCI images as read-only volumes. Use managed K8s (EKS, GKE, AKS) to avoid control-plane ops." }
+   ],
+   "tags": ["kubernetes", "k8s", "orchestration", "eks", "gke", "aks"]
+  },
+  "t-serverless": {
+   "label": "Serverless & FaaS",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Run code without managing servers — event-driven, auto-scaling, pay-per-invocation.",
+   "subs": ["l-lambda", "l-event-triggers", "l-cold-starts"],
+   "links": [
+    { "type": "article", "title": "AWS Lambda Docs", "url": "https://docs.aws.amazon.com/lambda/" },
+    { "type": "article", "title": "Azure Functions", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/" },
+    { "type": "article", "title": "Google Cloud Functions", "url": "https://cloud.google.com/functions/docs" },
+    { "type": "article", "title": "Serverless vs Containers (KodeKloud)", "url": "https://kodekloud.com/blog/serverless-vs-containers-in-modern-architectures-and-when-to-choose-each/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Serverless** means you deploy code (functions) and the provider handles all infrastructure — provisioning, scaling, patching. You pay per execution, not per hour.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**FaaS** (Lambda, Azure Functions, Cloud Functions) executes event-driven functions. Triggers include HTTP, queues, storage events, and schedules. **Cold starts** add latency on first invocation — mitigate with provisioned concurrency or lightweight runtimes." },
+    { "label": "In practice", "tag": "adv", "body": "Serverless is ideal for event-driven, sporadic, and unpredictable workloads. Containers win for high-volume, long-running, stateful apps. In 2026 the line blurs — serverless containers (Fargate, Cloud Run, Azure Container Apps) give you both: no infra management with full runtime control." }
+   ],
+   "tags": ["serverless", "lambda", "faas", "cloud-run"]
+  },
+  "t-networking": {
+   "label": "Cloud Networking",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Virtual networks, subnets, load balancers, DNS, and connectivity — the plumbing that connects everything.",
+   "subs": ["l-vpc", "l-subnets", "l-load-balancers", "l-dns-cdn"],
+   "links": [
+    { "type": "article", "title": "AWS VPC Docs", "url": "https://docs.aws.amazon.com/vpc/" },
+    { "type": "article", "title": "Azure Virtual Network", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/" },
+    { "type": "article", "title": "Google VPC", "url": "https://cloud.google.com/vpc/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **VPC** (Virtual Private Cloud) is your isolated network in the cloud. You define subnets, route tables, and firewalls to control traffic flow.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Public subnets** face the internet (via IGW); **private subnets** are internal-only (use NAT for outbound). **Load balancers** (ALB/NLB, Azure LB, Cloud LB) distribute traffic. **DNS** (Route 53, Cloud DNS) routes users; **CDNs** (CloudFront, Akamai) cache at the edge." },
+    { "label": "In practice", "tag": "adv", "body": "Design for least-access: default-deny security groups, private subnets for data tiers, VPC peering or Transit Gateway for multi-account. In 2026 the network is software-defined — treat network config as code and version it alongside your infrastructure." }
+   ],
+   "tags": ["vpc", "networking", "load-balancer", "dns", "cdn"]
+  },
+  "t-iam": {
+   "label": "Identity & Access Management",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Who can do what — authentication, authorization, roles, policies, and least privilege.",
+   "subs": ["l-policies-roles", "l-federation", "l-least-privilege"],
+   "links": [
+    { "type": "article", "title": "AWS IAM Docs", "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/" },
+    { "type": "article", "title": "Azure Entra ID (AD)", "url": "https://learn.microsoft.com/en-us/entra/identity/" },
+    { "type": "article", "title": "Google Cloud IAM", "url": "https://cloud.google.com/iam/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**IAM** answers: who are you (authentication) and what can you do (authorization)? Every cloud action is governed by policies attached to identities.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Policies** define allowed/denied actions on resources. Assign them to **roles**, not individual users. Use **federation** (SAML, OIDC) to connect your identity provider. Always enforce **MFA** for humans." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026 IAM is the control layer across every identity type. Enforce **least privilege** rigorously — use tools like IAM Access Analyzer (AWS) or Recommender (GCP) to find over-permissioned roles. Prefer short-lived credentials and **JIT (just-in-time) access** over standing admin privileges." }
+   ],
+   "tags": ["iam", "security", "authentication", "authorization"]
+  },
+  "t-zero-trust": {
+   "label": "Zero Trust Architecture",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Never trust, always verify — a security model where network location alone grants no access.",
+   "subs": ["l-zt-principles", "l-microsegmentation"],
+   "links": [
+    { "type": "article", "title": "NIST SP 800-207 — Zero Trust Architecture", "url": "https://csrc.nist.gov/publications/detail/sp/800-207/final" },
+    { "type": "article", "title": "Google BeyondCorp", "url": "https://cloud.google.com/beyondcorp" },
+    { "type": "article", "title": "AWS Zero-Trust Network Architecture Guide", "url": "https://hidekazu-konishi.com/entry/aws_zero_trust_network_architecture_guide.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Zero Trust** means: trust nothing implicitly, verify everything explicitly, and minimize blast radius by assuming breach. Network reachability is not permission.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Every request is checked against **identity, device, location, and policy** before access is granted. **Microsegmentation** limits lateral movement. **SASE/ZTNA** replaces traditional VPN for remote access." },
+    { "label": "In practice", "tag": "adv", "body": "Google pioneered this with **BeyondCorp**. In 2026, zero trust is mainstream: AWS Verified Access, Azure Conditional Access, GCP BeyondCorp Enterprise. JIT privilege elevation removes standing admin access — engineers request elevation for a specific purpose and duration." }
+   ],
+   "tags": ["zero-trust", "security", "beyondcorp", "sase"]
+  },
+  "t-cloud-security": {
+   "label": "Cloud Security Posture",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Encryption, compliance, CSPM, and the security hygiene that keeps your cloud environment hardened.",
+   "subs": ["l-encryption", "l-compliance", "l-cspm"],
+   "links": [
+    { "type": "article", "title": "Cloud Security Posture Checklist 2026", "url": "https://strobes.co/blog/cloud-security-posture-checklist" },
+    { "type": "article", "title": "AWS Security Best Practices", "url": "https://docs.aws.amazon.com/security/" },
+    { "type": "article", "title": "CIS Benchmarks", "url": "https://www.cisecurity.org/cis-benchmarks" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud security = **encrypt** data at rest and in transit, **log** everything, **restrict** access to least privilege, and **scan** for misconfigurations.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Use **CSPM** tools (AWS Security Hub, Defender for Cloud, SCC) to detect drift from baselines (CIS Benchmarks). Enable **tamper-resistant logging** (CloudTrail, Audit Logs). Block public storage by default." },
+    { "label": "In practice", "tag": "adv", "body": "Most cloud breaches are misconfigurations, not zero-days. Automate guardrails: SCPs (AWS), Azure Policy, Org Policies (GCP) prevent dangerous actions before they happen. Shift security left — scan IaC in CI, not after deployment." }
+   ],
+   "tags": ["security", "cspm", "compliance", "encryption"]
+  },
+  "t-storage": {
+   "label": "Cloud Storage",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Object, block, and file storage — choosing the right tier for durability, performance, and cost.",
+   "subs": ["l-object-storage", "l-block-storage", "l-file-storage"],
+   "links": [
+    { "type": "article", "title": "AWS S3 Docs", "url": "https://docs.aws.amazon.com/s3/" },
+    { "type": "article", "title": "Azure Blob Storage", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/" },
+    { "type": "article", "title": "Google Cloud Storage", "url": "https://cloud.google.com/storage/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Three types: **Object storage** (S3, Blob, GCS) for unstructured data at any scale. **Block storage** (EBS, Managed Disks) for VM disks. **File storage** (EFS, Azure Files) for shared file systems.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Object storage offers **11 nines of durability** and tiered pricing: hot (frequent access), cool, cold/archive. Lifecycle policies auto-transition objects to cheaper tiers as they age." },
+    { "label": "In practice", "tag": "adv", "body": "Object storage is the default for data lakes, backups, static assets, and ML datasets. Enable versioning and replication for critical data. Block storage matters for databases and latency-sensitive workloads — choose between SSD (gp3/io2) and HDD based on IOPS needs." }
+   ],
+   "tags": ["s3", "storage", "blob", "data-lake"]
+  },
+  "t-databases": {
+   "label": "Managed Databases",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Relational, NoSQL, and purpose-built databases as managed services — less ops, more focus on data.",
+   "subs": ["l-rds-sql", "l-nosql", "l-purpose-built"],
+   "links": [
+    { "type": "article", "title": "AWS RDS / Aurora", "url": "https://docs.aws.amazon.com/rds/" },
+    { "type": "article", "title": "Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/" },
+    { "type": "article", "title": "Google Cloud Spanner", "url": "https://cloud.google.com/spanner/docs" },
+    { "type": "article", "title": "Google AlloyDB", "url": "https://cloud.google.com/alloydb/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Managed databases handle backups, patching, replication, and failover for you. Pick **relational** (PostgreSQL, MySQL) for structured data with joins; **NoSQL** (DynamoDB, Cosmos DB, Firestore) for flexible schemas at scale.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Purpose-built** databases: time-series (Timestream), graph (Neptune), ledger (QLDB), wide-column (Bigtable), in-memory cache (ElastiCache/Redis). Choose by access pattern, not brand." },
+    { "label": "In practice", "tag": "adv", "body": "Aurora and AlloyDB offer PostgreSQL-compatible engines with cloud-native storage for high throughput. **Spanner** provides global strong consistency. In 2026, serverless database tiers (Aurora Serverless v2, Cosmos serverless, Neon) scale to zero for dev/test and scale up for production — pay only for what you use." }
+   ],
+   "tags": ["databases", "rds", "dynamodb", "cosmos-db", "postgresql"]
+  },
+  "t-messaging": {
+   "label": "Messaging & Event Streaming",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Decoupling services with queues, pub/sub, and event streams — the backbone of async architectures.",
+   "subs": ["l-queues", "l-pubsub", "l-event-streaming"],
+   "links": [
+    { "type": "article", "title": "AWS SQS / SNS / EventBridge", "url": "https://docs.aws.amazon.com/eventbridge/" },
+    { "type": "article", "title": "Apache Kafka", "url": "https://kafka.apache.org/documentation/" },
+    { "type": "article", "title": "Google Pub/Sub", "url": "https://cloud.google.com/pubsub/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Queues** (SQS, Azure Queue) decouple producers from consumers. **Pub/Sub** (SNS, Google Pub/Sub) fans out events to multiple subscribers. **Event streams** (Kafka, Kinesis) provide ordered, replayable event logs.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Queues guarantee at-least-once delivery and handle backpressure. Pub/Sub adds topic-based routing. Event streaming (Kafka, MSK, Confluent Cloud) enables real-time analytics, CDC, and event sourcing with durable, partitioned logs." },
+    { "label": "In practice", "tag": "adv", "body": "**EventBridge** (AWS) and **Eventarc** (GCP) are the modern event routers — schema-aware, filtered, with native service integrations. For high-throughput streaming, managed Kafka (MSK, Confluent) beats self-hosted. Design for idempotent consumers — duplicates happen." }
+   ],
+   "tags": ["messaging", "kafka", "sqs", "pubsub", "event-driven"]
+  },
+  "t-iac": {
+   "label": "Infrastructure as Code",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Define, version, and automate cloud infrastructure using code — Terraform, Pulumi, OpenTofu, and CDKs.",
+   "subs": ["l-terraform", "l-pulumi", "l-opentofu", "l-cdk"],
+   "links": [
+    { "type": "article", "title": "Terraform Docs", "url": "https://developer.hashicorp.com/terraform/docs" },
+    { "type": "article", "title": "Pulumi Docs", "url": "https://www.pulumi.com/docs/" },
+    { "type": "article", "title": "OpenTofu", "url": "https://opentofu.org/docs/" },
+    { "type": "article", "title": "AWS CDK", "url": "https://docs.aws.amazon.com/cdk/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**IaC** means defining cloud resources in code files that live in version control, are reviewed like app code, and deployed through automated pipelines. No more clicking consoles.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Terraform** (HCL, declarative, 4800+ providers) is the most mature. **Pulumi** uses real languages (TypeScript, Python, Go). **OpenTofu** is the open-source Terraform fork. **CDKs** (AWS CDK, CDKTF) generate IaC from imperative code. All use a **plan → apply** loop with state tracking." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, IaC is a three-way choice: **Terraform 1.15** (mature ecosystem, 4800+ providers), **Pulumi 5.0** (full programming languages — TypeScript, Python, Go), **OpenTofu 1.12** (CNCF Sandbox since April 2025, drop-in Terraform replacement with state encryption). Use **remote state** and **locking**, modularise with reusable modules, and run `plan` in CI so reviewers see exactly what will change. Drift detection and policy-as-code (OPA, Sentinel) catch misconfigurations before apply." }
+   ],
+   "tags": ["terraform", "iac", "pulumi", "opentofu", "infrastructure"]
+  },
+  "t-cicd": {
+   "label": "CI/CD Pipelines",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Continuous Integration and Delivery — automating build, test, and deployment for fast, reliable releases.",
+   "subs": ["l-ci-build-test", "l-cd-deploy", "l-gitops"],
+   "links": [
+    { "type": "article", "title": "GitHub Actions Docs", "url": "https://docs.github.com/en/actions" },
+    { "type": "article", "title": "GitLab CI/CD", "url": "https://docs.gitlab.com/ee/ci/" },
+    { "type": "article", "title": "Argo CD (GitOps)", "url": "https://argo-cd.readthedocs.io/" },
+    { "type": "article", "title": "AWS CodePipeline", "url": "https://docs.aws.amazon.com/codepipeline/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**CI** automatically builds and tests every commit. **CD** automatically deploys passing builds to staging or production. Together they shorten the feedback loop from days to minutes.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Pipelines: lint → build → unit test → integration test → security scan → deploy. Use **environments** (dev/staging/prod) with promotion gates. **GitOps** (Argo CD, Flux) uses Git as the source of truth — a merged PR *is* a deployment." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, GitOps is the dominant pattern for Kubernetes deployments. Combine with IaC so infra and app deploy through the same pipeline. Progressive delivery (canary, blue-green, feature flags) reduces blast radius. Keep pipelines fast (<10 min) — slow CI kills developer velocity." }
+   ],
+   "tags": ["cicd", "devops", "github-actions", "gitops", "argo"]
+  },
+  "t-observability": {
+   "label": "Observability & Monitoring",
+   "domain": "d6",
+   "col": 4,
+   "desc": "Understanding system behaviour through metrics, logs, and traces — powered by OpenTelemetry.",
+   "subs": ["l-metrics", "l-logging", "l-tracing", "l-alerting"],
+   "links": [
+    { "type": "article", "title": "OpenTelemetry", "url": "https://opentelemetry.io/" },
+    { "type": "article", "title": "AWS CloudWatch", "url": "https://docs.aws.amazon.com/cloudwatch/" },
+    { "type": "article", "title": "Grafana + Prometheus", "url": "https://grafana.com/docs/" },
+    { "type": "article", "title": "OpenTelemetry Observability 2026 Guide", "url": "https://calmops.com/devops/opentelemetry-observability-2026-complete-guide/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Observability = understanding **what's happening inside** your system from its external outputs. The three pillars: **metrics** (numbers over time), **logs** (events), and **traces** (request journeys).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**OpenTelemetry (OTel)** is the dominant open-source standard — vendor-neutral APIs for instrumentation, an OTel Collector for routing, and exporters to any backend (Prometheus, Jaeger, Datadog, CloudWatch). In 2026, **continuous profiling** emerges as the fourth signal." },
+    { "label": "In practice", "tag": "adv", "body": "Instrument with OTel SDK, collect with OTel Collector, store in Tempo/Jaeger (traces), Prometheus/Mimir (metrics), Loki (logs). Trace context propagates automatically via **W3C headers**. Start with auto-instrumentation, add manual spans for business logic. The goal is meaningful, cost-efficient observability — not just collecting more data." }
+   ],
+   "tags": ["observability", "opentelemetry", "monitoring", "prometheus", "grafana"]
+  },
+  "t-cost-ops": {
+   "label": "FinOps & Cost Optimisation",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Managing and optimising cloud spend — visibility, accountability, and right-sizing.",
+   "subs": ["l-cost-visibility", "l-rightsizing", "l-reservations"],
+   "links": [
+    { "type": "article", "title": "FinOps Foundation", "url": "https://www.finops.org/" },
+    { "type": "article", "title": "AWS Cost Explorer", "url": "https://docs.aws.amazon.com/cost-management/" },
+    { "type": "article", "title": "Google Cloud Cost Management", "url": "https://cloud.google.com/cost-management" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud bills grow fast without governance. **FinOps** is the practice of bringing financial accountability to cloud — teams own their spend.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Three phases: **Inform** (tagging, dashboards, cost allocation), **Optimise** (right-sizing, spot instances, reserved capacity, storage tiering), **Operate** (budgets, alerts, anomaly detection)." },
+    { "label": "In practice", "tag": "adv", "body": "Cloud costs climb ~22% year-over-year without active management. Top levers: terminate idle resources, right-size VMs (most are overprovisioned), use spot/preemptible for fault-tolerant work, commit to Savings Plans for steady-state. Automate with cost anomaly alerts and scheduled scale-down in non-prod." }
+   ],
+   "tags": ["finops", "cost", "optimization", "savings-plans"]
+  },
+  "t-microservices": {
+   "label": "Microservices & API Gateways",
+   "domain": "d7",
+   "col": 5,
+   "desc": "Decomposing monoliths into small, independently deployable services connected through APIs.",
+   "subs": ["l-service-decomposition", "l-api-gateway", "l-api-versioning", "l-ddd"],
+   "links": [
+    { "type": "article", "title": "microservices.io (Martin Fowler)", "url": "https://microservices.io/" },
+    { "type": "article", "title": "AWS API Gateway", "url": "https://docs.aws.amazon.com/apigateway/" },
+    { "type": "article", "title": "Google Apigee", "url": "https://cloud.google.com/apigee/docs" },
+    { "type": "article", "title": "Azure API Management", "url": "https://learn.microsoft.com/en-us/azure/api-management/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Microservices** split a system into small services, each owning one business capability, deployable independently. They communicate over APIs (REST, gRPC, events).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "An **API Gateway** (AWS API Gateway, Apigee, Kong) sits in front — handling auth, rate limiting, routing, and versioning. Decompose by **domain** (DDD bounded contexts), not by tech layer." },
+    { "label": "In practice", "tag": "adv", "body": "Microservices trade code complexity for operational complexity. You need CI/CD per service, distributed tracing, contract testing, and clear ownership. Don't split prematurely — start monolithic, extract services when team/scale boundaries demand it." }
+   ],
+   "tags": ["microservices", "api-gateway", "rest", "grpc"]
+  },
+  "t-dr-ha": {
+   "label": "Disaster Recovery & High Availability",
+   "domain": "d7",
+   "col": 5,
+   "desc": "Designing systems that survive failures — multi-AZ, multi-region, RPO/RTO, and chaos engineering.",
+   "subs": ["l-rpo-rto", "l-multi-az", "l-multi-region", "l-chaos-eng"],
+   "links": [
+    { "type": "article", "title": "AWS Disaster Recovery Workloads", "url": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-workloads-on-aws.html" },
+    { "type": "article", "title": "Azure — Business Continuity", "url": "https://learn.microsoft.com/en-us/azure/reliability/" },
+    { "type": "article", "title": "Google Cloud — Disaster Recovery Planning", "url": "https://cloud.google.com/architecture/dr-scenarios-planning-guide" },
+    { "type": "article", "title": "Principles of Chaos Engineering", "url": "https://principlesofchaos.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**High Availability** = staying up during routine failures. **Disaster Recovery** = getting back up after catastrophic failures. Both are about limiting downtime and data loss.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**RPO** (Recovery Point Objective) = how much data you can afford to lose. **RTO** (Recovery Time Objective) = how fast you must recover. Strategies range from backup/restore (cheap, slow) to **multi-region active-active** (expensive, instant)." },
+    { "label": "In practice", "tag": "adv", "body": "Deploy across at least **2 AZs** for HA. For DR, use pilot-light or warm-standby in a second region. Test recovery regularly — **chaos engineering** (AWS FIS, Gremlin, Litmus) injects real failures to prove resilience before an outage hits you in production." }
+   ],
+   "tags": ["disaster-recovery", "high-availability", "multi-region", "chaos-engineering"]
+  },
+  "t-hybrid-cloud": {
+   "label": "Hybrid & Multi-Cloud",
+   "domain": "d7",
+   "col": 5,
+   "desc": "Spanning on-premises and multiple clouds — Arc, Outposts, Anthos, and multi-cloud strategy.",
+   "subs": ["l-hybrid-patterns", "l-arc-outposts", "l-multi-cloud-strategy"],
+   "links": [
+    { "type": "article", "title": "Azure Arc", "url": "https://learn.microsoft.com/en-us/azure/azure-arc/" },
+    { "type": "article", "title": "AWS Outposts", "url": "https://docs.aws.amazon.com/outposts/" },
+    { "type": "article", "title": "Google Distributed Cloud", "url": "https://cloud.google.com/distributed-cloud" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Hybrid cloud** connects on-premises data centres with public cloud. **Multi-cloud** uses multiple providers. Both are about flexibility, compliance, and avoiding lock-in.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Azure Arc** projects on-prem/edge resources into Azure management. **AWS Outposts** puts AWS hardware in your DC. **Google Distributed Cloud** extends GCP to edge. Kubernetes is the common control plane across all environments." },
+    { "label": "In practice", "tag": "adv", "body": "~75% of enterprises now run multi-cloud. The challenge isn't technology — it's operational consistency: unified IAM, networking, observability, and IaC across environments. Use a cloud-agnostic layer (K8s + Terraform) where portability matters, and go provider-native where differentiation matters." }
+   ],
+   "tags": ["hybrid-cloud", "multi-cloud", "azure-arc", "outposts"]
+  },
+  "t-migration": {
+   "label": "Cloud Migration Strategies",
+   "domain": "d7",
+   "col": 5,
+   "desc": "Moving workloads to the cloud — the 7 Rs, assessment, tooling, and phased execution.",
+   "subs": ["l-7rs", "l-migration-assessment", "l-migration-tooling"],
+   "links": [
+    { "type": "article", "title": "AWS Migration Hub", "url": "https://docs.aws.amazon.com/migrationhub/" },
+    { "type": "article", "title": "Azure Migrate", "url": "https://learn.microsoft.com/en-us/azure/migrate/" },
+    { "type": "article", "title": "Google Cloud Migration Center", "url": "https://cloud.google.com/migration-center/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud migration moves workloads from on-premises (or another cloud) to a target cloud. The **7 Rs** define how: rehost, replatform, refactor, repurchase, relocate, retain, or retire.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Rehost** (lift-and-shift) is fastest; **refactor** (re-architect) captures the most cloud value. Start with **discovery and assessment** — inventory apps, map dependencies, classify by migration strategy." },
+    { "label": "In practice", "tag": "adv", "body": "Migrate in waves, not big-bang. Use provider tools (AWS MGN, Azure Migrate, Google Migration Center) for rehosting. Prioritise apps with clear ROI. Expect 30–40% of apps to need refactoring post-migration to realise cost and performance benefits." }
+   ],
+   "tags": ["migration", "lift-and-shift", "refactor", "modernization"]
+  },
+  "t-platform-eng": {
+   "label": "Platform Engineering",
+   "domain": "d8",
+   "col": 6,
+   "desc": "Building internal developer platforms — golden paths, self-service infrastructure, and developer experience.",
+   "subs": ["l-idp", "l-golden-paths", "l-backstage"],
+   "links": [
+    { "type": "article", "title": "platformengineering.org", "url": "https://platformengineering.org/" },
+    { "type": "article", "title": "Backstage by Spotify", "url": "https://backstage.io/docs/" },
+    { "type": "article", "title": "Crossplane", "url": "https://www.crossplane.io/docs/" },
+    { "type": "article", "title": "CNCF Platforms White Paper", "url": "https://tag-app-delivery.cncf.io/whitepapers/platforms/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Platform engineering** builds a self-service layer on top of cloud infra — so product teams ship without filing tickets or learning Terraform.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "An **Internal Developer Platform (IDP)** provides golden paths: pre-approved templates for deploying services, databases, and pipelines. Tools: **Backstage** (developer portal), **Crossplane** (infrastructure abstraction), **Kratix** (platform APIs)." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026 platform engineering is how organisations scale DevOps beyond a few expert teams. The platform team is a product team — its customers are developers. Measure developer experience (time to first deploy, cognitive load) not just infra metrics." }
+   ],
+   "tags": ["platform-engineering", "backstage", "crossplane", "developer-experience"]
+  },
+  "t-sre": {
+   "label": "Site Reliability Engineering",
+   "domain": "d8",
+   "col": 6,
+   "desc": "SRE principles — SLIs, SLOs, error budgets, incident management, and eliminating toil.",
+   "subs": ["l-sli-slo", "l-error-budgets", "l-incident-mgmt", "l-toil"],
+   "links": [
+    { "type": "article", "title": "Google SRE Book (free)", "url": "https://sre.google/sre-book/table-of-contents/" },
+    { "type": "article", "title": "Google SRE Workbook", "url": "https://sre.google/workbook/table-of-contents/" },
+    { "type": "article", "title": "AWS Operational Excellence Pillar", "url": "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**SRE** applies software engineering to operations. Core idea: define **SLOs** (reliability targets), and use **error budgets** to balance feature velocity against stability.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**SLIs** (service level indicators) measure user-facing quality (latency, availability, correctness). **SLOs** set targets. When error budget is spent, slow down releases and invest in reliability. **Toil** is repetitive manual work that should be automated." },
+    { "label": "In practice", "tag": "adv", "body": "SRE isn't just on-call. It's a framework: blameless postmortems, runbooks, capacity planning, and progressive rollouts. Google's books remain the gold standard. In 2026, AIOps and LLM-assisted incident triage are augmenting (not replacing) SRE teams." }
+   ],
+   "tags": ["sre", "slo", "error-budget", "incident-management", "reliability"]
+  },
+  "t-multi-account": {
+   "label": "Multi-Account & Org Strategy",
+   "domain": "d8",
+   "col": 6,
+   "desc": "Structuring cloud accounts for isolation, security, and governance at enterprise scale.",
+   "subs": ["l-org-structure", "l-landing-zones", "l-scps-guardrails"],
+   "links": [
+    { "type": "article", "title": "AWS Organizations", "url": "https://docs.aws.amazon.com/organizations/" },
+    { "type": "article", "title": "AWS Control Tower", "url": "https://docs.aws.amazon.com/controltower/" },
+    { "type": "article", "title": "Azure Landing Zones", "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/" },
+    { "type": "article", "title": "Google Cloud Resource Hierarchy", "url": "https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Don't put everything in one account. Use **multiple accounts** (AWS) or subscriptions (Azure) / projects (GCP) to isolate workloads, limit blast radius, and separate billing.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Landing zones** are pre-configured account structures with networking, IAM, logging, and guardrails baked in. AWS Control Tower, Azure Landing Zones, and GCP Fabric all automate this setup." },
+    { "label": "In practice", "tag": "adv", "body": "Typical pattern: separate accounts for security/audit, networking (shared VPCs), workloads (per-team or per-app), and sandboxes. Apply **SCPs** (AWS) or **Org Policies** (GCP) at the OU level to enforce guardrails preventively — no one can accidentally make an S3 bucket public." }
+   ],
+   "tags": ["organizations", "landing-zone", "multi-account", "governance"]
+  },
+  "t-secrets": {
+   "label": "Secrets Management",
+   "domain": "d8",
+   "col": 6,
+   "desc": "Storing, rotating, and accessing sensitive credentials securely — vaults, KMS, and injection patterns.",
+   "subs": ["l-secret-stores", "l-rotation", "l-injection-patterns"],
+   "links": [
+    { "type": "article", "title": "HashiCorp Vault", "url": "https://developer.hashicorp.com/vault/docs" },
+    { "type": "article", "title": "AWS Secrets Manager", "url": "https://docs.aws.amazon.com/secretsmanager/" },
+    { "type": "article", "title": "Azure Key Vault", "url": "https://learn.microsoft.com/en-us/azure/key-vault/" },
+    { "type": "article", "title": "Google Secret Manager", "url": "https://cloud.google.com/secret-manager/docs" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Never hardcode secrets. Store API keys, DB passwords, and certificates in a **secrets manager** — accessed at runtime, audited, and rotatable.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Cloud-native options: **AWS Secrets Manager**, **Azure Key Vault**, **GCP Secret Manager**. Cross-cloud: **HashiCorp Vault**. Use **automatic rotation** so compromised credentials expire. **KMS** manages encryption keys separately from secrets." },
+    { "label": "In practice", "tag": "adv", "body": "Inject secrets via environment variables, mounted volumes (K8s CSI driver), or SDK calls — never bake into images. Integrate with CI/CD (OIDC federation for short-lived tokens). Audit access logs. In 2026, zero-standing-secrets (dynamic, JIT-generated credentials) is the gold standard." }
+   ],
+   "tags": ["secrets", "vault", "kms", "key-vault", "credentials"]
+  },
+  "t-compliance-auto": {
+   "label": "Compliance Automation",
+   "domain": "d8",
+   "col": 6,
+   "desc": "Policy-as-code, automated audit evidence, supply chain security, and continuous compliance.",
+   "subs": ["l-policy-as-code", "l-supply-chain", "l-audit-evidence"],
+   "links": [
+    { "type": "article", "title": "Open Policy Agent (OPA)", "url": "https://www.openpolicyagent.org/docs/" },
+    { "type": "article", "title": "Kyverno (K8s policy)", "url": "https://kyverno.io/docs/" },
+    { "type": "article", "title": "SLSA — Supply Chain Levels", "url": "https://slsa.dev/" },
+    { "type": "article", "title": "Sigstore — Code Signing", "url": "https://www.sigstore.dev/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Compliance automation** replaces manual checklists with code that continuously verifies policy — if it's not automated, it drifts.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Policy-as-code** (OPA/Rego, Kyverno, Sentinel) enforces rules on IaC, K8s manifests, and runtime config. **SBOM** (Software Bill of Materials) and **SLSA** levels track supply chain integrity. **Sigstore** provides keyless code signing." },
+    { "label": "In practice", "tag": "adv", "body": "Shift compliance left: validate policies in CI (OPA on Terraform plans, Kyverno on K8s manifests). Generate audit evidence automatically from CloudTrail/Config/Audit Logs. In 2026, frameworks like SOC 2 and ISO 27001 are increasingly satisfied through continuous, automated controls rather than annual audits." }
+   ],
+   "tags": ["compliance", "policy-as-code", "opa", "slsa", "supply-chain"]
+  },
+  "t-cloud-ai": {
+   "label": "Cloud AI/ML Services",
+   "domain": "d9",
+   "col": 7,
+   "desc": "Managed AI/ML platforms — model training, serving, GPUs, and MLOps on cloud infrastructure.",
+   "subs": ["l-ml-platforms", "l-gpu-instances", "l-mlops"],
+   "links": [
+    { "type": "article", "title": "AWS SageMaker", "url": "https://docs.aws.amazon.com/sagemaker/" },
+    { "type": "article", "title": "Google Vertex AI", "url": "https://cloud.google.com/vertex-ai/docs" },
+    { "type": "article", "title": "Azure AI Studio", "url": "https://learn.microsoft.com/en-us/azure/ai-studio/" },
+    { "type": "article", "title": "MLflow", "url": "https://mlflow.org/docs/latest/index.html" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud providers offer managed ML platforms that handle the infrastructure for training and serving models — GPUs, distributed training, model registries, and endpoints.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**SageMaker** (AWS), **Vertex AI** (GCP), and **Azure AI Studio** provide end-to-end pipelines: data labelling → training → tuning → deployment → monitoring. GPU instances (P5, A100, H100, TPUs) provide the compute. **MLOps** automates the lifecycle." },
+    { "label": "In practice", "tag": "adv", "body": "AI/ML is the fastest-growing cloud segment in 2026. Azure leads for OpenAI/GPT integration, GCP for TPUs and BigQuery ML, AWS for the broadest GPU selection. For LLM inference, use managed endpoints (Bedrock, Vertex AI) rather than self-hosting unless you need full control. Track experiments with MLflow, deploy with feature stores and model monitoring." }
+   ],
+   "tags": ["ai-ml", "sagemaker", "vertex-ai", "mlops", "gpu"]
+  },
+  "t-data-pipelines": {
+   "label": "Data Pipelines & Analytics",
+   "domain": "d9",
+   "col": 7,
+   "desc": "ETL/ELT, data warehouses, lakehouses, and real-time analytics on cloud data platforms.",
+   "subs": ["l-etl-elt", "l-data-warehouse", "l-lakehouse"],
+   "links": [
+    { "type": "article", "title": "Google BigQuery", "url": "https://cloud.google.com/bigquery/docs" },
+    { "type": "article", "title": "AWS Redshift / Glue", "url": "https://docs.aws.amazon.com/redshift/" },
+    { "type": "article", "title": "Azure Synapse Analytics", "url": "https://learn.microsoft.com/en-us/azure/synapse-analytics/" },
+    { "type": "article", "title": "dbt (data build tool)", "url": "https://docs.getdbt.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Data pipelines move data from sources (databases, APIs, events) into **warehouses** or **lakes** where it's cleaned, transformed, and made queryable for analytics and ML.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**ETL** transforms before loading; **ELT** loads raw then transforms in-warehouse (the modern approach). Warehouses: **BigQuery**, **Redshift**, **Synapse**. **dbt** is the standard transformation layer. The **lakehouse** (Delta Lake, Iceberg) merges lake flexibility with warehouse performance." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, serverless warehouses (BigQuery, Redshift Serverless) dominate — no cluster management, pay per query. Open table formats (**Apache Iceberg**, Delta Lake) prevent vendor lock-in on data lakes. Orchestrate with Airflow, Dagster, or Prefect. Real-time: Kafka → Flink → warehouse for streaming analytics." }
+   ],
+   "tags": ["data-pipelines", "bigquery", "redshift", "dbt", "lakehouse", "etl"]
+  },
+  "t-edge": {
+   "label": "Edge Computing & IoT",
+   "domain": "d9",
+   "col": 7,
+   "desc": "Running compute closer to users and devices — CDN functions, edge locations, and IoT platforms.",
+   "subs": ["l-edge-functions", "l-iot-platforms", "l-edge-ai"],
+   "links": [
+    { "type": "article", "title": "AWS CloudFront Functions / Lambda@Edge", "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/edge-functions.html" },
+    { "type": "article", "title": "Cloudflare Workers", "url": "https://developers.cloudflare.com/workers/" },
+    { "type": "article", "title": "AWS IoT Core", "url": "https://docs.aws.amazon.com/iot/" },
+    { "type": "article", "title": "Azure IoT Hub", "url": "https://learn.microsoft.com/en-us/azure/iot-hub/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Edge computing** runs code closer to users (CDN edge) or devices (IoT gateways) — reducing latency and bandwidth to the cloud.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Edge functions** (Lambda@Edge, CloudFront Functions, Cloudflare Workers) run at CDN PoPs for ultra-low-latency transformations. **IoT platforms** (IoT Core, IoT Hub) manage device connectivity, telemetry ingestion, and device shadows/twins at scale." },
+    { "label": "In practice", "tag": "adv", "body": "Edge is growing fast — personalization, A/B testing, and auth at the CDN layer. For IoT, manage millions of devices with MQTT and device management services. **Edge AI** (inference on-device or at the edge) avoids round-trips to the cloud for real-time decisions. Google Distributed Cloud and AWS Outposts bring full cloud services to edge locations." }
+   ],
+   "tags": ["edge", "iot", "lambda-edge", "cloudflare-workers", "edge-ai"]
+  }
+ },
+ "leaves": {
+  "l-on-demand": { "label": "On-Demand Resources", "parent": "t-cloud-overview", "domain": "d1", "desc": "Provision compute, storage, and databases in seconds via API — no hardware procurement." },
+  "l-elasticity": { "label": "Elasticity & Auto-Scaling", "parent": "t-cloud-overview", "domain": "d1", "desc": "Automatically scale resources up during load spikes and back down when demand drops." },
+  "l-shared-responsibility": { "label": "Shared Responsibility Model", "parent": "t-cloud-overview", "domain": "d1", "desc": "Provider secures the cloud (hardware, network); you secure what's in the cloud (data, config, access)." },
+  "l-iaas": { "label": "IaaS", "parent": "t-service-models", "domain": "d1", "desc": "Infrastructure-as-a-Service — VMs, networks, and storage. You manage OS, runtime, and app." },
+  "l-paas": { "label": "PaaS", "parent": "t-service-models", "domain": "d1", "desc": "Platform-as-a-Service — deploy code to a managed runtime. Provider handles OS, scaling, patching." },
+  "l-saas": { "label": "SaaS", "parent": "t-service-models", "domain": "d1", "desc": "Software-as-a-Service — fully managed apps you use over the internet (Gmail, Salesforce, Slack)." },
+  "l-faas": { "label": "FaaS / CaaS", "parent": "t-service-models", "domain": "d1", "desc": "Functions-as-a-Service and Containers-as-a-Service — hybrid abstractions between PaaS and IaaS." },
+  "l-aws": { "label": "AWS", "parent": "t-providers", "domain": "d1", "desc": "Amazon Web Services — largest market share, broadest service catalog (200+ services), most mature ecosystem." },
+  "l-azure": { "label": "Azure", "parent": "t-providers", "domain": "d1", "desc": "Microsoft Azure — deepest enterprise/Microsoft integration, hybrid cloud (Arc), strong government compliance." },
+  "l-gcp": { "label": "GCP", "parent": "t-providers", "domain": "d1", "desc": "Google Cloud Platform — leads in data analytics (BigQuery), AI/ML (TPUs, Vertex AI), and Kubernetes (GKE)." },
+  "l-instance-types": { "label": "Instance Types & Families", "parent": "t-vms", "domain": "d2", "desc": "General purpose, compute-optimised, memory-optimised, GPU — pick the right shape for the workload." },
+  "l-autoscaling": { "label": "Auto Scaling Groups", "parent": "t-vms", "domain": "d2", "desc": "Automatically adjust VM count based on CPU, memory, or custom metrics to match demand." },
+  "l-spot-instances": { "label": "Spot / Preemptible Instances", "parent": "t-vms", "domain": "d2", "desc": "Spare capacity at 60–90% discount — can be interrupted, ideal for fault-tolerant batch workloads." },
+  "l-docker": { "label": "Docker", "parent": "t-containers", "domain": "d2", "desc": "The tool that popularised containers — build images with a Dockerfile, run them anywhere." },
+  "l-images-registries": { "label": "Images & Registries", "parent": "t-containers", "domain": "d2", "desc": "OCI images stored in registries (ECR, ACR, Artifact Registry, Docker Hub) — versioned, scannable, deployable." },
+  "l-container-runtime": { "label": "Container Runtimes", "parent": "t-containers", "domain": "d2", "desc": "containerd, CRI-O — the low-level engines that actually run containers on a host." },
+  "l-k8s-arch": { "label": "K8s Architecture", "parent": "t-kubernetes", "domain": "d2", "desc": "Control plane (API server, etcd, scheduler, controller-manager) + worker nodes (kubelet, kube-proxy, container runtime)." },
+  "l-pods-services": { "label": "Pods, Services & Ingress", "parent": "t-kubernetes", "domain": "d2", "desc": "Pods group containers; Services provide stable endpoints; Ingress exposes HTTP routes externally." },
+  "l-helm": { "label": "Helm Charts", "parent": "t-kubernetes", "domain": "d2", "desc": "Package manager for Kubernetes — template and version complex deployments as reusable charts." },
+  "l-service-mesh": { "label": "Service Mesh", "parent": "t-kubernetes", "domain": "d2", "desc": "Istio, Linkerd — add mTLS, traffic shaping, retries, and observability as infrastructure, not app code." },
+  "l-lambda": { "label": "Lambda / Cloud Functions", "parent": "t-serverless", "domain": "d2", "desc": "Write a function, upload it, and the provider runs it on any trigger — HTTP, queue, schedule, or event." },
+  "l-event-triggers": { "label": "Event Triggers", "parent": "t-serverless", "domain": "d2", "desc": "S3 uploads, DynamoDB streams, Pub/Sub messages, HTTP requests — events that invoke your function." },
+  "l-cold-starts": { "label": "Cold Starts", "parent": "t-serverless", "domain": "d2", "desc": "First-invocation latency when the runtime initialises — mitigate with provisioned concurrency or lightweight runtimes." },
+  "l-vpc": { "label": "VPC / Virtual Network", "parent": "t-networking", "domain": "d3", "desc": "Your isolated cloud network — define IP ranges, route tables, and gateways." },
+  "l-subnets": { "label": "Subnets & Route Tables", "parent": "t-networking", "domain": "d3", "desc": "Public subnets (internet-facing), private subnets (internal), route tables direct traffic between them." },
+  "l-load-balancers": { "label": "Load Balancers", "parent": "t-networking", "domain": "d3", "desc": "ALB (Layer 7), NLB (Layer 4) — distribute traffic across healthy targets for availability and scale." },
+  "l-dns-cdn": { "label": "DNS & CDN", "parent": "t-networking", "domain": "d3", "desc": "Route 53 / Cloud DNS for name resolution; CloudFront / Cloud CDN for edge caching and low latency." },
+  "l-policies-roles": { "label": "Policies & Roles", "parent": "t-iam", "domain": "d3", "desc": "JSON policy documents define permissions; roles are assumed by services or users without long-lived keys." },
+  "l-federation": { "label": "Identity Federation", "parent": "t-iam", "domain": "d3", "desc": "SAML, OIDC — connect your corporate IdP to cloud so users don't need separate cloud credentials." },
+  "l-least-privilege": { "label": "Least Privilege", "parent": "t-iam", "domain": "d3", "desc": "Grant only the minimum permissions needed. Use access analysers to find and remove excess." },
+  "l-zt-principles": { "label": "Zero Trust Principles", "parent": "t-zero-trust", "domain": "d3", "desc": "Verify explicitly, use least-privilege access, assume breach — applied to every request regardless of network." },
+  "l-microsegmentation": { "label": "Microsegmentation", "parent": "t-zero-trust", "domain": "d3", "desc": "Fine-grained network segmentation between workloads — limits lateral movement if one service is compromised." },
+  "l-encryption": { "label": "Encryption (at rest & in transit)", "parent": "t-cloud-security", "domain": "d3", "desc": "KMS-managed keys encrypt storage; TLS encrypts network traffic. Default to encryption everywhere." },
+  "l-compliance": { "label": "Compliance & Governance", "parent": "t-cloud-security", "domain": "d3", "desc": "SOC 2, ISO 27001, HIPAA, GDPR — frameworks providers comply with; you must configure your side correctly." },
+  "l-cspm": { "label": "CSPM Tools", "parent": "t-cloud-security", "domain": "d3", "desc": "Cloud Security Posture Management — continuous scanning for misconfigurations against CIS benchmarks." },
+  "l-object-storage": { "label": "Object Storage", "parent": "t-storage", "domain": "d4", "desc": "S3, Azure Blob, GCS — store unlimited unstructured data with 11 nines durability and lifecycle policies." },
+  "l-block-storage": { "label": "Block Storage", "parent": "t-storage", "domain": "d4", "desc": "EBS, Managed Disks, Persistent Disks — high-performance volumes attached to VMs for databases and apps." },
+  "l-file-storage": { "label": "File Storage", "parent": "t-storage", "domain": "d4", "desc": "EFS, Azure Files, Filestore — shared NFS/SMB file systems accessible by multiple instances concurrently." },
+  "l-rds-sql": { "label": "Relational (SQL)", "parent": "t-databases", "domain": "d4", "desc": "Managed PostgreSQL, MySQL, SQL Server — automated backups, replicas, failover. Aurora and AlloyDB for cloud-native performance." },
+  "l-nosql": { "label": "NoSQL", "parent": "t-databases", "domain": "d4", "desc": "DynamoDB, Cosmos DB, Firestore — key-value, document, and wide-column stores for flexible schemas at massive scale." },
+  "l-purpose-built": { "label": "Purpose-Built DBs", "parent": "t-databases", "domain": "d4", "desc": "Graph (Neptune), time-series (Timestream), in-memory (ElastiCache/Redis), ledger (QLDB) — choose by access pattern." },
+  "l-queues": { "label": "Message Queues", "parent": "t-messaging", "domain": "d4", "desc": "SQS, Azure Queue — point-to-point, at-least-once delivery, decouples producer from consumer." },
+  "l-pubsub": { "label": "Pub/Sub", "parent": "t-messaging", "domain": "d4", "desc": "SNS, Google Pub/Sub — fan-out events to multiple subscribers via topics." },
+  "l-event-streaming": { "label": "Event Streaming", "parent": "t-messaging", "domain": "d4", "desc": "Kafka, Kinesis, EventBridge — ordered, durable, replayable event logs for real-time analytics and event sourcing." },
+  "l-terraform": { "label": "Terraform", "parent": "t-iac", "domain": "d5", "desc": "Declarative IaC in HCL — plan/apply workflow, 4800+ providers, the most widely adopted tool (26M+ weekly downloads)." },
+  "l-pulumi": { "label": "Pulumi", "parent": "t-iac", "domain": "d5", "desc": "IaC in real languages (TypeScript, Python, Go, C#) — full IDE support, testing, and abstractions." },
+  "l-opentofu": { "label": "OpenTofu", "parent": "t-iac", "domain": "d5", "desc": "Open-source Terraform fork (Linux Foundation) — drop-in compatible, community-driven, no license concerns." },
+  "l-cdk": { "label": "CDK / CDKTF", "parent": "t-iac", "domain": "d5", "desc": "AWS CDK and CDKTF generate CloudFormation/Terraform from imperative code — high-level constructs for common patterns." },
+  "l-ci-build-test": { "label": "CI: Build & Test", "parent": "t-cicd", "domain": "d5", "desc": "Every commit triggers: lint, compile, unit tests, integration tests, security scans — fast feedback on breakage." },
+  "l-cd-deploy": { "label": "CD: Deploy", "parent": "t-cicd", "domain": "d5", "desc": "Automatically deploy passing builds through environments (dev → staging → prod) with promotion gates." },
+  "l-gitops": { "label": "GitOps", "parent": "t-cicd", "domain": "d5", "desc": "Git as the single source of truth — Argo CD / Flux sync cluster state to match what's in the repo." },
+  "l-cost-visibility": { "label": "Cost Visibility & Tagging", "parent": "t-cost-ops", "domain": "d5", "desc": "Tag every resource (team, env, project) so costs are attributable. Dashboards and budgets surface trends." },
+  "l-rightsizing": { "label": "Right-Sizing", "parent": "t-cost-ops", "domain": "d5", "desc": "Match instance size to actual utilisation — most VMs use <40% of their allocated CPU." },
+  "l-reservations": { "label": "Savings Plans & Reserved Instances", "parent": "t-cost-ops", "domain": "d5", "desc": "Commit to steady-state usage for 1–3 years and save 30–72% vs. on-demand pricing." },
+  "l-metrics": { "label": "Metrics", "parent": "t-observability", "domain": "d6", "desc": "Numerical time-series (CPU, latency, error rate) — cheap to store, fast to query, ideal for dashboards and alerts." },
+  "l-logging": { "label": "Structured Logging", "parent": "t-observability", "domain": "d6", "desc": "JSON logs with correlation IDs — searchable, filterable, shipped to centralized stores (CloudWatch Logs, Loki)." },
+  "l-tracing": { "label": "Distributed Tracing", "parent": "t-observability", "domain": "d6", "desc": "Follow a request across services via trace/span IDs — pinpoint where latency or errors are introduced." },
+  "l-alerting": { "label": "Alerting & SLOs", "parent": "t-observability", "domain": "d6", "desc": "Define SLIs/SLOs, alert on error budget burn — page humans only when user experience is at risk." },
+  "l-service-decomposition": { "label": "Service Decomposition", "parent": "t-microservices", "domain": "d7", "desc": "Split by business domain (DDD bounded contexts), not by tech layer — each service owns its data and deploys independently." },
+  "l-api-gateway": { "label": "API Gateway", "parent": "t-microservices", "domain": "d7", "desc": "A single entry point that handles routing, auth, rate limiting, and request transformation for backend services." },
+  "l-api-versioning": { "label": "API Versioning & Contracts", "parent": "t-microservices", "domain": "d7", "desc": "Version APIs (URL path, header) and use contract testing (Pact) to prevent breaking changes between services." },
+  "l-ddd": { "label": "Domain-Driven Design", "parent": "t-microservices", "domain": "d7", "desc": "Bounded contexts, aggregates, and ubiquitous language — the strategic patterns that guide service boundaries." },
+  "l-rpo-rto": { "label": "RPO & RTO", "parent": "t-dr-ha", "domain": "d7", "desc": "Recovery Point Objective (max data loss) and Recovery Time Objective (max downtime) — define your tolerance." },
+  "l-multi-az": { "label": "Multi-AZ Deployments", "parent": "t-dr-ha", "domain": "d7", "desc": "Spread across availability zones for HA — survives single data-centre failures with no manual intervention." },
+  "l-multi-region": { "label": "Multi-Region Architecture", "parent": "t-dr-ha", "domain": "d7", "desc": "Active-passive or active-active across regions for DR — handles full regional outages at higher cost and complexity." },
+  "l-chaos-eng": { "label": "Chaos Engineering", "parent": "t-dr-ha", "domain": "d7", "desc": "Inject failures (AWS FIS, Gremlin, Litmus) in controlled experiments to prove your system's resilience before real outages." },
+  "l-hybrid-patterns": { "label": "Hybrid Patterns", "parent": "t-hybrid-cloud", "domain": "d7", "desc": "Burst-to-cloud, tiered (on-prem data / cloud compute), edge hybrid — pick the pattern that matches your constraint." },
+  "l-arc-outposts": { "label": "Arc / Outposts / Distributed Cloud", "parent": "t-hybrid-cloud", "domain": "d7", "desc": "Azure Arc, AWS Outposts, Google Distributed Cloud — extend cloud management and APIs to on-prem and edge." },
+  "l-multi-cloud-strategy": { "label": "Multi-Cloud Strategy", "parent": "t-hybrid-cloud", "domain": "d7", "desc": "Use cloud-agnostic layers (K8s, Terraform) where portability matters; go provider-native where differentiation matters." },
+  "l-7rs": { "label": "The 7 Rs", "parent": "t-migration", "domain": "d7", "desc": "Rehost, replatform, refactor, repurchase, relocate, retain, retire — a decision framework for each workload." },
+  "l-migration-assessment": { "label": "Discovery & Assessment", "parent": "t-migration", "domain": "d7", "desc": "Inventory apps, map dependencies, assess cloud-readiness, and classify by migration strategy." },
+  "l-migration-tooling": { "label": "Migration Tooling", "parent": "t-migration", "domain": "d7", "desc": "AWS MGN, Azure Migrate, Google Migration Center — automate server replication, database migration, and cutover." },
+  "l-idp": { "label": "Internal Developer Platform", "parent": "t-platform-eng", "domain": "d8", "desc": "A self-service product layer that abstracts infra complexity — devs deploy services without learning cloud internals." },
+  "l-golden-paths": { "label": "Golden Paths & Templates", "parent": "t-platform-eng", "domain": "d8", "desc": "Pre-approved, opinionated templates for common workloads — service scaffolds with CI/CD, observability, and security built in." },
+  "l-backstage": { "label": "Backstage & Portals", "parent": "t-platform-eng", "domain": "d8", "desc": "Spotify's Backstage — a developer portal with service catalog, docs, and plugin ecosystem for your IDP." },
+  "l-sli-slo": { "label": "SLIs & SLOs", "parent": "t-sre", "domain": "d8", "desc": "Service Level Indicators measure quality (latency p99, error rate); Service Level Objectives set your reliability targets." },
+  "l-error-budgets": { "label": "Error Budgets", "parent": "t-sre", "domain": "d8", "desc": "100% minus your SLO = budget for unreliability. Spend it on feature velocity; when it's exhausted, prioritise stability." },
+  "l-incident-mgmt": { "label": "Incident Management", "parent": "t-sre", "domain": "d8", "desc": "On-call rotations, severity levels, war rooms, blameless postmortems — a structured response to production issues." },
+  "l-toil": { "label": "Toil Elimination", "parent": "t-sre", "domain": "d8", "desc": "Repetitive, manual operational work that scales linearly with service size — automate it or engineer it away." },
+  "l-org-structure": { "label": "Org / Account Hierarchy", "parent": "t-multi-account", "domain": "d8", "desc": "Org → OUs → Accounts (AWS) / Management Groups → Subscriptions (Azure) / Org → Folders → Projects (GCP)." },
+  "l-landing-zones": { "label": "Landing Zones", "parent": "t-multi-account", "domain": "d8", "desc": "Pre-built, best-practice account structures with networking, logging, and security guardrails out of the box." },
+  "l-scps-guardrails": { "label": "SCPs & Preventive Guardrails", "parent": "t-multi-account", "domain": "d8", "desc": "Service Control Policies (AWS), Azure Policy, Org Policies (GCP) — enforce security at the org level before anyone can violate them." },
+  "l-secret-stores": { "label": "Secret Stores", "parent": "t-secrets", "domain": "d8", "desc": "AWS Secrets Manager, Azure Key Vault, GCP Secret Manager, HashiCorp Vault — centralized, audited, access-controlled." },
+  "l-rotation": { "label": "Automatic Rotation", "parent": "t-secrets", "domain": "d8", "desc": "Rotate credentials on a schedule (30/60/90 days) so compromised secrets expire automatically." },
+  "l-injection-patterns": { "label": "Secret Injection Patterns", "parent": "t-secrets", "domain": "d8", "desc": "Env vars, K8s CSI driver mounts, SDK calls at runtime — never bake secrets into images or repos." },
+  "l-policy-as-code": { "label": "Policy-as-Code", "parent": "t-compliance-auto", "domain": "d8", "desc": "OPA/Rego, Kyverno, Sentinel — write compliance rules as code, enforce in CI and at admission time." },
+  "l-supply-chain": { "label": "Supply Chain Security", "parent": "t-compliance-auto", "domain": "d8", "desc": "SBOM, SLSA levels, Sigstore signing — verify provenance and integrity of every artifact in your pipeline." },
+  "l-audit-evidence": { "label": "Automated Audit Evidence", "parent": "t-compliance-auto", "domain": "d8", "desc": "Generate SOC 2 / ISO 27001 evidence from CloudTrail, Config rules, and policy engine results — continuously, not annually." },
+  "l-ml-platforms": { "label": "Managed ML Platforms", "parent": "t-cloud-ai", "domain": "d9", "desc": "SageMaker, Vertex AI, Azure AI Studio — end-to-end pipelines from data prep to model serving." },
+  "l-gpu-instances": { "label": "GPU & Accelerator Instances", "parent": "t-cloud-ai", "domain": "d9", "desc": "P5, H100, A100, TPU v5 — specialised instances for training and inference at scale." },
+  "l-mlops": { "label": "MLOps", "parent": "t-cloud-ai", "domain": "d9", "desc": "ML lifecycle automation: experiment tracking (MLflow), model registry, automated retraining, drift detection, and monitoring." },
+  "l-etl-elt": { "label": "ETL / ELT", "parent": "t-data-pipelines", "domain": "d9", "desc": "Extract-Transform-Load (classic) vs. Extract-Load-Transform (modern, in-warehouse with dbt)." },
+  "l-data-warehouse": { "label": "Data Warehouses", "parent": "t-data-pipelines", "domain": "d9", "desc": "BigQuery, Redshift, Synapse — columnar, MPP engines optimised for analytical queries over large datasets." },
+  "l-lakehouse": { "label": "Lakehouse & Open Formats", "parent": "t-data-pipelines", "domain": "d9", "desc": "Apache Iceberg, Delta Lake — open table formats that give data lakes warehouse features (ACID, time-travel, schema evolution)." },
+  "l-edge-functions": { "label": "Edge Functions", "parent": "t-edge", "domain": "d9", "desc": "Lambda@Edge, CloudFront Functions, Cloudflare Workers — run code at CDN PoPs for sub-10ms response." },
+  "l-iot-platforms": { "label": "IoT Platforms", "parent": "t-edge", "domain": "d9", "desc": "AWS IoT Core, Azure IoT Hub, Google IoT — device provisioning, MQTT messaging, digital twins, and fleet management." },
+  "l-edge-ai": { "label": "Edge AI / On-Device Inference", "parent": "t-edge", "domain": "d9", "desc": "Run ML models at the edge (Greengrass, Azure IoT Edge) to avoid cloud round-trips for real-time decisions." }
+ },
+ "topicEdges": [
+  { "s": "t-cloud-overview", "t": "t-service-models", "k": "prereq" },
+  { "s": "t-service-models", "t": "t-vms", "k": "prereq" },
+  { "s": "t-service-models", "t": "t-serverless", "k": "prereq" },
+  { "s": "t-containers", "t": "t-kubernetes", "k": "prereq" },
+  { "s": "t-networking", "t": "t-cloud-security", "k": "prereq" },
+  { "s": "t-iam", "t": "t-zero-trust", "k": "builds" },
+  { "s": "t-iac", "t": "t-cicd", "k": "builds" },
+  { "s": "t-kubernetes", "t": "t-observability", "k": "applies" },
+  { "s": "t-serverless", "t": "t-observability", "k": "applies" },
+  { "s": "t-providers", "t": "t-well-architected", "k": "builds" },
+  { "s": "t-iac", "t": "t-cost-ops", "k": "applies" },
+  { "s": "t-containers", "t": "t-serverless", "k": "builds" },
+  { "s": "t-kubernetes", "t": "t-microservices", "k": "applies" },
+  { "s": "t-containers", "t": "t-microservices", "k": "prereq" },
+  { "s": "t-networking", "t": "t-dr-ha", "k": "prereq" },
+  { "s": "t-well-architected", "t": "t-dr-ha", "k": "builds" },
+  { "s": "t-providers", "t": "t-hybrid-cloud", "k": "prereq" },
+  { "s": "t-providers", "t": "t-migration", "k": "prereq" },
+  { "s": "t-iac", "t": "t-platform-eng", "k": "builds" },
+  { "s": "t-cicd", "t": "t-platform-eng", "k": "builds" },
+  { "s": "t-observability", "t": "t-sre", "k": "prereq" },
+  { "s": "t-dr-ha", "t": "t-sre", "k": "applies" },
+  { "s": "t-iam", "t": "t-multi-account", "k": "prereq" },
+  { "s": "t-cloud-security", "t": "t-multi-account", "k": "builds" },
+  { "s": "t-iam", "t": "t-secrets", "k": "prereq" },
+  { "s": "t-cloud-security", "t": "t-compliance-auto", "k": "builds" },
+  { "s": "t-iac", "t": "t-compliance-auto", "k": "applies" },
+  { "s": "t-serverless", "t": "t-cloud-ai", "k": "applies" },
+  { "s": "t-databases", "t": "t-data-pipelines", "k": "prereq" },
+  { "s": "t-messaging", "t": "t-data-pipelines", "k": "applies" },
+  { "s": "t-networking", "t": "t-edge", "k": "prereq" },
+  { "s": "t-serverless", "t": "t-edge", "k": "builds" },
+  { "s": "t-migration", "t": "t-hybrid-cloud", "k": "builds" }
+ ],
+ "leafEdges": [
+  { "s": "l-docker", "t": "l-k8s-arch", "k": "prereq" },
+  { "s": "l-terraform", "t": "l-opentofu", "k": "builds" },
+  { "s": "l-policies-roles", "t": "l-least-privilege", "k": "builds" },
+  { "s": "l-vpc", "t": "l-subnets", "k": "prereq" },
+  { "s": "l-metrics", "t": "l-alerting", "k": "builds" },
+  { "s": "l-ci-build-test", "t": "l-cd-deploy", "k": "prereq" },
+  { "s": "l-cd-deploy", "t": "l-gitops", "k": "builds" },
+  { "s": "l-queues", "t": "l-event-streaming", "k": "builds" },
+  { "s": "l-service-decomposition", "t": "l-ddd", "k": "builds" },
+  { "s": "l-api-gateway", "t": "l-api-versioning", "k": "builds" },
+  { "s": "l-rpo-rto", "t": "l-multi-az", "k": "prereq" },
+  { "s": "l-multi-az", "t": "l-multi-region", "k": "builds" },
+  { "s": "l-multi-region", "t": "l-chaos-eng", "k": "applies" },
+  { "s": "l-7rs", "t": "l-migration-assessment", "k": "prereq" },
+  { "s": "l-migration-assessment", "t": "l-migration-tooling", "k": "builds" },
+  { "s": "l-idp", "t": "l-golden-paths", "k": "builds" },
+  { "s": "l-golden-paths", "t": "l-backstage", "k": "builds" },
+  { "s": "l-sli-slo", "t": "l-error-budgets", "k": "prereq" },
+  { "s": "l-error-budgets", "t": "l-incident-mgmt", "k": "applies" },
+  { "s": "l-incident-mgmt", "t": "l-toil", "k": "builds" },
+  { "s": "l-org-structure", "t": "l-landing-zones", "k": "prereq" },
+  { "s": "l-landing-zones", "t": "l-scps-guardrails", "k": "builds" },
+  { "s": "l-secret-stores", "t": "l-rotation", "k": "builds" },
+  { "s": "l-rotation", "t": "l-injection-patterns", "k": "applies" },
+  { "s": "l-policy-as-code", "t": "l-supply-chain", "k": "builds" },
+  { "s": "l-supply-chain", "t": "l-audit-evidence", "k": "builds" },
+  { "s": "l-ml-platforms", "t": "l-mlops", "k": "builds" },
+  { "s": "l-gpu-instances", "t": "l-ml-platforms", "k": "prereq" },
+  { "s": "l-etl-elt", "t": "l-data-warehouse", "k": "prereq" },
+  { "s": "l-data-warehouse", "t": "l-lakehouse", "k": "builds" },
+  { "s": "l-edge-functions", "t": "l-edge-ai", "k": "builds" },
+  { "s": "l-iot-platforms", "t": "l-edge-ai", "k": "applies" },
+  { "s": "l-alerting", "t": "l-sli-slo", "k": "builds" }
+ ]
+}

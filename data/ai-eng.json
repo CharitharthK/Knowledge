@@ -27,10 +27,6 @@
   "p5": {
    "name": "Multimodal Gen",
    "c": "#F0796B"
-  },
-  "p6": {
-   "name": "Capstone",
-   "c": "#8A93AE"
   }
  },
  "cols": [
@@ -84,12 +80,6 @@
     "t-t2i",
     "t-t2v"
    ]
-  },
-  {
-   "title": "Capstone",
-   "keys": [
-    "t-capstone"
-   ]
   }
  ],
  "topics": {
@@ -132,7 +122,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "By 2026 the frontier is crowded — **GPT-5.x**, **Claude** (Opus/Sonnet), and **Gemini 3** on the closed side; **Llama 4**, **DeepSeek**, **Qwen 3**, **GLM**, and **Gemma** on the open side. They differ mostly in data, tokenizer, attention variants, and training recipe — not the core idea — and open-weight models now sit just behind the closed leaders.",
+     "body": "By mid-2026 the frontier is crowded — **GPT-5.5**, **Claude Opus 4.7 / Sonnet 5**, **Gemini 3.5 Flash**, and **Grok 4.3** on the closed side; **DeepSeek V4**, **Llama 4 Scout/Maverick** (up to 10 M context), **Qwen 3.6**, **Mistral Large 3**, **GLM-5**, and **Kimi K2** on the open side. They differ mostly in data mix, tokenizer, attention variants, and training recipe — not the core idea — and open-weight models now match closed leaders on many tasks.",
      "open": false
     }
    ]
@@ -208,6 +198,11 @@
      "url": "https://arxiv.org/abs/2305.18290"
     },
     {
+     "type": "article",
+     "title": "DeepSeek-R1 (GRPO)",
+     "url": "https://arxiv.org/abs/2501.12948"
+    },
+    {
      "type": "course",
      "title": "Hugging Face smol-course",
      "url": "https://huggingface.co/learn/smol-course"
@@ -223,14 +218,12 @@
     {
      "label": "Going deeper",
      "tag": "mid",
-     "body": "**SFT** on example conversations, then **RLHF** — a reward model scores answers and RL (e.g. PPO) optimises for them. For checkable tasks, verifiable rewards replace the human.",
-     "open": false
+     "body": "**SFT** on example conversations, then **preference alignment** — a reward model scores answers and RL (PPO or **GRPO**) optimises for them. **DPO** skips the reward model entirely; **RLAIF** replaces humans with an AI judge. For checkable tasks, **verifiable rewards (RLVR)** replace the human."
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "This stage shapes helpfulness, tone, and safety far more than pre-training; reward design and data quality are the hard parts.",
-     "open": false
+     "body": "This stage shapes helpfulness, tone, and safety far more than pre-training. **GRPO** (DeepSeek's group-relative approach) achieves alignment with far less compute than PPO. Reward design, preference data quality, and overfitting to the reward model are the hard parts."
     }
    ]
   },
@@ -259,6 +252,11 @@
      "type": "article",
      "title": "LMArena (Chatbot Arena)",
      "url": "https://lmarena.ai"
+    },
+    {
+     "type": "article",
+     "title": "Berkeley Function Calling Leaderboard (BFCL)",
+     "url": "https://gorilla.cs.berkeley.edu/leaderboard.html"
     }
    ],
    "levels": [
@@ -271,12 +269,12 @@
     {
      "label": "Three approaches",
      "tag": "mid",
-     "body": "**Automatic metrics** (perplexity, BLEU/ROUGE) are cheap but weak; **task benchmarks** (MMLU, GPQA, SWE-Bench) probe specific skills; **human / LLM-as-judge** preference comparisons capture open-ended quality."
+     "body": "**Automatic metrics** (perplexity, BLEU/ROUGE) are cheap but weak; **task benchmarks** (MMLU-Pro, GPQA Diamond, SWE-Bench Verified) probe specific skills; **human / LLM-as-judge** preference comparisons (arena Elo) capture open-ended quality."
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "By 2026 classic suites like **MMLU are saturated**, so the field leans on **SWE-Bench Verified**, **GPQA Diamond**, **Terminal-Bench**, and **arena Elo**. The real win is a small eval set for *your* task — generic scores rarely predict it."
+     "body": "By 2026 classic suites like **MMLU are saturated**, so the field leans on **SWE-Bench Verified**, **GPQA Diamond**, **BFCL** (function-calling), **Aider Polyglot** (coding), and **Chatbot Arena Elo**. Static benchmarks all suffer some contamination — the real win is a small eval set for *your* task, plus arena-style blind preference."
     }
    ]
   },
@@ -313,7 +311,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Production concerns dominate: **streaming**, **latency/cost** budgets, **caching**, model fallbacks, logging, and evals. The LLM is the easy part — the plumbing is the work."
+     "body": "Production concerns dominate: **streaming**, **latency/cost** budgets, **prompt caching**, model fallbacks, observability (OpenTelemetry-aligned tracing), and evals. Context windows now reach 1–2 M tokens, but managing them well — not just stuffing them — is still the work."
     }
    ]
   },
@@ -548,7 +546,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Quality lives here, not in the LLM. **Hybrid** search (BM25 + vectors, fused with reciprocal-rank) plus a **reranker** beats pure vector search on most corpora."
+     "body": "Quality lives here, not in the LLM. **Hybrid** search (BM25 + vectors, fused with reciprocal-rank fusion) plus a **reranker** beats pure vector search on most corpora. Agentic RAG — multi-step retrieval with reasoning — is gaining ground for complex queries."
     }
    ]
   },
@@ -652,6 +650,11 @@
      "type": "course",
      "title": "Hugging Face Agents Course",
      "url": "https://huggingface.co/learn/agents-course"
+    },
+    {
+     "type": "opensource",
+     "title": "OpenAI Agents SDK",
+     "url": "https://github.com/openai/openai-agents-python"
     }
    ],
    "levels": [
@@ -664,13 +667,13 @@
     {
      "label": "Going deeper",
      "tag": "mid",
-     "body": "A spectrum of autonomy: fixed **workflows** (you wire the steps) → **multi-step agents** (the model decides the steps).",
+     "body": "A spectrum of autonomy: fixed **workflows** (you wire the steps) → **multi-step agents** (the model decides the steps). Frameworks like **LangGraph**, **Google ADK**, and **OpenAI Agents SDK** encode these patterns.",
      "open": false
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "More autonomy means more capability but less predictability. Use the least autonomy that solves the task.",
+     "body": "More autonomy means more capability but less predictability. Use the least autonomy that solves the task. By mid-2026, production agents combine reasoning models, tool-calling, and guardrails — **OpenAI Agents SDK**, **Google ADK**, **LangGraph**, and **AWS Strands** are the leading frameworks. The hard part is reliability, not capability — most agent failures are missing guardrails, not a weak model.",
      "open": false
     }
    ]
@@ -698,6 +701,11 @@
      "type": "opensource",
      "title": "LangGraph",
      "url": "https://langchain-ai.github.io/langgraph/"
+    },
+    {
+     "type": "opensource",
+     "title": "Google Agent Development Kit (ADK)",
+     "url": "https://google.github.io/adk-docs/"
     }
    ],
    "levels": [
@@ -715,7 +723,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Anthropic's guidance: use the **simplest** workflow that works, and add agentic autonomy only when the task truly needs it. Model the steps as an explicit **state graph** for resumability."
+     "body": "Anthropic's guidance: use the **simplest** workflow that works, and add agentic autonomy only when the task truly needs it. Model the steps as an explicit **state graph** (LangGraph, Google ADK) for resumability and observability."
     }
    ]
   },
@@ -759,7 +767,7 @@
     {
      "label": "MCP",
      "tag": "adv",
-     "body": "**MCP** (Model Context Protocol) standardises how models connect to tools and data sources, so integrations are reusable across apps.",
+     "body": "**MCP** (Model Context Protocol) standardises how models connect to tools and data sources, so integrations are reusable across apps. By mid-2026, MCP has broad IDE and framework support (Cursor, Kiro, Claude Desktop, Copilot), making it the de facto standard for tool-to-model communication. **A2A** handles agent-to-agent discovery and delegation.",
      "open": false
     }
    ],
@@ -820,7 +828,7 @@
    "label": "Multi-Agent Systems",
    "domain": "p3",
    "col": 2,
-   "desc": "Multiple cooperating agents — their use-cases, coordination challenges, and protocols like A2A.",
+   "desc": "Multiple cooperating agents — their use-cases, coordination challenges, and protocols like A2A and AG-UI.",
    "subs": [
     "l-a2a"
    ],
@@ -834,6 +842,11 @@
      "type": "opensource",
      "title": "LangGraph (multi-agent)",
      "url": "https://langchain-ai.github.io/langgraph/"
+    },
+    {
+     "type": "article",
+     "title": "AG-UI — Agent-User Interaction Protocol",
+     "url": "https://docs.ag-ui.com"
     }
    ],
    "levels": [
@@ -846,12 +859,12 @@
     {
      "label": "How they coordinate",
      "tag": "mid",
-     "body": "A coordinator delegates subtasks, or agents talk peer-to-peer. Standards like **A2A** (Agent-to-Agent) let agents from different vendors discover and message one another."
+     "body": "A coordinator delegates subtasks, or agents talk peer-to-peer. Standards like **A2A** (Agent-to-Agent) let agents from different vendors discover and message one another; **AG-UI** standardises agent-to-user streaming interaction."
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "More agents means more coordination overhead, cost, and failure modes. Reach for multi-agent only when a single tool-using agent clearly can't divide and conquer the task."
+     "body": "More agents means more coordination overhead, cost, and failure modes. Reach for multi-agent only when a single tool-using agent clearly can't divide and conquer the task. Protocols (**A2A**, **AG-UI**) and frameworks (LangGraph, CrewAI, Google ADK, **OpenAI Agents SDK**) are converging but still evolving. In 2026, multi-agent systems power deep research, complex code generation, and autonomous enterprise workflows — but reliability requires extensive testing and observability."
     }
    ]
   },
@@ -888,7 +901,7 @@
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Use end-to-end task benchmarks (**SWE-Bench**, **Terminal-Bench**) plus per-step checks. Non-determinism means many runs and pass@k-style metrics, not a single score."
+     "body": "Use end-to-end task benchmarks (**SWE-Bench Verified**, **BFCL** for tool-calling) plus per-step checks. Non-determinism means many runs and pass@k-style metrics, not a single score. Observability (tracing every tool call and decision) is essential."
     }
    ]
   },
@@ -919,19 +932,19 @@
     {
      "label": "Basics",
      "tag": "basics",
-     "body": "Reasoning models — OpenAI's **o-series**, **DeepSeek-R1**, and the 'thinking' modes now built into **GPT-5.x**, **Claude**, and **Gemini 3** — generate a long internal chain of thought before the final answer.",
+     "body": "Reasoning models — OpenAI's **o3/o4-mini**, **DeepSeek-R1**, **Claude** (extended thinking), and **Gemini** (Deep Think) — generate a long internal chain of thought before the final answer.",
      "open": true
     },
     {
      "label": "Going deeper",
      "tag": "mid",
-     "body": "They trade latency and compute for accuracy on math, code, and logic — 'thinking longer' genuinely helps.",
+     "body": "They trade latency and compute for accuracy on math, code, and logic — 'thinking longer' genuinely helps. They cost 4–17× more per query and are 5–60× slower, but meaningfully outperform on complex tasks.",
      "open": false
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "The ability comes from training on reasoning traces and RL with verifiers, plus inference-time techniques that scale test-time compute.",
+     "body": "The ability comes from training on reasoning traces and RL with verifiers, plus inference-time techniques that scale test-time compute. By 2026 reasoning is no longer a separate model class — it's a mode built into frontier models (thinking budgets you can dial).",
      "open": false
     }
    ],
@@ -1023,12 +1036,12 @@
     {
      "label": "How",
      "tag": "mid",
-     "body": "**SFT on verified reasoning traces** (STaR), **RL with a verifier** (reward correct answers on checkable tasks), and **reward models** scoring whole outcomes (ORM) or each step (PRM)."
+     "body": "**SFT on verified reasoning traces** (STaR), **RL with a verifier** (RLVR — reward correct answers on checkable tasks), and **reward models** scoring whole outcomes (ORM) or each step (PRM). **GRPO** groups completions and computes relative advantage without a separate critic."
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "**DeepSeek-R1** showed that pure RL with verifiable rewards can induce strong reasoning without human-labelled steps — the 2025 unlock that 2026 models build on."
+     "body": "**DeepSeek-R1** showed that pure RL with verifiable rewards can induce strong reasoning without human-labelled steps — the 2025 unlock that 2026 models build on. GRPO and DAPO are now the go-to training recipes."
     }
    ]
   },
@@ -1053,6 +1066,11 @@
      "type": "opensource",
      "title": "vLLM",
      "url": "https://docs.vllm.ai"
+    },
+    {
+     "type": "opensource",
+     "title": "SGLang",
+     "url": "https://github.com/sgl-project/sglang"
     }
    ],
    "levels": [
@@ -1065,12 +1083,12 @@
     {
      "label": "How",
      "tag": "mid",
-     "body": "**Quantize** the weights (4-bit GGUF / AWQ) to shrink memory, then serve with **llama.cpp** or **Ollama** on a laptop, or **vLLM** for GPU throughput."
+     "body": "**Quantize** the weights (4-bit GGUF / AWQ) to shrink memory, then serve with **llama.cpp** or **Ollama** on a laptop, or **vLLM** / **SGLang** for multi-user GPU throughput. Apple users get native **MLX** performance."
     },
     {
      "label": "Trade-offs",
      "tag": "adv",
-     "body": "You trade peak quality and ops simplicity for **control, privacy, and zero per-token cost**. 4-bit quantization is usually near-lossless; sizing VRAM to the model is the gotcha."
+     "body": "You trade peak quality and ops simplicity for **control, privacy, and zero per-token cost**. 4-bit quantization is usually near-lossless; sizing VRAM to the model is the gotcha. vLLM's PagedAttention handles concurrency; llama.cpp excels at single-stream on CPU/edge."
     }
    ],
    "tags": [
@@ -1112,13 +1130,13 @@
     {
      "label": "Going deeper",
      "tag": "mid",
-     "body": "Diffusion learns to **denoise** random noise into an image step by step, conditioned on text.",
+     "body": "Diffusion learns to **denoise** random noise into an image step by step, conditioned on text. Modern systems work in a compressed **latent space** for efficiency.",
      "open": false
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Each family trades off quality, diversity, and training stability; diffusion won images, with transformer hybrids (DiT) rising.",
+     "body": "Each family trades off quality, diversity, and training stability. Diffusion won images, with **Diffusion Transformers (DiT)** replacing U-Nets as the backbone of choice for both image and video generation in 2025–2026.",
      "open": false
     }
    ]
@@ -1162,12 +1180,12 @@
     {
      "label": "How",
      "tag": "mid",
-     "body": "A **U-Net or DiT** backbone learns to reverse a noising process; **classifier-free guidance** steers it toward the prompt; a text encoder (CLIP / T5) supplies the conditioning."
+     "body": "A **U-Net or DiT** backbone learns to reverse a noising process; **classifier-free guidance** steers it toward the prompt; a text encoder (CLIP / T5) supplies the conditioning. By 2026 **DiT** has largely replaced U-Net at the frontier."
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "Fewer sampling steps is faster, more is sharper. Evaluate with **FID** (quality and diversity) and **CLIP score** (text alignment). Latent diffusion makes it cheap enough to run locally."
+     "body": "Fewer sampling steps is faster, more is sharper. Evaluate with **FID** (quality and diversity) and **CLIP score** (text alignment). Latent diffusion makes it cheap enough to run locally. Leading systems include **DALL·E 3**, **Midjourney**, **Stable Diffusion 3.5**, **FLUX**, and **Ideogram**."
     }
    ]
   },
@@ -1175,7 +1193,7 @@
    "label": "Text-to-Video",
    "domain": "p5",
    "col": 4,
-   "desc": "Extending diffusion to video — adding the time dimension and large-scale compute.",
+   "desc": "Extending diffusion to video — adding the time dimension, large-scale compute, and native audio.",
    "subs": [
     "l-ldm",
     "l-t2v-data",
@@ -1199,60 +1217,18 @@
     {
      "label": "Basics",
      "tag": "basics",
-     "body": "Text-to-video adds the **time dimension** to diffusion — generate frames that are coherent *and* consistent across time.",
+     "body": "Text-to-video adds the **time dimension** to diffusion — generate frames that are coherent *and* consistent across time, now with native audio.",
      "open": true
     },
     {
      "label": "How",
      "tag": "mid",
-     "body": "Run diffusion in a compressed **latent space** (LDM) with **spatiotemporal DiT** blocks, trained on huge, heavily-filtered video-caption datasets."
+     "body": "Run diffusion in a compressed **latent space** (LDM) with **spatiotemporal DiT** blocks, trained on huge, heavily-filtered video-caption datasets. By 2026 clips reach 8–20 seconds at up to 4K resolution."
     },
     {
      "label": "In practice",
      "tag": "adv",
-     "body": "The hard parts are **compute, memory, and temporal consistency**. Sora-class models frame video as a learned world simulator — expect heavy infra and long training runs."
-    }
-   ]
-  },
-  "t-capstone": {
-   "label": "Capstone Project",
-   "domain": "p6",
-   "col": 5,
-   "desc": "Ship one portfolio-ready AI project end to end, combining techniques from every prior stage.",
-   "subs": [
-    "l-choose",
-    "l-build",
-    "l-iterate",
-    "l-demo"
-   ],
-   "links": [
-    {
-     "type": "article",
-     "title": "Anthropic — Building Effective Agents",
-     "url": "https://www.anthropic.com/engineering/building-effective-agents"
-    },
-    {
-     "type": "course",
-     "title": "Hugging Face Agents Course",
-     "url": "https://huggingface.co/learn/agents-course"
-    }
-   ],
-   "levels": [
-    {
-     "label": "Basics",
-     "tag": "basics",
-     "body": "Pull it all together: **ship one project end-to-end** that combines the techniques — RAG, tools, agents, maybe reasoning.",
-     "open": true
-    },
-    {
-     "label": "A loop",
-     "tag": "mid",
-     "body": "**Choose** a real problem → **build** a thin working version → **iterate** with evals and feedback → **demo** it. Scope it small enough to actually finish."
-    },
-    {
-     "label": "Make it portfolio-ready",
-     "tag": "adv",
-     "body": "Add **evals**, handle errors and cost, write a clear README, and deploy it somewhere clickable. A working, measured demo beats a long feature list."
+     "body": "The hard parts are **compute, memory, and temporal consistency**. Leaders include **Google Veo 3.1**, **Kling v3**, **Seedance 2.0**, **Sora 2**, and **Runway Gen-4**. Open-weight alternatives (**Wan**, **LTX-Video**, **HunyuanVideo**) enable self-hosted pipelines."
     }
    ]
   },
@@ -1294,19 +1270,19 @@
      "label": "Basics",
      "tag": "basics",
      "open": true,
-     "body": "Bigger isn't always better. **Small Language Models (SLMs)** — roughly a few hundred million to a few billion parameters (Phi, Gemma-2B, small Qwen) — can match large models on narrow tasks while running on a laptop with **no network**."
+     "body": "Bigger isn't always better. **Small Language Models (SLMs)** — roughly under 10 B parameters (Phi-4 mini, Gemma 3n, Qwen 3.5 small, Llama 3.2 1B–8B, SmolLM2) — can match large models on narrow tasks while running on a laptop, phone, or edge device with **no network**."
     },
     {
      "label": "Going deeper",
      "tag": "mid",
      "open": false,
-     "body": "Train or fine-tune them efficiently with **JAX** (which compiles array code to the **XLA** compiler for big speedups) or PyTorch, plus **distillation** and **LoRA**. The result is fast iteration loops on consumer or edge hardware."
+     "body": "Train or fine-tune them efficiently with **JAX** (XLA-compiled for fast iteration) or PyTorch, plus **distillation from reasoning models**, **LoRA/QLoRA**, and synthetic data. SLMs are particularly strong for **tool-calling, function calling, constrained RAG, and speculative decoding** (drafting tokens for a larger verifier) at a fraction of the cost."
     },
     {
      "label": "In practice",
      "tag": "adv",
      "open": false,
-     "body": "The trade-off is raw capability vs **cost, latency, and privacy**. SLMs win for on-device, high-volume, or privacy-sensitive workloads where a frontier model is overkill."
+     "body": "The trade-off is raw capability vs **cost, latency, and privacy**. SLMs win for on-device, high-volume, or privacy-sensitive workloads. Quantized (4-bit GGUF) models fit 8 GB RAM with near-lossless quality. Key families in mid-2026: Microsoft **Phi-4 mini**, Google **Gemma 3n** (on-device optimised), Alibaba **Qwen 3.5 small**, Meta **Llama 3.2** (1B–8B), and Hugging Face **SmolLM2**. Distillation from frontier reasoning models is the dominant recipe for punching above weight class."
     }
    ]
   }
@@ -2377,58 +2353,6 @@
     }
    ]
   },
-  "l-choose": {
-   "label": "Choose",
-   "parent": "t-capstone",
-   "domain": "p6",
-   "desc": "Pick your own idea or a curated starting point.",
-   "links": [
-    {
-     "type": "course",
-     "title": "Hugging Face Agents Course",
-     "url": "https://huggingface.co/learn/agents-course"
-    }
-   ]
-  },
-  "l-build": {
-   "label": "Build",
-   "parent": "t-capstone",
-   "domain": "p6",
-   "desc": "Implement it with the course techniques — RAG, agents, tools, reasoning.",
-   "links": [
-    {
-     "type": "article",
-     "title": "Anthropic — Building Effective Agents",
-     "url": "https://www.anthropic.com/engineering/building-effective-agents"
-    }
-   ]
-  },
-  "l-iterate": {
-   "label": "Iterate",
-   "parent": "t-capstone",
-   "domain": "p6",
-   "desc": "Refine with feedback until it works and demos well.",
-   "links": [
-    {
-     "type": "opensource",
-     "title": "OpenAI Evals",
-     "url": "https://github.com/openai/evals"
-    }
-   ]
-  },
-  "l-demo": {
-   "label": "Demo",
-   "parent": "t-capstone",
-   "domain": "p6",
-   "desc": "Present the finished project.",
-   "links": [
-    {
-     "type": "article",
-     "title": "Gradio",
-     "url": "https://www.gradio.app"
-    }
-   ]
-  },
   "l-jax-compilation": {
    "label": "JAX & XLA",
    "parent": "t-slm-training",
@@ -2722,31 +2646,6 @@
   {
    "s": "t-multistep",
    "t": "t-t2v",
-   "k": "applies"
-  },
-  {
-   "s": "t-chatbot-design",
-   "t": "t-capstone",
-   "k": "applies"
-  },
-  {
-   "s": "t-rag-eval",
-   "t": "t-capstone",
-   "k": "applies"
-  },
-  {
-   "s": "t-multiagent",
-   "t": "t-capstone",
-   "k": "applies"
-  },
-  {
-   "s": "t-reasoning-models",
-   "t": "t-capstone",
-   "k": "applies"
-  },
-  {
-   "s": "t-t2v",
-   "t": "t-capstone",
    "k": "applies"
   },
   {

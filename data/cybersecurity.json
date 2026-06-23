@@ -1,0 +1,535 @@
+{
+ "meta": {
+  "id": "cybersecurity",
+  "kbd": "knowledge hub \u00b7 cybersecurity",
+  "title": "Cybersecurity",
+  "subtitle": "defend systems & data",
+  "blurb": "From foundational security principles and cryptography to application security, network defence, cloud security, and incident response \u2014 the knowledge to build and protect secure systems.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Foundations", "c": "#F0B23C" },
+  "d2": { "name": "Cryptography", "c": "#46B8DA" },
+  "d3": { "name": "Application Security", "c": "#54C99A" },
+  "d4": { "name": "Network & Infrastructure", "c": "#B08CF0" },
+  "d5": { "name": "Offensive Security", "c": "#F0796B" },
+  "d6": { "name": "Operations & Response", "c": "#E86BB5" }
+ },
+ "cols": [
+  {
+   "title": "Foundations",
+   "keys": ["t-sec-fundamentals", "t-threat-landscape", "t-security-models", "t-risk-management"]
+  },
+  {
+   "title": "Cryptography",
+   "keys": ["t-crypto-basics", "t-symmetric", "t-asymmetric", "t-hashing-signing"]
+  },
+  {
+   "title": "Application Security",
+   "keys": ["t-secure-coding", "t-web-vulns", "t-auth-authz", "t-supply-chain"]
+  },
+  {
+   "title": "Network & Infrastructure",
+   "keys": ["t-network-security", "t-cloud-sec", "t-container-security", "t-endpoint-security"]
+  },
+  {
+   "title": "Offensive Security",
+   "keys": ["t-recon", "t-exploitation", "t-privilege-escalation", "t-social-engineering"]
+  },
+  {
+   "title": "Operations & Response",
+   "keys": ["t-soc", "t-incident-response", "t-forensics", "t-compliance-grc"]
+  }
+ ],
+ "topics": {
+  "t-sec-fundamentals": {
+   "label": "Security Fundamentals",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Core security principles \u2014 the CIA triad, defence in depth, least privilege, and the attacker mindset.",
+   "subs": ["l-cia-triad", "l-defence-in-depth", "l-least-privilege"],
+   "links": [
+    { "type": "course", "title": "CompTIA Security+ Study Guide", "url": "https://www.comptia.org/certifications/security" },
+    { "type": "article", "title": "NIST Cybersecurity Framework", "url": "https://www.nist.gov/cyberframework" },
+    { "type": "course", "title": "OWASP Security Knowledge Framework", "url": "https://www.securityknowledgeframework.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Security protects three things: **Confidentiality** (only authorised access), **Integrity** (data isn't tampered with), and **Availability** (systems stay up). This **CIA triad** is the foundation everything else builds on.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Defence in depth**: multiple overlapping layers (network, application, data, physical) so no single failure is catastrophic. **Least privilege**: grant only the minimum access needed. **Zero trust**: verify explicitly, assume breach. Think like an attacker to defend like a pro." },
+    { "label": "In practice", "tag": "adv", "body": "Security is a **spectrum**, not a binary. Perfect security doesn't exist \u2014 you manage risk by making attacks more expensive than the value they'd extract. The weakest link is usually human (phishing, misconfiguration), not cryptographic. Build security into the development lifecycle, don't bolt it on after." }
+   ]
+  },
+  "t-threat-landscape": {
+   "label": "Threat Landscape",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Who attacks, why, and how \u2014 threat actors, attack vectors, and the evolving ecosystem of cyber threats.",
+   "subs": ["l-threat-actors", "l-attack-vectors", "l-mitre-attack"],
+   "links": [
+    { "type": "article", "title": "MITRE ATT&CK Framework", "url": "https://attack.mitre.org/" },
+    { "type": "article", "title": "Verizon DBIR 2025", "url": "https://www.verizon.com/business/resources/reports/dbir/" },
+    { "type": "article", "title": "ENISA Threat Landscape", "url": "https://www.enisa.europa.eu/topics/cyber-threats/threats-and-trends" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Threat actors**: script kiddies, hacktivists, organised crime, nation-states, insiders. **Attack vectors**: phishing, malware, exploits, credential theft, supply chain compromise. Know your adversary to prioritise defences.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**MITRE ATT&CK** maps adversary tactics and techniques across the kill chain: initial access \u2192 execution \u2192 persistence \u2192 lateral movement \u2192 exfiltration. Use it to identify coverage gaps in your defences. The **Verizon DBIR** provides annual data on what actually works for attackers." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, top threats are: **AI-driven ransomware** (RaaS platforms with AI automate up to 90% of intrusions), **agentic attack chains** (AI agents compress patch-to-exploit timelines to minutes), **supply chain attacks** (SolarWinds/xz-utils-style), **multi-extortion** (data theft without encryption), and **cloud misconfigurations** (still the #1 breach vector in cloud). AI-powered phishing uses deepfakes and personalised lures that are nearly indistinguishable from legitimate communications." }
+   ]
+  },
+  "t-security-models": {
+   "label": "Security Models & Frameworks",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Formal frameworks for thinking about security \u2014 NIST, Zero Trust, STRIDE, and threat modelling.",
+   "subs": ["l-nist-csf", "l-zero-trust-model", "l-stride"],
+   "links": [
+    { "type": "article", "title": "NIST CSF 2.0", "url": "https://www.nist.gov/cyberframework" },
+    { "type": "article", "title": "STRIDE Threat Model", "url": "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats" },
+    { "type": "article", "title": "Threat Modeling Manifesto", "url": "https://www.threatmodelingmanifesto.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**NIST CSF** organises security into functions: Identify, Protect, Detect, Respond, Recover. **Threat modelling** (STRIDE, DREAD) systematically identifies what can go wrong before you build. Frameworks give structure to security decisions.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**STRIDE**: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege \u2014 one threat per element in your system diagram. **Zero Trust Architecture** (NIST 800-207): never trust, always verify, assume breach." },
+    { "label": "In practice", "tag": "adv", "body": "Threat model at design time \u2014 it's 10x cheaper to fix security issues in design than production. Use data flow diagrams, identify trust boundaries, enumerate threats per component. Not every threat needs mitigation \u2014 accept, mitigate, transfer, or avoid based on risk appetite and cost." }
+   ]
+  },
+  "t-risk-management": {
+   "label": "Risk Management",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Quantifying and prioritising security risks \u2014 likelihood, impact, and deciding what to fix first.",
+   "subs": ["l-risk-assessment", "l-risk-treatment", "l-vulnerability-management"],
+   "links": [
+    { "type": "article", "title": "NIST Risk Management Framework", "url": "https://csrc.nist.gov/projects/risk-management" },
+    { "type": "article", "title": "OWASP Risk Rating Methodology", "url": "https://owasp.org/www-community/OWASP_Risk_Rating_Methodology" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Risk = Likelihood \u00d7 Impact**. You can't fix everything \u2014 prioritise by what's most likely to happen and what would hurt most. Security is ultimately about **risk management**, not elimination.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Risk assessment**: identify assets, threats, vulnerabilities, then score. **Risk treatment**: mitigate (fix it), accept (live with it), transfer (insure), or avoid (don't do it). **Vulnerability management**: continuous scanning, CVSS scoring, patch prioritisation." },
+    { "label": "In practice", "tag": "adv", "body": "CVSS scores alone are poor prioritisers \u2014 context matters (is it internet-facing? is there a known exploit? what data is at risk?). Use **EPSS** (Exploit Prediction Scoring System) and **CISA KEV** (Known Exploited Vulnerabilities) to focus on what attackers actually exploit. Communicate risk in business terms, not technical jargon." }
+   ]
+  },
+  "t-crypto-basics": {
+   "label": "Cryptography Fundamentals",
+   "domain": "d2",
+   "col": 1,
+   "desc": "The mathematical foundations of security \u2014 what cryptography provides and its core building blocks.",
+   "subs": ["l-confidentiality-crypto", "l-integrity-crypto", "l-authentication-crypto"],
+   "links": [
+    { "type": "course", "title": "Crypto101", "url": "https://www.crypto101.io/" },
+    { "type": "article", "title": "Practical Cryptography for Developers", "url": "https://cryptobook.nakov.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cryptography provides: **confidentiality** (encryption hides data), **integrity** (detect tampering), **authentication** (prove identity), and **non-repudiation** (can't deny actions). It's math-based trust in an untrusted world.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Three building blocks: **symmetric encryption** (same key encrypts/decrypts), **asymmetric encryption** (public/private key pairs), and **hash functions** (one-way fingerprints). Everything else (TLS, signatures, passwords) combines these primitives." },
+    { "label": "In practice", "tag": "adv", "body": "Never roll your own crypto \u2014 use well-vetted libraries (libsodium, OpenSSL, Web Crypto API). The hard part isn't the math; it's **key management** (generating, storing, rotating, revoking keys securely). **Post-quantum cryptography** is here \u2014 NIST finalised standards in August 2024: **ML-KEM** (key encapsulation, replacing Kyber), **ML-DSA** (signatures, replacing Dilithium), and **SLH-DSA** (stateless hash-based signatures). Hybrid key exchange (X25519 + ML-KEM) is rolling out in TLS and Chrome." }
+   ]
+  },
+  "t-symmetric": {
+   "label": "Symmetric Encryption",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Encrypting data with a shared secret key \u2014 AES, ChaCha20, modes of operation, and authenticated encryption.",
+   "subs": ["l-aes", "l-modes-of-operation", "l-aead"],
+   "links": [
+    { "type": "article", "title": "AES (NIST)", "url": "https://csrc.nist.gov/publications/detail/fips/197/final" },
+    { "type": "article", "title": "Authenticated Encryption (Google)", "url": "https://developers.google.com/tink/aead" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Both parties share the **same secret key**. Fast and efficient. **AES-256** is the gold standard. The challenge: how do you securely share the key in the first place?", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Modes of operation** matter: ECB is broken (patterns leak), use **GCM** or **CTR** mode. **AEAD** (Authenticated Encryption with Associated Data) \u2014 like AES-GCM \u2014 provides both confidentiality AND integrity in one operation. Always use AEAD, never bare encryption." },
+    { "label": "In practice", "tag": "adv", "body": "Use **AES-256-GCM** for data at rest and in transit (TLS uses it). **ChaCha20-Poly1305** is the alternative (faster in software without AES hardware). Never reuse nonces with GCM \u2014 it completely breaks the security. For disk encryption, use XTS mode." }
+   ]
+  },
+  "t-asymmetric": {
+   "label": "Asymmetric Encryption & PKI",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Public/private key pairs, key exchange, certificates, and the trust infrastructure of the internet.",
+   "subs": ["l-rsa-ecc", "l-key-exchange", "l-certificates", "l-pki"],
+   "links": [
+    { "type": "article", "title": "Let's Encrypt \u2014 How It Works", "url": "https://letsencrypt.org/how-it-works/" },
+    { "type": "article", "title": "Elliptic Curve Cryptography", "url": "https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Two keys: **public** (share freely) and **private** (keep secret). Encrypt with the public key, only the private key can decrypt. This solves the key distribution problem \u2014 no shared secret needed.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**RSA** (older, larger keys) and **ECC** (smaller keys, same security). **Key exchange** (Diffie-Hellman, ECDHE) lets strangers agree on a shared secret over an insecure channel. **Certificates** (X.509) bind public keys to identities, issued by **Certificate Authorities** (CAs) in a chain of trust (PKI)." },
+    { "label": "In practice", "tag": "adv", "body": "TLS combines everything: ECDHE for key exchange, certificates for authentication, AES-GCM for bulk encryption. Use **Let's Encrypt** for free, automated certificates. Prefer **ECDSA** (P-256 or Ed25519) over RSA for new systems. Prepare for **post-quantum**: hybrid key exchange (X25519 + ML-KEM) is rolling out in TLS now." }
+   ]
+  },
+  "t-hashing-signing": {
+   "label": "Hashing & Digital Signatures",
+   "domain": "d2",
+   "col": 1,
+   "desc": "One-way functions for integrity, password storage, and proving authorship without revealing secrets.",
+   "subs": ["l-hash-functions", "l-password-hashing", "l-digital-signatures"],
+   "links": [
+    { "type": "article", "title": "OWASP Password Storage Cheat Sheet", "url": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html" },
+    { "type": "article", "title": "SHA-3 Standard (NIST)", "url": "https://csrc.nist.gov/publications/detail/fips/202/final" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **hash** is a one-way fingerprint: same input always gives same output, but you can't reverse it. Used for integrity checks, password storage, and signatures. SHA-256 is the workhorse.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "For **passwords**: never use raw SHA-256. Use **bcrypt**, **scrypt**, or **Argon2** \u2014 they're deliberately slow, making brute-force expensive. **Digital signatures** (ECDSA, Ed25519) prove a message came from the private key holder without revealing the key." },
+    { "label": "In practice", "tag": "adv", "body": "Use **Argon2id** for password hashing (winner of the Password Hashing Competition). Use **Ed25519** for signatures (fast, secure, misuse-resistant). **HMAC** (keyed hash) provides message authentication when you already share a secret. Never use MD5 or SHA-1 for security \u2014 they're broken." }
+   ]
+  },
+  "t-secure-coding": {
+   "label": "Secure Coding Practices",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Writing code that resists attacks \u2014 input validation, output encoding, secure defaults, and defensive patterns.",
+   "subs": ["l-input-validation", "l-output-encoding", "l-error-handling-sec"],
+   "links": [
+    { "type": "article", "title": "OWASP Secure Coding Practices", "url": "https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/" },
+    { "type": "article", "title": "OWASP Cheat Sheet Series", "url": "https://cheatsheetseries.owasp.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Secure coding assumes **all input is hostile**. Core practices: **validate inputs** (reject unexpected data), **encode outputs** (prevent injection), use **parameterised queries** (never concatenate SQL), and **fail securely** (errors shouldn't reveal system details).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Secure defaults**: deny by default, require explicit allow. **Principle of least privilege** in code: don't request permissions you don't need. Use established libraries for security-sensitive operations (auth, crypto, parsing). Keep dependencies updated \u2014 most vulns are in libraries, not your code." },
+    { "label": "In practice", "tag": "adv", "body": "Integrate security into the development workflow: **SAST** (static analysis in CI), **SCA** (dependency scanning), **secrets detection** (pre-commit hooks), and security-focused code review checklists. Shift security left \u2014 finding a vuln in code review costs 10x less than finding it in production." }
+   ]
+  },
+  "t-web-vulns": {
+   "label": "Web Vulnerabilities (OWASP Top 10)",
+   "domain": "d3",
+   "col": 2,
+   "desc": "The most critical web application security risks \u2014 injection, broken auth, XSS, SSRF, and more.",
+   "subs": ["l-injection", "l-xss", "l-csrf", "l-ssrf"],
+   "links": [
+    { "type": "article", "title": "OWASP Top 10 (2021)", "url": "https://owasp.org/www-project-top-ten/" },
+    { "type": "article", "title": "PortSwigger Web Security Academy", "url": "https://portswigger.net/web-security" },
+    { "type": "article", "title": "HackTricks", "url": "https://book.hacktricks.xyz/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "The **OWASP Top 10** catalogues the most critical web risks: **Broken Access Control** (#1), **Cryptographic Failures**, **Injection** (SQL, command, LDAP), **Insecure Design**, **Security Misconfiguration**, **Vulnerable Components**, **Auth Failures**, **Data Integrity Failures**, **Logging Failures**, and **SSRF**.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**SQL Injection**: untrusted input in queries (fix: parameterised queries). **XSS**: injecting scripts into pages viewed by others (fix: output encoding, CSP). **CSRF**: forging requests from authenticated users (fix: CSRF tokens, SameSite cookies). **SSRF**: making the server fetch attacker-controlled URLs (fix: allowlists, no internal access)." },
+    { "label": "In practice", "tag": "adv", "body": "Broken access control is #1 for a reason \u2014 it's hard to test with automation. Use DAST scanners (Burp Suite, ZAP) for automated finding, but manual pen testing catches logic flaws. Implement **CSP headers**, **CORS properly**, and **security headers** (HSTS, X-Frame-Options). Treat the OWASP Top 10 as a minimum, not a ceiling." }
+   ]
+  },
+  "t-auth-authz": {
+   "label": "Authentication & Authorization",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Proving identity and enforcing permissions \u2014 OAuth 2.0, OIDC, JWTs, session management, and access control.",
+   "subs": ["l-oauth-oidc", "l-jwt", "l-session-management", "l-rbac-abac"],
+   "links": [
+    { "type": "article", "title": "OAuth 2.0 Simplified", "url": "https://www.oauth.com/" },
+    { "type": "article", "title": "OWASP Authentication Cheat Sheet", "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html" },
+    { "type": "article", "title": "JWT Best Practices (RFC 8725)", "url": "https://datatracker.ietf.org/doc/html/rfc8725" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Authentication** (authn): proving who you are (passwords, MFA, biometrics). **Authorization** (authz): what you're allowed to do. These are separate concerns \u2014 being authenticated doesn't mean you can access everything.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**OAuth 2.0**: delegation framework (let apps act on your behalf). **OIDC**: identity layer on OAuth (user info, ID tokens). **JWTs**: stateless tokens carrying claims (verify signature, check expiry). **Sessions**: server-side state with cookies (simpler but requires storage). **MFA**: something you know + have + are." },
+    { "label": "In practice", "tag": "adv", "body": "Use a battle-tested identity provider (Auth0, Cognito, Keycloak) \u2014 don't build auth from scratch. For authorization: **RBAC** (role-based) for simple apps, **ABAC** (attribute-based) for complex policies, **ReBAC** (relationship-based, like Google Zanzibar) for fine-grained access. Always enforce server-side \u2014 client-side checks are cosmetic." }
+   ]
+  },
+  "t-supply-chain": {
+   "label": "Supply Chain Security",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Securing dependencies, build pipelines, and the software supply chain against compromise.",
+   "subs": ["l-dependency-scanning", "l-sbom", "l-build-provenance"],
+   "links": [
+    { "type": "article", "title": "SLSA Framework", "url": "https://slsa.dev/" },
+    { "type": "article", "title": "Sigstore", "url": "https://www.sigstore.dev/" },
+    { "type": "article", "title": "OWASP Dependency-Check", "url": "https://owasp.org/www-project-dependency-check/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Modern software depends on hundreds of open-source packages. A compromised dependency (malicious update, typosquatting, hijacked maintainer account) can backdoor your entire application. The **software supply chain** is only as strong as its weakest link.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**SCA** (Software Composition Analysis) scans dependencies for known CVEs. **SBOM** (Software Bill of Materials) lists every component. **SLSA** (Supply-chain Levels for Software Artifacts) defines build security levels. **Sigstore** provides signing and verification for artifacts." },
+    { "label": "In practice", "tag": "adv", "body": "Pin dependency versions (lock files), scan in CI (Snyk, Dependabot, Trivy), and sign/verify builds. Use **reproducible builds** so anyone can verify the binary matches the source. The 2024\u201325 xz-utils and polyfill.io incidents showed how sophisticated supply chain attacks have become. Generate SBOMs and attest builds as standard practice." }
+   ]
+  },
+  "t-network-security": {
+   "label": "Network Security",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Protecting network infrastructure \u2014 firewalls, segmentation, IDS/IPS, and encrypted communications.",
+   "subs": ["l-firewalls", "l-segmentation", "l-ids-ips", "l-vpn-tls"],
+   "links": [
+    { "type": "article", "title": "NIST Network Security Guidelines", "url": "https://csrc.nist.gov/publications/detail/sp/800-41/rev-1/final" },
+    { "type": "article", "title": "Wireshark Documentation", "url": "https://www.wireshark.org/docs/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Network security controls **what traffic flows where**. Key tools: **firewalls** (allow/deny by rule), **segmentation** (isolate sensitive networks), **encryption in transit** (TLS), and **monitoring** (detect anomalies).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Next-gen firewalls** (NGFW) inspect application-layer traffic. **IDS/IPS** (Intrusion Detection/Prevention) look for attack signatures and anomalies. **Network segmentation** limits lateral movement \u2014 if one zone is compromised, others stay protected. **mTLS** adds mutual authentication between services." },
+    { "label": "In practice", "tag": "adv", "body": "In cloud environments, traditional perimeter security is dead \u2014 use **security groups**, **network policies** (Kubernetes), and **service mesh** (Istio mTLS) instead. Monitor **east-west traffic** (between services), not just north-south (in/out). DNS logging and flow logs are cheap, high-value visibility sources." }
+   ]
+  },
+  "t-cloud-sec": {
+   "label": "Cloud Security",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Securing cloud environments \u2014 IAM, misconfigurations, CSPM, and the shared responsibility model.",
+   "subs": ["l-iam-security", "l-cspm-tools", "l-cloud-misconfig"],
+   "links": [
+    { "type": "article", "title": "AWS Security Best Practices", "url": "https://docs.aws.amazon.com/security/" },
+    { "type": "article", "title": "CIS Cloud Benchmarks", "url": "https://www.cisecurity.org/cis-benchmarks" },
+    { "type": "article", "title": "CNAPP Explained", "url": "https://www.paloaltonetworks.com/cyberpedia/what-is-cnapp" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Cloud security starts with the **shared responsibility model**: the provider secures the infrastructure; you secure your configurations, data, and access. Most cloud breaches are **misconfigurations**, not provider failures.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**IAM** is the #1 control: least privilege, no long-lived credentials, MFA everywhere. **CSPM** (Cloud Security Posture Management) continuously scans for misconfigurations. **SCPs/Org Policies** prevent dangerous actions at the account level (guardrails)." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, **CNAPP** (Cloud-Native Application Protection Platform) unifies CSPM + CWPP + CIEM + pipeline security into a single view. Block public S3 buckets and default security groups at the org level. Use **infrastructure as code** scanning (checkov, tfsec, Trivy) to catch misconfigs before deployment. AI-powered CSPM tools now auto-remediate common misconfigurations. Cloud security is 80% IAM and configuration, 20% everything else." }
+   ]
+  },
+  "t-container-security": {
+   "label": "Container & Kubernetes Security",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Securing containerised workloads \u2014 image scanning, runtime protection, network policies, and pod security.",
+   "subs": ["l-image-scanning", "l-runtime-security", "l-k8s-security"],
+   "links": [
+    { "type": "article", "title": "Kubernetes Security Best Practices", "url": "https://kubernetes.io/docs/concepts/security/" },
+    { "type": "opensource", "title": "Trivy (Scanner)", "url": "https://trivy.dev/" },
+    { "type": "opensource", "title": "Falco (Runtime Security)", "url": "https://falco.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Container security covers the full lifecycle: **build** (scan images for CVEs), **deploy** (enforce policies on what can run), **runtime** (detect anomalous behaviour). Containers share a kernel \u2014 isolation is lighter than VMs.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Image security**: use minimal base images (distroless), scan with Trivy/Snyk, run as non-root. **K8s security**: Pod Security Standards (restricted), NetworkPolicies (deny-all default), RBAC (minimal ClusterRoles), secrets encryption. **Runtime**: Falco detects unexpected syscalls, file access, network connections." },
+    { "label": "In practice", "tag": "adv", "body": "Shift left: reject vulnerable images in CI (admission controllers like Kyverno/OPA Gatekeeper). At runtime, monitor for: shell exec into pods, unexpected network connections, privilege escalation attempts. Keep K8s updated \u2014 the attack surface evolves fast. Use managed K8s (EKS, GKE, AKS) to reduce control-plane risk." }
+   ]
+  },
+  "t-endpoint-security": {
+   "label": "Endpoint & Identity Security",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Protecting devices and identities \u2014 EDR, MDM, passwordless auth, and phishing-resistant MFA.",
+   "subs": ["l-edr", "l-mdm", "l-passwordless"],
+   "links": [
+    { "type": "article", "title": "FIDO2 / Passkeys", "url": "https://fidoalliance.org/fido2/" },
+    { "type": "article", "title": "CrowdStrike EDR", "url": "https://www.crowdstrike.com/cybersecurity-101/endpoint-security/endpoint-detection-and-response-edr/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Endpoints** (laptops, phones, servers) are where attackers land. **EDR** (Endpoint Detection & Response) monitors behaviour and detects threats post-compromise. **Identity** is the new perimeter \u2014 stolen credentials are the #1 initial access vector.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**EDR** (CrowdStrike, SentinelOne, Defender) replaces legacy antivirus with behaviour-based detection. **MDM** (Mobile Device Management) enforces security policies on corporate devices. **Passkeys/FIDO2** provide phishing-resistant passwordless authentication." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026, **passkeys** are mainstream for consumer and enterprise auth \u2014 phishing-proof by design, with major platforms (Apple, Google, Microsoft) supporting cross-device sync. Combine with device trust signals (is the device managed? updated? compliant?) for conditional access. **XDR** (Extended Detection & Response) correlates signals across endpoints, network, identity, and cloud for faster detection. AI-powered EDR now detects fileless malware and living-off-the-land attacks that evade signature-based tools." }
+   ]
+  },
+  "t-recon": {
+   "label": "Reconnaissance & OSINT",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Gathering information about targets \u2014 passive and active reconnaissance, OSINT, and attack surface mapping.",
+   "subs": ["l-passive-recon", "l-active-recon", "l-attack-surface"],
+   "links": [
+    { "type": "article", "title": "OWASP Testing Guide \u2014 Reconnaissance", "url": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/" },
+    { "type": "article", "title": "Shodan", "url": "https://www.shodan.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Reconnaissance is the first phase of any assessment: understand the target before testing it. **Passive** (no direct interaction \u2014 DNS records, WHOIS, public repos, social media). **Active** (direct probing \u2014 port scans, service enumeration).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**OSINT** tools: Shodan (internet-connected devices), Censys, Google dorks, LinkedIn (org structure). **Active**: Nmap (port scanning), directory brute-forcing, subdomain enumeration. Map the full **attack surface**: subdomains, APIs, cloud assets, third-party integrations." },
+    { "label": "In practice", "tag": "adv", "body": "Defenders should run recon against themselves (\u2018attack surface management\u2019) to find what attackers would find: forgotten subdomains, exposed admin panels, leaked credentials in public repos. Tools like Nuclei, ProjectDiscovery suite automate this. The goal: reduce your visible attack surface before adversaries exploit it." }
+   ]
+  },
+  "t-exploitation": {
+   "label": "Exploitation & Penetration Testing",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Actively testing defences by exploiting vulnerabilities \u2014 the ethical hacking methodology.",
+   "subs": ["l-web-exploitation", "l-network-exploitation", "l-post-exploitation"],
+   "links": [
+    { "type": "article", "title": "OWASP Web Security Testing Guide", "url": "https://owasp.org/www-project-web-security-testing-guide/" },
+    { "type": "article", "title": "HackTheBox", "url": "https://www.hackthebox.com/" },
+    { "type": "article", "title": "TryHackMe", "url": "https://tryhackme.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Penetration testing** simulates real attacks against your systems to find vulnerabilities before attackers do. It follows: recon \u2192 scanning \u2192 exploitation \u2192 post-exploitation \u2192 reporting. Always with explicit written authorisation.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Web exploitation**: injection (SQLi, XSS, SSRF), broken auth, logic flaws. **Network**: service exploits, default credentials, misconfigurations. **Post-exploitation**: lateral movement, persistence, data exfiltration. Tools: Burp Suite (web), Metasploit (network), custom scripts." },
+    { "label": "In practice", "tag": "adv", "body": "Modern pen testing goes beyond running tools \u2014 it's about **chaining** low-severity findings into critical impact (e.g., SSRF + IAM misconfiguration = full cloud takeover). Practice on CTF platforms (HackTheBox, TryHackMe). Red team engagements add social engineering and physical access to the scope. Always communicate findings with clear risk context and remediation guidance." }
+   ]
+  },
+  "t-privilege-escalation": {
+   "label": "Privilege Escalation",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Moving from low-privilege access to higher privileges \u2014 local, domain, and cloud escalation paths.",
+   "subs": ["l-local-privesc", "l-domain-privesc", "l-cloud-privesc"],
+   "links": [
+    { "type": "article", "title": "GTFOBins (Linux PrivEsc)", "url": "https://gtfobins.github.io/" },
+    { "type": "article", "title": "LOLBAS (Windows)", "url": "https://lolbas-project.github.io/" },
+    { "type": "article", "title": "HackTricks \u2014 Privilege Escalation", "url": "https://book.hacktricks.xyz/linux-hardening/privilege-escalation" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "After initial access, attackers escalate privileges: from a normal user to admin/root, or from one service to more sensitive ones. Understanding escalation paths helps you block them.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Local**: SUID binaries, kernel exploits, misconfigured sudo, writable services. **Domain** (Windows AD): Kerberoasting, AS-REP roasting, delegation abuse. **Cloud**: overly permissive IAM roles, instance metadata (IMDS), cross-account role chaining." },
+    { "label": "In practice", "tag": "adv", "body": "Defend by: enforcing least privilege rigorously, auditing IAM policies with tools (IAM Access Analyzer, ScoutSuite), patching promptly, and monitoring for privilege escalation indicators. In cloud environments, the IAM permission graph IS the attack surface \u2014 map and minimise it." }
+   ]
+  },
+  "t-social-engineering": {
+   "label": "Social Engineering",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Exploiting human psychology \u2014 phishing, pretexting, and why people remain the weakest link.",
+   "subs": ["l-phishing", "l-pretexting", "l-awareness-training"],
+   "links": [
+    { "type": "article", "title": "NIST Phishing Guidance", "url": "https://csrc.nist.gov/publications/detail/sp/800-177/rev-1/final" },
+    { "type": "article", "title": "Verizon DBIR \u2014 Social Engineering", "url": "https://www.verizon.com/business/resources/reports/dbir/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Social engineering** manipulates people into breaking security procedures. **Phishing** (fraudulent emails/messages), **pretexting** (fabricated scenarios), and **vishing** (phone calls) bypass all technical controls by targeting the human layer.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Attackers exploit urgency, authority, and trust. **Spear phishing** targets specific individuals with personalised lures. **Business Email Compromise** (BEC) impersonates executives. In 2026, **AI-generated phishing** (deepfake voice/video, personalised at scale) makes detection harder." },
+    { "label": "In practice", "tag": "adv", "body": "Technical controls matter more than training: **phishing-resistant MFA** (passkeys, hardware keys) eliminates credential theft regardless of whether users click links. Add email authentication (**DMARC/DKIM/SPF**), link rewriting, and attachment sandboxing. Awareness training helps but isn't sufficient alone \u2014 assume some users will always click." }
+   ]
+  },
+  "t-soc": {
+   "label": "Security Operations (SOC)",
+   "domain": "d6",
+   "col": 5,
+   "desc": "The team and tools that detect, investigate, and respond to security events \u2014 SIEM, SOAR, and detection engineering.",
+   "subs": ["l-siem", "l-soar", "l-detection-engineering"],
+   "links": [
+    { "type": "article", "title": "MITRE ATT&CK for Detection", "url": "https://attack.mitre.org/" },
+    { "type": "article", "title": "Sigma Rules", "url": "https://sigmahq.io/" },
+    { "type": "article", "title": "Elastic Security", "url": "https://www.elastic.co/security" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **SOC** (Security Operations Centre) monitors systems 24/7 for security events. Core tools: **SIEM** (aggregate and correlate logs), **EDR** (endpoint visibility), and **SOAR** (automate response playbooks).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Detection engineering**: writing rules/queries that find attacker behaviour in logs. Use **Sigma** (vendor-agnostic detection rules) mapped to **MITRE ATT&CK** techniques. **SOAR** automates repetitive tasks: enrich alerts with context, isolate hosts, block IPs automatically." },
+    { "label": "In practice", "tag": "adv", "body": "Alert fatigue kills SOC effectiveness \u2014 tune detections ruthlessly, correlate before alerting, and automate triage. Modern SOCs are adopting **detection-as-code** (version-controlled, tested, CI/CD for detections). AI assistants help analysts summarise alerts and suggest response actions, but human judgement remains essential for novel threats." }
+   ]
+  },
+  "t-incident-response": {
+   "label": "Incident Response",
+   "domain": "d6",
+   "col": 5,
+   "desc": "What to do when a breach happens \u2014 preparation, detection, containment, eradication, and recovery.",
+   "subs": ["l-ir-plan", "l-containment", "l-lessons-learned"],
+   "links": [
+    { "type": "article", "title": "NIST SP 800-61 \u2014 Incident Handling Guide", "url": "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final" },
+    { "type": "article", "title": "PagerDuty Incident Response Guide", "url": "https://response.pagerduty.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Incident response follows phases: **Preparation** (plans, tools, training) \u2192 **Detection & Analysis** (is this real?) \u2192 **Containment** (stop the spread) \u2192 **Eradication** (remove the threat) \u2192 **Recovery** (restore normal) \u2192 **Lessons Learned** (improve).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Preparation**: IR plan, communication templates, runbooks, tabletop exercises. **Containment**: isolate affected systems, revoke compromised credentials, block C2 channels. **Recovery**: rebuild from known-good state, validate clean before restoring." },
+    { "label": "In practice", "tag": "adv", "body": "The #1 incident response failure is **lack of preparation** \u2014 teams discover gaps during the crisis. Run tabletop exercises quarterly. Have pre-approved communication templates for legal, PR, and customers. Post-incident reviews should be blameless and focus on systemic improvements, not individual fault. Document timelines meticulously for legal/regulatory needs." }
+   ]
+  },
+  "t-forensics": {
+   "label": "Digital Forensics",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Collecting and analysing digital evidence \u2014 understanding what happened, when, and how.",
+   "subs": ["l-disk-forensics", "l-memory-forensics", "l-log-analysis"],
+   "links": [
+    { "type": "article", "title": "SANS Digital Forensics", "url": "https://www.sans.org/digital-forensics-incident-response/" },
+    { "type": "opensource", "title": "Volatility (Memory Forensics)", "url": "https://www.volatilityfoundation.org/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Digital forensics** recovers and analyses evidence from computers, networks, and cloud environments. The goal: reconstruct what the attacker did, when, and what was affected \u2014 while preserving evidence integrity for potential legal proceedings.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Disk forensics**: file system analysis, deleted file recovery, timeline reconstruction. **Memory forensics** (Volatility): analyse RAM dumps for malware, credentials, network connections. **Log analysis**: correlate timestamps across systems to build attack timelines. Cloud forensics: API call logs (CloudTrail), snapshot analysis." },
+    { "label": "In practice", "tag": "adv", "body": "In cloud environments, traditional disk forensics is less relevant \u2014 focus on **API logs**, **container images**, and **network flow data**. Preserve evidence before containment (snapshot VMs, export logs). Chain of custody matters if legal action is possible. Automated forensic collection tools (GRR, Velociraptor) scale across large fleets." }
+   ]
+  },
+  "t-compliance-grc": {
+   "label": "Compliance & GRC",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Governance, risk, and compliance \u2014 meeting regulatory requirements and security standards.",
+   "subs": ["l-soc2", "l-iso27001", "l-gdpr-privacy"],
+   "links": [
+    { "type": "article", "title": "SOC 2 Overview", "url": "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" },
+    { "type": "article", "title": "ISO 27001", "url": "https://www.iso.org/standard/27001" },
+    { "type": "article", "title": "GDPR Overview", "url": "https://gdpr.eu/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Compliance** means meeting external requirements: regulations (GDPR, HIPAA), standards (ISO 27001, SOC 2), and contractual obligations. It's the minimum bar, not the goal \u2014 compliant doesn't mean secure, but non-compliance has real consequences.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**SOC 2**: trust service criteria for SaaS companies (security, availability, confidentiality). **ISO 27001**: international information security management system standard. **GDPR**: EU data protection (consent, data minimisation, breach notification, right to deletion). **PCI DSS**: payment card security." },
+    { "label": "In practice", "tag": "adv", "body": "Automate compliance evidence collection \u2014 continuous compliance (Vanta, Drata, Secureframe) replaces point-in-time audits. Map security controls to multiple frameworks simultaneously (one control satisfies SOC 2, ISO 27001, and GDPR requirements). Treat compliance as a **byproduct** of good security, not a separate programme." }
+   ]
+  }
+ },
+ "leaves": {
+  "l-cia-triad": { "label": "CIA Triad", "parent": "t-sec-fundamentals", "domain": "d1", "desc": "Confidentiality, Integrity, Availability.", "links": [], "levels": [] },
+  "l-defence-in-depth": { "label": "Defence in Depth", "parent": "t-sec-fundamentals", "domain": "d1", "desc": "Multiple overlapping security layers.", "links": [], "levels": [] },
+  "l-least-privilege": { "label": "Least Privilege", "parent": "t-sec-fundamentals", "domain": "d1", "desc": "Grant only minimum necessary access.", "links": [], "levels": [] },
+  "l-threat-actors": { "label": "Threat Actors", "parent": "t-threat-landscape", "domain": "d1", "desc": "Who attacks: script kiddies to nation-states.", "links": [], "levels": [] },
+  "l-attack-vectors": { "label": "Attack Vectors", "parent": "t-threat-landscape", "domain": "d1", "desc": "How attacks happen: phishing, exploits, supply chain.", "links": [], "levels": [] },
+  "l-mitre-attack": { "label": "MITRE ATT&CK", "parent": "t-threat-landscape", "domain": "d1", "desc": "Taxonomy of adversary tactics and techniques.", "links": [], "levels": [] },
+  "l-nist-csf": { "label": "NIST CSF", "parent": "t-security-models", "domain": "d1", "desc": "Identify, Protect, Detect, Respond, Recover.", "links": [], "levels": [] },
+  "l-zero-trust-model": { "label": "Zero Trust", "parent": "t-security-models", "domain": "d1", "desc": "Never trust, always verify architecture.", "links": [], "levels": [] },
+  "l-stride": { "label": "STRIDE", "parent": "t-security-models", "domain": "d1", "desc": "Threat modelling by threat category.", "links": [], "levels": [] },
+  "l-risk-assessment": { "label": "Risk Assessment", "parent": "t-risk-management", "domain": "d1", "desc": "Identifying and scoring security risks.", "links": [], "levels": [] },
+  "l-risk-treatment": { "label": "Risk Treatment", "parent": "t-risk-management", "domain": "d1", "desc": "Mitigate, accept, transfer, or avoid.", "links": [], "levels": [] },
+  "l-vulnerability-management": { "label": "Vulnerability Management", "parent": "t-risk-management", "domain": "d1", "desc": "Continuous scanning and patch prioritisation.", "links": [], "levels": [] },
+  "l-confidentiality-crypto": { "label": "Confidentiality", "parent": "t-crypto-basics", "domain": "d2", "desc": "Encryption hides data from unauthorised parties.", "links": [], "levels": [] },
+  "l-integrity-crypto": { "label": "Integrity", "parent": "t-crypto-basics", "domain": "d2", "desc": "Detecting if data has been tampered with.", "links": [], "levels": [] },
+  "l-authentication-crypto": { "label": "Authentication", "parent": "t-crypto-basics", "domain": "d2", "desc": "Proving identity cryptographically.", "links": [], "levels": [] },
+  "l-aes": { "label": "AES", "parent": "t-symmetric", "domain": "d2", "desc": "The standard symmetric cipher (128/256-bit).", "links": [], "levels": [] },
+  "l-modes-of-operation": { "label": "Modes of Operation", "parent": "t-symmetric", "domain": "d2", "desc": "ECB, CBC, CTR, GCM \u2014 how block ciphers handle data.", "links": [], "levels": [] },
+  "l-aead": { "label": "AEAD", "parent": "t-symmetric", "domain": "d2", "desc": "Authenticated encryption providing confidentiality + integrity.", "links": [], "levels": [] },
+  "l-rsa-ecc": { "label": "RSA & ECC", "parent": "t-asymmetric", "domain": "d2", "desc": "Public-key algorithms for encryption and signatures.", "links": [], "levels": [] },
+  "l-key-exchange": { "label": "Key Exchange", "parent": "t-asymmetric", "domain": "d2", "desc": "Diffie-Hellman and ECDHE for shared secrets.", "links": [], "levels": [] },
+  "l-certificates": { "label": "Certificates", "parent": "t-asymmetric", "domain": "d2", "desc": "X.509 certs binding identities to public keys.", "links": [], "levels": [] },
+  "l-pki": { "label": "PKI", "parent": "t-asymmetric", "domain": "d2", "desc": "Public Key Infrastructure and certificate authorities.", "links": [], "levels": [] },
+  "l-hash-functions": { "label": "Hash Functions", "parent": "t-hashing-signing", "domain": "d2", "desc": "SHA-256, SHA-3 \u2014 one-way fingerprints.", "links": [], "levels": [] },
+  "l-password-hashing": { "label": "Password Hashing", "parent": "t-hashing-signing", "domain": "d2", "desc": "bcrypt, Argon2 \u2014 deliberately slow hashing.", "links": [], "levels": [] },
+  "l-digital-signatures": { "label": "Digital Signatures", "parent": "t-hashing-signing", "domain": "d2", "desc": "Proving authorship with private key signing.", "links": [], "levels": [] },
+  "l-input-validation": { "label": "Input Validation", "parent": "t-secure-coding", "domain": "d3", "desc": "Rejecting unexpected or malicious input.", "links": [], "levels": [] },
+  "l-output-encoding": { "label": "Output Encoding", "parent": "t-secure-coding", "domain": "d3", "desc": "Preventing injection by encoding outputs.", "links": [], "levels": [] },
+  "l-error-handling-sec": { "label": "Secure Error Handling", "parent": "t-secure-coding", "domain": "d3", "desc": "Failing securely without leaking information.", "links": [], "levels": [] },
+  "l-injection": { "label": "Injection", "parent": "t-web-vulns", "domain": "d3", "desc": "SQL, command, LDAP injection attacks.", "links": [], "levels": [] },
+  "l-xss": { "label": "XSS", "parent": "t-web-vulns", "domain": "d3", "desc": "Cross-site scripting \u2014 injecting client-side scripts.", "links": [], "levels": [] },
+  "l-csrf": { "label": "CSRF", "parent": "t-web-vulns", "domain": "d3", "desc": "Cross-site request forgery attacks.", "links": [], "levels": [] },
+  "l-ssrf": { "label": "SSRF", "parent": "t-web-vulns", "domain": "d3", "desc": "Server-side request forgery \u2014 abusing server network access.", "links": [], "levels": [] },
+  "l-oauth-oidc": { "label": "OAuth 2.0 & OIDC", "parent": "t-auth-authz", "domain": "d3", "desc": "Delegation and identity protocols.", "links": [], "levels": [] },
+  "l-jwt": { "label": "JWT", "parent": "t-auth-authz", "domain": "d3", "desc": "JSON Web Tokens for stateless authentication.", "links": [], "levels": [] },
+  "l-session-management": { "label": "Session Management", "parent": "t-auth-authz", "domain": "d3", "desc": "Server-side sessions, cookies, and expiry.", "links": [], "levels": [] },
+  "l-rbac-abac": { "label": "RBAC / ABAC", "parent": "t-auth-authz", "domain": "d3", "desc": "Role-based and attribute-based access control.", "links": [], "levels": [] },
+  "l-dependency-scanning": { "label": "Dependency Scanning", "parent": "t-supply-chain", "domain": "d3", "desc": "Finding known CVEs in third-party packages.", "links": [], "levels": [] },
+  "l-sbom": { "label": "SBOM", "parent": "t-supply-chain", "domain": "d3", "desc": "Software Bill of Materials for transparency.", "links": [], "levels": [] },
+  "l-build-provenance": { "label": "Build Provenance", "parent": "t-supply-chain", "domain": "d3", "desc": "SLSA, Sigstore \u2014 verifying build integrity.", "links": [], "levels": [] },
+  "l-firewalls": { "label": "Firewalls", "parent": "t-network-security", "domain": "d4", "desc": "Filtering traffic by rules and policies.", "links": [], "levels": [] },
+  "l-segmentation": { "label": "Network Segmentation", "parent": "t-network-security", "domain": "d4", "desc": "Isolating zones to limit lateral movement.", "links": [], "levels": [] },
+  "l-ids-ips": { "label": "IDS/IPS", "parent": "t-network-security", "domain": "d4", "desc": "Detecting and blocking malicious traffic patterns.", "links": [], "levels": [] },
+  "l-vpn-tls": { "label": "VPN & TLS", "parent": "t-network-security", "domain": "d4", "desc": "Encrypted tunnels and transport security.", "links": [], "levels": [] },
+  "l-iam-security": { "label": "IAM Security", "parent": "t-cloud-sec", "domain": "d4", "desc": "Least-privilege policies and credential hygiene.", "links": [], "levels": [] },
+  "l-cspm-tools": { "label": "CSPM", "parent": "t-cloud-sec", "domain": "d4", "desc": "Continuous cloud misconfiguration detection.", "links": [], "levels": [] },
+  "l-cloud-misconfig": { "label": "Cloud Misconfigurations", "parent": "t-cloud-sec", "domain": "d4", "desc": "Public buckets, open security groups, overpermissions.", "links": [], "levels": [] },
+  "l-image-scanning": { "label": "Image Scanning", "parent": "t-container-security", "domain": "d4", "desc": "Finding CVEs in container images before deployment.", "links": [], "levels": [] },
+  "l-runtime-security": { "label": "Runtime Security", "parent": "t-container-security", "domain": "d4", "desc": "Detecting anomalous container behaviour at runtime.", "links": [], "levels": [] },
+  "l-k8s-security": { "label": "Kubernetes Security", "parent": "t-container-security", "domain": "d4", "desc": "Pod security, RBAC, network policies, secrets.", "links": [], "levels": [] },
+  "l-edr": { "label": "EDR", "parent": "t-endpoint-security", "domain": "d4", "desc": "Endpoint Detection & Response platforms.", "links": [], "levels": [] },
+  "l-mdm": { "label": "MDM", "parent": "t-endpoint-security", "domain": "d4", "desc": "Mobile Device Management for corporate devices.", "links": [], "levels": [] },
+  "l-passwordless": { "label": "Passkeys / FIDO2", "parent": "t-endpoint-security", "domain": "d4", "desc": "Phishing-resistant passwordless authentication.", "links": [], "levels": [] },
+  "l-passive-recon": { "label": "Passive Recon", "parent": "t-recon", "domain": "d5", "desc": "Gathering info without touching the target.", "links": [], "levels": [] },
+  "l-active-recon": { "label": "Active Recon", "parent": "t-recon", "domain": "d5", "desc": "Port scanning, service enumeration, probing.", "links": [], "levels": [] },
+  "l-attack-surface": { "label": "Attack Surface Mapping", "parent": "t-recon", "domain": "d5", "desc": "Discovering all exposed assets and entry points.", "links": [], "levels": [] },
+  "l-web-exploitation": { "label": "Web Exploitation", "parent": "t-exploitation", "domain": "d5", "desc": "Exploiting web application vulnerabilities.", "links": [], "levels": [] },
+  "l-network-exploitation": { "label": "Network Exploitation", "parent": "t-exploitation", "domain": "d5", "desc": "Exploiting services, protocols, and infrastructure.", "links": [], "levels": [] },
+  "l-post-exploitation": { "label": "Post-Exploitation", "parent": "t-exploitation", "domain": "d5", "desc": "Lateral movement, persistence, data exfiltration.", "links": [], "levels": [] },
+  "l-local-privesc": { "label": "Local PrivEsc", "parent": "t-privilege-escalation", "domain": "d5", "desc": "Escalating from user to root/admin on one system.", "links": [], "levels": [] },
+  "l-domain-privesc": { "label": "Domain PrivEsc", "parent": "t-privilege-escalation", "domain": "d5", "desc": "Active Directory escalation techniques.", "links": [], "levels": [] },
+  "l-cloud-privesc": { "label": "Cloud PrivEsc", "parent": "t-privilege-escalation", "domain": "d5", "desc": "IAM and metadata-based cloud escalation.", "links": [], "levels": [] },
+  "l-phishing": { "label": "Phishing", "parent": "t-social-engineering", "domain": "d5", "desc": "Fraudulent emails and messages for credential theft.", "links": [], "levels": [] },
+  "l-pretexting": { "label": "Pretexting", "parent": "t-social-engineering", "domain": "d5", "desc": "Fabricating scenarios to manipulate targets.", "links": [], "levels": [] },
+  "l-awareness-training": { "label": "Security Awareness", "parent": "t-social-engineering", "domain": "d5", "desc": "Training users to recognise and resist manipulation.", "links": [], "levels": [] },
+  "l-siem": { "label": "SIEM", "parent": "t-soc", "domain": "d6", "desc": "Security Information and Event Management.", "links": [], "levels": [] },
+  "l-soar": { "label": "SOAR", "parent": "t-soc", "domain": "d6", "desc": "Security Orchestration, Automation, and Response.", "links": [], "levels": [] },
+  "l-detection-engineering": { "label": "Detection Engineering", "parent": "t-soc", "domain": "d6", "desc": "Writing and testing detection rules as code.", "links": [], "levels": [] },
+  "l-ir-plan": { "label": "IR Plan", "parent": "t-incident-response", "domain": "d6", "desc": "Documented procedures for handling incidents.", "links": [], "levels": [] },
+  "l-containment": { "label": "Containment", "parent": "t-incident-response", "domain": "d6", "desc": "Stopping the spread during an active incident.", "links": [], "levels": [] },
+  "l-lessons-learned": { "label": "Lessons Learned", "parent": "t-incident-response", "domain": "d6", "desc": "Blameless post-incident review and improvement.", "links": [], "levels": [] },
+  "l-disk-forensics": { "label": "Disk Forensics", "parent": "t-forensics", "domain": "d6", "desc": "File system analysis and data recovery.", "links": [], "levels": [] },
+  "l-memory-forensics": { "label": "Memory Forensics", "parent": "t-forensics", "domain": "d6", "desc": "Analysing RAM for malware and artefacts.", "links": [], "levels": [] },
+  "l-log-analysis": { "label": "Log Analysis", "parent": "t-forensics", "domain": "d6", "desc": "Correlating logs to reconstruct attack timelines.", "links": [], "levels": [] },
+  "l-soc2": { "label": "SOC 2", "parent": "t-compliance-grc", "domain": "d6", "desc": "Trust service criteria for SaaS security.", "links": [], "levels": [] },
+  "l-iso27001": { "label": "ISO 27001", "parent": "t-compliance-grc", "domain": "d6", "desc": "International information security management standard.", "links": [], "levels": [] },
+  "l-gdpr-privacy": { "label": "GDPR & Privacy", "parent": "t-compliance-grc", "domain": "d6", "desc": "EU data protection and privacy regulation.", "links": [], "levels": [] }
+ },
+ "topicEdges": [
+  { "s": "t-sec-fundamentals", "t": "t-threat-landscape", "k": "prereq" },
+  { "s": "t-sec-fundamentals", "t": "t-security-models", "k": "prereq" },
+  { "s": "t-crypto-basics", "t": "t-symmetric", "k": "prereq" },
+  { "s": "t-crypto-basics", "t": "t-asymmetric", "k": "prereq" },
+  { "s": "t-symmetric", "t": "t-hashing-signing", "k": "builds" },
+  { "s": "t-secure-coding", "t": "t-web-vulns", "k": "builds" },
+  { "s": "t-web-vulns", "t": "t-exploitation", "k": "applies" },
+  { "s": "t-auth-authz", "t": "t-cloud-sec", "k": "applies" },
+  { "s": "t-recon", "t": "t-exploitation", "k": "prereq" },
+  { "s": "t-exploitation", "t": "t-privilege-escalation", "k": "builds" },
+  { "s": "t-soc", "t": "t-incident-response", "k": "builds" },
+  { "s": "t-incident-response", "t": "t-forensics", "k": "builds" }
+ ],
+ "leafEdges": []
+}

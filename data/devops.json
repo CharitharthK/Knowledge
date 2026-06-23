@@ -1,0 +1,535 @@
+{
+ "meta": {
+  "id": "devops",
+  "kbd": "knowledge hub \u00b7 devops & sre",
+  "title": "DevOps & SRE",
+  "subtitle": "ship fast, stay reliable",
+  "blurb": "From CI/CD and infrastructure automation to incident management, SLOs, chaos engineering, and platform engineering \u2014 the practices that keep production running while shipping at speed.",
+  "progressive": false
+ },
+ "domains": {
+  "d1": { "name": "Culture & Foundations", "c": "#F0B23C" },
+  "d2": { "name": "CI/CD & Delivery", "c": "#46B8DA" },
+  "d3": { "name": "Infrastructure & Config", "c": "#54C99A" },
+  "d4": { "name": "Reliability Engineering", "c": "#B08CF0" },
+  "d5": { "name": "Observability & Incident", "c": "#F0796B" },
+  "d6": { "name": "Platform Engineering", "c": "#E86BB5" }
+ },
+ "cols": [
+  {
+   "title": "Culture & Foundations",
+   "keys": ["t-devops-intro", "t-sre-intro", "t-devops-culture", "t-toil"]
+  },
+  {
+   "title": "CI/CD & Delivery",
+   "keys": ["t-ci", "t-cd", "t-gitops", "t-progressive-delivery"]
+  },
+  {
+   "title": "Infrastructure & Config",
+   "keys": ["t-iac-devops", "t-config-management", "t-immutable-infra", "t-secrets-management"]
+  },
+  {
+   "title": "Reliability Engineering",
+   "keys": ["t-slos-slis", "t-error-budgets", "t-capacity-planning", "t-chaos-engineering"]
+  },
+  {
+   "title": "Observability & Incident",
+   "keys": ["t-observability-devops", "t-alerting-devops", "t-incident-management", "t-postmortems"]
+  },
+  {
+   "title": "Platform Engineering",
+   "keys": ["t-internal-platforms", "t-developer-experience", "t-self-service", "t-platform-as-product"]
+  }
+ ],
+
+ "topics": {
+  "t-devops-intro": {
+   "label": "What is DevOps?",
+   "domain": "d1",
+   "col": 0,
+   "desc": "The philosophy and practices that unify development and operations for faster, more reliable delivery.",
+   "subs": ["l-devops-principles", "l-devops-history"],
+   "links": [
+    { "type": "book", "title": "The Phoenix Project", "url": "https://itrevolution.com/product/the-phoenix-project/" },
+    { "type": "book", "title": "Accelerate (Forsgren, Humble, Kim)", "url": "https://itrevolution.com/product/accelerate/" },
+    { "type": "article", "title": "DORA Metrics", "url": "https://dora.dev/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**DevOps** is a set of practices that combines software development and IT operations to shorten the delivery cycle while maintaining quality. It's about **culture** (collaboration, shared responsibility), **automation** (CI/CD, IaC), and **measurement** (feedback loops).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "The **Three Ways**: flow (left to right, fast delivery), feedback (right to left, fast detection), and continuous learning. **DORA metrics** measure team performance: deployment frequency, lead time for changes, change failure rate, failed deployment recovery time, and reliability (added 2024). As of 2026, DORA has expanded to five metrics to account for modern development practices and AI tool impact." },
+    { "label": "In practice", "tag": "adv", "body": "DevOps isn't a title or a team \u2014 it's a capability. Elite teams (per DORA 2025 report) deploy on demand, with lead times under an hour, <5% change failure rate, and recover in under an hour. AI coding assistants (84% developer adoption in 2026) are accelerating these metrics further. The practices that enable this: trunk-based development, CI/CD, IaC, observability, and blameless culture." }
+   ]
+  },
+  "t-sre-intro": {
+   "label": "Site Reliability Engineering",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Google's approach to operations \u2014 applying software engineering to reliability problems.",
+   "subs": ["l-sre-principles", "l-sre-vs-devops"],
+   "links": [
+    { "type": "book", "title": "Site Reliability Engineering (Google)", "url": "https://sre.google/sre-book/table-of-contents/" },
+    { "type": "book", "title": "The Site Reliability Workbook", "url": "https://sre.google/workbook/table-of-contents/" },
+    { "type": "article", "title": "SRE vs DevOps", "url": "https://cloud.google.com/blog/products/devops-sre/sre-vs-devops-competing-standards-or-close-friends" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**SRE** treats operations as a software problem. Core idea: define reliability targets (**SLOs**), measure them, and use the gap (**error budget**) to balance reliability work against feature velocity. If the budget is spent, slow down and fix.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "SRE principles: **embrace risk** (100% reliability is wrong target), **eliminate toil** (automate repetitive ops), **simplicity** (less complexity = fewer failures), **monitoring** (symptoms over causes), and **emergency response** (prepared, practiced, blameless)." },
+    { "label": "In practice", "tag": "adv", "body": "SRE is 'what happens when you ask a software engineer to design an operations team'. DevOps is the philosophy; SRE is one opinionated implementation. Not every org needs Google-scale SRE \u2014 but the concepts (SLOs, error budgets, toil reduction) apply at any size." }
+   ]
+  },
+  "t-devops-culture": {
+   "label": "DevOps Culture & Collaboration",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Breaking down silos \u2014 shared ownership, blameless culture, and cross-functional collaboration.",
+   "subs": ["l-shared-ownership", "l-blameless-culture"],
+   "links": [
+    { "type": "book", "title": "Team Topologies (Skelton & Pais)", "url": "https://teamtopologies.com/" },
+    { "type": "article", "title": "Westrum Organisational Culture", "url": "https://dora.dev/capabilities/generative-organizational-culture/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "DevOps culture means: **you build it, you run it**. Development teams own their services end-to-end, including production health. No throwing code over the wall to a separate ops team.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Blameless culture**: failures are learning opportunities, not reasons to punish. **Westrum typology**: generative (high trust, sharing, novelty) cultures predict both better delivery performance and fewer failures. **Team Topologies** provides patterns for structuring teams (stream-aligned, enabling, platform, complicated-subsystem)." },
+    { "label": "In practice", "tag": "adv", "body": "Culture change is the hardest part of DevOps transformation. Start with: shared on-call (devs carry pagers for their services), blameless postmortems, and visible metrics. Tools don't fix culture \u2014 but good tooling (self-service platforms, fast CI) removes friction that breeds silos." }
+   ]
+  },
+  "t-toil": {
+   "label": "Toil & Automation",
+   "domain": "d1",
+   "col": 0,
+   "desc": "Identifying and eliminating repetitive manual work that scales linearly with service growth.",
+   "subs": ["l-toil-definition", "l-automation-strategy"],
+   "links": [
+    { "type": "article", "title": "Eliminating Toil (Google SRE)", "url": "https://sre.google/sre-book/eliminating-toil/" },
+    { "type": "article", "title": "Toil: A Word Every Engineer Should Know", "url": "https://sre.google/workbook/eliminating-toil/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Toil** is manual, repetitive, automatable work that scales with service size but adds no lasting value. Examples: manually restarting services, hand-provisioning resources, running deployments by clicking buttons.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Google's target: SREs spend <50% time on toil, rest on engineering (automation, reliability features). Measure toil: time spent, frequency, who does it. Prioritise automation by: frequency \u00d7 time \u00d7 error-proneness." },
+    { "label": "In practice", "tag": "adv", "body": "Not all manual work is toil \u2014 novel troubleshooting and design are valuable. The test: could a machine do this? Does it grow with scale? If yes to both, automate it. Build **self-healing systems** (auto-restart, auto-scale, auto-remediate) to eliminate toil at the source rather than scripting it away." }
+   ]
+  },
+
+  "t-ci": {
+   "label": "Continuous Integration",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Automatically building and testing every code change \u2014 fast feedback, always-releasable main branch.",
+   "subs": ["l-build-automation", "l-test-automation", "l-ci-best-practices"],
+   "links": [
+    { "type": "article", "title": "Continuous Integration (Fowler)", "url": "https://martinfowler.com/articles/continuousIntegration.html" },
+    { "type": "article", "title": "GitHub Actions", "url": "https://docs.github.com/en/actions" },
+    { "type": "article", "title": "GitLab CI/CD", "url": "https://docs.gitlab.com/ee/ci/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**CI** means every developer integrates code to main at least daily, and every integration is verified by automated build and tests. Broken builds are fixed immediately. The branch is always in a releasable state.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "CI pipeline: checkout \u2192 build \u2192 lint \u2192 unit test \u2192 integration test \u2192 security scan \u2192 artifact. Use **parallelisation** and **caching** to keep it fast (<10 min). Fail fast: run quick checks first, expensive tests later." },
+    { "label": "In practice", "tag": "adv", "body": "CI speed directly impacts developer velocity. If CI is slow, people batch changes (defeating the purpose) or skip it. Invest in: fast test suites, build caching (Turborepo, Gradle cache, Docker layer caching), test splitting/sharding, and ephemeral runners. Monitor CI metrics: queue time, build time, flake rate." }
+   ]
+  },
+  "t-cd": {
+   "label": "Continuous Delivery / Deployment",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Automating the path from merge to production \u2014 always deployable vs always deployed.",
+   "subs": ["l-continuous-delivery", "l-continuous-deployment", "l-deployment-strategies"],
+   "links": [
+    { "type": "book", "title": "Continuous Delivery (Humble & Farley)", "url": "https://continuousdelivery.com/" },
+    { "type": "article", "title": "Deployment Strategies", "url": "https://thenewstack.io/deployment-strategies/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Continuous Delivery**: every change is deployable to production at any time (human triggers the release). **Continuous Deployment**: every change that passes tests is automatically deployed. Both require high test confidence and automated pipelines.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Deployment strategies**: rolling update (gradual replacement), **blue-green** (swap entire environments), **canary** (small % traffic to new version, validate, then expand). Use **feature flags** to decouple deployment from release \u2014 deploy dark, enable when ready." },
+    { "label": "In practice", "tag": "adv", "body": "True continuous deployment requires: comprehensive automated tests, feature flags for incomplete work, monitoring with automatic rollback, and a culture that's comfortable deploying 50+ times per day. Start with continuous delivery (manual promotion) and graduate as confidence grows." }
+   ]
+  },
+  "t-gitops": {
+   "label": "GitOps",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Using Git as the single source of truth for infrastructure and application deployment \u2014 declarative, auditable, reconciled.",
+   "subs": ["l-gitops-principles", "l-argocd", "l-flux"],
+   "links": [
+    { "type": "article", "title": "GitOps Principles (OpenGitOps)", "url": "https://opengitops.dev/" },
+    { "type": "opensource", "title": "Argo CD", "url": "https://argo-cd.readthedocs.io/" },
+    { "type": "opensource", "title": "Flux CD", "url": "https://fluxcd.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**GitOps** = desired state in Git + an agent that continuously reconciles actual state to match. A merged PR *is* a deployment. Full audit trail, easy rollback (revert the commit), and declarative infrastructure.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Pull-based** (Argo CD, Flux watch Git and reconcile) vs **push-based** (CI pipeline applies changes). Pull-based is more secure (cluster pulls, no CI credentials needed). **Argo CD** dominates Kubernetes GitOps; **Flux** is lighter and composable." },
+    { "label": "In practice", "tag": "adv", "body": "GitOps is the standard for Kubernetes deployments in 2026. Challenges: secret management (don't store secrets in Git \u2014 use Sealed Secrets, External Secrets Operator), environment promotion (kustomize overlays or Helm values per env), and handling drift (what to do when someone manually changes the cluster)." }
+   ]
+  },
+  "t-progressive-delivery": {
+   "label": "Progressive Delivery",
+   "domain": "d2",
+   "col": 1,
+   "desc": "Gradually exposing changes to users \u2014 canaries, feature flags, and automated rollback.",
+   "subs": ["l-feature-flags", "l-canary-releases", "l-automated-rollback"],
+   "links": [
+    { "type": "article", "title": "Progressive Delivery (James Governor)", "url": "https://redmonk.com/jgovernor/2018/08/06/towards-progressive-delivery/" },
+    { "type": "article", "title": "LaunchDarkly", "url": "https://launchdarkly.com/" },
+    { "type": "opensource", "title": "Flagger", "url": "https://flagger.app/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Progressive delivery** extends CD with gradual rollouts: deploy to a small group, validate with real traffic, then expand. If metrics degrade, automatically roll back. Reduces blast radius of bad deployments.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Feature flags** (LaunchDarkly, Unleash) toggle features per user/segment without redeploying. **Canary analysis** (Flagger, Argo Rollouts) automatically compares canary metrics against baseline and promotes or rolls back. **Dark launches** test load without exposing to users." },
+    { "label": "In practice", "tag": "adv", "body": "Progressive delivery is how elite teams ship fast without breaking things. Combine: deploy via GitOps \u2192 canary 5% traffic \u2192 automated metric comparison (error rate, latency) \u2192 auto-promote or auto-rollback. Feature flags enable trunk-based development at scale \u2014 incomplete features deploy but aren't visible." }
+   ]
+  },
+
+  "t-iac-devops": {
+   "label": "Infrastructure as Code",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Defining infrastructure declaratively in code \u2014 versioned, reviewed, and automated like application code.",
+   "subs": ["l-terraform-devops", "l-pulumi-devops", "l-crossplane"],
+   "links": [
+    { "type": "article", "title": "Terraform Documentation", "url": "https://developer.hashicorp.com/terraform/docs" },
+    { "type": "article", "title": "Pulumi Documentation", "url": "https://www.pulumi.com/docs/" },
+    { "type": "opensource", "title": "Crossplane", "url": "https://www.crossplane.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**IaC** defines cloud resources (VMs, networks, databases) in code files that are version-controlled and deployed through pipelines. No manual console clicking. Every environment is reproducible from code.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Terraform/OpenTofu** (HCL, declarative, broadest provider ecosystem). **Pulumi** (real programming languages \u2014 TypeScript, Python, Go). **Crossplane** (Kubernetes-native, control plane for cloud resources). All follow plan \u2192 review \u2192 apply with state tracking." },
+    { "label": "In practice", "tag": "adv", "body": "Structure IaC in **modules** (reusable, composable). Run `plan` in PRs so reviewers see exact infrastructure changes. Use **remote state with locking** (S3 + DynamoDB, Terraform Cloud). **Policy-as-code** (OPA/Rego, Sentinel) prevents dangerous configurations before apply. Drift detection catches out-of-band changes." }
+   ]
+  },
+  "t-config-management": {
+   "label": "Configuration Management",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Managing application and infrastructure configuration \u2014 environment variables, config files, and dynamic config.",
+   "subs": ["l-env-config", "l-config-servers", "l-feature-toggles"],
+   "links": [
+    { "type": "article", "title": "12-Factor App \u2014 Config", "url": "https://12factor.net/config" },
+    { "type": "article", "title": "AWS AppConfig", "url": "https://docs.aws.amazon.com/appconfig/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "Configuration should be **separate from code** (12-factor app principle). Environment variables, config files, or config services provide runtime settings that differ between environments (dev/staging/prod) without code changes.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Static config**: env vars, mounted config files (Kubernetes ConfigMaps). **Dynamic config**: config servers (AWS AppConfig, Consul, etcd) that update without redeploying. **Feature flags** are specialised dynamic config for controlling feature availability." },
+    { "label": "In practice", "tag": "adv", "body": "Don't put secrets in config files or env vars that get logged. Use dedicated **secrets managers** for sensitive values. For Kubernetes: ConfigMaps for non-sensitive config, ExternalSecrets for secrets. Dynamic config enables instant changes but adds complexity \u2014 use for things that genuinely need to change without deploys." }
+   ]
+  },
+  "t-immutable-infra": {
+   "label": "Immutable Infrastructure",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Never patching running systems \u2014 replace them with new, pre-built images every time.",
+   "subs": ["l-golden-images", "l-containers-immutable", "l-blue-green-infra"],
+   "links": [
+    { "type": "article", "title": "Immutable Infrastructure (HashiCorp)", "url": "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure" },
+    { "type": "article", "title": "Packer", "url": "https://developer.hashicorp.com/packer" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Immutable infrastructure**: don't SSH in and patch servers. Instead, build a new image (AMI, container) with the changes and replace the running instances. This eliminates configuration drift and 'works on that server' problems.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Containers** are inherently immutable \u2014 the image is built once and runs identically everywhere. For VMs: use **Packer** to build machine images in CI. **Blue-green deployment** swaps entire sets of immutable instances. Rollback = redeploy the previous image." },
+    { "label": "In practice", "tag": "adv", "body": "Immutable infrastructure is the default for modern cloud-native systems. Containers + Kubernetes make it natural. For stateful workloads (databases), immutability applies to the compute layer (replace the pod) while state lives in persistent volumes or managed services. Never SSH into production containers \u2014 use observability tools instead." }
+   ]
+  },
+  "t-secrets-management": {
+   "label": "Secrets Management",
+   "domain": "d3",
+   "col": 2,
+   "desc": "Storing, accessing, and rotating sensitive credentials securely \u2014 API keys, passwords, certificates, tokens.",
+   "subs": ["l-vault", "l-cloud-secrets", "l-rotation"],
+   "links": [
+    { "type": "opensource", "title": "HashiCorp Vault", "url": "https://www.vaultproject.io/" },
+    { "type": "article", "title": "AWS Secrets Manager", "url": "https://docs.aws.amazon.com/secretsmanager/" },
+    { "type": "article", "title": "External Secrets Operator", "url": "https://external-secrets.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Secrets** (API keys, database passwords, certificates) must never live in code, git, or plain config files. Use a dedicated **secrets manager** that provides encrypted storage, access control, and audit logging.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**HashiCorp Vault**: full-featured (dynamic secrets, encryption-as-a-service, PKI). **Cloud-native**: AWS Secrets Manager, GCP Secret Manager, Azure Key Vault (simpler, managed). In Kubernetes: **External Secrets Operator** syncs secrets from any backend into K8s Secrets." },
+    { "label": "In practice", "tag": "adv", "body": "**Dynamic secrets** (Vault generates short-lived DB credentials per request) eliminate the long-lived credential problem entirely. **Rotation**: automate regular rotation so compromise of a secret has limited blast radius. Scan repos for leaked secrets (trufflehog, gitleaks) in CI. Prefer workload identity (IAM roles, service accounts) over static credentials wherever possible." }
+   ]
+  },
+
+  "t-slos-slis": {
+   "label": "SLOs, SLIs & SLAs",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Defining and measuring reliability targets \u2014 the language for discussing 'reliable enough'.",
+   "subs": ["l-sli-definition", "l-slo-definition", "l-sla-definition"],
+   "links": [
+    { "type": "article", "title": "SLOs (Google SRE Book)", "url": "https://sre.google/sre-book/service-level-objectives/" },
+    { "type": "article", "title": "The Art of SLOs (Google)", "url": "https://sre.google/resources/practices-and-processes/art-of-slos/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**SLI** (Service Level Indicator): a measurable metric of service behaviour (e.g., % of requests < 200ms). **SLO** (Objective): the target for that SLI (e.g., 99.9% of requests < 200ms). **SLA** (Agreement): the contractual promise with consequences if broken.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Good SLIs measure **user experience**, not system internals. Common SLIs: availability (successful requests / total), latency (p99 response time), correctness (valid responses / total). Set SLOs conservatively \u2014 users notice 99% but not 99.99%. Internal SLOs are tighter than external SLAs." },
+    { "label": "In practice", "tag": "adv", "body": "SLOs are a **decision-making framework**: when reliability is above the SLO, spend error budget on velocity; when below, prioritise reliability. Start with 2\u20133 SLOs per service. Measure from the **user's perspective** (synthetic probes, client-side metrics), not just server-side. SLOs without consequences or visibility are useless." }
+   ]
+  },
+  "t-error-budgets": {
+   "label": "Error Budgets",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Quantifying acceptable unreliability \u2014 the bridge between reliability and feature velocity.",
+   "subs": ["l-budget-calculation", "l-budget-policies"],
+   "links": [
+    { "type": "article", "title": "Error Budgets (Google SRE)", "url": "https://sre.google/sre-book/embracing-risk/" },
+    { "type": "article", "title": "Implementing SLOs", "url": "https://sre.google/workbook/implementing-slos/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "If your SLO is 99.9% availability, you have a **0.1% error budget** \u2014 about 43 minutes of downtime per month. This budget is yours to 'spend' on deployments, experiments, and migrations. When it's exhausted, freeze changes and fix reliability.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Error budget policy**: defines what happens when the budget is spent (feature freeze, mandatory reliability sprint, on-call escalation). Track budget burn rate \u2014 burning too fast triggers action before the budget is gone. Rolling windows (28-day) smooth out spikes." },
+    { "label": "In practice", "tag": "adv", "body": "Error budgets align incentives: developers want to ship fast (don't waste budget on bad deploys), SREs want reliability (don't over-invest when budget is healthy). Without error budgets, reliability becomes religious ('zero downtime!') rather than economic. Make budget dashboards visible to product and engineering leadership." }
+   ]
+  },
+  "t-capacity-planning": {
+   "label": "Capacity Planning",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Predicting and provisioning resources for future demand \u2014 staying ahead of growth without overspending.",
+   "subs": ["l-load-testing", "l-forecasting", "l-right-sizing"],
+   "links": [
+    { "type": "article", "title": "Capacity Planning (Google SRE)", "url": "https://sre.google/sre-book/software-engineering-in-sre/" },
+    { "type": "opensource", "title": "k6 (Load Testing)", "url": "https://k6.io/" },
+    { "type": "opensource", "title": "Locust", "url": "https://locust.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Capacity planning** ensures you have enough resources to handle expected load with headroom for spikes. Too little = outages. Too much = wasted money. Key inputs: current usage, growth rate, and known events (launches, sales).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Load testing** (k6, Locust, Gatling) reveals breaking points before production does. **Forecasting**: extrapolate growth trends, model seasonal patterns. **Right-sizing**: reduce over-provisioned resources. Auto-scaling handles short-term variability; capacity planning handles long-term growth." },
+    { "label": "In practice", "tag": "adv", "body": "Load test regularly in a production-like environment. Know your system's **saturation point** (at what load does latency spike?). Plan for N+1 redundancy (survive losing one AZ/instance). In cloud, auto-scaling handles organic growth, but you still need to plan for: quota limits, managed service limits, and lead time on reserved capacity." }
+   ]
+  },
+  "t-chaos-engineering": {
+   "label": "Chaos Engineering",
+   "domain": "d4",
+   "col": 3,
+   "desc": "Proactively injecting failures to discover weaknesses before they cause real incidents.",
+   "subs": ["l-chaos-principles", "l-fault-injection", "l-gamedays"],
+   "links": [
+    { "type": "article", "title": "Principles of Chaos Engineering", "url": "https://principlesofchaos.org/" },
+    { "type": "opensource", "title": "Litmus Chaos", "url": "https://litmuschaos.io/" },
+    { "type": "article", "title": "AWS Fault Injection Service", "url": "https://docs.aws.amazon.com/fis/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Chaos engineering** tests resilience by deliberately breaking things in controlled conditions. Kill a service, inject latency, corrupt data, drop network packets \u2014 and observe whether the system degrades gracefully or collapses.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Process: define **steady state** (normal behaviour metrics) \u2192 hypothesise ('system handles pod kill gracefully') \u2192 inject fault \u2192 observe \u2192 learn. Start small (one pod) and expand (entire AZ). Tools: Litmus, Gremlin, AWS FIS, Chaos Mesh." },
+    { "label": "In practice", "tag": "adv", "body": "Run chaos experiments in production (with guardrails \u2014 blast radius limits, automatic halt conditions). **Game days** are scheduled exercises where teams inject failures and practice response. Chaos engineering builds confidence in your redundancy \u2014 untested redundancy is assumed redundancy. Start with: killing random pods, simulating AZ failures, and injecting network latency." }
+   ]
+  },
+
+  "t-observability-devops": {
+   "label": "Observability",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Understanding system behaviour from external outputs \u2014 metrics, logs, traces, and the signals that matter.",
+   "subs": ["l-three-pillars", "l-opentelemetry", "l-dashboards"],
+   "links": [
+    { "type": "article", "title": "OpenTelemetry", "url": "https://opentelemetry.io/" },
+    { "type": "article", "title": "Observability Engineering (O'Reilly)", "url": "https://www.oreilly.com/library/view/observability-engineering/9781492076438/" },
+    { "type": "article", "title": "Grafana Stack", "url": "https://grafana.com/docs/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Observability** lets you understand *what's happening inside* a system from its *external outputs*. Three pillars: **metrics** (aggregated numbers over time), **logs** (discrete events), **traces** (request journey across services).", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**OpenTelemetry** is the universal standard: instrument once, export to any backend. **Metrics**: Prometheus + Grafana. **Logs**: Loki, Elasticsearch. **Traces**: Jaeger, Tempo. Correlate all three via trace IDs for full context during debugging." },
+    { "label": "In practice", "tag": "adv", "body": "Good observability means you can answer **novel questions** about your system without deploying new code. Instrument with OTel SDK, use auto-instrumentation for frameworks, add manual spans for business logic. Cardinality management matters at scale \u2014 don't use high-cardinality labels on metrics. Invest in **exemplars** (link metrics to specific traces)." }
+   ]
+  },
+  "t-alerting-devops": {
+   "label": "Alerting & On-Call",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Notifying humans when systems need attention \u2014 meaningful alerts, paging policies, and sustainable on-call.",
+   "subs": ["l-alert-design", "l-on-call-practices", "l-escalation"],
+   "links": [
+    { "type": "article", "title": "My Philosophy on Alerting (Rob Ewaschuk)", "url": "https://docs.google.com/document/d/199PqyG3UsyXlwieHaqbGiWVa8eMWi8zzAn0YfcApr8Q/edit" },
+    { "type": "article", "title": "PagerDuty On-Call Guide", "url": "https://response.pagerduty.com/oncall/being_oncall/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An alert should mean: **something needs human attention now**. Alert on **symptoms** (high error rate, slow responses) not causes (high CPU). Every page should be **actionable** \u2014 if you can't do anything, it shouldn't wake you up.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Severity levels**: page (wake someone up) vs ticket (fix during business hours) vs notification (FYI). **On-call rotation**: fair distribution, clear handoffs, documented runbooks. **Escalation**: if not acknowledged in X minutes, escalate to next responder." },
+    { "label": "In practice", "tag": "adv", "body": "**Alert fatigue** is the #1 on-call killer. Ruthlessly prune: if an alert fires and the response is always 'ignore it', delete it. Target: <5 pages per on-call shift. Use SLO-based alerting (alert when error budget burn rate threatens the SLO) instead of static thresholds. Compensate on-call fairly \u2014 sustained bad on-call drives attrition." }
+   ]
+  },
+  "t-incident-management": {
+   "label": "Incident Management",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Coordinating response during outages \u2014 roles, communication, and structured resolution.",
+   "subs": ["l-incident-commander", "l-communication-plan", "l-severity-levels"],
+   "links": [
+    { "type": "article", "title": "PagerDuty Incident Response", "url": "https://response.pagerduty.com/" },
+    { "type": "article", "title": "Incident Management (Atlassian)", "url": "https://www.atlassian.com/incident-management" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "When an incident occurs: **detect** (alerts/reports) \u2192 **triage** (severity, who's affected) \u2192 **respond** (mitigate impact) \u2192 **resolve** (fix root cause) \u2192 **learn** (postmortem). Clear **roles** prevent chaos: incident commander, communications lead, technical responders.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Incident Commander** (IC): coordinates response, makes decisions, doesn't debug. **Comms lead**: updates stakeholders and status pages. **Responders**: debug and fix. Use a shared channel (Slack #incident-XXX), keep a timeline, and communicate early/often \u2014 even 'we're investigating' is better than silence." },
+    { "label": "In practice", "tag": "adv", "body": "Practice incident response before real incidents (tabletop exercises, game days). Pre-write communication templates. Automate: incident channel creation, stakeholder notification, status page updates. After resolution, always run a **postmortem** \u2014 not to blame, but to learn. Track MTTR (mean time to resolve) as a key reliability metric." }
+   ]
+  },
+  "t-postmortems": {
+   "label": "Blameless Postmortems",
+   "domain": "d5",
+   "col": 4,
+   "desc": "Learning from incidents \u2014 understanding what happened, why, and how to prevent recurrence.",
+   "subs": ["l-postmortem-template", "l-action-items", "l-learning-culture"],
+   "links": [
+    { "type": "article", "title": "Postmortem Culture (Google SRE)", "url": "https://sre.google/sre-book/postmortem-culture/" },
+    { "type": "article", "title": "Etsy Debriefing Guide", "url": "https://extfiles.etsy.com/tests/DebriefingFacilitationGuide.pdf" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A **postmortem** documents: what happened (timeline), why (contributing factors), impact, and what we'll do differently (action items). **Blameless**: focus on systemic causes, not individual fault. People don't cause incidents; systems allow incidents.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Structure: **summary**, **timeline** (minute-by-minute), **contributing factors** (not 'root cause' \u2014 incidents rarely have one), **what went well**, **what could be improved**, **action items** (owned, prioritised, tracked). Share broadly \u2014 other teams learn too." },
+    { "label": "In practice", "tag": "adv", "body": "Postmortems are only valuable if action items get done. Track them like any other work (in the backlog, with owners and deadlines). If the same contributing factor appears in multiple postmortems, escalate \u2014 it's a systemic issue. Read postmortems from other companies (Google, Cloudflare publish theirs) to learn from their incidents too." }
+   ]
+  },
+
+  "t-internal-platforms": {
+   "label": "Internal Developer Platforms",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Building platforms that abstract infrastructure complexity and let developers self-serve.",
+   "subs": ["l-platform-layers", "l-backstage", "l-platform-team"],
+   "links": [
+    { "type": "article", "title": "Platform Engineering (CNCF)", "url": "https://tag-app-delivery.cncf.io/whitepapers/platforms/" },
+    { "type": "opensource", "title": "Backstage (Spotify)", "url": "https://backstage.io/" },
+    { "type": "article", "title": "Team Topologies \u2014 Platform Teams", "url": "https://teamtopologies.com/key-concepts" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "An **Internal Developer Platform (IDP)** provides golden paths: opinionated, self-service workflows for deploying services, provisioning infrastructure, and managing the SDLC. Developers focus on code; the platform handles the how.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Platform layers: **developer portal** (Backstage \u2014 catalog, docs, scaffolding), **CI/CD** (standardised pipelines), **infrastructure** (self-service provisioning via Terraform/Crossplane), **observability** (pre-configured dashboards and alerts). A thin **API/CLI** ties them together." },
+    { "label": "In practice", "tag": "adv", "body": "In 2026 platform engineering is how organisations scale DevOps beyond a few expert teams. The platform team is a **product team** — its customers are developers. Measure developer experience (time to first deploy, cognitive load, SPACE framework) not just infra metrics. Backstage is the dominant developer portal; Crossplane and Kratix provide infrastructure abstraction. Internal platforms reduce cognitive load by 40-60% for product teams." }
+   ]
+  },
+  "t-developer-experience": {
+   "label": "Developer Experience (DevEx)",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Optimising the developer's daily workflow \u2014 fast feedback, low friction, and productive tooling.",
+   "subs": ["l-dev-environment", "l-inner-loop", "l-devex-metrics"],
+   "links": [
+    { "type": "article", "title": "DevEx: What Actually Drives Productivity", "url": "https://queue.acm.org/detail.cfm?id=3595878" },
+    { "type": "article", "title": "SPACE Framework", "url": "https://queue.acm.org/detail.cfm?id=3454124" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Developer experience** is how easy and pleasant it is to build, test, and ship software in your organisation. Fast CI, easy local development, clear documentation, and minimal yak-shaving. Friction in the inner loop kills productivity.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "The **inner loop** (code \u2192 build \u2192 test \u2192 debug locally) should be seconds, not minutes. **Dev environments** (Codespaces, Gitpod, devcontainers) provide consistent, instant setup. Measure DevEx with **SPACE metrics**: Satisfaction, Performance, Activity, Communication, Efficiency." },
+    { "label": "In practice", "tag": "adv", "body": "Treat developer productivity as infrastructure, not an afterthought. Invest in: fast builds (caching, incremental), fast tests (parallelisation, selective testing), instant environments (pre-warmed, cloud-based), and clear golden paths (templates, scaffolding). Survey developers regularly \u2014 the biggest productivity killers are often surprises to leadership." }
+   ]
+  },
+  "t-self-service": {
+   "label": "Self-Service Infrastructure",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Enabling teams to provision and manage their own infrastructure without waiting for ops tickets.",
+   "subs": ["l-service-catalog", "l-guardrails-self-service", "l-templates"],
+   "links": [
+    { "type": "article", "title": "Self-Service Platforms (Humanitec)", "url": "https://humanitec.com/blog/what-is-an-internal-developer-platform" },
+    { "type": "article", "title": "Port (Developer Portal)", "url": "https://www.getport.io/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "**Self-service** means developers can provision databases, deploy services, create environments, and manage DNS without filing tickets or waiting for another team. The platform provides guardrails so self-service is safe.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "Implement via: **service catalogs** (pre-approved resource templates), **GitOps** (PR to provision), **CLIs/portals** (Backstage actions, custom CLI tools). **Guardrails** (cost limits, security policies, naming conventions) are enforced automatically, not manually." },
+    { "label": "In practice", "tag": "adv", "body": "Self-service eliminates the #1 bottleneck in most orgs: waiting for the infrastructure team. Start with the most-requested resources (environments, databases, DNS entries). Make the safe path the easy path \u2014 if the golden path is harder than ad-hoc, people will go around it. Track adoption as a platform metric." }
+   ]
+  },
+  "t-platform-as-product": {
+   "label": "Platform as Product",
+   "domain": "d6",
+   "col": 5,
+   "desc": "Treating your internal platform like a product \u2014 users, feedback, roadmaps, and adoption metrics.",
+   "subs": ["l-product-thinking", "l-adoption-metrics", "l-platform-evangelism"],
+   "links": [
+    { "type": "article", "title": "Platform as a Product (Thoughtworks)", "url": "https://www.thoughtworks.com/radar/techniques/platform-engineering-product-teams" },
+    { "type": "article", "title": "Team Topologies", "url": "https://teamtopologies.com/" }
+   ],
+   "levels": [
+    { "label": "Basics", "tag": "basics", "body": "A platform team's users are **internal developers**. Treat them like customers: understand their pain points, build what they need, measure satisfaction, and iterate. A platform nobody uses is a failed product, regardless of its technical elegance.", "open": true },
+    { "label": "Going deeper", "tag": "mid", "body": "**Product management** for platforms: user research (developer surveys, observing workflows), roadmap prioritisation, documentation/onboarding, and success metrics (adoption rate, time-to-first-deploy, developer satisfaction scores). Build a feedback loop: office hours, Slack channels, feature requests." },
+    { "label": "In practice", "tag": "adv", "body": "Platform teams fail when they: build in isolation (no user research), mandate usage (forced adoption breeds resentment), or over-build before validating need. Start small (one golden path), prove value, expand. The best platform teams have product managers alongside engineers. Measure: % of services on the platform, mean time to onboard, and NPS from developers." }
+   ]
+  }
+ },
+
+ "leaves": {
+  "l-devops-principles": { "label": "DevOps Principles", "parent": "t-devops-intro", "domain": "d1", "desc": "Flow, feedback, and continuous learning.", "links": [], "levels": [] },
+  "l-devops-history": { "label": "DevOps History", "parent": "t-devops-intro", "domain": "d1", "desc": "From siloed ops to collaborative delivery.", "links": [], "levels": [] },
+  "l-sre-principles": { "label": "SRE Principles", "parent": "t-sre-intro", "domain": "d1", "desc": "Embrace risk, eliminate toil, simplify.", "links": [], "levels": [] },
+  "l-sre-vs-devops": { "label": "SRE vs DevOps", "parent": "t-sre-intro", "domain": "d1", "desc": "Philosophy vs implementation.", "links": [], "levels": [] },
+  "l-shared-ownership": { "label": "Shared Ownership", "parent": "t-devops-culture", "domain": "d1", "desc": "You build it, you run it.", "links": [], "levels": [] },
+  "l-blameless-culture": { "label": "Blameless Culture", "parent": "t-devops-culture", "domain": "d1", "desc": "Failures as learning, not punishment.", "links": [], "levels": [] },
+  "l-toil-definition": { "label": "Defining Toil", "parent": "t-toil", "domain": "d1", "desc": "Manual, repetitive, automatable, scales linearly.", "links": [], "levels": [] },
+  "l-automation-strategy": { "label": "Automation Strategy", "parent": "t-toil", "domain": "d1", "desc": "Prioritising what to automate by impact.", "links": [], "levels": [] },
+  "l-build-automation": { "label": "Build Automation", "parent": "t-ci", "domain": "d2", "desc": "Compiling, packaging, and artifact creation.", "links": [], "levels": [] },
+  "l-test-automation": { "label": "Test Automation", "parent": "t-ci", "domain": "d2", "desc": "Running test suites on every change.", "links": [], "levels": [] },
+  "l-ci-best-practices": { "label": "CI Best Practices", "parent": "t-ci", "domain": "d2", "desc": "Speed, caching, fail-fast, flake management.", "links": [], "levels": [] },
+  "l-continuous-delivery": { "label": "Continuous Delivery", "parent": "t-cd", "domain": "d2", "desc": "Always deployable, human-triggered releases.", "links": [], "levels": [] },
+  "l-continuous-deployment": { "label": "Continuous Deployment", "parent": "t-cd", "domain": "d2", "desc": "Auto-deploy every passing change to production.", "links": [], "levels": [] },
+  "l-deployment-strategies": { "label": "Deployment Strategies", "parent": "t-cd", "domain": "d2", "desc": "Rolling, blue-green, canary, A/B.", "links": [], "levels": [] },
+  "l-gitops-principles": { "label": "GitOps Principles", "parent": "t-gitops", "domain": "d2", "desc": "Declarative, versioned, reconciled.", "links": [], "levels": [] },
+  "l-argocd": { "label": "Argo CD", "parent": "t-gitops", "domain": "d2", "desc": "Kubernetes-native GitOps controller.", "links": [], "levels": [] },
+  "l-flux": { "label": "Flux CD", "parent": "t-gitops", "domain": "d2", "desc": "Lightweight GitOps toolkit for Kubernetes.", "links": [], "levels": [] },
+  "l-feature-flags": { "label": "Feature Flags", "parent": "t-progressive-delivery", "domain": "d2", "desc": "Toggle features without redeploying.", "links": [], "levels": [] },
+  "l-canary-releases": { "label": "Canary Releases", "parent": "t-progressive-delivery", "domain": "d2", "desc": "Gradual traffic shift with metric validation.", "links": [], "levels": [] },
+  "l-automated-rollback": { "label": "Automated Rollback", "parent": "t-progressive-delivery", "domain": "d2", "desc": "Reverting on metric degradation.", "links": [], "levels": [] },
+  "l-terraform-devops": { "label": "Terraform / OpenTofu", "parent": "t-iac-devops", "domain": "d3", "desc": "Declarative IaC with HCL.", "links": [], "levels": [] },
+  "l-pulumi-devops": { "label": "Pulumi", "parent": "t-iac-devops", "domain": "d3", "desc": "IaC with real programming languages.", "links": [], "levels": [] },
+  "l-crossplane": { "label": "Crossplane", "parent": "t-iac-devops", "domain": "d3", "desc": "Kubernetes-native infrastructure provisioning.", "links": [], "levels": [] },
+  "l-env-config": { "label": "Environment Config", "parent": "t-config-management", "domain": "d3", "desc": "Env vars and config files per environment.", "links": [], "levels": [] },
+  "l-config-servers": { "label": "Config Servers", "parent": "t-config-management", "domain": "d3", "desc": "Dynamic configuration without redeployment.", "links": [], "levels": [] },
+  "l-feature-toggles": { "label": "Feature Toggles", "parent": "t-config-management", "domain": "d3", "desc": "Runtime feature control as configuration.", "links": [], "levels": [] },
+  "l-golden-images": { "label": "Golden Images", "parent": "t-immutable-infra", "domain": "d3", "desc": "Pre-baked machine images via Packer.", "links": [], "levels": [] },
+  "l-containers-immutable": { "label": "Immutable Containers", "parent": "t-immutable-infra", "domain": "d3", "desc": "Build once, run identically everywhere.", "links": [], "levels": [] },
+  "l-blue-green-infra": { "label": "Blue-Green", "parent": "t-immutable-infra", "domain": "d3", "desc": "Swap entire environments for zero-downtime.", "links": [], "levels": [] },
+  "l-vault": { "label": "HashiCorp Vault", "parent": "t-secrets-management", "domain": "d3", "desc": "Full-featured secrets and encryption platform.", "links": [], "levels": [] },
+  "l-cloud-secrets": { "label": "Cloud Secrets Managers", "parent": "t-secrets-management", "domain": "d3", "desc": "AWS/GCP/Azure managed secrets services.", "links": [], "levels": [] },
+  "l-rotation": { "label": "Secret Rotation", "parent": "t-secrets-management", "domain": "d3", "desc": "Automating credential lifecycle.", "links": [], "levels": [] },
+
+  "l-sli-definition": { "label": "SLIs", "parent": "t-slos-slis", "domain": "d4", "desc": "Measurable indicators of service health.", "links": [], "levels": [] },
+  "l-slo-definition": { "label": "SLOs", "parent": "t-slos-slis", "domain": "d4", "desc": "Target thresholds for service indicators.", "links": [], "levels": [] },
+  "l-sla-definition": { "label": "SLAs", "parent": "t-slos-slis", "domain": "d4", "desc": "Contractual promises with consequences.", "links": [], "levels": [] },
+  "l-budget-calculation": { "label": "Budget Calculation", "parent": "t-error-budgets", "domain": "d4", "desc": "Deriving error budget from SLO target.", "links": [], "levels": [] },
+  "l-budget-policies": { "label": "Budget Policies", "parent": "t-error-budgets", "domain": "d4", "desc": "What happens when the budget is exhausted.", "links": [], "levels": [] },
+  "l-load-testing": { "label": "Load Testing", "parent": "t-capacity-planning", "domain": "d4", "desc": "Simulating traffic to find breaking points.", "links": [], "levels": [] },
+  "l-forecasting": { "label": "Demand Forecasting", "parent": "t-capacity-planning", "domain": "d4", "desc": "Predicting future resource needs from trends.", "links": [], "levels": [] },
+  "l-right-sizing": { "label": "Right-Sizing", "parent": "t-capacity-planning", "domain": "d4", "desc": "Reducing over-provisioned resources.", "links": [], "levels": [] },
+  "l-chaos-principles": { "label": "Chaos Principles", "parent": "t-chaos-engineering", "domain": "d4", "desc": "Hypothesise, inject, observe, learn.", "links": [], "levels": [] },
+  "l-fault-injection": { "label": "Fault Injection", "parent": "t-chaos-engineering", "domain": "d4", "desc": "Killing pods, injecting latency, dropping packets.", "links": [], "levels": [] },
+  "l-gamedays": { "label": "Game Days", "parent": "t-chaos-engineering", "domain": "d4", "desc": "Scheduled resilience exercises.", "links": [], "levels": [] },
+  "l-three-pillars": { "label": "Three Pillars", "parent": "t-observability-devops", "domain": "d5", "desc": "Metrics, logs, traces as complementary signals.", "links": [], "levels": [] },
+  "l-opentelemetry": { "label": "OpenTelemetry", "parent": "t-observability-devops", "domain": "d5", "desc": "Universal instrumentation standard.", "links": [], "levels": [] },
+  "l-dashboards": { "label": "Dashboards", "parent": "t-observability-devops", "domain": "d5", "desc": "Visualising system health with Grafana.", "links": [], "levels": [] },
+  "l-alert-design": { "label": "Alert Design", "parent": "t-alerting-devops", "domain": "d5", "desc": "Symptoms over causes, actionable alerts.", "links": [], "levels": [] },
+  "l-on-call-practices": { "label": "On-Call Practices", "parent": "t-alerting-devops", "domain": "d5", "desc": "Fair rotations, runbooks, and compensation.", "links": [], "levels": [] },
+  "l-escalation": { "label": "Escalation", "parent": "t-alerting-devops", "domain": "d5", "desc": "Automatic escalation when pages go unacknowledged.", "links": [], "levels": [] },
+  "l-incident-commander": { "label": "Incident Commander", "parent": "t-incident-management", "domain": "d5", "desc": "The coordinator role during incidents.", "links": [], "levels": [] },
+  "l-communication-plan": { "label": "Communication Plan", "parent": "t-incident-management", "domain": "d5", "desc": "Stakeholder updates and status pages.", "links": [], "levels": [] },
+  "l-severity-levels": { "label": "Severity Levels", "parent": "t-incident-management", "domain": "d5", "desc": "Classifying incident impact (SEV1-4).", "links": [], "levels": [] },
+  "l-postmortem-template": { "label": "Postmortem Template", "parent": "t-postmortems", "domain": "d5", "desc": "Structured document for incident learning.", "links": [], "levels": [] },
+  "l-action-items": { "label": "Action Items", "parent": "t-postmortems", "domain": "d5", "desc": "Owned, tracked follow-ups from incidents.", "links": [], "levels": [] },
+  "l-learning-culture": { "label": "Learning Culture", "parent": "t-postmortems", "domain": "d5", "desc": "Sharing learnings across the organisation.", "links": [], "levels": [] },
+  "l-platform-layers": { "label": "Platform Layers", "parent": "t-internal-platforms", "domain": "d6", "desc": "Portal, CI/CD, infra, observability.", "links": [], "levels": [] },
+  "l-backstage": { "label": "Backstage", "parent": "t-internal-platforms", "domain": "d6", "desc": "Spotify's open-source developer portal.", "links": [], "levels": [] },
+  "l-platform-team": { "label": "Platform Team", "parent": "t-internal-platforms", "domain": "d6", "desc": "Dedicated team enabling stream-aligned teams.", "links": [], "levels": [] },
+  "l-dev-environment": { "label": "Dev Environments", "parent": "t-developer-experience", "domain": "d6", "desc": "Codespaces, devcontainers, instant setup.", "links": [], "levels": [] },
+  "l-inner-loop": { "label": "Inner Loop", "parent": "t-developer-experience", "domain": "d6", "desc": "Code-build-test cycle speed.", "links": [], "levels": [] },
+  "l-devex-metrics": { "label": "DevEx Metrics", "parent": "t-developer-experience", "domain": "d6", "desc": "SPACE framework for measuring productivity.", "links": [], "levels": [] },
+  "l-service-catalog": { "label": "Service Catalog", "parent": "t-self-service", "domain": "d6", "desc": "Pre-approved resource templates.", "links": [], "levels": [] },
+  "l-guardrails-self-service": { "label": "Guardrails", "parent": "t-self-service", "domain": "d6", "desc": "Automated policy enforcement for safety.", "links": [], "levels": [] },
+  "l-templates": { "label": "Templates & Scaffolding", "parent": "t-self-service", "domain": "d6", "desc": "Cookiecutters and project generators.", "links": [], "levels": [] },
+  "l-product-thinking": { "label": "Product Thinking", "parent": "t-platform-as-product", "domain": "d6", "desc": "User research, roadmaps, and iteration.", "links": [], "levels": [] },
+  "l-adoption-metrics": { "label": "Adoption Metrics", "parent": "t-platform-as-product", "domain": "d6", "desc": "Tracking platform usage and satisfaction.", "links": [], "levels": [] },
+  "l-platform-evangelism": { "label": "Platform Evangelism", "parent": "t-platform-as-product", "domain": "d6", "desc": "Driving adoption through enablement.", "links": [], "levels": [] }
+ },
+ "topicEdges": [
+  { "s": "t-devops-intro", "t": "t-sre-intro", "k": "builds" },
+  { "s": "t-devops-culture", "t": "t-toil", "k": "builds" },
+  { "s": "t-ci", "t": "t-cd", "k": "prereq" },
+  { "s": "t-cd", "t": "t-gitops", "k": "builds" },
+  { "s": "t-cd", "t": "t-progressive-delivery", "k": "builds" },
+  { "s": "t-iac-devops", "t": "t-immutable-infra", "k": "builds" },
+  { "s": "t-sre-intro", "t": "t-slos-slis", "k": "prereq" },
+  { "s": "t-slos-slis", "t": "t-error-budgets", "k": "builds" },
+  { "s": "t-error-budgets", "t": "t-chaos-engineering", "k": "applies" },
+  { "s": "t-observability-devops", "t": "t-alerting-devops", "k": "builds" },
+  { "s": "t-alerting-devops", "t": "t-incident-management", "k": "builds" },
+  { "s": "t-incident-management", "t": "t-postmortems", "k": "builds" },
+  { "s": "t-toil", "t": "t-internal-platforms", "k": "applies" },
+  { "s": "t-internal-platforms", "t": "t-self-service", "k": "builds" }
+ ],
+ "leafEdges": []
+}
