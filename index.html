@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Interactive learning maps for mastering AI, ML, and engineering topics end-to-end. See how every topic connects and study from foundations to advanced.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Knowledge">
+  <meta name="theme-color" content="#0A0E16">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="stylesheet" href="assets/index.css">
+  <title>Knowledge · Hubs</title>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kbd">charitharth · knowledge</div>
+      <h1>Knowledge <span>/ study hubs</span></h1>
+      <p class="lead">Interactive maps for learning a field end-to-end — see how every topic connects, optionally lock tiers until you master the basics, and study from foundations to advanced. Pick a hub:</p>
+    </header>
+
+    <main>
+      <div class="grid" id="hub-grid" aria-label="Available study hubs">
+        <!-- Static fallback (replaced by dynamic load when served over HTTP) -->
+        <a class="hub" href="hub.html?topic=ml">
+          <div class="hbadge">ML</div>
+          <div class="htitle">Machine Learning Engineer</div>
+          <div class="hblurb">From the math and programming foundations up to deep learning and NLP.</div>
+          <div class="hmeta">37 topics · 112 sub-topics</div>
+        </a>
+        <a class="hub" href="hub.html?topic=ai-eng">
+          <div class="hbadge">AI-ENG</div>
+          <div class="htitle">AI Engineering</div>
+          <div class="hblurb">The applied LLM stack — pre-training, RAG, agents, reasoning, and multimodal generation.</div>
+          <div class="hmeta">27 topics · 76 sub-topics</div>
+        </a>
+        <div class="hub add" role="presentation">
+          <div class="hbadge">+</div>
+          <div class="htitle">Add a hub</div>
+          <div class="hblurb">Drop a new <code>data/&lt;id&gt;.json</code>, add the id to <code>data/index.json</code>, and it appears here. See <a href="docs/HUB_SCHEMA.md">HUB_SCHEMA.md</a>.</div>
+          <div class="hmeta">web3 · system design · anything</div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="foot">
+      <p>One engine (<code>assets/hub.js</code>), one stylesheet, many hubs — each is just a JSON file in <code>/data</code>.</p>
+      <p>Authoring guide: <a href="docs/HUB_SCHEMA.md">HUB_SCHEMA.md</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var grid = document.getElementById('hub-grid');
+
+    // Progressively enhance: if fetch works (HTTP), replace static cards with live data
+    if (location.protocol === 'file:') return; // static fallback is already fine
+
+    fetch('data/index.json')
+      .then(function (r) { return r.json(); })
+      .then(function (ids) {
+        return Promise.all(ids.map(function (id) {
+          return fetch('data/' + id + '.json')
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+              var topicCount = Object.keys(data.topics || {}).length;
+              var leafCount = Object.keys(data.leaves || {}).length;
+              return { id: id, meta: data.meta || {}, topicCount: topicCount, leafCount: leafCount };
+            });
+        }));
+      })
+      .then(function (hubs) {
+        grid.innerHTML = '';
+        hubs.forEach(function (hub) {
+          var badge = (hub.meta.id || hub.id).toUpperCase();
+          var title = hub.meta.title || hub.id;
+          var blurb = hub.meta.blurb || hub.meta.subtitle || '';
+          var card = document.createElement('a');
+          card.className = 'hub';
+          card.href = 'hub.html?topic=' + hub.id;
+          card.innerHTML =
+            '<div class="hbadge">' + esc(badge) + '</div>' +
+            '<div class="htitle">' + esc(title) + '</div>' +
+            '<div class="hblurb">' + esc(blurb) + '</div>' +
+            '<div class="hmeta">' + hub.topicCount + ' topics \u00b7 ' + hub.leafCount + ' sub-topics</div>';
+          grid.appendChild(card);
+        });
+
+        // "Add a hub" card
+        var add = document.createElement('div');
+        add.className = 'hub add';
+        add.setAttribute('role', 'presentation');
+        add.innerHTML =
+          '<div class="hbadge">+</div>' +
+          '<div class="htitle">Add a hub</div>' +
+          '<div class="hblurb">Drop a new <code>data/&lt;id&gt;.json</code>, add the id to <code>data/index.json</code>, and it appears here. See <a href="docs/HUB_SCHEMA.md">HUB_SCHEMA.md</a>.</div>' +
+          '<div class="hmeta">web3 \u00b7 system design \u00b7 anything</div>';
+        grid.appendChild(add);
+      })
+      .catch(function () {
+        // Static fallback already visible — just leave it
+      });
+
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+  })();
+
+  // Register service worker for offline / PWA support
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  }
+  </script>
+</body>
+</html>
