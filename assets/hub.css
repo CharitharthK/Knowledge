@@ -1,8 +1,19 @@
+/* Self-hosted fonts */
+@font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.ttf') format('truetype'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/inter-500.ttf') format('truetype'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/inter-600.ttf') format('truetype'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-mono-400.ttf') format('truetype'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/jetbrains-mono-500.ttf') format('truetype'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/jetbrains-mono-700.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/space-grotesk-400.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/space-grotesk-500.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/space-grotesk-600.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/space-grotesk-700.ttf') format('truetype'); }
 
 :root{
   --ink:#070A10; --bg:#0A0E16; --panel:#0F141F; --panel2:#141A28;
   --line:#1F2738; --line2:#26304a; --line-bright:#33405A;
-  --text:#D6DEEC; --muted:#7b8398; --muted2:#5d667c; --faint:#39455e;
+  --text:#D6DEEC; --muted:#94a0b8; --muted2:#8890a5; --faint:#39455e;
   --gold:#F0B23C; --cyan:#46B8DA; --mint:#54C99A; --violet:#B08CF0; --coral:#F0796B;
 }
 *{box-sizing:border-box}
@@ -40,6 +51,7 @@ a.brand:active{transform:scale(.985)}
 .zbtn{font-family:"JetBrains Mono",monospace;font-size:13px;width:34px;height:34px;background:var(--panel);
   border:1px solid var(--line2);color:var(--muted);border-radius:8px;cursor:pointer;transition:.15s}
 .zbtn:hover{color:var(--text);border-color:var(--line-bright)}
+.zbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 .topbar{min-height:60px}
 .stage{position:absolute;inset:64px 0 0 0;overflow:auto;cursor:grab;touch-action:pan-x pan-y;
@@ -66,6 +78,7 @@ svg.links{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;z-
   border:1px solid var(--line);border-left:3px solid var(--cdom,var(--line));border-radius:11px;padding:11px 13px 12px;
   transition:border-color .15s,box-shadow .18s,opacity .18s,transform .15s;cursor:pointer}
 .card:hover{border-color:var(--line-bright);box-shadow:0 14px 34px -22px rgba(0,0,0,.9)}
+.card:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-color:var(--line-bright)}
 .card.cold{opacity:.28}
 .card.hot{border-color:var(--cdom);box-shadow:0 0 0 1px var(--cdom),0 16px 40px -22px var(--cdom)}
 .card.sel{border-color:var(--cdom);box-shadow:0 0 0 1.5px var(--cdom)}
@@ -113,7 +126,7 @@ svg.links{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;z-
 /* panel */
 .scrim{position:fixed;inset:0;background:rgba(4,6,10,.5);opacity:0;pointer-events:none;transition:.2s;z-index:40}
 .scrim.show{opacity:1;pointer-events:auto}
-.panel{position:fixed;top:0;right:0;height:100%;width:min(440px,92vw);z-index:50;
+.panel{position:fixed;top:0;right:0;height:100%;width:clamp(320px,38vw,600px);z-index:50;
   background:linear-gradient(180deg,var(--panel2),var(--panel));border-left:1px solid var(--line-bright);
   transform:translateX(102%);transition:transform .28s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;
   box-shadow:-30px 0 60px -30px rgba(0,0,0,.7)}
@@ -125,6 +138,7 @@ svg.links{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;z-
 .close{position:absolute;top:18px;right:18px;background:var(--panel);border:1px solid var(--line2);color:var(--muted);
   width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;transition:.15s}
 .close:hover{color:var(--text);border-color:var(--line-bright)}
+.close:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .panel-body{padding:20px 24px;overflow-y:auto;flex:1}
 .panel-body p{font-size:14.5px;line-height:1.62;margin:0 0 16px}
 .sub-h{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
@@ -149,12 +163,13 @@ svg.links{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;z-
 .markbtn{width:100%;font-family:"JetBrains Mono",monospace;font-size:13px;padding:11px;border-radius:9px;cursor:pointer;
   border:1px solid var(--mint);background:rgba(84,201,154,.08);color:var(--mint);transition:.15s}
 .markbtn:hover{background:rgba(84,201,154,.16)}.markbtn.done{background:var(--line);border-color:var(--line2);color:var(--muted2)}
-@media(max-width:600px){.legend,.hint{display:none}.brand h1{font-size:15px}.search input{width:120px}}
+@media(max-width:600px){.legend,.hint{display:none}.brand h1{font-size:15px}.search input{width:120px}.panel{width:94vw}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 /* ---- progressive disclosure ---- */
 .modebtn{font-family:"JetBrains Mono",monospace;font-size:12px;height:34px;padding:0 13px;background:var(--panel);
   border:1px solid var(--line2);color:var(--muted);border-radius:8px;cursor:pointer;transition:.15s;white-space:nowrap}
 .modebtn:hover{color:var(--text);border-color:var(--line-bright)}
+.modebtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .modebtn .lk{margin-right:5px}
 .modebtn.free{color:var(--gold);border-color:var(--gold);background:rgba(240,178,60,.08)}
 .ttl .tlabel{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}

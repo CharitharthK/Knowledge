@@ -1,0 +1,169 @@
+/* ===== Self-hosted fonts ===== */
+@font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.ttf') format('truetype'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/inter-500.ttf') format('truetype'); }
+@font-face { font-family:'Inter'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/inter-600.ttf') format('truetype'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-mono-400.ttf') format('truetype'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/jetbrains-mono-500.ttf') format('truetype'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/jetbrains-mono-700.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/space-grotesk-400.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/space-grotesk-500.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/space-grotesk-600.ttf') format('truetype'); }
+@font-face { font-family:'Space Grotesk'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/space-grotesk-700.ttf') format('truetype'); }
+
+/* ===== Design tokens ===== */
+:root {
+  --ink: #070A10;
+  --bg: #0A0E16;
+  --panel: #0F141F;
+  --line: #1F2738;
+  --line2: #26304a;
+  --line-bright: #33405A;
+  --text: #D6DEEC;
+  --muted: #94a0b8;      /* bumped from #7b8398 for WCAG AA contrast */
+  --muted2: #8890a5;     /* bumped from #5d667c for WCAG AA contrast */
+  --gold: #F0B23C;
+  --cyan: #46B8DA;
+  --mint: #54C99A;
+}
+
+/* ===== Reset & base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 560px at 80% -10%, rgba(240,178,60,.06), transparent 60%),
+    radial-gradient(900px 480px at 0% 110%, rgba(70,184,218,.05), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: max(28px, env(safe-area-inset-top)) 22px 60px;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ===== Layout ===== */
+.wrap { max-width: 960px; margin: 0 auto; }
+
+/* ===== Header ===== */
+.kbd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 34px;
+  letter-spacing: -.02em;
+  margin: 8px 0 6px;
+}
+h1 span { color: var(--muted2); font-weight: 400; }
+.lead {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 620px;
+  line-height: 1.6;
+  margin: 0 0 34px;
+}
+
+/* ===== Hub grid ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.hub {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: linear-gradient(180deg, var(--panel), var(--ink));
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 20px;
+  transition: border-color .16s, transform .16s, box-shadow .16s;
+  position: relative;
+  overflow: hidden;
+}
+.hub:hover,
+.hub:focus-visible {
+  border-color: var(--line-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 22px 44px -26px rgba(0,0,0,.9);
+}
+.hub:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.hub.add {
+  border-style: dashed;
+  opacity: .8;
+}
+.hub.add:hover,
+.hub.add:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+.hbadge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(240,178,60,.08);
+  border: 1px solid #7a5d22;
+  width: fit-content;
+  padding: 4px 9px;
+  border-radius: 7px;
+  letter-spacing: .05em;
+}
+.htitle {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -.01em;
+}
+.hblurb {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+  flex: 1;
+}
+.hblurb code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--cyan);
+}
+.hmeta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted2);
+}
+
+/* ===== Loading skeleton ===== */
+.hub.skeleton {
+  min-height: 140px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: .5; }
+  50% { opacity: .3; }
+}
+
+/* ===== Footer ===== */
+.foot {
+  margin-top: 42px;
+  color: var(--muted2);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.foot code {
+  color: var(--cyan);
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
